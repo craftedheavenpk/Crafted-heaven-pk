@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Crafted Heaven — plants, gardening supplies, handmade crafts, crochet, keychains, beads, pots and seeds.">
+<title>Crafted Heaven | Plants & Handmade Crafts</title>
+<style>
+:root{
+  --green:#315c45; --green2:#4f8062; --cream:#fbf7ef; --soft:#edf4ed;
+  --brown:#765b45; --text:#243229; --white:#fff; --shadow:0 10px 30px rgba(37,61,45,.10);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:Arial,Helvetica,sans-serif;background:var(--cream);color:var(--text);line-height:1.6}
+a{text-decoration:none;color:inherit}
+button{font:inherit;cursor:pointer;border:0}
+.container{width:min(1120px,92%);margin:auto}
+header{position:sticky;top:0;z-index:20;background:rgba(251,247,239,.96);backdrop-filter:blur(10px);border-bottom:1px solid #e7dfd2}
+.nav{height:72px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+.logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:21px;color:var(--green)}
+.logo-icon{font-size:29px}
+nav{display:flex;gap:25px;font-weight:600}
+nav a:hover{color:var(--green2)}
+.cart{background:var(--green);color:white;padding:10px 15px;border-radius:999px;font-weight:700}
+.hero{padding:80px 0 70px;background:linear-gradient(135deg,#edf4ed 0%,#fbf7ef 62%)}
+.hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:50px;align-items:center}
+.badge{display:inline-block;background:#dcebdd;color:var(--green);padding:7px 13px;border-radius:999px;font-weight:700;margin-bottom:18px}
+h1{font-size:clamp(42px,6vw,72px);line-height:1.02;color:var(--green);margin-bottom:20px}
+.hero p{font-size:18px;max-width:600px;color:#56665b;margin-bottom:28px}
+.btn{display:inline-block;padding:13px 20px;border-radius:12px;background:var(--green);color:white;font-weight:800;margin-right:8px}
+.btn.alt{background:white;color:var(--green);border:1px solid #d5dfd5}
+.hero-art{min-height:390px;border-radius:35px;background:#dfece0;display:flex;align-items:center;justify-content:center;font-size:180px;box-shadow:var(--shadow);position:relative}
+.hero-art span{position:absolute;font-size:55px}
+.hero-art .s1{top:28px;left:30px}.hero-art .s2{bottom:25px;right:35px}.hero-art .s3{top:55px;right:35px}
+section{padding:75px 0}
+.section-head{text-align:center;margin-bottom:35px}
+.section-head h2{font-size:36px;color:var(--green);margin-bottom:8px}
+.section-head p{color:#68766d}
+.categories{display:grid;grid-template-columns:repeat(6,1fr);gap:14px}
+.category{background:white;border-radius:18px;padding:22px 10px;text-align:center;box-shadow:var(--shadow);transition:.2s}
+.category:hover{transform:translateY(-4px)}
+.category .icon{font-size:38px;margin-bottom:7px}
+.category b{font-size:14px}
+.filters{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin-bottom:28px}
+.filter{background:white;color:var(--green);border:1px solid #dce5dc;padding:9px 15px;border-radius:999px;font-weight:700}
+.filter.active,.filter:hover{background:var(--green);color:white}
+.products{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.card{background:white;border-radius:20px;overflow:hidden;box-shadow:var(--shadow);display:flex;flex-direction:column}
+.photo{height:190px;background:var(--soft);display:flex;align-items:center;justify-content:center;font-size:82px}
+.info{padding:17px}.tag{font-size:12px;color:var(--green2);font-weight:800;text-transform:uppercase}
+.info h3{margin:4px 0 5px;font-size:19px}
+.info p{font-size:14px;color:#6a746d;min-height:44px}
+.bottom{display:flex;align-items:center;justify-content:space-between;margin-top:13px}
+.price{font-size:18px;font-weight:900;color:var(--brown)}
+.add{background:var(--green);color:#fff;padding:9px 12px;border-radius:10px;font-weight:800}
+.about{background:#eef5ee}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:45px;align-items:center}
+.about-box{background:white;border-radius:25px;padding:30px;box-shadow:var(--shadow)}
+.about-box h3{color:var(--green);font-size:26px;margin-bottom:12px}
+.features{display:grid;grid-template-columns:1fr 1fr;gap:15px;margin-top:20px}
+.feature{background:#f7faf7;border-radius:15px;padding:15px}
+.contact{background:var(--green);color:white}
+.contact .section-head h2{color:white}.contact .section-head p{color:#dbe9df}
+.contact-box{background:white;color:var(--text);border-radius:25px;padding:30px;max-width:720px;margin:auto}
+.form{display:grid;gap:13px}.form input,.form textarea{width:100%;padding:13px;border:1px solid #d8e0d8;border-radius:10px;font:inherit}
+.form textarea{min-height:100px;resize:vertical}
+footer{background:#203c2d;color:#d9e6dc;padding:30px 0;text-align:center}
+.cart-panel{position:fixed;right:18px;bottom:18px;background:white;width:min(360px,calc(100% - 36px));border-radius:20px;box-shadow:0 20px 50px rgba(0,0,0,.2);padding:20px;z-index:30;display:none}
+.cart-panel.show{display:block}
+.cart-panel h3{color:var(--green);margin-bottom:10px}
+.cart-items{max-height:220px;overflow:auto}
+.cart-row{display:flex;justify-content:space-between;gap:10px;padding:9px 0;border-bottom:1px solid #eee;font-size:14px}
+.close{float:right;background:#eee;border-radius:50%;width:30px;height:30px}
+.total{font-weight:900;margin:15px 0}
+@media(max-width:900px){
+ nav{display:none}.hero-grid,.about-grid{grid-template-columns:1fr}.hero-art{min-height:280px;font-size:130px}
+ .categories{grid-template-columns:repeat(3,1fr)}.products{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:560px){
+ .nav{height:64px}.logo{font-size:18px}.hero{padding:55px 0}.hero-art{min-height:230px}
+ .categories{grid-template-columns:repeat(2,1fr)}.products{grid-template-columns:1fr}
+ h1{font-size:48px}.features{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="container nav">
+    <a class="logo" href="#"><span class="logo-icon">🌿</span> Crafted Heaven</a>
+    <nav>
+      <a href="#home">Home</a><a href="#shop">Shop</a><a href="#about">About</a><a href="#contact">Contact</a>
+    </nav>
+    <button class="cart" onclick="toggleCart()">🛒 Cart (<span id="cartCount">0</span>)</button>
+  </div>
+</header>
+
+<main>
+<section class="hero" id="home">
+  <div class="container hero-grid">
+    <div>
+      <span class="badge">🌱 Little things, beautifully crafted</span>
+      <h1>Bring nature & creativity home.</h1>
+      <p>Welcome to Crafted Heaven — your online store for live plants, gardening supplies, handmade crafts, crochet items, keychains, beads, pots, seeds and more.</p>
+      <a class="btn" href="#shop">Shop Now</a>
+      <a class="btn alt" href="#contact">Contact Us</a>
+    </div>
+    <div class="hero-art">🪴<span class="s1">🌸</span><span class="s2">🧶</span><span class="s3">🌿</span></div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="section-head"><h2>Shop by Category</h2><p>Find something lovely for your home, garden or gift box.</p></div>
+    <div class="categories">
+      <a class="category" href="#shop" onclick="selectCategory('plants')"><div class="icon">🪴</div><b>Live Plants</b></a>
+      <a class="category" href="#shop" onclick="selectCategory('gardening')"><div class="icon">🌱</div><b>Gardening</b></a>
+      <a class="category" href="#shop" onclick="selectCategory('crafts')"><div class="icon">🎨</div><b>Handmade Crafts</b></a>
+      <a class="category" href="#shop" onclick="selectCategory('crochet')"><div class="icon">🧶</div><b>Crochet</b></a>
+      <a class="category" href="#shop" onclick="selectCategory('keychains')"><div class="icon">🔑</div><b>Keychains</b></a>
+      <a class="category" href="#shop" onclick="selectCategory('supplies')"><div class="icon">📿</div><b>Beads & Pots</b></a>
+    </div>
+  </div>
+</section>
+
+<section id="shop">
+  <div class="container">
+    <div class="section-head"><h2>Our Products</h2><p>Simple placeholders are included — replace them with your real product photos and prices.</p></div>
+    <div class="filters">
+      <button class="filter active" onclick="filterProducts('all',this)">All</button>
+      <button class="filter" onclick="filterProducts('plants',this)">Plants</button>
+      <button class="filter" onclick="filterProducts('gardening',this)">Gardening</button>
+      <button class="filter" onclick="filterProducts('crafts',this)">Crafts</button>
+      <button class="filter" onclick="filterProducts('crochet',this)">Crochet</button>
+      <button class="filter" onclick="filterProducts('keychains',this)">Keychains</button>
+      <button class="filter" onclick="filterProducts('supplies',this)">Supplies</button>
+    </div>
+    <div class="products" id="products"></div>
+  </div>
+</section>
+
+<section class="about" id="about">
+  <div class="container about-grid">
+    <div>
+      <div class="section-head" style="text-align:left"><h2>About Crafted Heaven</h2><p>A small corner for green lovers and handmade-art fans.</p></div>
+      <p>We bring together beautiful plants, useful gardening items and handmade creations. Every product can be presented with its own photo, price and description.</p>
+      <div class="features">
+        <div class="feature">🌱 <b>Plant lovers</b><br>Fresh & beautiful greenery.</div>
+        <div class="feature">🧶 <b>Handmade</b><br>Creative pieces made with care.</div>
+        <div class="feature">🎁 <b>Gift ideas</b><br>Unique little things for loved ones.</div>
+        <div class="feature">📦 <b>Easy ordering</b><br>Order through WhatsApp.</div>
+      </div>
+    </div>
+    <div class="about-box">
+      <h3>Why Crafted Heaven?</h3>
+      <p>Because your space deserves a little more green, a little more creativity and a lot more personality.</p>
+      <br><p><b>Tip:</b> When you're ready, replace the demo WhatsApp number below with your real business number.</p>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <div class="container">
+    <div class="section-head"><h2>Get in Touch</h2><p>Send us a message and we'll help you with your order.</p></div>
+    <div class="contact-box">
+      <form class="form" onsubmit="sendMessage(event)">
+        <input id="name" required placeholder="Your name">
+        <input id="phone" placeholder="Phone / WhatsApp number">
+        <textarea id="message" required placeholder="What would you like to order?"></textarea>
+        <button class="btn" type="submit">💬 Order on WhatsApp</button>
+      </form>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="container">
+    <b>🌿 Crafted Heaven</b><br>
+    Plants • Gardening • Handmade Crafts • Crochet • Keychains • Beads • Pots • Seeds
+    <p style="margin-top:10px;font-size:13px">© 2026 Crafted Heaven. All rights reserved.</p>
+  </div>
+</footer>
+
+<div class="cart-panel" id="cartPanel">
+  <button class="close" onclick="toggleCart()">×</button>
+  <h3>🛒 Your Cart</h3>
+  <div class="cart-items" id="cartItems">Your cart is empty.</div>
+  <div class="total" id="cartTotal"></div>
+  <button class="btn" style="width:100%" onclick="checkout()">💬 Order Cart on WhatsApp</button>
+</div>
+
+<script>
+const WHATSAPP_NUMBER = "923001234567"; // CHANGE THIS to your WhatsApp number, e.g. 923XXXXXXXXX
+
+const products = [
+ {id:1,name:"Mini Indoor Plant",cat:"plants",price:650,icon:"🪴",desc:"A lovely green plant for your room or desk."},
+ {id:2,name:"Succulent Plant",cat:"plants",price:450,icon:"🌵",desc:"Easy-care succulent for a sunny corner."},
+ {id:3,name:"Terracotta Pot",cat:"supplies",price:350,icon:"🏺",desc:"Simple decorative pot for your favourite plant."},
+ {id:4,name:"Plant Seeds Pack",cat:"gardening",price:250,icon:"🌱",desc:"Seeds for your next little garden project."},
+ {id:5,name:"Gardening Tool Set",cat:"gardening",price:900,icon:"🛠️",desc:"Useful tools for everyday plant care."},
+ {id:6,name:"Handmade Gift Craft",cat:"crafts",price:750,icon:"🎨",desc:"A cute handmade piece for gifting."},
+ {id:7,name:"Crochet Flower",cat:"crochet",price:550,icon:"🧶",desc:"Handmade crochet decoration made with care."},
+ {id:8,name:"Cute Keychain",cat:"keychains",price:300,icon:"🔑",desc:"A fun handmade keychain for your keys or bag."},
+ {id:9,name:"Decorative Beads",cat:"supplies",price:400,icon:"📿",desc:"Colourful beads for your craft projects."},
+ {id:10,name:"Plant Mister",cat:"gardening",price:500,icon:"💧",desc:"Handy spray bottle for gentle plant watering."},
+ {id:11,name:"Crochet Mini Bag",cat:"crochet",price:1200,icon:"👜",desc:"A cute handmade crochet accessory."},
+ {id:12,name:"Custom Gift Set",cat:"crafts",price:1500,icon:"🎁",desc:"A custom bundle for a special occasion."}
+];
+
+let cart=[];
+
+function money(n){return "Rs. "+n.toLocaleString("en-PK")}
+function renderProducts(list=products){
+ const box=document.getElementById("products");
+ box.innerHTML=list.map(p=>`
+ <article class="card">
+   <div class="photo">${p.icon}</div>
+   <div class="info">
+     <span class="tag">${p.cat}</span>
+     <h3>${p.name}</h3><p>${p.desc}</p>
+     <div class="bottom"><span class="price">${money(p.price)}</span>
+     <button class="add" onclick="addToCart(${p.id})">Add +</button></div>
+   </div>
+ </article>`).join("");
+}
+function filterProducts(cat,btn){
+ document.querySelectorAll(".filter").forEach(x=>x.classList.remove("active"));btn.classList.add("active");
+ renderProducts(cat==="all"?products:products.filter(p=>p.cat===cat));
+}
+function selectCategory(cat){
+ setTimeout(()=>{const btn=[...document.querySelectorAll(".filter")].find(x=>x.textContent.toLowerCase().includes(cat==="supplies"?"supplies":cat)); if(btn) filterProducts(cat,btn)},50);
+}
+function addToCart(id){
+ const p=products.find(x=>x.id===id); const item=cart.find(x=>x.id===id);
+ if(item)item.qty++;else cart.push({...p,qty:1});
+ updateCart(); document.getElementById("cartPanel").classList.add("show");
+}
+function updateCart(){
+ document.getElementById("cartCount").textContent=cart.reduce((a,x)=>a+x.qty,0);
+ const box=document.getElementById("cartItems");
+ box.innerHTML=cart.length?cart.map(x=>`<div class="cart-row"><span>${x.name} × ${x.qty}</span><b>${money(x.price*x.qty)}</b></div>`).join(""):"Your cart is empty.";
+ document.getElementById("cartTotal").textContent=cart.length?"Total: "+money(cart.reduce((a,x)=>a+x.price*x.qty,0)):"";
+}
+function toggleCart(){document.getElementById("cartPanel").classList.toggle("show")}
+function checkout(){
+ if(!cart.length){alert("Your cart is empty.");return}
+ const text="Hello Crafted Heaven! I want to order:%0A"+cart.map(x=>`• ${x.name} x${x.qty} — ${money(x.price*x.qty)}`).join("%0A")+"%0A%0ATotal: "+money(cart.reduce((a,x)=>a+x.price*x.qty,0));
+ window.open("https://wa.me/"+WHATSAPP_NUMBER+"?text="+text,"_blank");
+}
+function sendMessage(e){
+ e.preventDefault();
+ const n=document.getElementById("name").value,m=document.getElementById("message").value,p=document.getElementById("phone").value;
+ const text=`Hello Crafted Heaven!%0AName: ${encodeURIComponent(n)}%0APhone: ${encodeURIComponent(p)}%0AMessage: ${encodeURIComponent(m)}`;
+ window.open("https://wa.me/"+WHATSAPP_NUMBER+"?text="+text,"_blank");
+}
+renderProducts();
+</script>
+</body>
+</html>
