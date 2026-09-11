@@ -45,7 +45,109 @@ section{padding:75px 0}
 .filters{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin-bottom:28px}
 .filter{background:white;color:var(--green);border:1px solid #dce5dc;padding:9px 15px;border-radius:999px;font-weight:700}
 .filter.active,.filter:hover{background:var(--green);color:white}
-.products{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.products{
+  display:grid;
+  grid-template-columns:repeat(2, minmax(0, 1fr));
+  gap:24px;
+  margin-top:25px;
+}
+
+.card{
+  background:#fff;
+  border-radius:18px;
+  overflow:hidden;
+  border:1px solid #e8e8e8;
+  box-shadow:0 5px 18px rgba(0,0,0,.08);
+  transition:transform .2s, box-shadow .2s;
+}
+
+.card:hover{
+  transform:translateY(-4px);
+  box-shadow:0 10px 25px rgba(0,0,0,.12);
+}
+
+.card .photo{
+  width:100%;
+  height:260px;
+  background:#f5f5f5;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  overflow:hidden;
+  font-size:70px;
+}
+
+.card .photo img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+}
+
+.card .info{
+  padding:18px;
+}
+
+.card .tag{
+  display:inline-block;
+  font-size:12px;
+  padding:5px 10px;
+  border-radius:20px;
+  background:#eef7ee;
+  color:#287a35;
+  margin-bottom:8px;
+  text-transform:capitalize;
+}
+
+.card h3{
+  margin:4px 0 8px;
+  font-size:21px;
+}
+
+.card p{
+  margin:0 0 16px;
+  color:#666;
+  font-size:14px;
+  line-height:1.5;
+  min-height:42px;
+}
+
+.card .bottom{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+}
+
+.card .price{
+  font-size:19px;
+  font-weight:700;
+}
+
+.card .add{
+  border:0;
+  background:#222;
+  color:#fff;
+  padding:10px 17px;
+  border-radius:10px;
+  cursor:pointer;
+  font-weight:600;
+}
+
+.card .add:hover{
+  background:#444;
+}
+
+@media(max-width:560px){
+  .products{
+    grid-template-columns:1fr;
+    gap:18px;
+  }
+
+  .card .photo{
+    height:240px;
+  }
+}
 .card{background:white;border-radius:20px;overflow:hidden;box-shadow:var(--shadow);display:flex;flex-direction:column}
 .photo{height:190px;background:var(--soft);display:flex;align-items:center;justify-content:center;font-size:82px}
 .info{padding:17px}.tag{font-size:12px;color:var(--green2);font-weight:800;text-transform:uppercase}
@@ -129,6 +231,14 @@ footer{background:#203c2d;color:#d9e6dc;padding:30px 0;text-align:center}
 </section>
 
 <section id="shop">
+  <div class="search-box">
+  <input
+    type="text"
+    id="searchInput"
+    placeholder="🔍 Search products..."
+    oninput="searchProducts()"
+  >
+  </div>
   <div class="container">
     <div class="section-head"><h2>Our Products</h2><p>Simple placeholders are included — replace them with your real product photos and prices.</p></div>
     <div class="filters">
@@ -232,18 +342,51 @@ let cart=[];
 
 function money(n){return "Rs. "+n.toLocaleString("en-PK")}
 function renderProducts(list=products){
- const box=document.getElementById("products");
- box.innerHTML=list.map(p=>`
- <article class="card">
-   <div class="photo">${p.image ? `<img src="${p.image}" alt="${p.name}" style="width:100%;height:100%;object-fit:cover">` : p.icon}</div>
-   <div class="info">
-     <span class="tag">${p.cat}</span>
-     <h3>${p.name}</h3><p>${p.desc}</p>
-     <div class="bottom"><span class="price">${money(p.price)}</span>
-     <button class="add" onclick="addToCart(${p.id})">Add +</button></div>
-   </div>
- </article>`).join("");
+  const box=document.getElementById("products");
+
+  box.innerHTML=list.map(p=>`
+    <article class="card">
+
+      <div class="photo">
+        ${
+          p.image
+          ? `<img src="${p.image}" alt="${p.name}">`
+          : p.icon
+        }
+      </div>
+
+      <div class="info">
+
+        <span class="tag">${p.cat}</span>
+
+        <h3>${p.name}</h3>
+
+        <p>${p.desc}</p>
+
+        <div class="bottom">
+          <span class="price">${money(p.price)}</span>
+
+          <button class="add" onclick="addToCart(${p.id})">
+            Add +
+          </button>
+        </div>
+
+      </div>
+
+    </article>
+  `).join("");
 }
+qfunction searchProducts(){
+  const query=document.getElementById("searchInput").value.toLowerCase().trim();
+
+  const results=products.filter(p =>
+    p.name.toLowerCase().includes(query) ||
+    p.desc.toLowerCase().includes(query) ||
+    p.cat.toLowerCase().includes(query)
+  );
+
+  renderProducts(results);
+  
 function filterProducts(cat,btn){
  document.querySelectorAll(".filter").forEach(x=>x.classList.remove("active"));btn.classList.add("active");
  renderProducts(cat==="all"?products:products.filter(p=>p.cat===cat));
