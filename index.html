@@ -4,22 +4,11 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<meta name="description" content="Crafted Heaven — plants, gardening supplies, handmade crafts, crochet, keychains, beads, pots and seeds.">
+<title>Crafted Heaven | Plants, Gardening & Handmade Crafts</title>
 
-<title>Crafted Heaven | Plants & Handmade Crafts</title>
+<meta name="description" content="Crafted Heaven - Plants, gardening essentials, handmade crafts, crochet, keychains, beads, pots and seeds. Order easily through WhatsApp.">
 
 <style>
-:root{
-  --green:#315c45;
-  --green2:#4f8062;
-  --cream:#fbf7ef;
-  --soft:#edf4ed;
-  --brown:#765b45;
-  --text:#243229;
-  --white:#fff;
-  --shadow:0 10px 30px rgba(37,61,45,.10);
-}
-
 *{
   box-sizing:border-box;
   margin:0;
@@ -32,8 +21,8 @@ html{
 
 body{
   font-family:Arial,Helvetica,sans-serif;
-  background:var(--cream);
-  color:var(--text);
+  background:#171a17;
+  color:#f2f5f2;
   line-height:1.6;
 }
 
@@ -42,230 +31,276 @@ a{
   color:inherit;
 }
 
-button{
+button,
+input,
+textarea{
   font:inherit;
-  cursor:pointer;
-  border:0;
 }
 
 .container{
-  width:min(1120px,92%);
+  width:min(1180px,92%);
   margin:auto;
 }
 
 /* HEADER */
+
 header{
   position:sticky;
   top:0;
-  z-index:20;
-  background:rgba(251,247,239,.97);
-  backdrop-filter:blur(10px);
-  border-bottom:1px solid #e7dfd2;
+  z-index:1000;
+  background:rgba(28,30,25,.96);
+  backdrop-filter:blur(12px);
+  border-bottom:1px solid rgba(255,255,255,.08);
 }
 
 .nav{
-  min-height:72px;
+  min-height:78px;
   display:flex;
   align-items:center;
   justify-content:space-between;
   gap:20px;
 }
 
-.logo{
-  display:flex;
-  align-items:center;
-}
-
 .logo img{
-  height:48px;
+  height:52px;
   width:auto;
   display:block;
 }
 
 nav{
   display:flex;
-  gap:25px;
-  font-weight:600;
+  align-items:center;
+  gap:28px;
+}
+
+nav a{
+  color:#e6eee8;
+  font-weight:700;
+  transition:.2s;
 }
 
 nav a:hover{
-  color:var(--green2);
+  color:#a8e6ca;
 }
 
 .cart{
-  background:var(--green);
+  border:0;
+  background:#2e7659;
   color:white;
-  padding:10px 15px;
-  border-radius:999px;
-  font-weight:700;
+  padding:13px 22px;
+  border-radius:30px;
+  font-weight:800;
+  cursor:pointer;
+  transition:.2s;
+}
+
+.cart:hover{
+  background:#39916d;
+  transform:translateY(-1px);
 }
 
 /* HERO */
+
 .hero{
-  padding:80px 0 70px;
-  background:linear-gradient(135deg,#edf4ed 0%,#fbf7ef 62%);
+  padding:80px 0 60px;
+  background:
+    radial-gradient(circle at 80% 20%,rgba(52,120,87,.22),transparent 35%),
+    linear-gradient(135deg,#29291f,#1b211c);
 }
 
 .hero-grid{
   display:grid;
-  grid-template-columns:1.15fr .85fr;
-  gap:50px;
+  grid-template-columns:1fr 1fr;
   align-items:center;
+  gap:50px;
 }
 
 .badge{
   display:inline-block;
-  background:#dcebdd;
-  color:var(--green);
-  padding:7px 13px;
-  border-radius:999px;
-  font-weight:700;
-  margin-bottom:18px;
+  background:#163c2a;
+  color:#a9e8cb;
+  padding:9px 17px;
+  border-radius:30px;
+  font-weight:800;
+  margin-bottom:22px;
 }
 
-h1{
-  font-size:clamp(42px,6vw,72px);
-  line-height:1.02;
-  color:var(--green);
-  margin-bottom:20px;
+.hero h1{
+  font-size:clamp(44px,6vw,78px);
+  line-height:1.05;
+  color:#a8e8cf;
+  margin-bottom:25px;
 }
 
 .hero p{
-  font-size:18px;
-  max-width:600px;
-  color:#56665b;
-  margin-bottom:28px;
+  font-size:20px;
+  color:#dce4de;
+  max-width:680px;
+  margin-bottom:30px;
+}
+
+.btn-row{
+  display:flex;
+  gap:15px;
+  flex-wrap:wrap;
 }
 
 .btn{
-  display:inline-block;
-  padding:13px 20px;
-  border-radius:12px;
-  background:var(--green);
-  color:white;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  padding:15px 27px;
+  border-radius:16px;
   font-weight:800;
-  margin-right:8px;
+  cursor:pointer;
+  border:1px solid transparent;
+  transition:.2s;
 }
 
-.btn.alt{
-  background:white;
-  color:var(--green);
-  border:1px solid #d5dfd5;
+.btn-primary{
+  background:#00451d;
+  color:white;
 }
 
-.hero-art{
-  min-height:390px;
-  border-radius:35px;
-  background:white;
-  overflow:hidden;
-  box-shadow:var(--shadow);
+.btn-primary:hover{
+  background:#07652d;
+  transform:translateY(-2px);
+}
+
+.btn-secondary{
+  background:#292b29;
+  color:#b5ead2;
+  border-color:#66716a;
+}
+
+.btn-secondary:hover{
+  background:#353a36;
 }
 
 .hero-art img{
   width:100%;
-  height:100%;
-  min-height:390px;
+  max-height:430px;
   object-fit:cover;
+  border-radius:30px;
   display:block;
+  border:1px solid rgba(255,255,255,.15);
 }
 
 /* SECTIONS */
+
 section{
-  padding:75px 0;
+  padding:85px 0;
 }
 
 .section-head{
   text-align:center;
-  margin-bottom:35px;
+  margin-bottom:45px;
 }
 
 .section-head h2{
-  font-size:36px;
-  color:var(--green);
-  margin-bottom:8px;
+  font-size:clamp(38px,5vw,58px);
+  color:#a9e9d0;
+  margin-bottom:12px;
 }
 
 .section-head p{
-  color:#68766d;
+  color:#d8dfda;
+  font-size:19px;
 }
 
 /* CATEGORIES */
+
 .categories{
+  background:#171b17;
+}
+
+.category-grid{
   display:grid;
-  grid-template-columns:repeat(6,1fr);
-  gap:14px;
+  grid-template-columns:repeat(3,1fr);
+  gap:22px;
 }
 
-.category{
-  background:white;
-  border-radius:18px;
-  padding:22px 10px;
+.category-card{
+  background:#292b29;
+  border:1px solid rgba(255,255,255,.07);
+  border-radius:28px;
+  padding:35px 20px;
   text-align:center;
-  box-shadow:var(--shadow);
-  transition:.2s;
+  cursor:pointer;
+  transition:.25s;
 }
 
-.category:hover{
-  transform:translateY(-4px);
+.category-card:hover{
+  transform:translateY(-5px);
+  background:#303430;
 }
 
-.category .icon{
-  font-size:38px;
-  margin-bottom:7px;
+.category-card .emoji{
+  font-size:58px;
+  margin-bottom:12px;
 }
 
-.category b{
-  font-size:14px;
+.category-card h3{
+  font-size:22px;
 }
 
-/* SHOP SEARCH */
+/* SHOP */
+
+.shop{
+  background:#1d1c15;
+}
+
 .search-box{
-  width:min(700px,92%);
-  margin:0 auto 28px;
+  max-width:700px;
+  margin:0 auto 25px;
 }
 
 .search-box input{
   width:100%;
-  padding:15px 18px;
-  border:1px solid #d8e0d8;
-  border-radius:14px;
-  font-size:16px;
+  padding:19px 22px;
+  border-radius:18px;
+  border:1px solid #666b66;
+  background:#303130;
+  color:white;
   outline:none;
-  background:white;
-  color:var(--text);
-  box-shadow:0 5px 18px rgba(37,61,45,.07);
 }
 
 .search-box input:focus{
-  border-color:var(--green2);
-  box-shadow:0 0 0 3px rgba(79,128,98,.12);
+  border-color:#5ba982;
+  box-shadow:0 0 0 3px rgba(91,169,130,.12);
 }
 
-/* FILTERS */
+.search-box input::placeholder{
+  color:#bfc5c0;
+}
+
 .filters{
   display:flex;
   justify-content:center;
-  gap:8px;
+  gap:12px;
   flex-wrap:wrap;
-  margin-bottom:28px;
+  margin-bottom:40px;
 }
 
-.filter{
-  background:white;
-  color:var(--green);
-  border:1px solid #dce5dc;
-  padding:9px 15px;
-  border-radius:999px;
-  font-weight:700;
+.filter-btn{
+  border:0;
+  background:#666866;
+  color:#cde7d9;
+  padding:12px 20px;
+  border-radius:30px;
+  font-weight:800;
+  cursor:pointer;
+  transition:.2s;
 }
 
-.filter.active,
-.filter:hover{
-  background:var(--green);
+.filter-btn:hover,
+.filter-btn.active{
+  background:#2f7659;
   color:white;
 }
 
 /* PRODUCTS */
+
 .products{
   display:grid;
   grid-template-columns:repeat(2,minmax(0,1fr));
@@ -273,236 +308,479 @@ section{
 }
 
 .card{
-  background:white;
-  border-radius:20px;
   overflow:hidden;
-  border:1px solid #e8e8e8;
-  box-shadow:var(--shadow);
-  display:flex;
-  flex-direction:column;
-  transition:.2s;
+  background:#292929;
+  border:1px solid rgba(255,255,255,.12);
+  border-radius:28px;
+  box-shadow:0 12px 35px rgba(0,0,0,.18);
+  transition:.25s;
 }
 
 .card:hover{
   transform:translateY(-4px);
-  box-shadow:0 14px 30px rgba(37,61,45,.14);
+  box-shadow:0 18px 45px rgba(0,0,0,.28);
 }
 
 .photo{
-  width:100%;
-  height:270px;
-  background:var(--soft);
+  height:340px;
+  background:#202620;
   display:flex;
   align-items:center;
   justify-content:center;
   overflow:hidden;
-  font-size:82px;
 }
 
 .photo img{
   width:100%;
   height:100%;
   object-fit:cover;
-  display:block;
+}
+
+.photo .emoji{
+  font-size:95px;
 }
 
 .info{
-  padding:18px;
+  padding:25px;
 }
 
 .tag{
   display:inline-block;
-  font-size:12px;
-  color:var(--green2);
-  font-weight:800;
-  text-transform:uppercase;
-  background:#eef7ee;
-  padding:5px 9px;
+  background:#143a29;
+  color:#9fe1c2;
+  padding:7px 13px;
   border-radius:20px;
-  margin-bottom:7px;
+  font-size:13px;
+  font-weight:900;
+  text-transform:uppercase;
+  margin-bottom:15px;
 }
 
 .info h3{
-  margin:4px 0 7px;
-  font-size:20px;
+  font-size:27px;
+  margin-bottom:8px;
 }
 
 .info p{
-  font-size:14px;
-  color:#6a746d;
-  min-height:44px;
-  line-height:1.5;
+  color:#cfd6d1;
+  min-height:52px;
+  margin-bottom:20px;
 }
 
 .bottom{
   display:flex;
   align-items:center;
   justify-content:space-between;
-  gap:12px;
-  margin-top:15px;
+  gap:15px;
 }
 
 .price{
-  font-size:19px;
+  font-size:27px;
   font-weight:900;
-  color:var(--brown);
+  color:#f0d6c3;
 }
 
 .add{
-  background:var(--green);
-  color:#fff;
-  padding:10px 15px;
-  border-radius:10px;
-  font-weight:800;
+  border:0;
+  background:#327d5d;
+  color:white;
+  padding:13px 21px;
+  border-radius:15px;
+  font-weight:900;
+  cursor:pointer;
+  transition:.2s;
 }
 
 .add:hover{
-  background:var(--green2);
+  background:#429a74;
 }
 
 /* ABOUT */
+
 .about{
-  background:#eef5ee;
+  background:
+    radial-gradient(circle at 20% 10%,rgba(57,113,80,.18),transparent 30%),
+    #1f251f;
 }
 
 .about-grid{
   display:grid;
   grid-template-columns:1fr 1fr;
-  gap:45px;
-  align-items:center;
+  gap:35px;
+  align-items:start;
 }
 
-.about-box{
-  background:white;
-  border-radius:25px;
-  padding:30px;
-  box-shadow:var(--shadow);
+.about-text h2{
+  color:#a9e9d0;
+  font-size:clamp(38px,5vw,58px);
+  margin-bottom:22px;
 }
 
-.about-box h3{
-  color:var(--green);
-  font-size:26px;
-  margin-bottom:12px;
+.about-text p{
+  color:#dbe3dd;
+  font-size:20px;
+  margin-bottom:22px;
 }
 
 .features{
   display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:15px;
-  margin-top:20px;
+  gap:18px;
 }
 
 .feature{
-  background:#f7faf7;
-  border-radius:15px;
-  padding:15px;
+  background:#292c29;
+  padding:24px;
+  border-radius:22px;
+}
+
+.feature h3{
+  margin-bottom:6px;
+}
+
+.feature p{
+  color:#d1d8d3;
 }
 
 /* CONTACT */
+
 .contact{
-  background:var(--green);
-  color:white;
+  background:#003516;
 }
 
 .contact .section-head h2{
   color:white;
 }
 
-.contact .section-head p{
-  color:#dbe9df;
-}
-
-.contact-box{
-  background:white;
-  color:var(--text);
-  border-radius:25px;
-  padding:30px;
-  max-width:720px;
+.contact-card{
+  max-width:750px;
   margin:auto;
+  background:#292929;
+  padding:38px;
+  border-radius:30px;
+  box-shadow:0 20px 50px rgba(0,0,0,.22);
 }
 
-.form{
-  display:grid;
-  gap:13px;
+.form-group{
+  margin-bottom:17px;
 }
 
-.form input,
-.form textarea{
+.form-group label{
+  display:block;
+  margin-bottom:7px;
+  font-weight:800;
+  color:#dce5df;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select{
   width:100%;
-  padding:13px;
-  border:1px solid #d8e0d8;
-  border-radius:10px;
-  font:inherit;
+  border:1px solid #646964;
+  background:#333333;
+  color:white;
+  padding:16px;
+  border-radius:15px;
+  outline:none;
 }
 
-.form textarea{
-  min-height:100px;
+.form-group textarea{
+  min-height:130px;
   resize:vertical;
 }
 
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus{
+  border-color:#62ad88;
+}
+
+.full-btn{
+  width:100%;
+  border:0;
+  margin-top:8px;
+  background:#347d5e;
+  color:white;
+  padding:17px;
+  border-radius:16px;
+  font-weight:900;
+  cursor:pointer;
+}
+
+.full-btn:hover{
+  background:#42996f;
+}
+
 /* FOOTER */
+
 footer{
-  background:#203c2d;
-  color:#d9e6dc;
-  padding:30px 0;
+  background:#001e0d;
+  padding:50px 0 35px;
   text-align:center;
 }
 
-/* CART */
-.cart-panel{
+.footer-logo{
+  font-size:27px;
+  font-weight:900;
+  margin-bottom:12px;
+}
+
+footer p{
+  color:#d4ddd7;
+  margin:8px 0;
+}
+
+/* CART DRAWER */
+
+.cart-overlay{
   position:fixed;
-  right:18px;
-  bottom:18px;
-  background:white;
-  width:min(360px,calc(100% - 36px));
-  border-radius:20px;
-  box-shadow:0 20px 50px rgba(0,0,0,.2);
-  padding:20px;
-  z-index:30;
+  inset:0;
+  background:rgba(0,0,0,.65);
+  z-index:1998;
   display:none;
 }
 
-.cart-panel.show{
+.cart-overlay.show{
   display:block;
 }
 
-.cart-panel h3{
-  color:var(--green);
-  margin-bottom:10px;
+.cart-drawer{
+  position:fixed;
+  top:0;
+  right:-480px;
+  width:min(460px,94vw);
+  height:100vh;
+  background:#202420;
+  z-index:1999;
+  transition:.3s ease;
+  box-shadow:-15px 0 50px rgba(0,0,0,.35);
+  display:flex;
+  flex-direction:column;
+}
+
+.cart-drawer.open{
+  right:0;
+}
+
+.cart-header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:22px;
+  border-bottom:1px solid rgba(255,255,255,.1);
+}
+
+.cart-header h2{
+  color:#a9e9d0;
+}
+
+.close-cart{
+  border:0;
+  background:#3a3d3a;
+  color:white;
+  width:40px;
+  height:40px;
+  border-radius:50%;
+  cursor:pointer;
+  font-size:20px;
 }
 
 .cart-items{
-  max-height:220px;
-  overflow:auto;
+  flex:1;
+  overflow-y:auto;
+  padding:18px;
 }
 
-.cart-row{
+.empty-cart{
+  text-align:center;
+  color:#c8d0ca;
+  padding:60px 20px;
+}
+
+.cart-item{
+  background:#2d302d;
+  border-radius:18px;
+  padding:15px;
+  margin-bottom:13px;
+}
+
+.cart-item-top{
   display:flex;
   justify-content:space-between;
+  gap:12px;
+}
+
+.cart-item h3{
+  font-size:17px;
+}
+
+.remove-btn{
+  border:0;
+  background:#612e2e;
+  color:#ffcccc;
+  border-radius:9px;
+  padding:6px 9px;
+  cursor:pointer;
+  font-size:12px;
+  font-weight:800;
+}
+
+.cart-item-price{
+  margin-top:5px;
+  color:#e6cdbd;
+  font-weight:800;
+}
+
+.qty-row{
+  display:flex;
+  align-items:center;
   gap:10px;
-  padding:9px 0;
-  border-bottom:1px solid #eee;
-  font-size:14px;
+  margin-top:12px;
 }
 
-.close{
-  float:right;
-  background:#eee;
-  border-radius:50%;
-  width:30px;
-  height:30px;
-}
-
-.total{
+.qty-btn{
+  width:34px;
+  height:34px;
+  border:0;
+  border-radius:10px;
+  background:#397b5d;
+  color:white;
   font-weight:900;
-  margin:15px 0;
+  cursor:pointer;
 }
 
-/* TABLET */
-@media(max-width:900px){
+.qty-number{
+  min-width:30px;
+  text-align:center;
+  font-weight:900;
+}
+
+.cart-bottom{
+  padding:20px;
+  border-top:1px solid rgba(255,255,255,.1);
+  background:#1b1f1b;
+}
+
+.total-row{
+  display:flex;
+  justify-content:space-between;
+  font-size:22px;
+  font-weight:900;
+  margin-bottom:18px;
+}
+
+.checkout-form{
+  display:none;
+}
+
+.checkout-form.show{
+  display:block;
+}
+
+.checkout-form input,
+.checkout-form textarea{
+  width:100%;
+  padding:13px;
+  margin-bottom:10px;
+  border-radius:12px;
+  border:1px solid #5d645e;
+  background:#303330;
+  color:white;
+  outline:none;
+}
+
+.checkout-form textarea{
+  min-height:85px;
+  resize:vertical;
+}
+
+.checkout-btn{
+  width:100%;
+  border:0;
+  background:#218c54;
+  color:white;
+  padding:15px;
+  border-radius:14px;
+  font-weight:900;
+  cursor:pointer;
+}
+
+.checkout-btn:hover{
+  background:#2ba967;
+}
+
+.cancel-checkout{
+  width:100%;
+  margin-top:8px;
+  padding:11px;
+  border:0;
+  border-radius:12px;
+  background:#454845;
+  color:white;
+  cursor:pointer;
+}
+
+/* TOAST */
+
+.toast{
+  position:fixed;
+  left:50%;
+  bottom:25px;
+  transform:translate(-50%,120px);
+  background:#277654;
+  color:white;
+  padding:14px 22px;
+  border-radius:30px;
+  font-weight:800;
+  z-index:3000;
+  opacity:0;
+  transition:.3s;
+  pointer-events:none;
+}
+
+.toast.show{
+  opacity:1;
+  transform:translate(-50%,0);
+}
+
+/* BACK TO TOP */
+
+.top-btn{
+  position:fixed;
+  right:20px;
+  bottom:20px;
+  width:48px;
+  height:48px;
+  border:0;
+  border-radius:50%;
+  background:#343734;
+  color:white;
+  cursor:pointer;
+  font-size:20px;
+  z-index:1000;
+}
+
+/* MOBILE */
+
+@media(max-width:850px){
 
   nav{
     display:none;
+  }
+
+  .nav{
+    min-height:70px;
+  }
+
+  .logo img{
+    height:45px;
+  }
+
+  .cart{
+    padding:11px 16px;
+  }
+
+  .hero{
+    padding:55px 0 45px;
   }
 
   .hero-grid,
@@ -510,48 +788,15 @@ footer{
     grid-template-columns:1fr;
   }
 
-  .hero-art{
-    min-height:280px;
+  .hero h1{
+    font-size:48px;
   }
 
-  .hero-art img{
-    min-height:280px;
+  .hero p{
+    font-size:18px;
   }
 
-  .categories{
-    grid-template-columns:repeat(3,1fr);
-  }
-
-  .products{
-    grid-template-columns:repeat(2,1fr);
-  }
-}
-
-/* MOBILE */
-@media(max-width:560px){
-
-  .nav{
-    min-height:64px;
-  }
-
-  .logo img{
-    height:42px;
-  }
-
-  .hero{
-    padding:55px 0;
-  }
-
-  .hero-art{
-    min-height:230px;
-    border-radius:25px;
-  }
-
-  .hero-art img{
-    min-height:230px;
-  }
-
-  .categories{
+  .category-grid{
     grid-template-columns:repeat(2,1fr);
   }
 
@@ -560,19 +805,73 @@ footer{
   }
 
   .photo{
-    height:250px;
+    height:330px;
   }
 
-  h1{
-    font-size:48px;
+  section{
+    padding:65px 0;
+  }
+}
+
+@media(max-width:520px){
+
+  .container{
+    width:91%;
   }
 
-  .features{
-    grid-template-columns:1fr;
+  .hero h1{
+    font-size:42px;
   }
 
-  .btn{
-    margin-bottom:8px;
+  .section-head h2,
+  .about-text h2{
+    font-size:38px;
+  }
+
+  .category-grid{
+    grid-template-columns:1fr 1fr;
+    gap:12px;
+  }
+
+  .category-card{
+    padding:25px 10px;
+    border-radius:20px;
+  }
+
+  .category-card .emoji{
+    font-size:44px;
+  }
+
+  .category-card h3{
+    font-size:17px;
+  }
+
+  .photo{
+    height:300px;
+  }
+
+  .info{
+    padding:21px;
+  }
+
+  .info h3{
+    font-size:24px;
+  }
+
+  .bottom{
+    align-items:center;
+  }
+
+  .price{
+    font-size:24px;
+  }
+
+  .add{
+    padding:12px 17px;
+  }
+
+  .contact-card{
+    padding:24px 18px;
   }
 }
 </style>
@@ -580,17 +879,17 @@ footer{
 
 <body>
 
-<!-- HEADER -->
 <header>
   <div class="container nav">
 
-    <a class="logo" href="#">
+    <a class="logo" href="#home">
       <img src="crafted_heaven_logo.png" alt="Crafted Heaven Logo">
     </a>
 
     <nav>
       <a href="#home">Home</a>
       <a href="#shop">Shop</a>
+      <a href="#categories">Categories</a>
       <a href="#about">About</a>
       <a href="#contact">Contact</a>
     </nav>
@@ -602,16 +901,22 @@ footer{
   </div>
 </header>
 
-<main>
 
 <!-- HERO -->
+
 <section class="hero" id="home">
+
   <div class="container hero-grid">
 
     <div>
-      <span class="badge">🌱 Little things, beautifully crafted</span>
 
-      <h1>Bring nature & creativity home.</h1>
+      <span class="badge">
+        🌱 Little things, beautifully crafted
+      </span>
+
+      <h1>
+        Bring nature & creativity home.
+      </h1>
 
       <p>
         Welcome to Crafted Heaven — your online store for live plants,
@@ -619,142 +924,160 @@ footer{
         beads, pots, seeds and more.
       </p>
 
-      <a class="btn" href="#shop">Shop Now</a>
-      <a class="btn alt" href="#contact">Contact Us</a>
+      <div class="btn-row">
+        <a class="btn btn-primary" href="#shop">
+          Shop Now
+        </a>
+
+        <a class="btn btn-secondary" href="#contact">
+          Contact Us
+        </a>
+      </div>
+
     </div>
 
     <div class="hero-art">
       <img
         src="file_00000000111c820a85835b2be6015af8.png"
-        alt="Crafted Heaven Store Banner"
+        alt="Crafted Heaven Store"
       >
     </div>
 
   </div>
+
 </section>
 
+
 <!-- CATEGORIES -->
-<section>
+
+<section class="categories" id="categories">
+
   <div class="container">
 
     <div class="section-head">
       <h2>Shop by Category</h2>
-      <p>Find something lovely for your home, garden or gift box.</p>
+      <p>
+        Find something lovely for your home, garden or gift box.
+      </p>
     </div>
 
-    <div class="categories">
+    <div class="category-grid">
 
-      <a class="category" href="#shop" onclick="selectCategory('plants')">
-        <div class="icon">🪴</div>
-        <b>Live Plants</b>
-      </a>
+      <div class="category-card" onclick="selectCategory('plants')">
+        <div class="emoji">🪴</div>
+        <h3>Live Plants</h3>
+      </div>
 
-      <a class="category" href="#shop" onclick="selectCategory('gardening')">
-        <div class="icon">🌱</div>
-        <b>Gardening</b>
-      </a>
+      <div class="category-card" onclick="selectCategory('gardening')">
+        <div class="emoji">🌱</div>
+        <h3>Gardening</h3>
+      </div>
 
-      <a class="category" href="#shop" onclick="selectCategory('crafts')">
-        <div class="icon">🎨</div>
-        <b>Handmade Crafts</b>
-      </a>
+      <div class="category-card" onclick="selectCategory('crafts')">
+        <div class="emoji">🎨</div>
+        <h3>Handmade Crafts</h3>
+      </div>
 
-      <a class="category" href="#shop" onclick="selectCategory('crochet')">
-        <div class="icon">🧶</div>
-        <b>Crochet</b>
-      </a>
+      <div class="category-card" onclick="selectCategory('crochet')">
+        <div class="emoji">🧶</div>
+        <h3>Crochet</h3>
+      </div>
 
-      <a class="category" href="#shop" onclick="selectCategory('keychains')">
-        <div class="icon">🔑</div>
-        <b>Keychains</b>
-      </a>
+      <div class="category-card" onclick="selectCategory('keychains')">
+        <div class="emoji">🔑</div>
+        <h3>Keychains</h3>
+      </div>
 
-      <a class="category" href="#shop" onclick="selectCategory('supplies')">
-        <div class="icon">📿</div>
-        <b>Beads & Pots</b>
-      </a>
+      <div class="category-card" onclick="selectCategory('supplies')">
+        <div class="emoji">📿</div>
+        <h3>Beads & Pots</h3>
+      </div>
 
     </div>
+
   </div>
+
 </section>
 
+
 <!-- SHOP -->
-<section id="shop">
+
+<section class="shop" id="shop">
 
   <div class="container">
 
     <div class="section-head">
       <h2>Our Products</h2>
-      <p>Explore our plants, gardening essentials and handmade creations.</p>
+      <p>
+        Explore our plants, gardening essentials and handmade creations.
+      </p>
     </div>
 
-    <!-- SEARCH BAR -->
     <div class="search-box">
+
       <input
         type="text"
         id="searchInput"
         placeholder="🔍 Search products..."
         oninput="searchProducts()"
       >
+
     </div>
 
-    <!-- FILTERS -->
+
     <div class="filters">
 
-      <button class="filter active"
-        onclick="filterProducts('all',this)">
+      <button class="filter-btn active" onclick="filterProducts('all',this)">
         All
       </button>
 
-      <button class="filter"
-        onclick="filterProducts('plants',this)">
+      <button class="filter-btn" onclick="filterProducts('plants',this)">
         Plants
       </button>
 
-      <button class="filter"
-        onclick="filterProducts('gardening',this)">
+      <button class="filter-btn" onclick="filterProducts('gardening',this)">
         Gardening
       </button>
 
-      <button class="filter"
-        onclick="filterProducts('crafts',this)">
+      <button class="filter-btn" onclick="filterProducts('crafts',this)">
         Crafts
       </button>
 
-      <button class="filter"
-        onclick="filterProducts('crochet',this)">
+      <button class="filter-btn" onclick="filterProducts('crochet',this)">
         Crochet
       </button>
 
-      <button class="filter"
-        onclick="filterProducts('keychains',this)">
+      <button class="filter-btn" onclick="filterProducts('keychains',this)">
         Keychains
       </button>
 
-      <button class="filter"
-        onclick="filterProducts('supplies',this)">
+      <button class="filter-btn" onclick="filterProducts('supplies',this)">
         Supplies
       </button>
 
     </div>
 
-    <!-- PRODUCTS -->
-    <div class="products" id="products"></div>
+
+    <div class="products" id="productGrid"></div>
 
   </div>
+
 </section>
 
+
 <!-- ABOUT -->
+
 <section class="about" id="about">
 
   <div class="container about-grid">
 
-    <div>
+    <div class="about-text">
 
-      <div class="section-head" style="text-align:left">
-        <h2>About Crafted Heaven</h2>
-        <p>A small corner for green lovers and handmade-art fans.</p>
-      </div>
+      <h2>About Crafted Heaven</h2>
+
+      <p>
+        A small corner for green lovers and handmade-art fans.
+      </p>
 
       <p>
         We bring together beautiful plants, useful gardening items
@@ -762,109 +1085,112 @@ footer{
         its own photo, price and description.
       </p>
 
-      <div class="features">
-
-        <div class="feature">
-          🌱 <b>Plant lovers</b><br>
-          Fresh & beautiful greenery.
-        </div>
-
-        <div class="feature">
-          🧶 <b>Handmade</b><br>
-          Creative pieces made with care.
-        </div>
-
-        <div class="feature">
-          🎁 <b>Gift ideas</b><br>
-          Unique little things for loved ones.
-        </div>
-
-        <div class="feature">
-          📦 <b>Easy ordering</b><br>
-          Order through WhatsApp.
-        </div>
-
-      </div>
     </div>
 
-    <div class="about-box">
 
-      <h3>Why Crafted Heaven?</h3>
+    <div class="features">
 
-      <p>
-        Because your space deserves a little more green,
-        a little more creativity and a lot more personality.
-      </p>
+      <div class="feature">
+        <h3>🌱 Plant lovers</h3>
+        <p>Fresh & beautiful greenery.</p>
+      </div>
 
-      <br>
+      <div class="feature">
+        <h3>🧶 Handmade</h3>
+        <p>Creative pieces made with care.</p>
+      </div>
 
-      <p>
-        <b>Easy ordering:</b>
-        Add your favourite products to the cart and
-        send your order directly through WhatsApp.
-      </p>
+      <div class="feature">
+        <h3>🎁 Gift ideas</h3>
+        <p>Unique little things for loved ones.</p>
+      </div>
+
+      <div class="feature">
+        <h3>📦 Easy ordering</h3>
+        <p>Order through WhatsApp.</p>
+      </div>
 
     </div>
 
   </div>
+
 </section>
 
+
 <!-- CONTACT -->
+
 <section class="contact" id="contact">
 
   <div class="container">
 
     <div class="section-head">
+
       <h2>Get in Touch</h2>
-      <p>Send us a message and we'll help you with your order.</p>
+
+      <p>
+        Send us a message and we'll help you with your order.
+      </p>
+
     </div>
 
-    <div class="contact-box">
 
-      <form class="form" onsubmit="sendMessage(event)">
+    <div class="contact-card">
 
+      <div class="form-group">
+        <label>Your Name</label>
         <input
-          id="name"
-          required
+          type="text"
+          id="contactName"
           placeholder="Your name"
         >
+      </div>
 
+
+      <div class="form-group">
+        <label>Phone / WhatsApp Number</label>
         <input
-          id="phone"
+          type="tel"
+          id="contactPhone"
           placeholder="Phone / WhatsApp number"
         >
+      </div>
 
+
+      <div class="form-group">
+        <label>Your Message</label>
         <textarea
-          id="message"
-          required
+          id="contactMessage"
           placeholder="What would you like to order?"
         ></textarea>
+      </div>
 
-        <button class="btn" type="submit">
-          💬 Order on WhatsApp
-        </button>
 
-      </form>
+      <button class="full-btn" onclick="sendMessage()">
+        💬 Message on WhatsApp
+      </button>
 
     </div>
 
   </div>
+
 </section>
 
-</main>
 
 <!-- FOOTER -->
+
 <footer>
 
   <div class="container">
 
-    <b>🌿 Crafted Heaven</b>
-    <br>
+    <div class="footer-logo">
+      🌿 Crafted Heaven
+    </div>
 
-    Plants • Gardening • Handmade Crafts • Crochet •
-    Keychains • Beads • Pots • Seeds
+    <p>
+      Plants • Gardening • Handmade Crafts • Crochet • Keychains • Beads • Pots • Seeds
+    </p>
 
-    <p style="margin-top:10px;font-size:13px">
+    <p>
       © 2026 Crafted Heaven. All rights reserved.
     </p>
 
@@ -872,34 +1198,168 @@ footer{
 
 </footer>
 
-<!-- CART PANEL -->
-<div class="cart-panel" id="cartPanel">
 
-  <button class="close" onclick="toggleCart()">×</button>
+<!-- CART OVERLAY -->
 
-  <h3>🛒 Your Cart</h3>
+<div
+  class="cart-overlay"
+  id="cartOverlay"
+  onclick="closeCart()"
+></div>
 
-  <div class="cart-items" id="cartItems">
-    Your cart is empty.
+
+<!-- CART -->
+
+<div class="cart-drawer" id="cartDrawer">
+
+  <div class="cart-header">
+
+    <h2>🛒 Your Cart</h2>
+
+    <button
+      class="close-cart"
+      onclick="closeCart()"
+    >
+      ×
+    </button>
+
   </div>
 
-  <div class="total" id="cartTotal"></div>
 
-  <button
-    class="btn"
-    style="width:100%"
-    onclick="checkout()"
-  >
-    💬 Order Cart on WhatsApp
-  </button>
+  <div class="cart-items" id="cartItems">
+
+    <div class="empty-cart">
+      Your cart is empty.
+    </div>
+
+  </div>
+
+
+  <div class="cart-bottom">
+
+    <div class="total-row">
+
+      <span>Total</span>
+
+      <span>
+        Rs. <span id="cartTotal">0</span>
+      </span>
+
+    </div>
+
+
+    <button
+      class="checkout-btn"
+      id="checkoutStart"
+      onclick="showCheckout()"
+    >
+      📦 Continue to Delivery Details
+    </button>
+
+
+    <div
+      class="checkout-form"
+      id="checkoutForm"
+    >
+
+      <input
+        type="text"
+        id="customerName"
+        placeholder="Full Name *"
+      >
+
+      <input
+        type="tel"
+        id="customerPhone"
+        placeholder="WhatsApp / Phone Number *"
+      >
+
+      <input
+        type="text"
+        id="customerCity"
+        placeholder="City *"
+      >
+
+      <textarea
+        id="customerAddress"
+        placeholder="Complete Delivery Address *"
+      ></textarea>
+
+
+      <button
+        class="checkout-btn"
+        onclick="checkout()"
+      >
+        💬 Place Order on WhatsApp
+      </button>
+
+
+      <button
+        class="cancel-checkout"
+        onclick="hideCheckout()"
+      >
+        Back
+      </button>
+
+    </div>
+
+  </div>
 
 </div>
 
+
+<!-- TOAST -->
+
+<div
+  class="toast"
+  id="toast"
+></div>
+
+
+<!-- BACK TO TOP -->
+
+<button
+  class="top-btn"
+  onclick="window.scrollTo({top:0,behavior:'smooth'})"
+>
+  ↑
+</button>
+
+
 <script>
 
-const WHATSAPP_NUMBER = "923034812714";
+/* =========================
+   PRODUCTS
+========================= */
 
 const products = [
+
+  {
+    id:1,
+    name:"Mini Indoor Plant",
+    cat:"plants",
+    price:650,
+    icon:"🪴",
+    desc:"A lovely green plant for your room or desk."
+  },
+
+  {
+    id:2,
+    name:"Succulent Plant",
+    cat:"plants",
+    price:250,
+    icon:"🌵",
+    desc:"Easy-care succulent for a sunny corner."
+  },
+
+  {
+    id:3,
+    name:"Terracotta Pot",
+    cat:"supplies",
+    price:350,
+    icon:"🏺",
+    desc:"Simple decorative pot for your favourite plant."
+  },
 
   {
     id:4,
@@ -908,6 +1368,15 @@ const products = [
     price:250,
     icon:"🌱",
     desc:"Seeds for your next little garden project."
+  },
+
+  {
+    id:5,
+    name:"Gardening Tool Set",
+    cat:"gardening",
+    price:900,
+    icon:"🛠️",
+    desc:"Useful tools for everyday plant care."
   },
 
   {
@@ -935,6 +1404,33 @@ const products = [
     price:300,
     icon:"🔑",
     desc:"A fun handmade keychain for your keys or bag."
+  },
+
+  {
+    id:9,
+    name:"Decorative Beads",
+    cat:"supplies",
+    price:300,
+    icon:"📿",
+    desc:"Colourful beads for your craft projects."
+  },
+
+  {
+    id:10,
+    name:"Plant Mister",
+    cat:"gardening",
+    price:300,
+    icon:"💧",
+    desc:"Handy spray bottle for gentle plant watering."
+  },
+
+  {
+    id:11,
+    name:"Crochet Mini Bag",
+    cat:"crochet",
+    price:1200,
+    icon:"👜",
+    desc:"A cute handmade crochet accessory."
   },
 
   {
@@ -1088,333 +1584,782 @@ const products = [
 
 ];
 
-  
 
-let cart=[];
+/* =========================
+   CART
+========================= */
 
-/* MONEY */
-function money(n){
-  return "Rs. "+n.toLocaleString("en-PK");
-}
+let cart = JSON.parse(localStorage.getItem("craftedHeavenCart")) || [];
 
-/* DISPLAY PRODUCTS */
-function renderProducts(list=products){
+let currentCategory = "all";
 
-  const box=document.getElementById("products");
+
+/* =========================
+   RENDER PRODUCTS
+========================= */
+
+function renderProducts(list){
+
+  const grid = document.getElementById("productGrid");
 
   if(!list.length){
 
-    box.innerHTML=`
+    grid.innerHTML = `
       <div style="
         grid-column:1/-1;
         text-align:center;
-        padding:40px;
-        background:white;
-        border-radius:18px;
+        padding:60px 20px;
+        color:#cfd8d2;
       ">
-        <h3>No products found</h3>
-        <p>Try another search.</p>
+        <div style="font-size:60px;">🔍</div>
+        <h3 style="font-size:28px;margin:10px 0;">
+          No products found
+        </h3>
+        <p>
+          Try another product name or category.
+        </p>
       </div>
     `;
 
     return;
   }
 
-  box.innerHTML=list.map(p=>`
 
-    <article class="card">
+  grid.innerHTML = list.map(product => {
 
-      <div class="photo">
+    const photo = product.image
 
-        ${
-          p.image
-          ? `<img src="${p.image}" alt="${p.name}">`
-          : p.icon
-        }
+      ? `
+        <div class="photo">
+          <img
+            src="${product.image}"
+            alt="${product.name}"
+            loading="lazy"
+          >
+        </div>
+      `
 
+      : `
+        <div class="photo">
+          <div class="emoji">${product.icon}</div>
+        </div>
+      `;
+
+
+    return `
+
+      <article class="card">
+
+        ${photo}
+
+        <div class="info">
+
+          <span class="tag">
+            ${categoryName(product.cat)}
+          </span>
+
+          <h3>
+            ${product.name}
+          </h3>
+
+          <p>
+            ${product.desc}
+          </p>
+
+          <div class="bottom">
+
+            <div class="price">
+              Rs. ${product.price.toLocaleString()}
+            </div>
+
+            <button
+              class="add"
+              onclick="addToCart(${product.id})"
+            >
+              Add +
+            </button>
+
+          </div>
+
+        </div>
+
+      </article>
+
+    `;
+
+  }).join("");
+
+}
+
+
+/* =========================
+   CATEGORY NAME
+========================= */
+
+function categoryName(cat){
+
+  const names = {
+    plants:"Plants",
+    gardening:"Gardening",
+    crafts:"Crafts",
+    crochet:"Crochet",
+    keychains:"Keychains",
+    supplies:"Supplies"
+  };
+
+  return names[cat] || cat;
+}
+
+
+/* =========================
+   FILTER
+========================= */
+
+function filterProducts(category,button){
+
+  currentCategory = category;
+
+  document
+    .querySelectorAll(".filter-btn")
+    .forEach(btn => btn.classList.remove("active"));
+
+  if(button){
+    button.classList.add("active");
+  }
+
+  applyFilters();
+}
+
+
+function selectCategory(category){
+
+  currentCategory = category;
+
+  const shop = document.getElementById("shop");
+
+  shop.scrollIntoView({
+    behavior:"smooth"
+  });
+
+
+  document
+    .querySelectorAll(".filter-btn")
+    .forEach(btn => {
+
+      btn.classList.remove("active");
+
+      if(
+        btn.textContent
+          .trim()
+          .toLowerCase()
+          .startsWith(categoryName(category).toLowerCase())
+      ){
+        btn.classList.add("active");
+      }
+
+    });
+
+
+  applyFilters();
+}
+
+
+function searchProducts(){
+
+  applyFilters();
+}
+
+
+function applyFilters(){
+
+  const search =
+    document
+      .getElementById("searchInput")
+      .value
+      .trim()
+      .toLowerCase();
+
+
+  let results = products.filter(product => {
+
+    const categoryMatch =
+      currentCategory === "all" ||
+      product.cat === currentCategory;
+
+
+    const searchMatch =
+      !search ||
+      product.name.toLowerCase().includes(search) ||
+      product.desc.toLowerCase().includes(search) ||
+      product.cat.toLowerCase().includes(search);
+
+
+    return categoryMatch && searchMatch;
+
+  });
+
+
+  renderProducts(results);
+}
+
+
+/* =========================
+   ADD TO CART
+========================= */
+
+function addToCart(id){
+
+  const existing = cart.find(item => item.id === id);
+
+  if(existing){
+
+    existing.qty += 1;
+
+  }else{
+
+    cart.push({
+      id:id,
+      qty:1
+    });
+
+  }
+
+
+  saveCart();
+
+  updateCart();
+
+  showToast("✅ Product added to cart");
+
+}
+
+
+/* =========================
+   SAVE CART
+========================= */
+
+function saveCart(){
+
+  localStorage.setItem(
+    "craftedHeavenCart",
+    JSON.stringify(cart)
+  );
+
+}
+
+
+/* =========================
+   UPDATE CART
+========================= */
+
+function updateCart(){
+
+  const cartCount =
+    cart.reduce(
+      (sum,item) => sum + item.qty,
+      0
+    );
+
+
+  document.getElementById("cartCount").textContent =
+    cartCount;
+
+
+  const cartItems =
+    document.getElementById("cartItems");
+
+
+  if(!cart.length){
+
+    cartItems.innerHTML = `
+      <div class="empty-cart">
+        <div style="font-size:55px;">🛒</div>
+        <h3>Your cart is empty</h3>
+        <p>Add something lovely from our shop.</p>
       </div>
+    `;
 
-      <div class="info">
+    document.getElementById("cartTotal").textContent = "0";
 
-        <span class="tag">${p.cat}</span>
+    document.getElementById("checkoutStart").style.display = "block";
 
-        <h3>${p.name}</h3>
+    document.getElementById("checkoutForm").classList.remove("show");
 
-        <p>${p.desc}</p>
+    return;
+  }
 
-        <div class="bottom">
 
-          <span class="price">
-            ${money(p.price)}
+  let total = 0;
+
+
+  cartItems.innerHTML = cart.map(item => {
+
+    const product =
+      products.find(p => p.id === item.id);
+
+
+    if(!product){
+      return "";
+    }
+
+
+    const itemTotal =
+      product.price * item.qty;
+
+
+    total += itemTotal;
+
+
+    return `
+
+      <div class="cart-item">
+
+        <div class="cart-item-top">
+
+          <div>
+            <h3>
+              ${product.name}
+            </h3>
+
+            <div class="cart-item-price">
+              Rs. ${product.price.toLocaleString()} each
+            </div>
+          </div>
+
+          <button
+            class="remove-btn"
+            onclick="removeFromCart(${product.id})"
+          >
+            Remove
+          </button>
+
+        </div>
+
+
+        <div class="qty-row">
+
+          <button
+            class="qty-btn"
+            onclick="changeQty(${product.id},-1)"
+          >
+            −
+          </button>
+
+          <span class="qty-number">
+            ${item.qty}
           </span>
 
           <button
-            class="add"
-            onclick="addToCart(${p.id})"
+            class="qty-btn"
+            onclick="changeQty(${product.id},1)"
           >
-            Add +
+            +
           </button>
+
+          <strong style="margin-left:auto;">
+            Rs. ${itemTotal.toLocaleString()}
+          </strong>
 
         </div>
 
       </div>
 
-    </article>
+    `;
 
-  `).join("");
+  }).join("");
 
-}
 
-/* SEARCH */
-function searchProducts(){
-
-  const query=
-    document
-      .getElementById("searchInput")
-      .value
-      .toLowerCase()
-      .trim();
-
-  const results=products.filter(p=>
-
-    p.name.toLowerCase().includes(query) ||
-
-    p.desc.toLowerCase().includes(query) ||
-
-    p.cat.toLowerCase().includes(query)
-
-  );
-
-  renderProducts(results);
+  document.getElementById("cartTotal").textContent =
+    total.toLocaleString();
 
 }
 
-/* FILTER */
-function filterProducts(cat,btn){
 
-  document
-    .querySelectorAll(".filter")
-    .forEach(x=>x.classList.remove("active"));
+/* =========================
+   QUANTITY
+========================= */
 
-  btn.classList.add("active");
+function changeQty(id,change){
 
-  const search=
-    document
-      .getElementById("searchInput")
-      .value
-      .toLowerCase()
-      .trim();
+  const item =
+    cart.find(item => item.id === id);
 
-  let list=
-    cat==="all"
-    ? products
-    : products.filter(p=>p.cat===cat);
 
-  if(search){
+  if(!item){
+    return;
+  }
 
-    list=list.filter(p=>
 
-      p.name.toLowerCase().includes(search) ||
+  item.qty += change;
 
-      p.desc.toLowerCase().includes(search) ||
 
-      p.cat.toLowerCase().includes(search)
+  if(item.qty <= 0){
 
-    );
+    cart =
+      cart.filter(item => item.id !== id);
 
   }
 
-  renderProducts(list);
 
-}
-
-/* CATEGORY */
-function selectCategory(cat){
-
-  setTimeout(()=>{
-
-    const btn=
-      [...document.querySelectorAll(".filter")]
-      .find(x=>
-        x.textContent
-        .toLowerCase()
-        .includes(
-          cat==="supplies"
-          ? "supplies"
-          : cat
-        )
-      );
-
-    if(btn){
-      filterProducts(cat,btn);
-    }
-
-  },50);
-
-}
-
-/* ADD TO CART */
-function addToCart(id){
-
-  const p=products.find(x=>x.id===id);
-
-  const item=cart.find(x=>x.id===id);
-
-  if(item){
-    item.qty++;
-  }else{
-    cart.push({
-      ...p,
-      qty:1
-    });
-  }
+  saveCart();
 
   updateCart();
 
+}
+
+
+/* =========================
+   REMOVE
+========================= */
+
+function removeFromCart(id){
+
+  const product =
+    products.find(p => p.id === id);
+
+
+  cart =
+    cart.filter(item => item.id !== id);
+
+
+  saveCart();
+
+  updateCart();
+
+  showToast(
+    "🗑️ " +
+    (product ? product.name : "Product") +
+    " removed"
+  );
+
+}
+
+
+/* =========================
+   OPEN CART
+========================= */
+
+function toggleCart(){
+
+  const drawer =
+    document.getElementById("cartDrawer");
+
+  const overlay =
+    document.getElementById("cartOverlay");
+
+
+  drawer.classList.add("open");
+
+  overlay.classList.add("show");
+
+}
+
+
+function closeCart(){
+
   document
-    .getElementById("cartPanel")
+    .getElementById("cartDrawer")
+    .classList.remove("open");
+
+  document
+    .getElementById("cartOverlay")
+    .classList.remove("show");
+
+}
+
+
+/* =========================
+   CHECKOUT FORM
+========================= */
+
+function showCheckout(){
+
+  if(!cart.length){
+
+    showToast("🛒 Your cart is empty");
+
+    return;
+  }
+
+
+  document
+    .getElementById("checkoutStart")
+    .style.display = "none";
+
+
+  document
+    .getElementById("checkoutForm")
     .classList.add("show");
 
 }
 
-/* UPDATE CART */
-function updateCart(){
 
-  document.getElementById("cartCount").textContent=
-    cart.reduce((a,x)=>a+x.qty,0);
-
-  const box=
-    document.getElementById("cartItems");
-
-  box.innerHTML=
-
-    cart.length
-
-    ?
-
-    cart.map(x=>`
-
-      <div class="cart-row">
-
-        <span>
-          ${x.name} × ${x.qty}
-        </span>
-
-        <b>
-          ${money(x.price*x.qty)}
-        </b>
-
-      </div>
-
-    `).join("")
-
-    :
-
-    "Your cart is empty.";
-
-  document.getElementById("cartTotal").textContent=
-
-    cart.length
-
-    ?
-
-    "Total: "+
-    money(
-      cart.reduce(
-        (a,x)=>a+x.price*x.qty,
-        0
-      )
-    )
-
-    :
-
-    "";
-
-}
-
-/* CART OPEN/CLOSE */
-function toggleCart(){
+function hideCheckout(){
 
   document
-    .getElementById("cartPanel")
-    .classList.toggle("show");
+    .getElementById("checkoutStart")
+    .style.display = "block";
+
+
+  document
+    .getElementById("checkoutForm")
+    .classList.remove("show");
 
 }
 
-/* WHATSAPP CHECKOUT */
+
+/* =========================
+   WHATSAPP CHECKOUT
+========================= */
+
 function checkout(){
 
   if(!cart.length){
 
-    alert("Your cart is empty.");
+    showToast("🛒 Your cart is empty");
 
     return;
-
   }
 
-  const orderLines=
-    cart.map(x=>
-      `• ${x.name} x${x.qty} — ${money(x.price*x.qty)}`
-    ).join("\n");
 
-  const total=
-    money(
-      cart.reduce(
-        (a,x)=>a+x.price*x.qty,
-        0
-      )
+  const name =
+    document
+      .getElementById("customerName")
+      .value
+      .trim();
+
+
+  const phone =
+    document
+      .getElementById("customerPhone")
+      .value
+      .trim();
+
+
+  const city =
+    document
+      .getElementById("customerCity")
+      .value
+      .trim();
+
+
+  const address =
+    document
+      .getElementById("customerAddress")
+      .value
+      .trim();
+
+
+  if(!name || !phone || !city || !address){
+
+    showToast(
+      "⚠️ Please fill all delivery details"
     );
 
-  const text=
-    `Hello Crafted Heaven!\n\n`+
-    `I want to order:\n`+
-    `${orderLines}\n\n`+
-    `Total: ${total}`;
+    return;
+  }
+
+
+  let total = 0;
+
+
+  let orderText =
+    "🛍️ *NEW ORDER - CRAFTED HEAVEN*%0A%0A";
+
+
+  orderText +=
+    "*Customer Details*%0A";
+
+
+  orderText +=
+    "Name: " +
+    encodeURIComponent(name) +
+    "%0A";
+
+
+  orderText +=
+    "Phone/WhatsApp: " +
+    encodeURIComponent(phone) +
+    "%0A";
+
+
+  orderText +=
+    "City: " +
+    encodeURIComponent(city) +
+    "%0A";
+
+
+  orderText +=
+    "Address: " +
+    encodeURIComponent(address) +
+    "%0A%0A";
+
+
+  orderText +=
+    "*Order Items*%0A";
+
+
+  cart.forEach(item => {
+
+    const product =
+      products.find(p => p.id === item.id);
+
+
+    if(!product){
+      return;
+    }
+
+
+    const itemTotal =
+      product.price * item.qty;
+
+
+    total += itemTotal;
+
+
+    orderText +=
+      "• " +
+      encodeURIComponent(product.name) +
+      " x " +
+      item.qty +
+      " = Rs. " +
+      itemTotal.toLocaleString() +
+      "%0A";
+
+  });
+
+
+  orderText +=
+    "%0A*TOTAL: Rs. " +
+    total.toLocaleString() +
+    "*";
+
+
+  const whatsappNumber =
+    "923034812714";
+
+
+  const whatsappURL =
+    "https://wa.me/" +
+    whatsappNumber +
+    "?text=" +
+    orderText;
+
 
   window.open(
-    "https://wa.me/"+
-    WHATSAPP_NUMBER+
-    "?text="+
-    encodeURIComponent(text),
+    whatsappURL,
+    "_blank"
+  );
+
+
+  showToast(
+    "✅ Opening WhatsApp..."
+  );
+
+}
+
+
+/* =========================
+   CONTACT WHATSAPP
+========================= */
+
+function sendMessage(){
+
+  const name =
+    document
+      .getElementById("contactName")
+      .value
+      .trim();
+
+
+  const phone =
+    document
+      .getElementById("contactPhone")
+      .value
+      .trim();
+
+
+  const message =
+    document
+      .getElementById("contactMessage")
+      .value
+      .trim();
+
+
+  if(!name || !message){
+
+    showToast(
+      "⚠️ Please enter your name and message"
+    );
+
+    return;
+  }
+
+
+  const whatsappNumber =
+    "923034812714";
+
+
+  const text =
+    "Hello Crafted Heaven!%0A%0A" +
+    "Name: " +
+    encodeURIComponent(name) +
+    "%0A" +
+    "Phone: " +
+    encodeURIComponent(phone || "Not provided") +
+    "%0A%0A" +
+    "Message:%0A" +
+    encodeURIComponent(message);
+
+
+  window.open(
+    "https://wa.me/" +
+    whatsappNumber +
+    "?text=" +
+    text,
     "_blank"
   );
 
 }
 
-/* CONTACT WHATSAPP */
-function sendMessage(e){
 
-  e.preventDefault();
+/* =========================
+   TOAST
+========================= */
 
-  const n=
-    document.getElementById("name").value;
+function showToast(message){
 
-  const m=
-    document.getElementById("message").value;
+  const toast =
+    document.getElementById("toast");
 
-  const p=
-    document.getElementById("phone").value;
 
-  const text=
-    `Hello Crafted Heaven!\n`+
-    `Name: ${n}\n`+
-    `Phone: ${p}\n`+
-    `Message: ${m}`;
+  toast.textContent = message;
 
-  window.open(
-    "https://wa.me/"+
-    WHATSAPP_NUMBER+
-    "?text="+
-    encodeURIComponent(text),
-    "_blank"
-  );
+  toast.classList.add("show");
+
+
+  clearTimeout(window.toastTimer);
+
+
+  window.toastTimer =
+    setTimeout(() => {
+
+      toast.classList.remove("show");
+
+    },2500);
 
 }
 
-/* START */
-renderProducts();
+
+/* =========================
+   START
+========================= */
+
+renderProducts(products);
+
+updateCart();
 
 </script>
 
 </body>
-</html>
+  </html>
