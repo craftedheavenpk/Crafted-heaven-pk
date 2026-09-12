@@ -472,8 +472,7 @@ section{
 }
 
 .form-group input,
-.form-group textarea,
-.form-group select{
+.form-group textarea{
   width:100%;
   border:1px solid #646964;
   background:#333333;
@@ -489,8 +488,7 @@ section{
 }
 
 .form-group input:focus,
-.form-group textarea:focus,
-.form-group select:focus{
+.form-group textarea:focus{
   border-color:#62ad88;
 }
 
@@ -529,7 +527,7 @@ footer p{
   margin:8px 0;
 }
 
-/* CART DRAWER */
+/* CART */
 
 .cart-overlay{
   position:fixed;
@@ -858,10 +856,6 @@ footer p{
     font-size:24px;
   }
 
-  .bottom{
-    align-items:center;
-  }
-
   .price{
     font-size:24px;
   }
@@ -900,7 +894,6 @@ footer p{
 
   </div>
 </header>
-
 
 <!-- HERO -->
 
@@ -947,7 +940,6 @@ footer p{
 
 </section>
 
-
 <!-- CATEGORIES -->
 
 <section class="categories" id="categories">
@@ -990,7 +982,7 @@ footer p{
 
       <div class="category-card" onclick="selectCategory('supplies')">
         <div class="emoji">📿</div>
-        <h3>Beads & Pots</h3>
+        <h3>Supplies</h3>
       </div>
 
     </div>
@@ -998,7 +990,6 @@ footer p{
   </div>
 
 </section>
-
 
 <!-- SHOP -->
 
@@ -1023,7 +1014,6 @@ footer p{
       >
 
     </div>
-
 
     <div class="filters">
 
@@ -1057,13 +1047,11 @@ footer p{
 
     </div>
 
-
     <div class="products" id="productGrid"></div>
 
   </div>
 
 </section>
-
 
 <!-- ABOUT -->
 
@@ -1086,7 +1074,6 @@ footer p{
       </p>
 
     </div>
-
 
     <div class="features">
 
@@ -1116,7 +1103,6 @@ footer p{
 
 </section>
 
-
 <!-- CONTACT -->
 
 <section class="contact" id="contact">
@@ -1133,7 +1119,6 @@ footer p{
 
     </div>
 
-
     <div class="contact-card">
 
       <div class="form-group">
@@ -1145,7 +1130,6 @@ footer p{
         >
       </div>
 
-
       <div class="form-group">
         <label>Phone / WhatsApp Number</label>
         <input
@@ -1155,7 +1139,6 @@ footer p{
         >
       </div>
 
-
       <div class="form-group">
         <label>Your Message</label>
         <textarea
@@ -1163,7 +1146,6 @@ footer p{
           placeholder="What would you like to order?"
         ></textarea>
       </div>
-
 
       <button class="full-btn" onclick="sendMessage()">
         💬 Message on WhatsApp
@@ -1174,7 +1156,6 @@ footer p{
   </div>
 
 </section>
-
 
 <!-- FOOTER -->
 
@@ -1198,7 +1179,6 @@ footer p{
 
 </footer>
 
-
 <!-- CART OVERLAY -->
 
 <div
@@ -1206,7 +1186,6 @@ footer p{
   id="cartOverlay"
   onclick="closeCart()"
 ></div>
-
 
 <!-- CART -->
 
@@ -1225,7 +1204,6 @@ footer p{
 
   </div>
 
-
   <div class="cart-items" id="cartItems">
 
     <div class="empty-cart">
@@ -1233,7 +1211,6 @@ footer p{
     </div>
 
   </div>
-
 
   <div class="cart-bottom">
 
@@ -1247,7 +1224,6 @@ footer p{
 
     </div>
 
-
     <button
       class="checkout-btn"
       id="checkoutStart"
@@ -1255,7 +1231,6 @@ footer p{
     >
       📦 Continue to Delivery Details
     </button>
-
 
     <div
       class="checkout-form"
@@ -1285,14 +1260,12 @@ footer p{
         placeholder="Complete Delivery Address *"
       ></textarea>
 
-
       <button
         class="checkout-btn"
         onclick="checkout()"
       >
         💬 Place Order on WhatsApp
       </button>
-
 
       <button
         class="cancel-checkout"
@@ -1307,14 +1280,12 @@ footer p{
 
 </div>
 
-
 <!-- TOAST -->
 
 <div
   class="toast"
   id="toast"
 ></div>
-
 
 <!-- BACK TO TOP -->
 
@@ -1325,11 +1296,11 @@ footer p{
   ↑
 </button>
 
-
 <script>
 
 /* =========================
    PRODUCTS
+   8 OLD PRODUCTS REMOVED
 ========================= */
 
 const products = [
@@ -1368,15 +1339,6 @@ const products = [
     price:300,
     icon:"🔑",
     desc:"A fun handmade keychain for your keys or bag."
-  },
-
-  {
-    id:9,
-    name:"Decorative Beads",
-    cat:"supplies",
-    price:300,
-    icon:"📿",
-    desc:"Colourful beads for your craft projects."
   },
 
   {
@@ -1522,12 +1484,14 @@ const products = [
 ];
 
 
-
 /* =========================
    CART
 ========================= */
 
-let cart = JSON.parse(localStorage.getItem("craftedHeavenCart")) || [];
+let cart =
+  JSON.parse(
+    localStorage.getItem("craftedHeavenCart")
+  ) || [];
 
 let currentCategory = "all";
 
@@ -1538,7 +1502,8 @@ let currentCategory = "all";
 
 function renderProducts(list){
 
-  const grid = document.getElementById("productGrid");
+  const grid =
+    document.getElementById("productGrid");
 
   if(!list.length){
 
@@ -1550,12 +1515,18 @@ function renderProducts(list){
         color:#cfd8d2;
       ">
         <div style="font-size:60px;">🔍</div>
-        <h3 style="font-size:28px;margin:10px 0;">
+
+        <h3 style="
+          font-size:28px;
+          margin:10px 0;
+        ">
           No products found
         </h3>
+
         <p>
           Try another product name or category.
         </p>
+
       </div>
     `;
 
@@ -1579,7 +1550,9 @@ function renderProducts(list){
 
       : `
         <div class="photo">
-          <div class="emoji">${product.icon}</div>
+          <div class="emoji">
+            ${product.icon}
+          </div>
         </div>
       `;
 
@@ -1659,7 +1632,9 @@ function filterProducts(category,button){
 
   document
     .querySelectorAll(".filter-btn")
-    .forEach(btn => btn.classList.remove("active"));
+    .forEach(btn =>
+      btn.classList.remove("active")
+    );
 
   if(button){
     button.classList.add("active");
@@ -1673,7 +1648,8 @@ function selectCategory(category){
 
   currentCategory = category;
 
-  const shop = document.getElementById("shop");
+  const shop =
+    document.getElementById("shop");
 
   shop.scrollIntoView({
     behavior:"smooth"
@@ -1690,7 +1666,9 @@ function selectCategory(category){
         btn.textContent
           .trim()
           .toLowerCase()
-          .startsWith(categoryName(category).toLowerCase())
+          .startsWith(
+            categoryName(category).toLowerCase()
+          )
       ){
         btn.classList.add("active");
       }
@@ -1703,7 +1681,6 @@ function selectCategory(category){
 
 
 function searchProducts(){
-
   applyFilters();
 }
 
@@ -1718,26 +1695,36 @@ function applyFilters(){
       .toLowerCase();
 
 
-  let results = products.filter(product => {
+  const results =
+    products.filter(product => {
 
-    const categoryMatch =
-      currentCategory === "all" ||
-      product.cat === currentCategory;
-
-
-    const searchMatch =
-      !search ||
-      product.name.toLowerCase().includes(search) ||
-      product.desc.toLowerCase().includes(search) ||
-      product.cat.toLowerCase().includes(search);
+      const categoryMatch =
+        currentCategory === "all" ||
+        product.cat === currentCategory;
 
 
-    return categoryMatch && searchMatch;
+      const searchMatch =
+        !search ||
+        product.name
+          .toLowerCase()
+          .includes(search) ||
 
-  });
+        product.desc
+          .toLowerCase()
+          .includes(search) ||
+
+        product.cat
+          .toLowerCase()
+          .includes(search);
+
+
+      return categoryMatch && searchMatch;
+
+    });
 
 
   renderProducts(results);
+
 }
 
 
@@ -1747,7 +1734,9 @@ function applyFilters(){
 
 function addToCart(id){
 
-  const existing = cart.find(item => item.id === id);
+  const existing =
+    cart.find(item => item.id === id);
+
 
   if(existing){
 
@@ -1767,7 +1756,9 @@ function addToCart(id){
 
   updateCart();
 
-  showToast("✅ Product added to cart");
+  showToast(
+    "✅ Product added to cart"
+  );
 
 }
 
@@ -1794,34 +1785,59 @@ function updateCart(){
 
   const cartCount =
     cart.reduce(
-      (sum,item) => sum + item.qty,
+      (sum,item) =>
+        sum + item.qty,
       0
     );
 
 
-  document.getElementById("cartCount").textContent =
-    cartCount;
+  document.getElementById(
+    "cartCount"
+  ).textContent = cartCount;
 
 
   const cartItems =
-    document.getElementById("cartItems");
+    document.getElementById(
+      "cartItems"
+    );
 
 
   if(!cart.length){
 
     cartItems.innerHTML = `
+
       <div class="empty-cart">
-        <div style="font-size:55px;">🛒</div>
-        <h3>Your cart is empty</h3>
-        <p>Add something lovely from our shop.</p>
+
+        <div style="font-size:55px;">
+          🛒
+        </div>
+
+        <h3>
+          Your cart is empty
+        </h3>
+
+        <p>
+          Add something lovely from our shop.
+        </p>
+
       </div>
+
     `;
 
-    document.getElementById("cartTotal").textContent = "0";
+    document.getElementById(
+      "cartTotal"
+    ).textContent = "0";
 
-    document.getElementById("checkoutStart").style.display = "block";
 
-    document.getElementById("checkoutForm").classList.remove("show");
+    document.getElementById(
+      "checkoutStart"
+    ).style.display = "block";
+
+
+    document.getElementById(
+      "checkoutForm"
+    ).classList.remove("show");
+
 
     return;
   }
@@ -1830,84 +1846,91 @@ function updateCart(){
   let total = 0;
 
 
-  cartItems.innerHTML = cart.map(item => {
+  cartItems.innerHTML =
+    cart.map(item => {
 
-    const product =
-      products.find(p => p.id === item.id);
-
-
-    if(!product){
-      return "";
-    }
+      const product =
+        products.find(
+          p => p.id === item.id
+        );
 
 
-    const itemTotal =
-      product.price * item.qty;
+      if(!product){
+        return "";
+      }
 
 
-    total += itemTotal;
+      const itemTotal =
+        product.price * item.qty;
 
 
-    return `
+      total += itemTotal;
 
-      <div class="cart-item">
 
-        <div class="cart-item-top">
+      return `
 
-          <div>
-            <h3>
-              ${product.name}
-            </h3>
+        <div class="cart-item">
 
-            <div class="cart-item-price">
-              Rs. ${product.price.toLocaleString()} each
+          <div class="cart-item-top">
+
+            <div>
+
+              <h3>
+                ${product.name}
+              </h3>
+
+              <div class="cart-item-price">
+                Rs. ${product.price.toLocaleString()} each
+              </div>
+
             </div>
+
+            <button
+              class="remove-btn"
+              onclick="removeFromCart(${product.id})"
+            >
+              Remove
+            </button>
+
           </div>
 
-          <button
-            class="remove-btn"
-            onclick="removeFromCart(${product.id})"
-          >
-            Remove
-          </button>
+
+          <div class="qty-row">
+
+            <button
+              class="qty-btn"
+              onclick="changeQty(${product.id},-1)"
+            >
+              −
+            </button>
+
+            <span class="qty-number">
+              ${item.qty}
+            </span>
+
+            <button
+              class="qty-btn"
+              onclick="changeQty(${product.id},1)"
+            >
+              +
+            </button>
+
+            <strong style="margin-left:auto;">
+              Rs. ${itemTotal.toLocaleString()}
+            </strong>
+
+          </div>
 
         </div>
 
+      `;
 
-        <div class="qty-row">
-
-          <button
-            class="qty-btn"
-            onclick="changeQty(${product.id},-1)"
-          >
-            −
-          </button>
-
-          <span class="qty-number">
-            ${item.qty}
-          </span>
-
-          <button
-            class="qty-btn"
-            onclick="changeQty(${product.id},1)"
-          >
-            +
-          </button>
-
-          <strong style="margin-left:auto;">
-            Rs. ${itemTotal.toLocaleString()}
-          </strong>
-
-        </div>
-
-      </div>
-
-    `;
-
-  }).join("");
+    }).join("");
 
 
-  document.getElementById("cartTotal").textContent =
+  document.getElementById(
+    "cartTotal"
+  ).textContent =
     total.toLocaleString();
 
 }
@@ -1920,7 +1943,9 @@ function updateCart(){
 function changeQty(id,change){
 
   const item =
-    cart.find(item => item.id === id);
+    cart.find(
+      item => item.id === id
+    );
 
 
   if(!item){
@@ -1934,7 +1959,9 @@ function changeQty(id,change){
   if(item.qty <= 0){
 
     cart =
-      cart.filter(item => item.id !== id);
+      cart.filter(
+        item => item.id !== id
+      );
 
   }
 
@@ -1953,20 +1980,27 @@ function changeQty(id,change){
 function removeFromCart(id){
 
   const product =
-    products.find(p => p.id === id);
+    products.find(
+      p => p.id === id
+    );
 
 
   cart =
-    cart.filter(item => item.id !== id);
+    cart.filter(
+      item => item.id !== id
+    );
 
 
   saveCart();
 
   updateCart();
 
+
   showToast(
     "🗑️ " +
-    (product ? product.name : "Product") +
+    (product
+      ? product.name
+      : "Product") +
     " removed"
   );
 
@@ -1979,16 +2013,13 @@ function removeFromCart(id){
 
 function toggleCart(){
 
-  const drawer =
-    document.getElementById("cartDrawer");
+  document
+    .getElementById("cartDrawer")
+    .classList.add("open");
 
-  const overlay =
-    document.getElementById("cartOverlay");
-
-
-  drawer.classList.add("open");
-
-  overlay.classList.add("show");
+  document
+    .getElementById("cartOverlay")
+    .classList.add("show");
 
 }
 
@@ -2014,7 +2045,9 @@ function showCheckout(){
 
   if(!cart.length){
 
-    showToast("🛒 Your cart is empty");
+    showToast(
+      "🛒 Your cart is empty"
+    );
 
     return;
   }
@@ -2054,7 +2087,9 @@ function checkout(){
 
   if(!cart.length){
 
-    showToast("🛒 Your cart is empty");
+    showToast(
+      "🛒 Your cart is empty"
+    );
 
     return;
   }
@@ -2088,7 +2123,12 @@ function checkout(){
       .trim();
 
 
-  if(!name || !phone || !city || !address){
+  if(
+    !name ||
+    !phone ||
+    !city ||
+    !address
+  ){
 
     showToast(
       "⚠️ Please fill all delivery details"
@@ -2140,7 +2180,9 @@ function checkout(){
   cart.forEach(item => {
 
     const product =
-      products.find(p => p.id === item.id);
+      products.find(
+        p => p.id === item.id
+      );
 
 
     if(!product){
@@ -2157,7 +2199,9 @@ function checkout(){
 
     orderText +=
       "• " +
-      encodeURIComponent(product.name) +
+      encodeURIComponent(
+        product.name
+      ) +
       " x " +
       item.qty +
       " = Rs. " +
@@ -2240,13 +2284,20 @@ function sendMessage(){
 
   const text =
     "Hello Crafted Heaven!%0A%0A" +
+
     "Name: " +
     encodeURIComponent(name) +
     "%0A" +
+
     "Phone: " +
-    encodeURIComponent(phone || "Not provided") +
+    encodeURIComponent(
+      phone || "Not provided"
+    ) +
+
     "%0A%0A" +
+
     "Message:%0A" +
+
     encodeURIComponent(message);
 
 
@@ -2268,7 +2319,9 @@ function sendMessage(){
 function showToast(message){
 
   const toast =
-    document.getElementById("toast");
+    document.getElementById(
+      "toast"
+    );
 
 
   toast.textContent = message;
@@ -2276,13 +2329,17 @@ function showToast(message){
   toast.classList.add("show");
 
 
-  clearTimeout(window.toastTimer);
+  clearTimeout(
+    window.toastTimer
+  );
 
 
   window.toastTimer =
     setTimeout(() => {
 
-      toast.classList.remove("show");
+      toast.classList.remove(
+        "show"
+      );
 
     },2500);
 
@@ -2300,4 +2357,4 @@ updateCart();
 </script>
 
 </body>
-  </html>
+      </html>
