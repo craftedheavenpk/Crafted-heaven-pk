@@ -1,65 +1,2455 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <meta name="google-site-verification" content="gb-6p79eJ26PMfHzSsjSH-i9dhP0nsSCXVq63hfeeOE">
+<title>Crafted Heaven PK</title>
 
-  <title>Crafted Heaven | Plants, Gardening & Handmade Crafts</title>
+<meta name="description" content="Crafted Heaven PK - Plants, gardening supplies, cute crafts, keychains and fun products.">
+<meta name="theme-color" content="#173c2b">
 
-  <meta name="description"
-        content="Crafted Heaven PK — plants, gardening supplies, handmade crafts, cute keychains, kids products and beautiful little gifts.">
+<style>
+/* =========================================================
+   RESET
+========================================================= */
 
-  <style>
-    :root {
-      --bg: #09110d;
-      --bg-soft: #0e1914;
-      --card: #132019;
-      --card-2: #18261f;
-      --green: #3c9b70;
-      --green-light: #8ed2b0;
-      --gold: #d7b36a;
-      --gold-light: #efd49b;
-      --cream: #f6f1e7;
-      --text: #edf3ee;
-      --muted: #aab8b0;
-      --border: rgba(255,255,255,0.09);
-      --shadow: 0 20px 50px rgba(0,0,0,0.30);
-      --radius: 22px;
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:Arial, Helvetica, sans-serif;
+    background:#f7f8f4;
+    color:#24382d;
+    overflow-x:hidden;
+}
+
+button,
+input{
+    font-family:inherit;
+}
+
+button{
+    cursor:pointer;
+}
+
+a{
+    text-decoration:none;
+}
+
+/* =========================================================
+   VARIABLES
+========================================================= */
+
+:root{
+    --green:#173c2b;
+    --green2:#24543c;
+    --light-green:#eef4ef;
+    --gold:#d8b04b;
+    --gold2:#e7c765;
+    --cream:#fafbf8;
+    --text:#24382d;
+    --muted:#708078;
+    --border:#e0e7e1;
+    --white:#ffffff;
+    --danger:#b94b4b;
+}
+
+/* =========================================================
+   WELCOME SCREEN
+========================================================= */
+
+#welcomeScreen{
+    position:fixed;
+    inset:0;
+    z-index:99999;
+    background:linear-gradient(135deg,#102e21,#24543c);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    color:white;
+    transition:opacity .6s ease, visibility .6s ease;
+}
+
+#welcomeScreen.hide{
+    opacity:0;
+    visibility:hidden;
+}
+
+.welcomeContent{
+    padding:25px;
+    animation:welcomeUp .8s ease;
+}
+
+@keyframes welcomeUp{
+    from{
+        opacity:0;
+        transform:translateY(20px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+.welcomeLogo{
+    width:115px;
+    height:115px;
+    object-fit:contain;
+    border-radius:50%;
+    background:white;
+    padding:8px;
+    margin-bottom:22px;
+    box-shadow:0 10px 35px rgba(0,0,0,.25);
+}
+
+.welcomeContent h1{
+    font-size:clamp(30px,6vw,52px);
+    margin-bottom:10px;
+}
+
+.welcomeContent h1 span{
+    color:var(--gold2);
+}
+
+.welcomeContent p{
+    color:#e5eee8;
+    font-size:16px;
+}
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.header{
+    position:sticky;
+    top:0;
+    z-index:5000;
+    background:rgba(23,60,43,.97);
+    box-shadow:0 3px 20px rgba(0,0,0,.15);
+}
+
+.navbar{
+    max-width:1200px;
+    margin:auto;
+    min-height:72px;
+    padding:10px 18px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:15px;
+}
+
+.brand{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    color:white;
+}
+
+.brandLogo{
+    width:46px;
+    height:46px;
+    border-radius:50%;
+    object-fit:contain;
+    background:white;
+}
+
+.brandName{
+    font-size:19px;
+    font-weight:800;
+}
+
+.brandTag{
+    font-size:10px;
+    color:#d9e8de;
+    margin-top:2px;
+}
+
+.navLinks{
+    display:flex;
+    align-items:center;
+    gap:22px;
+}
+
+.navLinks a{
+    color:white;
+    font-size:14px;
+    font-weight:700;
+    opacity:.92;
+}
+
+.navLinks a:hover{
+    color:var(--gold2);
+}
+
+.cartButton{
+    border:0;
+    background:var(--gold);
+    color:#173c2b;
+    padding:10px 16px;
+    border-radius:25px;
+    font-weight:800;
+    white-space:nowrap;
+}
+
+.cartButton:hover{
+    background:var(--gold2);
+}
+
+/* =========================================================
+   HERO
+========================================================= */
+
+.hero{
+    min-height:500px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    color:white;
+    padding:70px 20px;
+    background:
+        linear-gradient(rgba(12,48,32,.76),rgba(12,48,32,.82)),
+        url("file_00000000111c820a85835b2be6015af8.png")
+        center/cover no-repeat;
+}
+
+.heroContent{
+    max-width:820px;
+}
+
+.heroBadge{
+    display:inline-block;
+    background:rgba(216,176,75,.95);
+    color:#173c2b;
+    padding:8px 15px;
+    border-radius:25px;
+    font-size:12px;
+    font-weight:800;
+    margin-bottom:18px;
+}
+
+.hero h1{
+    font-size:clamp(40px,7vw,74px);
+    line-height:1.03;
+    letter-spacing:-2px;
+    margin-bottom:18px;
+}
+
+.hero h1 span{
+    color:var(--gold2);
+}
+
+.hero p{
+    max-width:680px;
+    margin:0 auto 28px;
+    color:#edf4ef;
+    font-size:18px;
+    line-height:1.7;
+}
+
+.heroButtons{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:12px;
+    flex-wrap:wrap;
+}
+
+.primaryButton,
+.secondaryButton{
+    display:inline-block;
+    border:0;
+    padding:13px 23px;
+    border-radius:30px;
+    font-weight:800;
+}
+
+.primaryButton{
+    background:var(--gold);
+    color:#173c2b;
+}
+
+.primaryButton:hover{
+    background:var(--gold2);
+}
+
+.secondaryButton{
+    background:white;
+    color:var(--green);
+}
+
+.secondaryButton:hover{
+    background:#eef3ef;
+}
+
+/* =========================================================
+   GENERAL SECTIONS
+========================================================= */
+
+.section{
+    max-width:1200px;
+    margin:auto;
+    padding:65px 18px;
+}
+
+.sectionHeader{
+    text-align:center;
+    margin-bottom:30px;
+}
+
+.sectionHeader h2{
+    color:var(--green);
+    font-size:32px;
+    margin-bottom:8px;
+}
+
+.sectionHeader p{
+    color:var(--muted);
+    font-size:15px;
+}
+
+/* =========================================================
+   CATEGORY BUTTONS
+========================================================= */
+
+.categories{
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:10px;
+    margin-bottom:28px;
+}
+
+.categoryButton{
+    border:1px solid #ccd9d0;
+    background:white;
+    color:var(--green2);
+    padding:10px 17px;
+    border-radius:25px;
+    font-size:13px;
+    font-weight:800;
+    transition:.2s;
+}
+
+.categoryButton:hover,
+.categoryButton.active{
+    background:var(--green);
+    color:white;
+    border-color:var(--green);
+}
+
+/* =========================================================
+   SEARCH
+========================================================= */
+
+.searchWrap{
+    max-width:650px;
+    margin:0 auto 35px;
+}
+
+.searchInput{
+    width:100%;
+    padding:15px 21px;
+    border:1px solid #ccd8d0;
+    border-radius:30px;
+    outline:none;
+    background:white;
+    color:var(--text);
+    font-size:15px;
+    box-shadow:0 3px 15px rgba(0,0,0,.03);
+}
+
+.searchInput:focus{
+    border-color:var(--green2);
+    box-shadow:0 0 0 3px rgba(36,84,60,.08);
+}
+
+/* =========================================================
+   PRODUCT GRID
+========================================================= */
+
+.productsGrid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:20px;
+}
+
+.productCard{
+    background:white;
+    border:1px solid var(--border);
+    border-radius:18px;
+    overflow:hidden;
+    box-shadow:0 5px 20px rgba(23,60,43,.06);
+    transition:.25s ease;
+}
+
+.productCard:hover{
+    transform:translateY(-5px);
+    box-shadow:0 13px 30px rgba(23,60,43,.13);
+}
+
+.productImage{
+    height:225px;
+    background:#f0f4ef;
+    padding:10px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:6px;
+    overflow:hidden;
+}
+
+.productImage img{
+    width:100%;
+    height:100%;
+    object-fit:contain;
+    border-radius:12px;
+}
+
+.productImage.twoImages img{
+    width:50%;
+}
+
+.emojiImage{
+    font-size:65px;
+}
+
+.productInfo{
+    padding:17px;
+}
+
+.productCategory{
+    color:#819087;
+    text-transform:uppercase;
+    font-size:10px;
+    letter-spacing:1px;
+    font-weight:800;
+    margin-bottom:6px;
+}
+
+.productName{
+    color:var(--green);
+    font-size:17px;
+    line-height:1.3;
+    margin-bottom:7px;
+}
+
+.productDescription{
+    color:var(--muted);
+    font-size:13px;
+    line-height:1.5;
+    min-height:40px;
+}
+
+.productBottom{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:10px;
+    margin-top:14px;
+}
+
+.productPrice{
+    color:var(--green);
+    font-size:20px;
+    font-weight:900;
+}
+
+.addButton{
+    border:0;
+    background:var(--green);
+    color:white;
+    padding:10px 13px;
+    border-radius:10px;
+    font-size:12px;
+    font-weight:800;
+}
+
+.addButton:hover{
+    background:var(--green2);
+}
+
+.noProducts{
+    grid-column:1/-1;
+    text-align:center;
+    padding:50px 20px;
+    background:white;
+    border-radius:18px;
+    color:var(--muted);
+}
+
+/* =========================================================
+   ABOUT
+========================================================= */
+
+.aboutBox{
+    background:linear-gradient(135deg,#173c2b,#24543c);
+    color:white;
+    border-radius:25px;
+    padding:45px 25px;
+    text-align:center;
+    box-shadow:0 12px 30px rgba(23,60,43,.12);
+}
+
+.aboutBox h2{
+    font-size:30px;
+    margin-bottom:12px;
+}
+
+.aboutBox p{
+    max-width:760px;
+    margin:auto;
+    color:#e3eee7;
+    line-height:1.8;
+    font-size:15px;
+}
+
+/* =========================================================
+   CONTACT
+========================================================= */
+
+.contactGrid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:18px;
+}
+
+.contactCard{
+    background:white;
+    border:1px solid var(--border);
+    border-radius:18px;
+    padding:28px 20px;
+    text-align:center;
+}
+
+.contactIcon{
+    font-size:32px;
+    margin-bottom:10px;
+}
+
+.contactCard h3{
+    color:var(--green);
+    margin-bottom:6px;
+}
+
+.contactCard p{
+    color:var(--muted);
+    font-size:14px;
+}
+
+.contactCard a{
+    color:var(--green2);
+    font-weight:800;
+}
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+.footer{
+    background:#102f21;
+    color:white;
+    text-align:center;
+    padding:35px 18px;
+}
+
+.footerLogo{
+    width:60px;
+    height:60px;
+    object-fit:contain;
+    background:white;
+    border-radius:50%;
+    margin-bottom:10px;
+}
+
+.footer h3{
+    margin-bottom:6px;
+}
+
+.footer p{
+    color:#d4e2d9;
+    font-size:13px;
+    margin:4px;
+}
+
+.footerNumber{
+    color:var(--gold2);
+    font-weight:800;
+    margin-top:10px !important;
+}
+
+/* =========================================================
+   CART OVERLAY
+========================================================= */
+
+.cartOverlay{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.48);
+    z-index:9000;
+    opacity:0;
+    visibility:hidden;
+    transition:.3s;
+}
+
+.cartOverlay.open{
+    opacity:1;
+    visibility:visible;
+}
+
+.cartPanel{
+    position:absolute;
+    right:0;
+    top:0;
+    width:min(430px,100%);
+    height:100%;
+    background:white;
+    display:flex;
+    flex-direction:column;
+    box-shadow:-10px 0 30px rgba(0,0,0,.15);
+}
+
+.cartHeader{
+    padding:18px;
+    border-bottom:1px solid var(--border);
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+}
+
+.cartHeader h2{
+    color:var(--green);
+    font-size:22px;
+}
+
+.closeCart{
+    width:36px;
+    height:36px;
+    border:0;
+    border-radius:50%;
+    background:#edf2ee;
+    color:var(--green);
+    font-size:20px;
+}
+
+.cartItems{
+    flex:1;
+    overflow-y:auto;
+    padding:15px 18px;
+}
+
+.emptyCart{
+    text-align:center;
+    padding:60px 20px;
+    color:var(--muted);
+}
+
+.emptyCartIcon{
+    font-size:50px;
+    margin-bottom:10px;
+}
+
+.cartItem{
+    display:flex;
+    gap:12px;
+    padding:12px 0;
+    border-bottom:1px solid #edf0ed;
+}
+
+.cartItemImage{
+    width:65px;
+    height:65px;
+    background:#f0f4ef;
+    border-radius:10px;
+    object-fit:contain;
+    flex-shrink:0;
+}
+
+.cartItemInfo{
+    flex:1;
+}
+
+.cartItemName{
+    font-size:14px;
+    font-weight:800;
+    color:var(--green);
+    margin-bottom:3px;
+}
+
+.cartItemPrice{
+    color:var(--muted);
+    font-size:13px;
+}
+
+.cartControls{
+    display:flex;
+    align-items:center;
+    gap:6px;
+    margin-top:8px;
+}
+
+.quantityButton{
+    width:27px;
+    height:27px;
+    border:0;
+    background:#eaf0eb;
+    color:var(--green);
+    border-radius:6px;
+    font-weight:900;
+}
+
+.quantityNumber{
+    min-width:25px;
+    text-align:center;
+    font-weight:800;
+}
+
+.removeItem{
+    border:0;
+    background:none;
+    color:var(--danger);
+    font-size:12px;
+    margin-left:6px;
+}
+
+.cartFooter{
+    padding:18px;
+    border-top:1px solid var(--border);
+    background:#fbfcfa;
+}
+
+.cartTotal{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    font-size:20px;
+    font-weight:900;
+    color:var(--green);
+    margin-bottom:12px;
+}
+
+.checkoutButton{
+    width:100%;
+    border:0;
+    background:#25a244;
+    color:white;
+    padding:14px;
+    border-radius:12px;
+    font-weight:900;
+    margin-bottom:8px;
+}
+
+.checkoutButton:hover{
+    background:#208d3c;
+}
+
+.clearButton{
+    width:100%;
+    border:0;
+    background:#eaf0eb;
+    color:var(--green);
+    padding:11px;
+    border-radius:12px;
+    font-weight:800;
+}
+
+/* =========================================================
+   TOAST
+========================================================= */
+
+.toast{
+    position:fixed;
+    left:50%;
+    bottom:25px;
+    transform:translate(-50%,20px);
+    background:#173c2b;
+    color:white;
+    padding:13px 20px;
+    border-radius:30px;
+    z-index:15000;
+    opacity:0;
+    visibility:hidden;
+    transition:.3s;
+    font-size:14px;
+    box-shadow:0 8px 25px rgba(0,0,0,.2);
+}
+
+.toast.show{
+    opacity:1;
+    visibility:visible;
+    transform:translate(-50%,0);
+}
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media(max-width:1050px){
+
+    .productsGrid{
+        grid-template-columns:repeat(3,1fr);
     }
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
+}
+
+@media(max-width:800px){
+
+    .navLinks{
+        display:none;
     }
 
-    html {
-      scroll-behavior: smooth;
+    .productsGrid{
+        grid-template-columns:repeat(2,1fr);
+        gap:14px;
     }
 
-    body {
-      font-family: Arial, Helvetica, sans-serif;
-      background:
-        radial-gradient(circle at top right, rgba(60,155,112,0.10), transparent 30%),
-        radial-gradient(circle at bottom left, rgba(215,179,106,0.06), transparent 25%),
-        var(--bg);
-      color: var(--text);
-      line-height: 1.6;
-      overflow-x: hidden;
+    .contactGrid{
+        grid-template-columns:1fr;
     }
 
-    body.no-scroll {
-      overflow: hidden;
+    .hero{
+        min-height:460px;
     }
 
-    a {
-      color: inherit;
-      text-decoration: none;
+}
+
+@media(max-width:520px){
+
+    .navbar{
+        padding:9px 12px;
     }
 
-    button,
-    input,
-    textarea
+    .brandName{
+        font-size:15px;
+    }
+
+    .brandTag{
+        display:none;
+    }
+
+    .brandLogo{
+        width:40px;
+        height:40px;
+    }
+
+    .cartButton{
+        padding:9px 12px;
+        font-size:12px;
+    }
+
+    .hero{
+        min-height:490px;
+        padding:50px 18px;
+    }
+
+    .hero h1{
+        letter-spacing:-1px;
+    }
+
+    .hero p{
+        font-size:15px;
+    }
+
+    .section{
+        padding:48px 12px;
+    }
+
+    .sectionHeader h2{
+        font-size:27px;
+    }
+
+    .productsGrid{
+        grid-template-columns:repeat(2,1fr);
+        gap:10px;
+    }
+
+    .productImage{
+        height:165px;
+        padding:7px;
+    }
+
+    .productInfo{
+        padding:12px;
+    }
+
+    .productName{
+        font-size:14px;
+    }
+
+    .productDescription{
+        font-size:11px;
+    }
+
+    .productPrice{
+        font-size:17px;
+    }
+
+    .addButton{
+        padding:8px 9px;
+        font-size:10px;
+    }
+
+    .productBottom{
+        align-items:flex-end;
+    }
+
+    .welcomeLogo{
+        width:95px;
+        height:95px;
+    }
+
+    .welcomeContent h1{
+        font-size:30px;
+    }
+
+}
+</style>
+</head>
+
+<body>
+
+<!-- =======================================================
+     WELCOME SCREEN
+======================================================= -->
+
+<div id="welcomeScreen">
+
+    <div class="welcomeContent">
+
+        <img
+            src="crafted_heaven_logo.png"
+            alt="Crafted Heaven PK"
+            class="welcomeLogo"
+        >
+
+        <h1>
+            Welcome to
+            <span>Crafted Heaven PK</span>
+        </h1>
+
+        <p>
+            Plants • Crafts • Keychains • Cute & Fun Products
+        </p>
+
+    </div>
+
+</div>
+
+
+<!-- =======================================================
+     HEADER
+======================================================= -->
+
+<header class="header">
+
+    <div class="navbar">
+
+        <a href="#home" class="brand">
+
+            <img
+                src="crafted_heaven_logo.png"
+                alt="Crafted Heaven"
+                class="brandLogo"
+            >
+
+            <div>
+                <div class="brandName">
+                    Crafted Heaven PK
+                </div>
+
+                <div class="brandTag">
+                    Little things, made with love
+                </div>
+            </div>
+
+        </a>
+
+
+        <nav class="navLinks">
+
+            <a href="#home">Home</a>
+
+            <a href="#products">Products</a>
+
+            <a href="#about">About</a>
+
+            <a href="#contact">Contact</a>
+
+        </nav>
+
+
+        <button
+            class="cartButton"
+            onclick="openCart()"
+        >
+            🛒 Cart
+            <span id="cartCount">0</span>
+        </button>
+
+    </div>
+
+</header>
+
+
+<!-- =======================================================
+     HERO
+======================================================= -->
+
+<section class="hero" id="home">
+
+    <div class="heroContent">
+
+        <div class="heroBadge">
+            ✨ Welcome to Crafted Heaven
+        </div>
+
+        <h1>
+            Little Things,
+            <span>Big Happiness</span>
+        </h1>
+
+        <p>
+            Discover beautiful plants, gardening essentials,
+            handmade crafts, cute keychains and fun products
+            for everyone.
+        </p>
+
+        <div class="heroButtons">
+
+            <a
+                href="#products"
+                class="primaryButton"
+            >
+                🛍️ Explore Products
+            </a>
+
+            <a
+                href="#contact"
+                class="secondaryButton"
+            >
+                📞 Contact Us
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =======================================================
+     PRODUCTS
+======================================================= -->
+
+<section class="section" id="products">
+
+    <div class="sectionHeader">
+
+        <h2>Our Products</h2>
+
+        <p>
+            Choose something special from Crafted Heaven PK
+        </p>
+
+    </div>
+
+
+    <!-- CATEGORY FILTERS -->
+
+    <div class="categories">
+
+        <button
+            class="categoryButton active"
+            onclick="filterCategory('all', this)"
+        >
+            ✨ All
+        </button>
+
+        <button
+            class="categoryButton"
+            onclick="filterCategory('plants', this)"
+        >
+            🌿 Plants
+        </button>
+
+        <button
+            class="categoryButton"
+            onclick="filterCategory('gardening', this)"
+        >
+            🌱 Gardening
+        </button>
+
+        <button
+            class="categoryButton"
+            onclick="filterCategory('keychains', this)"
+        >
+            🔑 Keychains
+        </button>
+
+        <button
+            class="categoryButton"
+            onclick="filterCategory('crafts', this)"
+        >
+            💎 Crafts
+        </button>
+
+        <button
+            class="categoryButton"
+            onclick="filterCategory('crochet', this)"
+        >
+            🧶 Crochet
+        </button>
+
+        <button
+            class="categoryButton"
+            onclick="filterCategory('kids', this)"
+        >
+            🧸 Kids & Fun
+        </button>
+
+        <button
+            class="categoryButton"
+            onclick="filterCategory('supplies', this)"
+        >
+            📦 Supplies
+        </button>
+
+    </div>
+
+
+    <!-- SEARCH -->
+
+    <div class="searchWrap">
+
+        <input
+            type="text"
+            id="searchInput"
+            class="searchInput"
+            placeholder="🔎 Search products..."
+            oninput="searchProducts()"
+        >
+
+    </div>
+
+
+    <!-- PRODUCT GRID -->
+
+    <div
+        class="productsGrid"
+        id="productsGrid"
+    ></div>
+
+</section>
+
+
+<!-- =======================================================
+     ABOUT
+======================================================= -->
+
+<section class="section" id="about">
+
+    <div class="aboutBox">
+
+        <h2>About Crafted Heaven PK</h2>
+
+        <p>
+            Crafted Heaven PK is a small online store bringing
+            together beautiful plants, gardening products,
+            handmade crafts, cute keychains and fun products.
+            We believe that even the smallest things can bring
+            a little happiness to your day. 🌿✨
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- =======================================================
+     CONTACT
+======================================================= -->
+
+<section class="section" id="contact">
+
+    <div class="sectionHeader">
+
+        <h2>Contact Us</h2>
+
+        <p>
+            Have a question or want to place an order?
+        </p>
+
+    </div>
+
+
+    <div class="contactGrid">
+
+        <div class="contactCard">
+
+            <div class="contactIcon">
+                📱
+            </div>
+
+            <h3>WhatsApp</h3>
+
+            <p>
+                <a
+                    href="https://wa.me/923034812714"
+                    target="_blank"
+                >
+                    03034812714
+                </a>
+            </p>
+
+        </div>
+
+
+        <div class="contactCard">
+
+            <div class="contactIcon">
+                🛍️
+            </div>
+
+            <h3>Online Store</h3>
+
+            <p>
+                Shop our products directly from
+                Crafted Heaven PK.
+            </p>
+
+        </div>
+
+
+        <div class="contactCard">
+
+            <div class="contactIcon">
+                💚
+            </div>
+
+            <h3>Made With Love</h3>
+
+            <p>
+                Thank you for supporting our small business.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =======================================================
+     FOOTER
+======================================================= -->
+
+<footer class="footer">
+
+    <img
+        src="crafted_heaven_logo.png"
+        alt="Crafted Heaven"
+        class="footerLogo"
+    >
+
+    <h3>
+        Crafted Heaven PK
+    </h3>
+
+    <p>
+        Plants • Crafts • Keychains • Cute Products
+    </p>
+
+    <p class="footerNumber">
+        📱 WhatsApp: 03034812714
+    </p>
+
+    <p>
+        © 2026 Crafted Heaven PK. All rights reserved.
+    </p>
+
+</footer>
+
+
+<!-- =======================================================
+     CART
+======================================================= -->
+
+<div
+    class="cartOverlay"
+    id="cartOverlay"
+    onclick="closeCartOutside(event)"
+>
+
+    <div class="cartPanel">
+
+        <div class="cartHeader">
+
+            <h2>
+                🛒 Your Cart
+            </h2>
+
+            <button
+                class="closeCart"
+                onclick="closeCart()"
+            >
+                ×
+            </button>
+
+        </div>
+
+
+        <div
+            class="cartItems"
+            id="cartItems"
+        ></div>
+
+
+        <div class="cartFooter">
+
+            <div class="cartTotal">
+
+                <span>
+                    Total
+                </span>
+
+                <span id="cartTotal">
+                    Rs. 0
+                </span>
+
+            </div>
+
+
+            <button
+                class="checkoutButton"
+                onclick="checkoutWhatsApp()"
+            >
+                📱 Order on WhatsApp
+            </button>
+
+
+            <button
+                class="clearButton"
+                onclick="clearCart()"
+            >
+                Clear Cart
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =======================================================
+     TOAST
+======================================================= -->
+
+<div
+    class="toast"
+    id="toast"
+>
+    Product added to cart!
+</div>
+
+
+<script>
+
+/* =========================================================
+   PRODUCT DATA
+========================================================= */
+
+const products = [
+
+    {
+        id:1,
+        name:"Star Bottle Keychain",
+        category:"keychains",
+        price:200,
+        emoji:"⭐",
+        image:"file_00000000083081fd9521d8c687635b22.png",
+        description:"Cute star bottle keychain for your keys or bag."
+    },
+
+    {
+        id:2,
+        name:"Paper Soap",
+        category:"supplies",
+        price:150,
+        emoji:"🧼",
+        image:"file_00000000142c81f887e2dee03a7d1fcf.png",
+        description:"Portable paper soap sheets for easy hand washing."
+    },
+
+    {
+        id:3,
+        name:"Crochet Flower",
+        category:"crochet",
+        price:550,
+        emoji:"🌸",
+        image:"file_00000000272081fd9b4bf2e14414d509.png",
+        description:"Beautiful handmade crochet flower decoration."
+    },
+
+    {
+        id:4,
+        name:"Water Colours Set With Brush",
+        category:"crafts",
+        price:250,
+        emoji:"🎨",
+        image:"file_00000000a5f481fba24e43c803b41942.png",
+        description:"Fun water colours set with brush for creative activities."
+    },
+
+    {
+        id:5,
+        name:"Happy Sling Toy",
+        category:"kids",
+        price:200,
+        emoji:"🧸",
+        image:"file_00000000c54081fa96f34504fde950bc.png",
+        description:"Fun little toy for kids and playful moments."
+    },
+
+    {
+        id:6,
+        name:"Slime",
+        category:"kids",
+        price:180,
+        emoji:"🟢",
+        images:[
+            "file_00000000fb3882088416d8e94f8f551a.png",
+            "file_000000009e2c81f49db663ab06be7ba6.png"
+        ],
+        description:"Fun colourful slime for kids and creative play."
+    },
+
+    {
+        id:7,
+        name:"Donut Keychain",
+        category:"keychains",
+        price:200,
+        emoji:"🍩",
+        images:[
+            "file_0000000030f481f583534d6c1ac0e092.png",
+            "file_00000000435081f48428e5a43fe9f503.png"
+        ],
+        description:"Cute donut-style keychain for bags, keys and gifts."
+    },
+
+    {
+        id:8,
+        name:"Girls Catcher Matte",
+        category:"kids",
+        price:250,
+        emoji:"🎀",
+        images:[
+            "file_000000007ca881f4b4ba7c293602c478.png",
+            "file_000000009e34821081b404096d272890.png"
+        ],
+        description:"Cute and fun catcher matte product for girls."
+    },
+
+    {
+        id:9,
+        name:"Happy Face Soft Clay",
+        category:"kids",
+        price:200,
+        emoji:"😊",
+        image:"file_0000000081c88211b74607c079e428b3.png",
+        description:"Soft colourful clay for fun shapes and creative play."
+    },
+
+    {
+        id:10,
+        name:"Succulent Plant",
+        category:"plants",
+        price:250,
+        emoji:"🌵",
+        description:"Easy-care succulent for a sunny corner."
+    },
+
+    {
+        id:11,
+        name:"Plant Seeds Pack",
+        category:"gardening",
+        price:250,
+        emoji:"🌱",
+        description:"Seeds for your next little garden project."
+    },
+
+    {
+        id:12,
+        name:"Cute Keychain",
+        category:"keychains",
+        price:300,
+        emoji:"🔑",
+        description:"A fun cute keychain for your keys or bag."
+    },
+
+    {
+        id:13,
+        name:"Carrot Seeds",
+        category:"gardening",
+        price:120,
+        emoji:"🥕",
+        image:"file_00000000d1488211a180aba3bd3cf783.png",
+        description:"Hybrid carrot seeds for growing fresh carrots at home."
+    },
+
+    {
+        id:14,
+        name:"Disposable Gardening Plant Cups - 5 pcs",
+        category:"supplies",
+        price:150,
+        emoji:"🪴",
+        image:"file_0000000000c0820bb72c8c2c599e48b3.png",
+        description:"Lightweight plant cups. 5 cups per set."
+    },
+
+    {
+        id:15,
+        name:"Alternanthera Plant",
+        category:"plants",
+        price:120,
+        emoji:"🌿",
+        image:"file_0000000090f88211b920d4b7af2b9648.png",
+        description:"Beautiful Alternanthera plant for your home and garden."
+    },
+
+    {
+        id:16,
+        name:"Ajwain Plant",
+        category:"plants",
+        price:110,
+        emoji:"🌱",
+        image:"file_00000000d9f48208a5d952e275347c6b.png",
+        description:"Fresh Ajwain plant suitable for home gardening."
+    },
+
+    {
+        id:17,
+        name:"Purslane Plant",
+        category:"plants",
+        price:100,
+        emoji:"🌸",
+        image:"Screenshot_20260911_124454_Daraz.jpg",
+        description:"Easy-to-grow Purslane plant with beautiful flowers."
+    },
+
+    {
+        id:18,
+        name:"Tomato Seeds",
+        category:"gardening",
+        price:110,
+        emoji:"🍅",
+        image:"Screenshot_20260902_125305_Samsung Browser.jpg",
+        description:"Tomato seeds for growing fresh tomatoes at home."
+    },
+
+    {
+        id:19,
+        name:"Methi Seeds",
+        category:"gardening",
+        price:119,
+        emoji:"🌱",
+        image:"file_00000000fccc8211a58438de4f0d255d.png",
+        description:"Methi seeds for growing fresh fenugreek at home."
+    },
+
+    {
+        id:20,
+        name:"Pearl Bracelet",
+        category:"crafts",
+        price:200,
+        emoji:"📿",
+        image:"file_00000000f1508208979bb842b004d021.png",
+        description:"Beautiful handmade pearl bracelet."
+    },
+
+    {
+        id:21,
+        name:"Crochet Bow Keychain",
+        category:"keychains",
+        price:250,
+        emoji:"🎀",
+        image:"Screenshot_20260911_124509_Daraz.jpg",
+        description:"Cute handmade crochet bow keychain."
+    },
+
+    {
+        id:22,
+        name:"Cocopeat - 1 kg",
+        category:"supplies",
+        price:220,
+        emoji:"🌴",
+        image:"cocopeat.png",
+        description:"1 kg cocopeat for plants and gardening."
+    },
+
+    {
+        id:23,
+        name:"Crystal Beads Bracelet",
+        category:"crafts",
+        price:300,
+        emoji:"📿",
+        image:"IMG-20260826-WA0001.jpg",
+        description:"Beautiful crystal beads bracelet."
+    },
+
+    {
+        id:24,
+        name:"Green Combo Deal",
+        category:"plants",
+        price:500,
+        emoji:"🌿",
+        image:"IMG-20260826-WA0005.jpg",
+        description:"Green combo deal for plant lovers."
+    },
+
+    {
+        id:25,
+        name:"Spanish Seeds",
+        category:"gardening",
+        price:120,
+        emoji:"🌱",
+        image:"Screenshot_20260902_074121_Samsung Browser.jpg",
+        description:"Spanish seeds for your home garden."
+    },
+
+    {
+        id:26,
+        name:"Mother of Thousands",
+        category:"plants",
+        price:250,
+        emoji:"🌿",
+        image:"mother_of_thousands.png",
+        description:"Beautiful Mother of Thousands plant."
+    }
+
+];
+
+
+/* =========================================================
+   CART
+========================================================= */
+
+let cart = [];
+
+let currentCategory = "all";
+
+
+/* =========================================================
+   LOCAL STORAGE
+========================================================= */
+
+function saveCart(){
+
+    localStorage.setItem(
+        "craftedHeavenCart",
+        JSON.stringify(cart)
+    );
+
+}
+
+
+function loadCart(){
+
+    try{
+
+        const saved =
+            localStorage.getItem("craftedHeavenCart");
+
+        if(saved){
+
+            cart = JSON.parse(saved);
+
+            if(!Array.isArray(cart)){
+                cart = [];
+            }
+
+        }
+
+    }catch(error){
+
+        cart = [];
+
+    }
+
+}
+
+
+/* =========================================================
+   PRODUCT IMAGE
+========================================================= */
+
+function getProductImage(product){
+
+    if(product.image){
+        return product.image;
+    }
+
+    if(product.images && product.images.length > 0){
+        return product.images[0];
+    }
+
+    return "";
+
+}
+
+
+/* =========================================================
+   RENDER PRODUCTS
+========================================================= */
+
+function renderProducts(list){
+
+    const grid =
+        document.getElementById("productsGrid");
+
+    if(!grid){
+        return;
+    }
+
+    if(list.length === 0){
+
+        grid.innerHTML = `
+            <div class="noProducts">
+                <div style="font-size:45px;">🔎</div>
+                <h3>No products found</h3>
+                <p>Try another search or category.</p>
+            </div>
+        `;
+
+        return;
+    }
+
+
+    grid.innerHTML = list.map(function(product){
+
+        let imageHTML = "";
+
+
+        if(product.images && product.images.length >= 2){
+
+            imageHTML = `
+                <div class="productImage twoImages">
+
+                    <img
+                        src="${product.images[0]}"
+                        alt="${product.name}"
+                        loading="lazy"
+                        onerror="this.style.display='none'"
+                    >
+
+                    <img
+                        src="${product.images[1]}"
+                        alt="${product.name}"
+                        loading="lazy"
+                        onerror="this.style.display='none'"
+                    >
+
+                </div>
+            `;
+
+        }else if(product.image){
+
+            imageHTML = `
+                <div class="productImage">
+
+                    <img
+                        src="${product.image}"
+                        alt="${product.name}"
+                        loading="lazy"
+                        onerror="this.parentElement.innerHTML='<div class=&quot;emojiImage&quot;>${product.emoji}</div>'"
+                    >
+
+                </div>
+            `;
+
+        }else{
+
+            imageHTML = `
+                <div class="productImage">
+
+                    <div class="emojiImage">
+                        ${product.emoji}
+                    </div>
+
+                </div>
+            `;
+
+        }
+
+
+        return `
+
+            <article class="productCard">
+
+                ${imageHTML}
+
+                <div class="productInfo">
+
+                    <div class="productCategory">
+                        ${formatCategory(product.category)}
+                    </div>
+
+                    <h3 class="productName">
+                        ${product.name}
+                    </h3>
+
+                    <p class="productDescription">
+                        ${product.description}
+                    </p>
+
+                    <div class="productBottom">
+
+                        <div class="productPrice">
+                            Rs. ${product.price}
+                        </div>
+
+                        <button
+                            class="addButton"
+                            onclick="addToCart(${product.id})"
+                        >
+                            Add to Cart
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </article>
+
+        `;
+
+    }).join("");
+
+}
+
+
+/* =========================================================
+   CATEGORY NAME
+========================================================= */
+
+function formatCategory(category){
+
+    const names = {
+
+        plants:"Plants",
+
+        gardening:"Gardening",
+
+        keychains:"Keychains",
+
+        crafts:"Crafts",
+
+        crochet:"Crochet",
+
+        kids:"Kids & Fun",
+
+        supplies:"Supplies"
+
+    };
+
+    return names[category] || category;
+
+}
+
+
+/* =========================================================
+   FILTER CATEGORY
+========================================================= */
+
+function filterCategory(category, button){
+
+    currentCategory = category;
+
+
+    document
+        .querySelectorAll(".categoryButton")
+        .forEach(function(btn){
+
+            btn.classList.remove("active");
+
+        });
+
+
+    if(button){
+        button.classList.add("active");
+    }
+
+
+    searchProducts();
+
+}
+
+
+/* =========================================================
+   SEARCH
+========================================================= */
+
+function searchProducts(){
+
+    const input =
+        document.getElementById("searchInput");
+
+    const query =
+        input
+        ? input.value.toLowerCase().trim()
+        : "";
+
+
+    const filtered = products.filter(function(product){
+
+        const categoryMatch =
+            currentCategory === "all" ||
+            product.category === currentCategory;
+
+
+        const searchMatch =
+            product.name.toLowerCase().includes(query) ||
+            product.description.toLowerCase().includes(query) ||
+            product.category.toLowerCase().includes(query);
+
+
+        return categoryMatch && searchMatch;
+
+    });
+
+
+    renderProducts(filtered);
+
+}
+
+
+/* =========================================================
+   ADD TO CART
+========================================================= */
+
+function addToCart(productId){
+
+    const product =
+        products.find(function(item){
+
+            return item.id === productId;
+
+        });
+
+
+    if(!product){
+        return;
+    }
+
+
+    const existing =
+        cart.find(function(item){
+
+            return item.id === productId;
+
+        });
+
+
+    if(existing){
+
+        existing.quantity += 1;
+
+    }else{
+
+        cart.push({
+
+            id:product.id,
+
+            name:product.name,
+
+            price:product.price,
+
+            image:getProductImage(product),
+
+            emoji:product.emoji,
+
+            quantity:1
+
+        });
+
+    }
+
+
+    saveCart();
+
+    updateCartUI();
+
+    showToast(
+        product.name + " added to cart!"
+    );
+
+}
+
+
+/* =========================================================
+   UPDATE CART
+========================================================= */
+
+function updateCartUI(){
+
+    const countElement =
+        document.getElementById("cartCount");
+
+    const itemsElement =
+        document.getElementById("cartItems");
+
+    const totalElement =
+        document.getElementById("cartTotal");
+
+
+    let totalItems = 0;
+
+    let totalPrice = 0;
+
+
+    cart.forEach(function(item){
+
+        totalItems += item.quantity;
+
+        totalPrice +=
+            item.price * item.quantity;
+
+    });
+
+
+    if(countElement){
+
+        countElement.textContent =
+            totalItems;
+
+    }
+
+
+    if(totalElement){
+
+        totalElement.textContent =
+            "Rs. " + totalPrice;
+
+    }
+
+
+    if(!itemsElement){
+        return;
+    }
+
+
+    if(cart.length === 0){
+
+        itemsElement.innerHTML = `
+
+            <div class="emptyCart">
+
+                <div class="emptyCartIcon">
+                    🛒
+                </div>
+
+                <h3>Your cart is empty</h3>
+
+                <p>
+                    Add some products you love!
+                </p>
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    itemsElement.innerHTML =
+        cart.map(function(item){
+
+            return `
+
+                <div class="cartItem">
+
+                    ${
+                        item.image
+
+                        ? `
+                            <img
+                                class="cartItemImage"
+                                src="${item.image}"
+                                alt="${item.name}"
+                                onerror="this.style.display='none'"
+                            >
+                          `
+
+                        : `
+                            <div
+                                class="cartItemImage"
+                                style="
+                                    display:flex;
+                                    align-items:center;
+                                    justify-content:center;
+                                    font-size:30px;
+                                "
+                            >
+                                ${item.emoji}
+                            </div>
+                          `
+                    }
+
+
+                    <div class="cartItemInfo">
+
+                        <div class="cartItemName">
+                            ${item.name}
+                        </div>
+
+                        <div class="cartItemPrice">
+                            Rs. ${item.price} each
+                        </div>
+
+
+                        <div class="cartControls">
+
+                            <button
+                                class="quantityButton"
+                                onclick="changeQuantity(${item.id}, -1)"
+                            >
+                                −
+                            </button>
+
+                            <span class="quantityNumber">
+                                ${item.quantity}
+                            </span>
+
+                            <button
+                                class="quantityButton"
+                                onclick="changeQuantity(${item.id}, 1)"
+                            >
+                                +
+                            </button>
+
+                            <button
+                                class="removeItem"
+                                onclick="removeFromCart(${item.id})"
+                            >
+                                Remove
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            `;
+
+        }).join("");
+
+}
+
+
+/* =========================================================
+   CHANGE QUANTITY
+========================================================= */
+
+function changeQuantity(productId, change){
+
+    const item =
+        cart.find(function(product){
+
+            return product.id === productId;
+
+        });
+
+
+    if(!item){
+        return;
+    }
+
+
+    item.quantity += change;
+
+
+    if(item.quantity <= 0){
+
+        cart =
+            cart.filter(function(product){
+
+                return product.id !== productId;
+
+            });
+
+    }
+
+
+    saveCart();
+
+    updateCartUI();
+
+}
+
+
+/* =========================================================
+   REMOVE ITEM
+========================================================= */
+
+function removeFromCart(productId){
+
+    cart =
+        cart.filter(function(item){
+
+            return item.id !== productId;
+
+        });
+
+
+    saveCart();
+
+    updateCartUI();
+
+}
+
+
+/* =========================================================
+   CLEAR CART
+========================================================= */
+
+function clearCart(){
+
+    if(cart.length === 0){
+        return;
+    }
+
+
+    const confirmClear =
+        confirm("Are you sure you want to clear your cart?");
+
+
+    if(confirmClear){
+
+        cart = [];
+
+        saveCart();
+
+        updateCartUI();
+
+    }
+
+}
+
+
+/* =========================================================
+   OPEN CART
+========================================================= */
+
+function openCart(){
+
+    const overlay =
+        document.getElementById("cartOverlay");
+
+    overlay.classList.add("open");
+
+    document.body.style.overflow = "hidden";
+
+    updateCartUI();
+
+}
+
+
+/* =========================================================
+   CLOSE CART
+========================================================= */
+
+function closeCart(){
+
+    const overlay =
+        document.getElementById("cartOverlay");
+
+    overlay.classList.remove("open");
+
+    document.body.style.overflow = "";
+
+}
+
+
+/* =========================================================
+   CLOSE CART WHEN CLICKING OUTSIDE
+========================================================= */
+
+function closeCartOutside(event){
+
+    if(event.target.id === "cartOverlay"){
+
+        closeCart();
+
+    }
+
+}
+
+
+/* =========================================================
+   WHATSAPP CHECKOUT
+========================================================= */
+
+function checkoutWhatsApp(){
+
+    if(cart.length === 0){
+
+        showToast(
+            "Your cart is empty!"
+        );
+
+        return;
+
+    }
+
+
+    let message =
+        "Assalam-o-Alaikum Crafted Heaven PK!%0A%0A";
+
+    message +=
+        "I want to order:%0A";
+
+
+    let total = 0;
+
+
+    cart.forEach(function(item){
+
+        const itemTotal =
+            item.price * item.quantity;
+
+        total += itemTotal;
+
+
+        message +=
+            "• " +
+            encodeURIComponent(item.name) +
+            " x " +
+            item.quantity +
+            " = Rs. " +
+            itemTotal +
+            "%0A";
+
+    });
+
+
+    message +=
+        "%0A*Total: Rs. " +
+        total +
+        "*";
+
+
+    message +=
+        "%0A%0APlease let me know the delivery details and payment method.";
+
+
+    message +=
+        "%0A%0AMy contact number: 03034812714";
+
+
+    const whatsappURL =
+        "https://wa.me/923034812714?text=" +
+        message;
+
+
+    window.open(
+        whatsappURL,
+        "_blank"
+    );
+
+}
+
+
+/* =========================================================
+   TOAST
+========================================================= */
+
+let toastTimer;
+
+
+function showToast(message){
+
+    const toast =
+        document.getElementById("toast");
+
+
+    toast.textContent =
+        message;
+
+
+    toast.classList.add("show");
+
+
+    clearTimeout(toastTimer);
+
+
+    toastTimer =
+        setTimeout(function(){
+
+            toast.classList.remove("show");
+
+        },2200);
+
+}
+
+
+/* =========================================================
+   WELCOME SCREEN
+========================================================= */
+
+window.addEventListener("load",function(){
+
+    loadCart();
+
+    renderProducts(products);
+
+    updateCartUI();
+
+
+    setTimeout(function(){
+
+        const welcome =
+            document.getElementById("welcomeScreen");
+
+        if(welcome){
+
+            welcome.classList.add("hide");
+
+        }
+
+    },1800);
+
+});
+
+
+/* =========================================================
+   ESC KEY
+========================================================= */
+
+document.addEventListener("keydown",function(event){
+
+    if(event.key === "Escape"){
+
+        closeCart();
+
+    }
+
+});
+
+</script>
+
+</body>
+      </html>
       
