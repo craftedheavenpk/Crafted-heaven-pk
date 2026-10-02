@@ -2,62 +2,64 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
 
-<title>Crafted Heaven PK | Plants, Crafts, Keychains & Kids Products</title>
+<title>Crafted Heaven PK | Plants, Gardening & Handmade Crafts</title>
 
-<meta name="description" content="Crafted Heaven PK - Plants, gardening supplies, handmade crafts, keychains, crochet items, kids products and more.">
-<meta name="keywords" content="Crafted Heaven PK, plants, gardening, keychains, crochet, crafts, kids products, paper soap, slime, Lahore">
+<meta name="description" content="Crafted Heaven PK - Plants, gardening supplies, seeds, handmade crafts, crochet, keychains, kids products and more.">
+<meta name="keywords" content="Crafted Heaven PK, plants Lahore, gardening, seeds, cocopeat, organic compost, crochet, keychains, handmade crafts">
+<meta name="author" content="Crafted Heaven PK">
+
+<meta property="og:title" content="Crafted Heaven PK">
+<meta property="og:description" content="Plants, gardening products, handmade crafts, crochet, keychains and more.">
+<meta property="og:type" content="website">
 
 <style>
 *{
   margin:0;
   padding:0;
   box-sizing:border-box;
-  font-family:Arial,Helvetica,sans-serif;
+  font-family:Arial,Helvetica,sans-serif
 }
 
-html{
-  scroll-behavior:smooth;
-}
+html{scroll-behavior:smooth}
 
 body{
-  background:#f5f3ea;
+  background:#f7f4ec;
   color:#173d2a;
-  overflow-x:hidden;
+  overflow-x:hidden
 }
 
-button,
-a{
-  -webkit-tap-highlight-color:transparent;
+button,a{
+  -webkit-tap-highlight-color:transparent
 }
 
-img{
-  max-width:100%;
-}
+button{font-family:inherit}
+img{max-width:100%}
 
 /* =========================
-   WELCOME SCREEN
+   WELCOME
 ========================= */
 
 #welcomeScreen{
   position:fixed;
   inset:0;
   z-index:99999;
-  background:linear-gradient(135deg,#0d2b1d,#174b31,#0b2418);
+  background:
+    radial-gradient(circle at 50% 30%,rgba(212,175,55,.12),transparent 35%),
+    linear-gradient(135deg,#071d13,#123c28,#071d13);
   display:flex;
   align-items:center;
   justify-content:center;
   text-align:center;
   color:white;
-  overflow:hidden;
-  transition:opacity .7s ease,visibility .7s ease;
+  transition:.7s
 }
 
 #welcomeScreen.hide{
   opacity:0;
   visibility:hidden;
-  pointer-events:none;
+  pointer-events:none
 }
 
 .welcomeRings{
@@ -66,34 +68,29 @@ img{
   height:500px;
   border:1px solid rgba(212,175,55,.25);
   border-radius:50%;
-  animation:rotateRing 15s linear infinite;
+  animation:rotateRing 15s linear infinite
 }
 
 .welcomeRings:before,
 .welcomeRings:after{
   content:"";
   position:absolute;
-  border:1px solid rgba(212,175,55,.18);
-  border-radius:50%;
+  border:1px solid rgba(212,175,55,.16);
+  border-radius:50%
 }
 
-.welcomeRings:before{
-  inset:40px;
-}
-
-.welcomeRings:after{
-  inset:90px;
-}
+.welcomeRings:before{inset:40px}
+.welcomeRings:after{inset:90px}
 
 @keyframes rotateRing{
-  from{transform:rotate(0deg);}
-  to{transform:rotate(360deg);}
+  from{transform:rotate(0)}
+  to{transform:rotate(360deg)}
 }
 
 .welcomeContent{
   position:relative;
   z-index:2;
-  padding:25px;
+  padding:25px
 }
 
 .welcomeLogo{
@@ -103,37 +100,31 @@ img{
   border-radius:50%;
   background:white;
   padding:8px;
-  box-shadow:0 0 35px rgba(212,175,55,.35);
   margin-bottom:22px;
+  box-shadow:0 0 35px rgba(212,175,55,.35)
 }
 
 .welcomeContent h1{
   font-size:clamp(28px,7vw,52px);
   margin-bottom:10px;
-  color:#f1d57a;
+  color:#f1d57a
 }
 
 .welcomeContent p{
   font-size:16px;
   opacity:.9;
-  margin-bottom:28px;
+  margin-bottom:28px
 }
 
 .enterBtn{
-  border:none;
+  border:0;
   background:linear-gradient(135deg,#d4af37,#f1d57a);
   color:#153624;
   padding:14px 28px;
   border-radius:30px;
   font-weight:bold;
   cursor:pointer;
-  font-size:16px;
-  box-shadow:0 8px 25px rgba(0,0,0,.25);
-  transition:.3s;
-}
-
-.enterBtn:hover{
-  transform:translateY(-3px);
+  font-size:16px
 }
 
 /* =========================
@@ -147,7 +138,7 @@ header{
   background:rgba(15,55,36,.97);
   backdrop-filter:blur(10px);
   color:white;
-  box-shadow:0 3px 18px rgba(0,0,0,.15);
+  box-shadow:0 3px 18px rgba(0,0,0,.15)
 }
 
 .navbar{
@@ -158,7 +149,7 @@ header{
   display:flex;
   align-items:center;
   justify-content:space-between;
-  gap:15px;
+  gap:15px
 }
 
 .logoArea{
@@ -166,7 +157,7 @@ header{
   align-items:center;
   gap:10px;
   color:white;
-  text-decoration:none;
+  text-decoration:none
 }
 
 .logoArea img{
@@ -175,51 +166,32 @@ header{
   border-radius:50%;
   background:white;
   object-fit:contain;
-  padding:3px;
+  padding:3px
 }
 
 .logoText{
   font-weight:bold;
   font-size:18px;
-  color:#f1d57a;
+  color:#f1d57a
 }
 
-.navLinks{
-  display:flex;
-  align-items:center;
-  gap:18px;
-}
-
-.navLinks a{
+.menuBtn{
+  border:0;
+  background:transparent;
   color:white;
-  text-decoration:none;
-  font-size:14px;
-  transition:.25s;
-}
-
-.navLinks a:hover{
-  color:#f1d57a;
+  font-size:29px;
+  cursor:pointer
 }
 
 .cartBtn{
-  border:none;
+  border:0;
   background:#d4af37;
   color:#173d2a;
   padding:10px 15px;
   border-radius:25px;
   cursor:pointer;
   font-weight:bold;
-  white-space:nowrap;
-}
-
-@media(max-width:800px){
-  .navLinks{
-    display:none;
-  }
-
-  .logoText{
-    font-size:15px;
-  }
+  white-space:nowrap
 }
 
 /* =========================
@@ -227,76 +199,62 @@ header{
 ========================= */
 
 .hero{
-  min-height:470px;
+  min-height:490px;
   background:
-    linear-gradient(rgba(7,38,24,.68),rgba(7,38,24,.72)),
+    linear-gradient(rgba(7,38,24,.62),rgba(7,38,24,.76)),
     url("file_00000000111c820a85835b2be6015af8.png") center/cover;
   display:flex;
   align-items:center;
   justify-content:center;
   text-align:center;
   color:white;
-  padding:70px 20px;
+  padding:70px 20px
 }
 
 .heroContent{
-  max-width:850px;
+  max-width:850px
 }
 
 .hero h1{
   font-size:clamp(34px,7vw,65px);
   color:#f1d57a;
-  margin-bottom:15px;
+  margin-bottom:15px
 }
 
 .hero p{
   font-size:18px;
   line-height:1.7;
-  margin-bottom:28px;
+  margin-bottom:28px
 }
 
-.heroButtons{
+.heroButtons,
+.socialButtons{
   display:flex;
   flex-wrap:wrap;
   justify-content:center;
-  gap:12px;
+  gap:12px
 }
 
 .heroBtn{
-  text-decoration:none;
   display:inline-block;
   padding:13px 23px;
   border-radius:30px;
   font-weight:bold;
-  transition:.3s;
+  text-decoration:none
 }
 
 .primaryBtn{
   background:#d4af37;
-  color:#173d2a;
+  color:#173d2a
 }
 
 .secondaryBtn{
   background:rgba(255,255,255,.12);
   border:1px solid rgba(255,255,255,.5);
-  color:white;
+  color:white
 }
 
-.heroBtn:hover{
-  transform:translateY(-3px);
-}
-
-/* =========================
-   SOCIAL BUTTONS
-========================= */
-
-.socialButtons{
-  display:flex;
-  justify-content:center;
-  flex-wrap:wrap;
-  gap:12px;
-  margin-top:22px;
-}
+.socialButtons{margin-top:22px}
 
 .socialBtn{
   display:inline-flex;
@@ -306,55 +264,51 @@ header{
   border-radius:28px;
   text-decoration:none;
   color:white;
-  font-weight:bold;
-  transition:.3s;
-  box-shadow:0 5px 15px rgba(0,0,0,.12);
+  font-weight:bold
 }
 
-.socialBtn:hover{
-  transform:translateY(-3px);
-}
-
-.facebookBtn{
-  background:#1877f2;
-}
-
-.whatsappBtn{
-  background:#25d366;
-}
+.facebookBtn{background:#1877f2}
+.whatsappBtn{background:#25d366}
 
 .socialIcon{
   width:22px;
   height:22px;
   display:inline-flex;
   align-items:center;
-  justify-content:center;
-  font-size:19px;
+  justify-content:center
+}
+
+.socialIcon svg,
+.floatBtn svg,
+.footerSocial svg{
+  width:21px;
+  height:21px;
+  fill:currentColor
 }
 
 /* =========================
-   SECTION
+   SECTIONS
 ========================= */
 
 .section{
   max-width:1200px;
   margin:auto;
-  padding:55px 18px;
+  padding:60px 18px
 }
 
 .sectionTitle{
   text-align:center;
-  margin-bottom:28px;
+  margin-bottom:28px
 }
 
 .sectionTitle h2{
   font-size:30px;
   color:#173d2a;
-  margin-bottom:8px;
+  margin-bottom:8px
 }
 
 .sectionTitle p{
-  color:#5c6b61;
+  color:#66736a
 }
 
 /* =========================
@@ -366,7 +320,7 @@ header{
   justify-content:center;
   flex-wrap:wrap;
   gap:9px;
-  margin-bottom:20px;
+  margin-bottom:18px
 }
 
 .categoryBtn{
@@ -376,40 +330,41 @@ header{
   padding:9px 15px;
   border-radius:25px;
   cursor:pointer;
-  font-weight:600;
-  transition:.25s;
+  font-weight:600
 }
 
-.categoryBtn:hover,
 .categoryBtn.active{
   background:#173d2a;
   color:#f1d57a;
-  border-color:#173d2a;
+  border-color:#173d2a
 }
 
 /* =========================
-   SEARCH
+   SEARCH / SORT
 ========================= */
 
-.searchBox{
-  max-width:600px;
-  margin:0 auto 30px;
-  position:relative;
+.controlsRow{
+  max-width:900px;
+  margin:0 auto 22px;
+  display:grid;
+  grid-template-columns:1fr 220px;
+  gap:10px
 }
 
-.searchBox input{
+.searchBox input,
+.sortSelect{
   width:100%;
-  padding:15px 20px;
+  padding:14px 17px;
   border:1px solid #d8d4c5;
-  border-radius:30px;
   outline:none;
   font-size:15px;
-  background:white;
-  box-shadow:0 4px 15px rgba(0,0,0,.05);
+  background:white
 }
 
-.searchBox input:focus{
-  border-color:#173d2a;
+.searchBox input{border-radius:30px}
+.sortSelect{
+  border-radius:12px;
+  color:#173d2a
 }
 
 /* =========================
@@ -419,42 +374,23 @@ header{
 .productGrid{
   display:grid;
   grid-template-columns:repeat(4,1fr);
-  gap:20px;
-}
-
-@media(max-width:1000px){
-  .productGrid{
-    grid-template-columns:repeat(3,1fr);
-  }
-}
-
-@media(max-width:720px){
-  .productGrid{
-    grid-template-columns:repeat(2,1fr);
-    gap:13px;
-  }
-}
-
-@media(max-width:430px){
-  .productGrid{
-    grid-template-columns:1fr 1fr;
-  }
+  gap:20px
 }
 
 .productCard{
   background:white;
   border-radius:18px;
   overflow:hidden;
-  box-shadow:0 6px 20px rgba(22,55,39,.09);
-  transition:.3s;
+  box-shadow:0 7px 24px rgba(22,55,39,.09);
   border:1px solid #eeeade;
   display:flex;
   flex-direction:column;
+  transition:.25s
 }
 
 .productCard:hover{
-  transform:translateY(-5px);
-  box-shadow:0 12px 25px rgba(22,55,39,.14);
+  transform:translateY(-4px);
+  box-shadow:0 12px 30px rgba(22,55,39,.14)
 }
 
 .productImageWrap{
@@ -462,31 +398,31 @@ header{
   aspect-ratio:1/1;
   background:#f1f0e8;
   overflow:hidden;
-  display:flex;
+  display:flex
 }
 
-.productImageWrap img{
+.productImageWrap>img{
   width:100%;
   height:100%;
-  object-fit:cover;
+  object-fit:cover
 }
 
 .productImages{
   display:flex;
   width:100%;
-  gap:2px;
+  gap:2px
 }
 
 .productImages img{
   width:50%;
-  object-fit:cover;
+  object-fit:cover
 }
 
 .productInfo{
   padding:14px;
   display:flex;
   flex-direction:column;
-  flex:1;
+  flex:1
 }
 
 .productCategory{
@@ -494,31 +430,31 @@ header{
   text-transform:uppercase;
   color:#8b7650;
   font-weight:bold;
-  margin-bottom:5px;
+  margin-bottom:5px
 }
 
 .productName{
   font-size:17px;
   margin-bottom:7px;
-  color:#173d2a;
+  color:#173d2a
 }
 
 .productDescription{
   font-size:12px;
   color:#69746c;
   line-height:1.5;
-  margin-bottom:8px;
+  margin-bottom:8px
 }
 
 .productRating{
   font-size:13px;
   margin-bottom:7px;
-  color:#d39d00;
+  color:#d39d00
 }
 
 .ratingCount{
   color:#777;
-  font-size:11px;
+  font-size:11px
 }
 
 .priceRow{
@@ -527,35 +463,35 @@ header{
   justify-content:space-between;
   gap:8px;
   margin-top:auto;
-  margin-bottom:10px;
+  margin-bottom:10px
 }
 
 .price{
   color:#173d2a;
   font-size:19px;
-  font-weight:bold;
+  font-weight:bold
 }
 
 .unit{
   font-size:11px;
   color:#777;
-  text-align:right;
+  text-align:right
 }
 
 .productActions{
   display:grid;
   grid-template-columns:1fr;
-  gap:7px;
+  gap:7px
 }
 
 .addBtn{
-  border:none;
+  border:0;
   background:#173d2a;
   color:#f1d57a;
   padding:11px;
   border-radius:9px;
   cursor:pointer;
-  font-weight:bold;
+  font-weight:bold
 }
 
 .reviewBtn{
@@ -565,12 +501,7 @@ header{
   padding:9px;
   border-radius:9px;
   cursor:pointer;
-  font-size:12px;
-}
-
-.addBtn:hover,
-.reviewBtn:hover{
-  opacity:.9;
+  font-size:12px
 }
 
 /* =========================
@@ -579,15 +510,37 @@ header{
 
 .aboutBox{
   background:white;
-  border-radius:20px;
-  padding:30px;
-  box-shadow:0 5px 20px rgba(0,0,0,.06);
+  border-radius:22px;
+  padding:35px;
+  box-shadow:0 8px 25px rgba(0,0,0,.06);
   line-height:1.8;
-  text-align:center;
+  text-align:center
 }
 
-.aboutBox strong{
-  color:#173d2a;
+.aboutBox strong{color:#173d2a}
+
+.aboutHighlights{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:12px;
+  margin-top:25px
+}
+
+.aboutHighlight{
+  padding:18px 10px;
+  border-radius:15px;
+  background:#f5f7f1
+}
+
+.aboutHighlight b{
+  display:block;
+  font-size:22px;
+  margin-bottom:6px
+}
+
+.aboutHighlight span{
+  font-size:12px;
+  color:#657269
 }
 
 /* =========================
@@ -597,36 +550,30 @@ header{
 .reviewsGrid{
   display:grid;
   grid-template-columns:repeat(3,1fr);
-  gap:16px;
-}
-
-@media(max-width:800px){
-  .reviewsGrid{
-    grid-template-columns:1fr;
-  }
+  gap:16px
 }
 
 .reviewCard{
   background:white;
   padding:18px;
   border-radius:16px;
-  box-shadow:0 4px 15px rgba(0,0,0,.06);
+  box-shadow:0 4px 15px rgba(0,0,0,.06)
 }
 
 .reviewStars{
   color:#d39d00;
-  margin-bottom:7px;
+  margin-bottom:7px
 }
 
 .reviewName{
   font-weight:bold;
-  margin-bottom:5px;
+  margin-bottom:5px
 }
 
 .reviewText{
   color:#68736c;
   font-size:14px;
-  line-height:1.6;
+  line-height:1.6
 }
 
 /* =========================
@@ -634,21 +581,23 @@ header{
 ========================= */
 
 .contactBox{
-  background:linear-gradient(135deg,#173d2a,#0d2b1d);
+  background:
+    radial-gradient(circle at top right,rgba(212,175,55,.15),transparent 35%),
+    linear-gradient(135deg,#173d2a,#0d2b1d);
   color:white;
-  padding:35px 20px;
+  padding:40px 20px;
   border-radius:22px;
-  text-align:center;
+  text-align:center
 }
 
 .contactBox h2{
   color:#f1d57a;
-  margin-bottom:10px;
+  margin-bottom:10px
 }
 
 .contactBox p{
   opacity:.9;
-  margin-bottom:18px;
+  margin-bottom:18px
 }
 
 .contactInfo{
@@ -656,24 +605,42 @@ header{
   justify-content:center;
   flex-wrap:wrap;
   gap:12px;
-  margin-bottom:12px;
+  margin-bottom:15px
 }
 
 .contactItem{
   background:rgba(255,255,255,.1);
   padding:11px 15px;
-  border-radius:25px;
+  border-radius:25px
 }
 
 /* =========================
-   FOOTER
+   PROFESSIONAL FOOTER
 ========================= */
 
 footer{
-  background:#0b2418;
+  background:
+    radial-gradient(circle at 15% 20%,rgba(212,175,55,.09),transparent 28%),
+    radial-gradient(circle at 85% 80%,rgba(90,150,110,.09),transparent 30%),
+    #091f15;
   color:white;
-  padding:35px 18px;
-  text-align:center;
+  padding:55px 18px 20px
+}
+
+.footerInner{
+  max-width:1200px;
+  margin:auto;
+  display:grid;
+  grid-template-columns:1.4fr 1fr 1fr 1fr;
+  gap:35px;
+  text-align:left
+}
+
+.footerBrand{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  margin-bottom:14px
 }
 
 .footerLogo{
@@ -682,323 +649,394 @@ footer{
   background:white;
   padding:4px;
   object-fit:contain;
-  border-radius:50%;
-  margin-bottom:10px;
+  border-radius:50%
 }
 
-footer h3{
+.footerBrand h3{
   color:#f1d57a;
-  margin-bottom:7px;
+  font-size:22px
 }
 
-footer p{
-  color:#cbd5ce;
-  font-size:13px;
+.footerBrand span{
+  display:block;
+  color:#aebdb4;
+  font-size:12px;
+  margin-top:4px
+}
+
+.footerColumn h4{
+  color:#f1d57a;
   margin-bottom:15px;
+  font-size:15px
+}
+
+.footerColumn a{
+  display:block;
+  color:#cbd5ce;
+  text-decoration:none;
+  font-size:13px;
+  margin:9px 0;
+  transition:.2s
+}
+
+.footerColumn a:hover{
+  color:#f1d57a;
+  transform:translateX(3px)
+}
+
+.footerColumn p{
+  color:#b9c5be;
+  font-size:13px;
+  line-height:1.7
 }
 
 .footerSocial{
   display:flex;
-  justify-content:center;
-  gap:10px;
+  gap:9px;
   flex-wrap:wrap;
+  margin-top:17px
 }
 
 .footerSocial a{
-  display:inline-flex;
+  width:42px;
+  height:42px;
+  display:flex;
   align-items:center;
   justify-content:center;
-  gap:7px;
-  padding:9px 14px;
-  border-radius:22px;
+  border-radius:12px;
   color:white;
-  text-decoration:none;
-  font-size:13px;
-  font-weight:bold;
+  text-decoration:none
 }
 
-.footerFacebook{
-  background:#1877f2;
-}
+.footerFacebook{background:#1877f2}
+.footerWhatsApp{background:#25d366}
 
-.footerWhatsApp{
-  background:#25d366;
-}
-
-.copyright{
-  margin-top:20px;
-  padding-top:15px;
+.footerBottom{
+  max-width:1200px;
+  margin:35px auto 0;
+  padding-top:18px;
   border-top:1px solid rgba(255,255,255,.1);
-  color:#9faea5;
-  font-size:11px;
+  display:flex;
+  justify-content:space-between;
+  flex-wrap:wrap;
+  gap:10px;
+  color:#8f9d95;
+  font-size:11px
+}
+
+.deliveryNote{
+  margin-top:15px;
+  color:#e7eee9;
+  font-weight:bold
 }
 
 /* =========================
-   CART DRAWER
+   SIDEBAR
 ========================= */
 
-.cartOverlay{
+.menuOverlay{
   position:fixed;
   inset:0;
-  background:rgba(0,0,0,.45);
-  z-index:8000;
+  background:rgba(0,0,0,.55);
+  z-index:7000;
   opacity:0;
   visibility:hidden;
-  transition:.3s;
+  transition:.3s
 }
 
-.cartOverlay.show{
+.menuOverlay.show{
   opacity:1;
-  visibility:visible;
+  visibility:visible
 }
 
-.cartDrawer{
+.sideMenu{
   position:fixed;
   top:0;
-  right:-430px;
-  width:min(430px,100%);
+  left:-430px;
+  width:min(390px,92vw);
   height:100vh;
-  background:#f8f7f0;
-  z-index:9000;
-  transition:.35s ease;
-  box-shadow:-5px 0 25px rgba(0,0,0,.2);
-  display:flex;
-  flex-direction:column;
-}
-
-.cartDrawer.show{
-  right:0;
-}
-
-.cartHeader{
-  padding:18px;
-  background:#173d2a;
+  background:#242424;
   color:white;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-}
-
-.cartHeader h2{
-  color:#f1d57a;
-  font-size:21px;
-}
-
-.closeCart{
-  border:none;
-  background:transparent;
-  color:white;
-  font-size:27px;
-  cursor:pointer;
-}
-
-.cartBody{
-  flex:1;
+  z-index:7500;
+  transition:.35s;
   overflow-y:auto;
-  padding:15px;
+  box-shadow:5px 0 25px rgba(0,0,0,.3)
 }
 
-.emptyCart{
-  text-align:center;
-  color:#777;
-  padding:50px 20px;
-}
+.sideMenu.show{left:0}
 
-.cartItem{
-  background:white;
-  border-radius:13px;
-  padding:11px;
-  margin-bottom:10px;
-  display:grid;
-  grid-template-columns:65px 1fr auto;
-  gap:10px;
-  align-items:center;
-}
-
-.cartItem img{
-  width:65px;
-  height:65px;
-  border-radius:10px;
-  object-fit:cover;
-}
-
-.cartItemName{
-  font-weight:bold;
-  font-size:14px;
-  color:#173d2a;
-}
-
-.cartItemPrice{
-  font-size:12px;
-  color:#777;
-  margin-top:4px;
-}
-
-.qtyControls{
+.sideHeader{
+  padding:18px 22px;
   display:flex;
   align-items:center;
-  gap:7px;
-  margin-top:8px;
-}
-
-.qtyBtn{
-  width:26px;
-  height:26px;
-  border:none;
-  background:#173d2a;
-  color:white;
-  border-radius:50%;
-  cursor:pointer;
-}
-
-.removeBtn{
-  border:none;
-  background:#f1e7e2;
-  color:#b13b25;
-  padding:6px;
-  border-radius:7px;
-  cursor:pointer;
-  font-size:11px;
-}
-
-.cartFooter{
-  padding:17px;
-  background:white;
-  border-top:1px solid #ddd;
-}
-
-.cartTotal{
-  display:flex;
   justify-content:space-between;
-  font-size:20px;
-  font-weight:bold;
-  margin-bottom:12px;
+  border-bottom:1px solid #555
 }
 
-.cartActions{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:9px;
+.sideBrand{
+  display:flex;
+  align-items:center;
+  gap:12px
 }
 
-.whatsappOrder{
-  border:none;
-  background:#25d366;
-  color:white;
-  padding:12px;
-  border-radius:9px;
-  cursor:pointer;
-  font-weight:bold;
-}
-
-.clearCart{
-  border:1px solid #ccc;
+.sideBrand img{
+  width:58px;
+  height:58px;
+  border-radius:50%;
   background:white;
-  color:#9a3d2c;
-  padding:12px;
-  border-radius:9px;
-  cursor:pointer;
-  font-weight:bold;
+  padding:3px;
+  object-fit:contain
 }
+
+.sideBrand strong{font-size:21px}
+.sideBrand small{
+  display:block;
+  color:#aaa;
+  margin-top:3px
+}
+
+.sideClose{
+  border:0;
+  background:#666;
+  color:white;
+  width:50px;
+  height:50px;
+  border-radius:14px;
+  font-size:28px;
+  cursor:pointer
+}
+
+.menuSectionTitle{
+  font-size:11px;
+  letter-spacing:2px;
+  color:#a9d2b6;
+  font-weight:bold;
+  padding:22px 22px 10px;
+  text-transform:uppercase
+}
+
+.sideList{margin-bottom:3px}
+
+.sideItem{
+  width:calc(100% - 28px);
+  margin:0 14px;
+  border:0;
+  border-bottom:1px solid #707070;
+  background:#626262;
+  color:white;
+  padding:15px 10px;
+  text-align:left;
+  font-size:16px;
+  font-weight:bold;
+  cursor:pointer;
+  display:flex;
+  align-items:center;
+  gap:14px
+}
+
+.sideItem:hover{background:#777}
+
+.sideBottom{
+  padding:20px 22px;
+  color:#c8c8c8;
+  font-size:13px;
+  line-height:1.7
+}
+
+.sideSocial{
+  display:flex;
+  gap:10px;
+  margin:15px 0
+}
+
+.sideSocial a{
+  width:50px;
+  height:50px;
+  border-radius:14px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:white;
+  text-decoration:none
+}
+
+.sideFB{background:#1877f2}
+.sideWA{background:#25d366}
+.sidePhone{background:#444}
 
 /* =========================
-   REVIEW MODAL
+   MODALS
 ========================= */
 
 .modalOverlay{
   position:fixed;
   inset:0;
-  background:rgba(0,0,0,.55);
+  background:rgba(0,0,0,.6);
   z-index:10000;
   display:flex;
   align-items:center;
   justify-content:center;
-  padding:20px;
+  padding:15px;
   opacity:0;
   visibility:hidden;
-  transition:.3s;
+  transition:.3s
 }
 
 .modalOverlay.show{
   opacity:1;
-  visibility:visible;
+  visibility:visible
 }
 
-.reviewModal{
+.modalBox{
   background:white;
-  width:min(500px,100%);
+  width:min(620px,100%);
   border-radius:20px;
-  padding:25px;
+  padding:23px;
   position:relative;
-  max-height:90vh;
-  overflow-y:auto;
+  max-height:92vh;
+  overflow-y:auto
 }
 
 .closeModal{
   position:absolute;
-  top:12px;
-  right:15px;
-  border:none;
+  top:10px;
+  right:14px;
+  border:0;
   background:transparent;
-  font-size:25px;
+  font-size:28px;
   cursor:pointer;
+  color:#555
 }
 
-.reviewModal h2{
+.modalBox h2{
   color:#173d2a;
-  margin-bottom:5px;
+  margin-bottom:5px
 }
 
-.selectedProduct{
+.modalSub{
   color:#777;
   font-size:13px;
-  margin-bottom:15px;
-}
-
-.starSelect{
-  display:flex;
-  gap:7px;
-  margin:10px 0 17px;
-}
-
-.starSelect span{
-  font-size:30px;
-  color:#ccc;
-  cursor:pointer;
-}
-
-.starSelect span.active{
-  color:#d4af37;
-}
-
-.reviewModal input,
-.reviewModal textarea{
-  width:100%;
-  padding:12px;
-  border:1px solid #ddd;
-  border-radius:9px;
-  margin-bottom:12px;
-  outline:none;
-}
-
-.reviewModal textarea{
-  min-height:110px;
-  resize:vertical;
-}
-
-.submitReview{
-  width:100%;
-  border:none;
-  background:#173d2a;
-  color:#f1d57a;
-  padding:13px;
-  border-radius:9px;
-  cursor:pointer;
-  font-weight:bold;
+  margin-bottom:16px
 }
 
 /* =========================
-   MOBILE SOCIAL FLOAT
+   CHECKOUT
+========================= */
+
+.checkoutForm{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:11px
+}
+
+.fieldFull{grid-column:1/-1}
+
+.checkoutForm label{
+  display:block;
+  font-size:12px;
+  font-weight:bold;
+  color:#536058;
+  margin-bottom:5px
+}
+
+.checkoutRequired{color:#b53a25}
+
+.checkoutForm input,
+.checkoutForm textarea{
+  width:100%;
+  padding:12px;
+  border:1px solid #d7d8d2;
+  border-radius:10px;
+  outline:none;
+  font-size:14px
+}
+
+.checkoutForm textarea{
+  min-height:85px;
+  resize:vertical
+}
+
+.checkoutSummary{
+  background:#f5f5ed;
+  padding:13px;
+  border-radius:12px;
+  margin:15px 0;
+  line-height:1.7;
+  font-size:13px
+}
+
+.checkoutTotal{
+  font-size:20px;
+  font-weight:bold;
+  color:#173d2a;
+  margin-top:7px
+}
+
+.submitOrder{
+  width:100%;
+  border:0;
+  background:#25d366;
+  color:white;
+  padding:14px;
+  border-radius:10px;
+  font-size:16px;
+  font-weight:bold;
+  cursor:pointer
+}
+
+.checkoutDelivery{
+  font-size:12px;
+  color:#68736c;
+  margin-top:9px;
+  text-align:center
+}
+
+/* =========================
+   GUIDE
+========================= */
+
+.guideSearch{
+  width:100%;
+  padding:12px;
+  border:1px solid #ddd;
+  border-radius:10px;
+  margin-bottom:13px
+}
+
+.guideList{
+  display:grid;
+  gap:9px
+}
+
+.guideCard{
+  border:1px solid #e1e0d8;
+  border-radius:12px;
+  padding:14px;
+  background:#fafaf6
+}
+
+.guideCard h3{
+  font-size:16px;
+  color:#173d2a;
+  margin-bottom:5px
+}
+
+.guideCard p{
+  font-size:13px;
+  color:#5f6b63;
+  line-height:1.6
+}
+
+.guideTag{
+  font-size:10px;
+  color:#8b7650;
+  text-transform:uppercase;
+  font-weight:bold;
+  margin-bottom:4px
+}
+
+/* =========================
+   FLOATING
 ========================= */
 
 .floatingSocial{
@@ -1008,7 +1046,7 @@ footer p{
   z-index:6000;
   display:flex;
   flex-direction:column;
-  gap:9px;
+  gap:9px
 }
 
 .floatBtn{
@@ -1020,37 +1058,18 @@ footer p{
   justify-content:center;
   text-decoration:none;
   color:white;
-  font-size:23px;
-  box-shadow:0 5px 15px rgba(0,0,0,.2);
-  transition:.3s;
+  box-shadow:0 5px 15px rgba(0,0,0,.2)
 }
 
-.floatBtn:hover{
-  transform:scale(1.08);
-}
-
-.floatFacebook{
-  background:#1877f2;
-}
-
-.floatWhatsApp{
-  background:#25d366;
-}
-
-/* =========================
-   NO RESULTS
-========================= */
+.floatFacebook{background:#1877f2}
+.floatWhatsApp{background:#25d366}
 
 .noResults{
   text-align:center;
   grid-column:1/-1;
   padding:40px 10px;
-  color:#777;
+  color:#777
 }
-
-/* =========================
-   TOAST
-========================= */
 
 .toast{
   position:fixed;
@@ -1066,18 +1085,100 @@ footer p{
   visibility:hidden;
   transition:.3s;
   box-shadow:0 5px 20px rgba(0,0,0,.2);
-  font-size:14px;
+  font-size:14px
 }
 
 .toast.show{
   opacity:1;
   visibility:visible;
-  transform:translate(-50%,0);
+  transform:translate(-50%,0)
 }
 
-/* Hide floating buttons when cart/modal open */
-body.modalOpen .floatingSocial{
-  display:none;
+body.modalOpen .floatingSocial{display:none}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media(max-width:1000px){
+  .productGrid{grid-template-columns:repeat(3,1fr)}
+  .footerInner{grid-template-columns:repeat(2,1fr)}
+  .aboutHighlights{grid-template-columns:repeat(2,1fr)}
+}
+
+@media(max-width:720px){
+  .productGrid{
+    grid-template-columns:repeat(2,1fr);
+    gap:13px
+  }
+
+  .controlsRow{
+    grid-template-columns:1fr
+  }
+
+  .reviewsGrid{
+    grid-template-columns:1fr
+  }
+
+  .footerInner{
+    grid-template-columns:1fr
+  }
+
+  .hero{
+    min-height:450px
+  }
+
+  .hero p{
+    font-size:15px
+  }
+}
+
+@media(max-width:520px){
+  .checkoutForm{
+    grid-template-columns:1fr
+  }
+
+  .fieldFull{
+    grid-column:auto
+  }
+
+  .aboutBox{
+    padding:23px 16px
+  }
+
+  .aboutHighlights{
+    grid-template-columns:1fr 1fr
+  }
+
+  .productName{
+    font-size:15px
+  }
+
+  .price{
+    font-size:17px
+  }
+
+  .productInfo{
+    padding:11px
+  }
+
+  .navbar{
+    padding:9px 11px
+  }
+
+  .logoText{
+    font-size:14px
+  }
+
+  .logoArea img{
+    width:43px;
+    height:43px
+  }
+
+  .cartBtn{
+    padding:9px 11px;
+    font-size:12px
+  }
 }
 </style>
 </head>
@@ -1089,11 +1190,9 @@ body.modalOpen .floatingSocial{
 ========================= -->
 
 <div id="welcomeScreen">
-
   <div class="welcomeRings"></div>
 
   <div class="welcomeContent">
-
     <img
       src="crafted_heaven_logo.png"
       alt="Crafted Heaven Logo"
@@ -1103,26 +1202,60 @@ body.modalOpen .floatingSocial{
 
     <h1>Welcome To Crafted Heaven PK</h1>
 
-    <p>Plants • Crafts • Keychains • Kids Fun • Gardening & More</p>
+    <p>
+      Plants • Gardening • Crafts • Crochet • Keychains & More
+    </p>
 
     <button class="enterBtn" onclick="enterWebsite()">
       Enter Store →
     </button>
-
   </div>
-
 </div>
-
 
 <!-- =========================
      HEADER
 ========================= -->
 
 <header>
-
   <div class="navbar">
 
+    <button
+      class="menuBtn"
+      onclick="openMenu()"
+      aria-label="Open menu"
+    >☰</button>
+
     <a href="#home" class="logoArea">
+      <img
+        src="crafted_heaven_logo.png"
+        alt="Crafted Heaven"
+        onerror="this.style.display='none'"
+      >
+      <span class="logoText">Crafted Heaven PK</span>
+    </a>
+
+    <button class="cartBtn" onclick="openCart()">
+      🛒 Cart (<span id="cartCount">0</span>)
+    </button>
+
+  </div>
+</header>
+
+<!-- =========================
+     SIDEBAR
+========================= -->
+
+<div
+  class="menuOverlay"
+  id="menuOverlay"
+  onclick="closeMenu()"
+></div>
+
+<aside class="sideMenu" id="sideMenu">
+
+  <div class="sideHeader">
+
+    <div class="sideBrand">
 
       <img
         src="crafted_heaven_logo.png"
@@ -1130,28 +1263,155 @@ body.modalOpen .floatingSocial{
         onerror="this.style.display='none'"
       >
 
-      <span class="logoText">Crafted Heaven PK</span>
+      <div>
+        <strong>Crafted Heaven</strong>
+        <small>Customer Menu</small>
+      </div>
 
-    </a>
+    </div>
 
-    <nav class="navLinks">
+    <button class="sideClose" onclick="closeMenu()">×</button>
 
-      <a href="#home">Home</a>
-      <a href="#products">Products</a>
-      <a href="#about">About</a>
-      <a href="#reviews">Reviews</a>
-      <a href="#contact">Contact</a>
+  </div>
 
-    </nav>
+  <div class="menuSectionTitle">Shop</div>
 
-    <button class="cartBtn" onclick="openCart()">
-      🛒 Cart (<span id="cartCount">0</span>)
+  <div class="sideList">
+
+    <button class="sideItem" onclick="menuGo('#home')">
+      🏠 Home
+    </button>
+
+    <button class="sideItem" onclick="menuCategory('all')">
+      🛍️ Existing Products
+    </button>
+
+    <button class="sideItem" onclick="menuCategory('plants')">
+      🌿 Plants
+    </button>
+
+    <button class="sideItem" onclick="menuCategory('gardening')">
+      🌱 Gardening & Seeds
+    </button>
+
+    <button class="sideItem" onclick="menuCategory('crochet')">
+      🧶 Crochet Creations
+    </button>
+
+    <button class="sideItem" onclick="menuCategory('crafts')">
+      📿 Beads & Bracelets
+    </button>
+
+    <button class="sideItem" onclick="menuCategory('keychains')">
+      🔑 Keychains & Accessories
+    </button>
+
+    <button class="sideItem" onclick="menuCategory('kids')">
+      🎨 Kids & Creative
     </button>
 
   </div>
 
-</header>
+  <div class="menuSectionTitle">Customer</div>
 
+  <div class="sideList">
+
+    <button class="sideItem" onclick="openAccount()">
+      👤 My Account
+    </button>
+
+    <button class="sideItem" onclick="closeMenu();openCart()">
+      🛒 My Cart
+    </button>
+
+    <button class="sideItem" onclick="trackOrder()">
+      📦 Track Order
+    </button>
+
+  </div>
+
+  <div class="menuSectionTitle">Plant & Gardening</div>
+
+  <div class="sideList">
+
+    <button class="sideItem" onclick="openGuide()">
+      📖 A-Z Plant & Gardening Guide
+    </button>
+
+    <button class="sideItem" onclick="menuGo('#delivery')">
+      🚚 Home Delivery Information
+    </button>
+
+  </div>
+
+  <div class="menuSectionTitle">Help & Information</div>
+
+  <div class="sideList">
+
+    <button class="sideItem" onclick="menuGo('#about')">
+      ℹ️ About Us
+    </button>
+
+    <button class="sideItem" onclick="openHelp()">
+      💬 Need Help
+    </button>
+
+  </div>
+
+  <div class="menuSectionTitle">Social</div>
+
+  <div class="sideBottom">
+
+    <div class="sideSocial">
+
+      <!-- WhatsApp -->
+      <a
+        class="sideWA"
+        href="https://wa.me/923034812714"
+        target="_blank"
+        rel="noopener"
+        aria-label="WhatsApp"
+      >
+        <svg viewBox="0 0 24 24" width="25" height="25" fill="currentColor">
+          <path d="M20.5 3.5A11.7 11.7 0 0 0 12.1 0C5.6 0 .3 5.3.3 11.8c0 2.1.6 4.1 1.6 5.9L.2 24l6.5-1.7c1.7.9 3.5 1.3 5.4 1.3h.1c6.5 0 11.8-5.3 11.8-11.8 0-3.2-1.2-6.1-3.5-8.3ZM12.1 21.6c-1.7 0-3.4-.5-4.8-1.3l-.3-.2-3.8 1 1-3.7-.2-.3a9.7 9.7 0 1 1 8.1 4.5Zm5.3-7.2c-.3-.2-1.7-.9-2-.9-.3-.1-.5-.1-.7.2-.2.3-.7.9-.8 1.1-.2.2-.3.2-.6.1-1.5-.8-2.5-1.4-3.5-3.1-.3-.5.3-.5.8-1.7.1-.2 0-.4 0-.6l-.9-2.1c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4-.3.3-1.2 1.1-1.2 2.7s1.2 3.1 1.4 3.3c.2.2 2.4 3.7 5.9 5.2.8.3 1.4.5 1.9.6.8.3 1.5.2 2 .1.6-.1 1.7-.7 1.9-1.3.2-.7.2-1.2.1-1.3-.1-.2-.3-.3-.6-.4Z"/>
+        </svg>
+      </a>
+
+      <!-- Facebook -->
+      <a
+        class="sideFB"
+        href="https://www.facebook.com/share/1DT9xWFBaT/"
+        target="_blank"
+        rel="noopener"
+        aria-label="Facebook"
+      >
+        <svg viewBox="0 0 24 24" width="25" height="25" fill="currentColor">
+          <path d="M14 8h3V4h-3c-3.3 0-5 2-5 5v3H6v4h3v8h4v-8h3.2l.8-4H13V9c0-.7.3-1 1-1Z"/>
+        </svg>
+      </a>
+
+      <!-- Phone -->
+      <a
+        class="sidePhone"
+        href="tel:+923034812714"
+        aria-label="Call Crafted Heaven"
+      >
+        ☎
+      </a>
+
+    </div>
+
+    <div>📍 Delivery currently available in Lahore only.</div>
+
+    <div>
+      <strong>🚚 Delivery time: 2–3 working days.</strong>
+    </div>
+
+    <div>💳 Online payment is required.</div>
+
+  </div>
+
+</aside>
 
 <!-- =========================
      HERO
@@ -1165,7 +1425,7 @@ body.modalOpen .floatingSocial{
 
     <p>
       Discover beautiful plants, gardening essentials,
-      handmade crafts, cute keychains, kids' fun products
+      handmade crafts, cute keychains, creative products
       and much more — all in one place.
     </p>
 
@@ -1188,25 +1448,33 @@ body.modalOpen .floatingSocial{
 
     <div class="socialButtons">
 
+      <!-- Facebook -->
       <a
         href="https://www.facebook.com/share/1DT9xWFBaT/"
         target="_blank"
         rel="noopener"
         class="socialBtn facebookBtn"
-        aria-label="Visit Crafted Heaven Facebook Page"
       >
-        <span class="socialIcon">f</span>
+        <span class="socialIcon">
+          <svg viewBox="0 0 24 24">
+            <path d="M14 8h3V4h-3c-3.3 0-5 2-5 5v3H6v4h3v8h4v-8h3.2l.8-4H13V9c0-.7.3-1 1-1Z"/>
+          </svg>
+        </span>
         Facebook
       </a>
 
+      <!-- WhatsApp -->
       <a
         href="https://wa.me/923034812714"
         target="_blank"
         rel="noopener"
         class="socialBtn whatsappBtn"
-        aria-label="Contact Crafted Heaven on WhatsApp"
       >
-        <span class="socialIcon">☘</span>
+        <span class="socialIcon">
+          <svg viewBox="0 0 24 24">
+            <path d="M20.5 3.5A11.7 11.7 0 0 0 12.1 0C5.6 0 .3 5.3.3 11.8c0 2.1.6 4.1 1.6 5.9L.2 24l6.5-1.7c1.7.9 3.5 1.3 5.4 1.3h.1c6.5 0 11.8-5.3 11.8-11.8 0-3.2-1.2-6.1-3.5-8.3Z"/>
+          </svg>
+        </span>
         WhatsApp
       </a>
 
@@ -1215,7 +1483,6 @@ body.modalOpen .floatingSocial{
   </div>
 
 </section>
-
 
 <!-- =========================
      PRODUCTS
@@ -1228,68 +1495,87 @@ body.modalOpen .floatingSocial{
     <h2>Our Products</h2>
 
     <p>
-      Choose your favourite products from Crafted Heaven.
+      Explore plants, gardening products, crafts,
+      keychains and more.
     </p>
 
   </div>
 
-
   <div class="categoryBar">
 
-    <button class="categoryBtn active" onclick="filterCategory('all',this)">
-      All
-    </button>
+    <button
+      class="categoryBtn active"
+      onclick="filterCategory('all',this)"
+    >All</button>
 
-    <button class="categoryBtn" onclick="filterCategory('plants',this)">
-      🌿 Plants
-    </button>
+    <button
+      class="categoryBtn"
+      onclick="filterCategory('plants',this)"
+    >🌿 Plants</button>
 
-    <button class="categoryBtn" onclick="filterCategory('gardening',this)">
-      🌱 Gardening
-    </button>
+    <button
+      class="categoryBtn"
+      onclick="filterCategory('gardening',this)"
+    >🌱 Gardening</button>
 
-    <button class="categoryBtn" onclick="filterCategory('keychains',this)">
-      🔑 Keychains
-    </button>
+    <button
+      class="categoryBtn"
+      onclick="filterCategory('supplies',this)"
+    >🪴 Supplies</button>
 
-    <button class="categoryBtn" onclick="filterCategory('crafts',this)">
-      🎨 Crafts
-    </button>
+    <button
+      class="categoryBtn"
+      onclick="filterCategory('crochet',this)"
+    >🧶 Crochet</button>
 
-    <button class="categoryBtn" onclick="filterCategory('crochet',this)">
-      🧶 Crochet
-    </button>
+    <button
+      class="categoryBtn"
+      onclick="filterCategory('keychains',this)"
+    >🔑 Keychains</button>
 
-    <button class="categoryBtn" onclick="filterCategory('kids',this)">
-      🧸 Kids & Fun
-    </button>
+    <button
+      class="categoryBtn"
+      onclick="filterCategory('crafts',this)"
+    >📿 Crafts</button>
 
-    <button class="categoryBtn" onclick="filterCategory('supplies',this)">
-      📦 Supplies
-    </button>
+    <button
+      class="categoryBtn"
+      onclick="filterCategory('kids',this)"
+    >🎨 Kids</button>
 
   </div>
 
+  <div class="controlsRow">
 
-  <div class="searchBox">
+    <div class="searchBox">
+      <input
+        id="searchInput"
+        type="search"
+        placeholder="Search products..."
+        oninput="renderProducts()"
+      >
+    </div>
 
-    <input
-      type="search"
-      id="searchInput"
-      placeholder="🔍 Search products..."
-      oninput="searchProducts()"
+    <select
+      id="sortSelect"
+      class="sortSelect"
+      onchange="renderProducts()"
     >
+      <option value="featured">Featured</option>
+      <option value="nameAZ">Name A–Z</option>
+      <option value="nameZA">Name Z–A</option>
+      <option value="priceLow">Price: Low to High</option>
+      <option value="priceHigh">Price: High to Low</option>
+    </select>
 
   </div>
-
 
   <div class="productGrid" id="productGrid"></div>
 
 </section>
 
-
 <!-- =========================
-     ABOUT
+     ABOUT US
 ========================= -->
 
 <section class="section" id="about">
@@ -1298,30 +1584,93 @@ body.modalOpen .floatingSocial{
 
     <h2>About Crafted Heaven</h2>
 
-    <p>Little things that make life more beautiful.</p>
+    <p>Little things, beautifully crafted.</p>
 
   </div>
 
   <div class="aboutBox">
 
     <p>
-      <strong>Crafted Heaven PK</strong> is a small online store
-      bringing together plants, gardening essentials, handmade
-      crafts, cute keychains, crochet items, kids' fun products
+      <strong>Crafted Heaven PK</strong> is an online store
+      bringing together plants, gardening essentials,
+      seeds, handmade crafts, crochet creations,
+      keychains, bracelets, kids' creative products
       and useful everyday items.
     </p>
 
-    <br>
-
-    <p>
-      We aim to offer lovely products at reasonable prices
-      while making shopping simple and convenient.
+    <p style="margin-top:12px">
+      Our aim is to make beautiful and useful products
+      easily available while providing a simple,
+      convenient and friendly ordering experience.
     </p>
+
+    <div class="aboutHighlights">
+
+      <div class="aboutHighlight">
+        <b>🌿</b>
+        <span>Plants & Gardening</span>
+      </div>
+
+      <div class="aboutHighlight">
+        <b>🧶</b>
+        <span>Handmade Crafts</span>
+      </div>
+
+      <div class="aboutHighlight">
+        <b>📦</b>
+        <span>Easy Ordering</span>
+      </div>
+
+      <div class="aboutHighlight">
+        <b>💬</b>
+        <span>WhatsApp Support</span>
+      </div>
+
+    </div>
 
   </div>
 
 </section>
 
+<!-- =========================
+     DELIVERY
+========================= -->
+
+<section class="section" id="delivery">
+
+  <div class="sectionTitle">
+
+    <h2>Home Delivery Information</h2>
+
+    <p>Simple ordering and convenient delivery.</p>
+
+  </div>
+
+  <div class="aboutBox">
+
+    <p>
+      🚚 <strong>Delivery Area:</strong>
+      Lahore only
+    </p>
+
+    <p>
+      ⏱️ <strong>Delivery Time:</strong>
+      2–3 working days
+    </p>
+
+    <p>
+      💳 <strong>Payment:</strong>
+      Online payment is required
+    </p>
+
+    <p>
+      💬 After placing your order, the complete order
+      details will open in WhatsApp for confirmation.
+    </p>
+
+  </div>
+
+</section>
 
 <!-- =========================
      REVIEWS
@@ -1341,19 +1690,18 @@ body.modalOpen .floatingSocial{
 
 </section>
 
-
 <!-- =========================
      CONTACT
 ========================= -->
 
-<section class="section" id="contact">
+<section class="section">
 
   <div class="contactBox">
 
-    <h2>Contact Crafted Heaven</h2>
+    <h2>Need Help?</h2>
 
     <p>
-      Have a question or want to place an order?
+      Have a question about a product or your order?
       Contact us directly.
     </p>
 
@@ -1364,182 +1712,79 @@ body.modalOpen .floatingSocial{
       </div>
 
       <div class="contactItem">
-        📘 Crafted Heaven
+        📍 Lahore, Pakistan
+      </div>
+
+      <div class="contactItem">
+        🚚 2–3 Working Days
       </div>
 
     </div>
-
-
-    <div class="socialButtons">
-
-      <a
-        href="https://wa.me/923034812714"
-        target="_blank"
-        rel="noopener"
-        class="socialBtn whatsappBtn"
-      >
-        <span class="socialIcon">☘</span>
-        Chat on WhatsApp
-      </a>
-
-      <a
-        href="https://www.facebook.com/share/1DT9xWFBaT/"
-        target="_blank"
-        rel="noopener"
-        class="socialBtn facebookBtn"
-      >
-        <span class="socialIcon">f</span>
-        Visit Facebook Page
-      </a>
-
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- =========================
-     FOOTER
-========================= -->
-
-<footer>
-
-  <img
-    src="crafted_heaven_logo.png"
-    alt="Crafted Heaven Logo"
-    class="footerLogo"
-    onerror="this.style.display='none'"
-  >
-
-  <h3>Crafted Heaven PK</h3>
-
-  <p>
-    Plants • Crafts • Gardening • Keychains • Kids Fun
-  </p>
-
-
-  <div class="footerSocial">
-
-    <a
-      href="https://www.facebook.com/share/1DT9xWFBaT/"
-      target="_blank"
-      rel="noopener"
-      class="footerFacebook"
-    >
-      <span>f</span>
-      Facebook
-    </a>
 
     <a
       href="https://wa.me/923034812714"
       target="_blank"
       rel="noopener"
-      class="footerWhatsApp"
+      class="heroBtn primaryBtn"
     >
-      <span>☘</span>
-      WhatsApp
+      Contact on WhatsApp
     </a>
 
   </div>
 
-
-  <div class="copyright">
-    © 2026 Crafted Heaven PK. All Rights Reserved.
-  </div>
-
-</footer>
-
+</section>
 
 <!-- =========================
-     FLOATING SOCIAL BUTTONS
+     CART MODAL
 ========================= -->
 
-<div class="floatingSocial">
+<div class="modalOverlay" id="cartOverlay">
 
-  <a
-    href="https://www.facebook.com/share/1DT9xWFBaT/"
-    target="_blank"
-    rel="noopener"
-    class="floatBtn floatFacebook"
-    title="Crafted Heaven Facebook Page"
-    aria-label="Crafted Heaven Facebook Page"
-  >
-    f
-  </a>
+  <div class="modalBox" style="width:min(520px,100%)">
 
-  <a
-    href="https://wa.me/923034812714"
-    target="_blank"
-    rel="noopener"
-    class="floatBtn floatWhatsApp"
-    title="Chat with Crafted Heaven on WhatsApp"
-    aria-label="Chat with Crafted Heaven on WhatsApp"
-  >
-    ☘
-  </a>
-
-</div>
-
-
-<!-- =========================
-     CART OVERLAY
-========================= -->
-
-<div
-  class="cartOverlay"
-  id="cartOverlay"
-  onclick="closeCart()"
-></div>
-
-
-<!-- =========================
-     CART DRAWER
-========================= -->
-
-<div class="cartDrawer" id="cartDrawer">
-
-  <div class="cartHeader">
+    <button class="closeModal" onclick="closeCart()">×</button>
 
     <h2>🛒 Your Cart</h2>
 
-    <button class="closeCart" onclick="closeCart()">
-      ×
-    </button>
-
-  </div>
-
-
-  <div class="cartBody" id="cartBody">
-
-    <div class="emptyCart">
-      Your cart is empty.
+    <div class="modalSub">
+      Review your products before checkout.
     </div>
 
-  </div>
+    <div id="cartBody"></div>
 
-
-  <div class="cartFooter">
-
-    <div class="cartTotal">
-
+    <div style="
+      border-top:1px solid #ddd;
+      padding-top:15px;
+      margin-top:10px;
+      display:flex;
+      justify-content:space-between;
+      font-weight:bold;
+      font-size:19px
+    ">
       <span>Total</span>
-
-      <span>
-        Rs. <span id="cartTotal">0</span>
-      </span>
-
+      <span>Rs. <span id="cartTotal">0</span></span>
     </div>
 
+    <div style="display:grid;gap:8px;margin-top:15px">
 
-    <div class="cartActions">
-
-      <button class="clearCart" onclick="clearCart()">
-        Clear Cart
+      <button
+        class="submitOrder"
+        onclick="openCheckout()"
+      >
+        Proceed to Checkout
       </button>
 
-      <button class="whatsappOrder" onclick="checkoutWhatsApp()">
-        Order on WhatsApp
+      <button
+        onclick="clearCart()"
+        style="
+          border:1px solid #ddd;
+          background:white;
+          padding:11px;
+          border-radius:10px;
+          cursor:pointer
+        "
+      >
+        Clear Cart
       </button>
 
     </div>
@@ -1548,6 +1793,203 @@ body.modalOpen .floatingSocial{
 
 </div>
 
+<!-- =========================
+     CHECKOUT MODAL
+========================= -->
+
+<div class="modalOverlay" id="checkoutOverlay">
+
+  <div class="modalBox">
+
+    <button class="closeModal" onclick="closeCheckout()">×</button>
+
+    <h2>🛍️ Checkout</h2>
+
+    <div class="modalSub">
+      Enter your delivery details. Your order will be sent to WhatsApp.
+    </div>
+
+    <div id="checkoutSummary" class="checkoutSummary"></div>
+
+    <form
+      class="checkoutForm"
+      onsubmit="submitCheckout(event)"
+    >
+
+      <div>
+
+        <label>
+          Customer Name <span class="checkoutRequired">*</span>
+        </label>
+
+        <input
+          id="customerName"
+          required
+          placeholder="Your full name"
+        >
+
+      </div>
+
+      <div>
+
+        <label>
+          Contact Number <span class="checkoutRequired">*</span>
+        </label>
+
+        <input
+          id="customerPhone"
+          type="tel"
+          required
+          placeholder="03XXXXXXXXX"
+        >
+
+      </div>
+
+      <div class="fieldFull">
+
+        <label>
+          Email ID <span class="checkoutRequired">*</span>
+        </label>
+
+        <input
+          id="customerEmail"
+          type="email"
+          required
+          placeholder="your@email.com"
+        >
+
+      </div>
+
+      <div class="fieldFull">
+
+        <label>
+          Complete Delivery Address
+          <span class="checkoutRequired">*</span>
+        </label>
+
+        <textarea
+          id="deliveryAddress"
+          required
+          placeholder="House number, street, area, Lahore..."
+        ></textarea>
+
+      </div>
+
+      <div class="fieldFull">
+
+        <label>
+          Special Note (Optional)
+        </label>
+
+        <textarea
+          id="specialNote"
+          placeholder="Any special instructions..."
+        ></textarea>
+
+      </div>
+
+      <div class="fieldFull">
+
+        <button
+          type="submit"
+          class="submitOrder"
+        >
+          Send Order on WhatsApp 💬
+        </button>
+
+        <div class="checkoutDelivery">
+          Lahore delivery • 2–3 working days • Online payment required
+        </div>
+
+      </div>
+
+    </form>
+
+  </div>
+
+</div>
+
+<!-- =========================
+     ACCOUNT MODAL
+========================= -->
+
+<div class="modalOverlay" id="accountOverlay">
+
+  <div class="modalBox">
+
+    <button class="closeModal" onclick="closeAccount()">×</button>
+
+    <h2>👤 My Account</h2>
+
+    <div class="modalSub">
+      Your information is saved only on this device.
+    </div>
+
+    <form
+      class="checkoutForm"
+      onsubmit="saveAccount(event)"
+    >
+
+      <div>
+        <label>Customer Name</label>
+        <input id="accountName" placeholder="Your name">
+      </div>
+
+      <div>
+        <label>Contact Number</label>
+        <input id="accountPhone" placeholder="03XXXXXXXXX">
+      </div>
+
+      <div class="fieldFull">
+        <label>Email ID</label>
+        <input id="accountEmail" type="email">
+      </div>
+
+      <div class="fieldFull">
+        <label>Complete Address</label>
+        <textarea id="accountAddress"></textarea>
+      </div>
+
+      <div class="fieldFull">
+        <button class="submitOrder" type="submit">
+          Save My Details
+        </button>
+      </div>
+
+    </form>
+
+  </div>
+
+</div>
+
+<!-- =========================
+     GUIDE MODAL
+========================= -->
+
+<div class="modalOverlay" id="guideOverlay">
+
+  <div class="modalBox">
+
+    <button class="closeModal" onclick="closeGuide()">×</button>
+
+    <h2>🌱 A–Z Plant & Gardening Guide</h2>
+
+    <div class="modalSub">
+      Find the guide for your plant, seed or gardening product.
+    </div>
+
+    <input
+      id="guideSearch"
+      class="guideSearch"
+      placeholder="Search guide..."
+      oninput="renderGuides()"
+    >
+
+    <div id="guideList" class="guideList"></div>
+
+  </div>
+
+</div>
 
 <!-- =========================
      REVIEW MODAL
@@ -1555,44 +1997,78 @@ body.modalOpen .floatingSocial{
 
 <div class="modalOverlay" id="reviewOverlay">
 
-  <div class="reviewModal">
+  <div class="modalBox">
 
-    <button class="closeModal" onclick="closeReview()">
-      ×
-    </button>
+    <button class="closeModal" onclick="closeReview()">×</button>
 
-    <h2>Write a Review</h2>
+    <h2>⭐ Write a Review</h2>
 
-    <div class="selectedProduct" id="selectedProductName"></div>
+    <div class="modalSub" id="selectedProductName"></div>
 
+    <label style="
+      display:block;
+      font-size:12px;
+      font-weight:bold;
+      margin-bottom:5px
+    ">
+      Your Name
+    </label>
 
-    <div class="starSelect" id="starSelect">
+    <input
+      id="reviewerName"
+      style="
+        width:100%;
+        padding:12px;
+        border:1px solid #ddd;
+        border-radius:10px;
+        margin-bottom:14px
+      "
+      placeholder="Your name"
+    >
 
-      <span data-star="1" onclick="selectStar(1)">★</span>
-      <span data-star="2" onclick="selectStar(2)">★</span>
-      <span data-star="3" onclick="selectStar(3)">★</span>
-      <span data-star="4" onclick="selectStar(4)">★</span>
-      <span data-star="5" onclick="selectStar(5)">★</span>
+    <div style="margin-bottom:15px">
+
+      <div style="
+        font-size:12px;
+        font-weight:bold;
+        margin-bottom:7px
+      ">
+        Rating
+      </div>
+
+      <div
+        id="starSelect"
+        style="font-size:31px;cursor:pointer"
+      >
+
+        <span data-star="1" onclick="selectStar(1)">★</span>
+        <span data-star="2" onclick="selectStar(2)">★</span>
+        <span data-star="3" onclick="selectStar(3)">★</span>
+        <span data-star="4" onclick="selectStar(4)">★</span>
+        <span data-star="5" onclick="selectStar(5)">★</span>
+
+      </div>
 
     </div>
 
-
-    <input
-      type="text"
-      id="reviewerName"
-      placeholder="Your name"
-      maxlength="50"
-    >
-
-
     <textarea
       id="reviewText"
+      style="
+        width:100%;
+        min-height:110px;
+        padding:12px;
+        border:1px solid #ddd;
+        border-radius:10px;
+        resize:vertical
+      "
       placeholder="Write your review..."
-      maxlength="500"
     ></textarea>
 
-
-    <button class="submitReview" onclick="submitReview()">
+    <button
+      class="submitOrder"
+      onclick="submitReview()"
+      style="margin-top:12px"
+    >
       Submit Review
     </button>
 
@@ -1600,490 +2076,811 @@ body.modalOpen .floatingSocial{
 
 </div>
 
+<!-- =========================
+     FLOATING SOCIAL
+========================= -->
+
+<div class="floatingSocial">
+
+  <a
+    class="floatBtn floatFacebook"
+    href="https://www.facebook.com/share/1DT9xWFBaT/"
+    target="_blank"
+    rel="noopener"
+    aria-label="Facebook"
+  >
+    <svg viewBox="0 0 24 24">
+      <path d="M14 8h3V4h-3c-3.3 0-5 2-5 5v3H6v4h3v8h4v-8h3.2l.8-4H13V9c0-.7.3-1 1-1Z"/>
+    </svg>
+  </a>
+
+  <a
+    class="floatBtn floatWhatsApp"
+    href="https://wa.me/923034812714"
+    target="_blank"
+    rel="noopener"
+    aria-label="WhatsApp"
+  >
+    <svg viewBox="0 0 24 24">
+      <path d="M20.5 3.5A11.7 11.7 0 0 0 12.1 0C5.6 0 .3 5.3.3 11.8c0 2.1.6 4.1 1.6 5.9L.2 24l6.5-1.7c1.7.9 3.5 1.3 5.4 1.3h.1c6.5 0 11.8-5.3 11.8-11.8 0-3.2-1.2-6.1-3.5-8.3Z"/>
+    </svg>
+  </a>
+
+</div>
 
 <!-- =========================
-     TOAST
+     PROFESSIONAL FOOTER
 ========================= -->
+
+<footer>
+
+  <div class="footerInner">
+
+    <!-- BRAND -->
+    <div class="footerColumn">
+
+      <div class="footerBrand">
+
+        <img
+          class="footerLogo"
+          src="crafted_heaven_logo.png"
+          alt="Crafted Heaven Logo"
+          onerror="this.style.display='none'"
+        >
+
+        <div>
+          <h3>Crafted Heaven</h3>
+          <span>Plants • Crafts • Gardening</span>
+        </div>
+
+      </div>
+
+      <p>
+        Bringing nature, creativity and beautiful
+        handmade products closer to your home.
+      </p>
+
+      <div class="footerSocial">
+
+        <a
+          class="footerFacebook"
+          href="https://www.facebook.com/share/1DT9xWFBaT/"
+          target="_blank"
+          rel="noopener"
+          aria-label="Facebook"
+        >
+          <svg viewBox="0 0 24 24">
+            <path d="M14 8h3V4h-3c-3.3 0-5 2-5 5v3H6v4h3v8h4v-8h3.2l.8-4H13V9c0-.7.3-1 1-1Z"/>
+          </svg>
+        </a>
+
+        <a
+          class="footerWhatsApp"
+          href="https://wa.me/923034812714"
+          target="_blank"
+          rel="noopener"
+          aria-label="WhatsApp"
+        >
+          <svg viewBox="0 0 24 24">
+            <path d="M20.5 3.5A11.7 11.7 0 0 0 12.1 0C5.6 0 .3 5.3.3 11.8c0 2.1.6 4.1 1.6 5.9L.2 24l6.5-1.7c1.7.9 3.5 1.3 5.4 1.3h.1c6.5 0 11.8-5.3 11.8-11.8 0-3.2-1.2-6.1-3.5-8.3Z"/>
+          </svg>
+        </a>
+
+      </div>
+
+    </div>
+
+    <!-- SHOP -->
+    <div class="footerColumn">
+
+      <h4>Shop</h4>
+
+      <a href="#products">All Products</a>
+      <a href="#products" onclick="filterCategory('plants')">Plants</a>
+      <a href="#products" onclick="filterCategory('gardening')">Gardening & Seeds</a>
+      <a href="#products" onclick="filterCategory('crochet')">Crochet</a>
+      <a href="#products" onclick="filterCategory('keychains')">Keychains</a>
+      <a href="#products" onclick="filterCategory('crafts')">Crafts</a>
+
+    </div>
+
+    <!-- HELP -->
+    <div class="footerColumn">
+
+      <h4>Customer Care</h4>
+
+      <a href="#about">About Us</a>
+      <a href="#delivery">Delivery Information</a>
+      <a href="#" onclick="openGuide();return false">A–Z Gardening Guide</a>
+      <a href="#" onclick="openAccount();return false">My Account</a>
+      <a href="#" onclick="openCart();return false">My Cart</a>
+      <a href="#" onclick="openHelp();return false">Need Help</a>
+
+    </div>
+
+    <!-- CONTACT -->
+    <div class="footerColumn">
+
+      <h4>Contact Us</h4>
+
+      <p>📱 0303-4812714</p>
+
+      <p style="margin-top:8px">
+        📍 Lahore, Pakistan
+      </p>
+
+      <p style="margin-top:8px">
+        🚚 Lahore delivery only
+      </p>
+
+      <p style="margin-top:8px">
+        ⏱️ 2–3 working days
+      </p>
+
+      <p style="margin-top:8px">
+        💳 Online payment required
+      </p>
+
+    </div>
+
+  </div>
+
+  <div class="footerBottom">
+
+    <span>
+      © 2026 Crafted Heaven PK. All Rights Reserved.
+    </span>
+
+    <span>
+      Made with 🌿 & creativity
+    </span>
+
+  </div>
+
+</footer>
+
+<!-- TOAST -->
 
 <div class="toast" id="toast"></div>
 
-
 <script>
 
-/* =====================================================
-   PRODUCTS
-===================================================== */
+/* =========================
+   STORE SETTINGS
+========================= */
+
+const WHATSAPP_NUMBER = "923034812714";
+
+const DELIVERY_TEXT =
+  "Lahore only • 2–3 working days • Online payment required";
+
+/* =========================
+   PRODUCT DATA
+========================= */
 
 const products = [
 
-  {
-    id:1,
-    name:"Star Bottle Keychain",
-    category:"keychains",
-    price:130,
-    unit:"1 pc",
-    emoji:"⭐",
-    image:"file_00000000083081fd9521d8c687635b22.png",
-    description:"Cute star bottle keychain for your keys or bag."
-  },
+{
+ id:1,
+ name:"Star Bottle Keychain",
+ category:"keychains",
+ price:130,
+ unit:"1 pc",
+ emoji:"⭐",
+ image:"file_00000000083081fd9521d8c687635b22.png",
+ description:"Cute star bottle keychain for your keys or bag."
+},
 
-  {
-    id:2,
-    name:"Paper Soap",
-    category:"supplies",
-    price:120,
-    unit:"1 pc",
-    emoji:"🧼",
-    image:"file_00000000142c81f887e2dee03a7d1fcf.png",
-    description:"Portable paper soap sheets for easy hand washing."
-  },
+{
+ id:2,
+ name:"Paper Soap",
+ category:"supplies",
+ price:120,
+ unit:"1 pc",
+ emoji:"🧼",
+ image:"file_00000000142c81f887e2dee03a7d1fcf.png",
+ description:"Portable paper soap sheets for easy hand washing."
+},
 
-  {
-    id:3,
-    name:"Crochet Flower",
-    category:"crochet",
-    price:259,
-    unit:"1 pc",
-    emoji:"🌸",
-    image:"file_00000000272081fd9b4bf2e14414d509.png",
-    description:"Beautiful handmade crochet flower decoration."
-  },
+{
+ id:3,
+ name:"Crochet Flower",
+ category:"crochet",
+ price:259,
+ unit:"1 pc",
+ emoji:"🌸",
+ image:"file_00000000272081fd9b4bf2e14414d509.png",
+ description:"Beautiful handmade crochet flower decoration."
+},
 
-  {
-    id:4,
-    name:"Water Colours Set With Brush",
-    category:"crafts",
-    price:129,
-    unit:"1 pc",
-    emoji:"🎨",
-    image:"file_00000000a5f481fba24e43c803b41942.png",
-    description:"Fun water colours set with brush for creative activities."
-  },
+{
+ id:4,
+ name:"Water Colours Set With Brush",
+ category:"crafts",
+ price:129,
+ unit:"1 pc",
+ emoji:"🎨",
+ image:"file_00000000a5f481fba24e43c803b41942.png",
+ description:"Fun water colours set with brush for creative activities."
+},
 
-  {
-    id:5,
-    name:"Happy Sling Toy - 2 pcs",
-    category:"kids",
-    price:99,
-    unit:"2 pcs",
-    emoji:"🧸",
-    image:"file_00000000c54081fa96f34504fde950bc.png",
-    description:"2 pcs pack for Rs. 99. Fun little toy for kids and playful moments."
-  },
+{
+ id:5,
+ name:"Happy Sling Toy - 2 pcs",
+ category:"kids",
+ price:99,
+ unit:"2 pcs",
+ emoji:"🧸",
+ image:"file_00000000c54081fa96f34504fde950bc.png",
+ description:"2 pcs pack for Rs. 99. Fun little toy for kids."
+},
 
-  {
-    id:6,
-    name:"Slime",
-    category:"kids",
-    price:180,
-    unit:"1 pc",
-    emoji:"🟢",
-    images:[
-      "file_00000000fb3882088416d8e94f8f551a.png",
-      "file_000000009e2c81f49db663ab06be7ba6.png"
-    ],
-    description:"Fun colourful slime for kids and creative play."
-  },
+{
+ id:6,
+ name:"Slime",
+ category:"kids",
+ price:50,
+ unit:"1 pc",
+ emoji:"🟢",
+ images:[
+  "file_00000000fb3882088416d8e94f8f551a.png",
+  "file_000000009e2c81f49db663ab06be7ba6.png"
+ ],
+ description:"Fun colourful slime for kids and creative play."
+},
 
-  {
-    id:7,
-    name:"Donut Keychain",
-    category:"keychains",
-    price:125,
-    unit:"1 pc",
-    emoji:"🍩",
-    images:[
-      "file_0000000030f481f583534d6c1ac0e092.png",
-      "file_00000000435081f48428e5a43fe9f503.png"
-    ],
-    description:"Cute donut-style keychain for bags, keys and gifts."
-  },
+{
+ id:7,
+ name:"Donut Keychain",
+ category:"keychains",
+ price:125,
+ unit:"1 pc",
+ emoji:"🍩",
+ images:[
+  "file_0000000030f481f583534d6c1ac0e092.png",
+  "file_00000000435081f48428e5a43fe9f503.png"
+ ],
+ description:"Cute donut-style keychain for bags, keys and gifts."
+},
 
-  {
-    id:8,
-    name:"Girls Catcher Matte",
-    category:"kids",
-    price:250,
-    unit:"1 pc",
-    emoji:"🎀",
-    images:[
-      "file_000000007ca881f4b4ba7c293602c478.png",
-      "file_000000009e34821081b404096d272890.png"
-    ],
-    description:"Cute and fun catcher matte product for girls."
-  },
+{
+ id:8,
+ name:"Girls Catcher Matte",
+ category:"kids",
+ price:250,
+ unit:"1 pc",
+ emoji:"🎀",
+ images:[
+  "file_000000007ca881f4b4ba7c293602c478.png",
+  "file_000000009e34821081b404096d272890.png"
+ ],
+ description:"Cute and fun catcher matte product for girls."
+},
 
-  {
-    id:9,
-    name:"Happy Face Soft Clay - 2 pcs",
-    category:"kids",
-    price:150,
-    unit:"2 pcs",
-    emoji:"😊",
-    image:"file_0000000081c88211b74607c079e428b3.png",
-    description:"2 pcs pack for Rs. 150. Soft colourful clay for fun shapes and creative play."
-  },
+{
+ id:9,
+ name:"Happy Face Soft Clay - 2 pcs",
+ category:"kids",
+ price:150,
+ unit:"2 pcs",
+ emoji:"😊",
+ image:"file_0000000081c88211b74607c079e428b3.png",
+ description:"2 pcs pack for Rs. 150. Soft colourful clay for creative play."
+},
 
-  {
-    id:13,
-    name:"Carrot Seeds",
-    category:"gardening",
-    price:120,
-    unit:"1 pack",
-    emoji:"🥕",
-    image:"file_00000000d1488211a180aba3bd3cf783.png",
-    description:"Hybrid carrot seeds for growing fresh carrots at home."
-  },
+{
+ id:13,
+ name:"Carrot Seeds",
+ category:"gardening",
+ price:120,
+ unit:"1 pack",
+ emoji:"🥕",
+ image:"file_00000000d1488211a180aba3bd3cf783.png",
+ description:"Hybrid carrot seeds for growing fresh carrots at home."
+},
 
-  {
-    id:14,
-    name:"Disposable Gardening Plant Cups - 5 pcs",
-    category:"supplies",
-    price:150,
-    unit:"5 pcs",
-    emoji:"🪴",
-    image:"file_0000000000c0820bb72c8c2c599e48b3.png",
-    description:"Lightweight plant cups. 5 cups per set."
-  },
+{
+ id:14,
+ name:"Disposable Gardening Plant Cups - 5 pcs",
+ category:"supplies",
+ price:150,
+ unit:"5 pcs",
+ emoji:"🪴",
+ image:"file_0000000000c0820bb72c8c2c599e48b3.png",
+ description:"Lightweight plant cups. 5 cups per set."
+},
 
-  {
-    id:15,
-    name:"Alternanthera Plant",
-    category:"plants",
-    price:120,
-    unit:"1 plant",
-    emoji:"🌿",
-    image:"file_0000000090f88211b920d4b7af2b9648.png",
-    description:"Beautiful Alternanthera plant for your home and garden."
-  },
+{
+ id:15,
+ name:"Alternanthera Plant",
+ category:"plants",
+ price:120,
+ unit:"1 plant",
+ emoji:"🌿",
+ image:"file_0000000090f88211b920d4b7af2b9648.png",
+ description:"Beautiful Alternanthera plant for your home and garden."
+},
 
-  {
-    id:16,
-    name:"Ajwain Plant",
-    category:"plants",
-    price:110,
-    unit:"1 plant",
-    emoji:"🌱",
-    image:"file_00000000d9f48208a5d952e275347c6b.png",
-    description:"Fresh Ajwain plant suitable for home gardening."
-  },
+{
+ id:16,
+ name:"Ajwain Plant",
+ category:"plants",
+ price:110,
+ unit:"1 plant",
+ emoji:"🌱",
+ image:"file_00000000d9f48208a5d952e275347c6b.png",
+ description:"Fresh Ajwain plant suitable for home gardening."
+},
 
-  {
-    id:17,
-    name:"Purslane Plant",
-    category:"plants",
-    price:100,
-    unit:"1 plant",
-    emoji:"🌸",
-    image:"Screenshot_20260911_124454_Daraz.jpg",
-    description:"Easy-to-grow Purslane plant with beautiful flowers."
-  },
+{
+ id:17,
+ name:"Purslane Plant",
+ category:"plants",
+ price:100,
+ unit:"1 plant",
+ emoji:"🌸",
+ image:"Screenshot_20260911_124454_Daraz.jpg",
+ description:"Easy-to-grow Purslane plant with beautiful flowers."
+},
 
-  {
-    id:18,
-    name:"Tomato Seeds",
-    category:"gardening",
-    price:110,
-    unit:"1 pack",
-    emoji:"🍅",
-    image:"Screenshot_20260902_125305_Samsung Browser.jpg",
-    description:"Tomato seeds for growing fresh tomatoes at home."
-  },
+{
+ id:18,
+ name:"Tomato Seeds",
+ category:"gardening",
+ price:110,
+ unit:"1 pack",
+ emoji:"🍅",
+ image:"Screenshot_20260902_125305_Samsung Browser.jpg",
+ description:"Tomato seeds for growing fresh tomatoes at home."
+},
 
-  {
-    id:19,
-    name:"Methi Seeds",
-    category:"gardening",
-    price:119,
-    unit:"1 pack",
-    emoji:"🌱",
-    image:"file_00000000fccc8211a58438de4f0d255d.png",
-    description:"Methi seeds for growing fresh fenugreek at home."
-  },
+{
+ id:19,
+ name:"Methi Seeds",
+ category:"gardening",
+ price:119,
+ unit:"1 pack",
+ emoji:"🌱",
+ image:"file_00000000fccc8211a58438de4f0d255d.png",
+ description:"Methi seeds for growing fresh fenugreek at home."
+},
 
-  {
-    id:20,
-    name:"Pearl Bracelet",
-    category:"crafts",
-    price:200,
-    unit:"1 pc",
-    emoji:"📿",
-    image:"file_00000000f1508208979bb842b004d021.png",
-    description:"Beautiful handmade pearl bracelet."
-  },
+{
+ id:20,
+ name:"Pearl Bracelet",
+ category:"crafts",
+ price:200,
+ unit:"1 pc",
+ emoji:"📿",
+ image:"file_00000000f1508208979bb842b004d021.png",
+ description:"Beautiful handmade pearl bracelet."
+},
 
-  {
-    id:21,
-    name:"Crochet Bow Keychain",
-    category:"keychains",
-    price:250,
-    unit:"1 pc",
-    emoji:"🎀",
-    image:"Screenshot_20260911_124509_Daraz.jpg",
-    description:"Cute handmade crochet bow keychain."
-  },
+{
+ id:21,
+ name:"Crochet Bow Keychain",
+ category:"keychains",
+ price:250,
+ unit:"1 pc",
+ emoji:"🎀",
+ image:"Screenshot_20260911_124509_Daraz.jpg",
+ description:"Cute handmade crochet bow keychain."
+},
 
-  {
-    id:22,
-    name:"Cocopeat - 1 kg",
-    category:"supplies",
-    price:220,
-    unit:"1 kg",
-    emoji:"🌴",
-    image:"cocopeat.png",
-    description:"1 kg cocopeat for plants and gardening."
-  },
+{
+ id:22,
+ name:"Cocopeat - 1 kg",
+ category:"supplies",
+ price:209,
+ unit:"1 kg",
+ emoji:"🌴",
+ image:"cocopeat.png",
+ description:"1 kg cocopeat for plants and gardening."
+},
 
-  {
-    id:23,
-    name:"Crystal Beads Bracelet",
-    category:"crafts",
-    price:300,
-    unit:"1 pc",
-    emoji:"📿",
-    image:"IMG-20260826-WA0001.jpg",
-    description:"Beautiful crystal beads bracelet."
-  },
+{
+ id:23,
+ name:"Crystal Beads Bracelet",
+ category:"crafts",
+ price:300,
+ unit:"1 pc",
+ emoji:"📿",
+ image:"IMG-20260826-WA0001.jpg",
+ description:"Beautiful crystal beads bracelet."
+},
 
-  {
-    id:24,
-    name:"Green Combo Deal",
-    category:"plants",
-    price:500,
-    unit:"1 combo",
-    emoji:"🌿",
-    image:"IMG-20260826-WA0005.jpg",
-    description:"Green combo deal for plant lovers."
-  },
+{
+ id:24,
+ name:"Green Combo Deal",
+ category:"plants",
+ price:250,
+ unit:"1 combo",
+ emoji:"🌿",
+ image:"IMG-20260826-WA0005.jpg",
+ description:"Green combo deal for plant lovers."
+},
 
-  {
-    id:25,
-    name:"Spanish Seeds",
-    category:"gardening",
-    price:120,
-    unit:"1 pack",
-    emoji:"🌱",
-    image:"Screenshot_20260902_074121_Samsung Browser.jpg",
-    description:"Spanish seeds for your home garden."
-  },
+{
+ id:25,
+ name:"Spanish Seeds",
+ category:"gardening",
+ price:120,
+ unit:"1 pack",
+ emoji:"🌱",
+ image:"Screenshot_20260902_074121_Samsung Browser.jpg",
+ description:"Spanish seeds for your home garden."
+},
 
-  {
-    id:26,
-    name:"Mother of Thousands",
-    category:"plants",
-    price:250,
-    unit:"1 plant",
-    emoji:"🌿",
-    image:"mother_of_thousands.png",
-    description:"Beautiful Mother of Thousands plant."
-  }
+{
+ id:26,
+ name:"Mother of Thousands",
+ category:"plants",
+ price:150,
+ unit:"1 plant",
+ emoji:"🌿",
+ image:"mother_of_thousands.png",
+ description:"Beautiful Mother of Thousands plant."
+},
+
+{
+ id:27,
+ name:"Organic Compost",
+ category:"supplies",
+ price:170,
+ unit:"1 pack",
+ emoji:"🌱",
+ image:"file_00000000306c81fda6a80c4b7e446841.png",
+ description:"Organic compost for improving soil and supporting healthy plant growth."
+},
+
+{
+ id:28,
+ name:"Chrysanthemum",
+ category:"plants",
+ price:70,
+ unit:"1 pc",
+ emoji:"🌼",
+ image:"file_000000006d708211b226e6fa3c6668cb.png",
+ description:"Beautiful Chrysanthemum plant. Choose 1 pc or 2 pcs pack."
+}
 
 ];
 
+/* =========================
+   A-Z GUIDES
+========================= */
 
-/* =====================================================
-   VARIABLES
-===================================================== */
+const guides = [
 
-let cart = JSON.parse(localStorage.getItem("craftedHeavenCart")) || [];
+{
+ name:"Ajwain Plant",
+ type:"Plant",
+ text:"Keep in bright light or gentle morning sun. Water when the upper soil starts drying. Use well-draining soil and avoid keeping the soil constantly wet."
+},
 
-let reviews = JSON.parse(localStorage.getItem("craftedHeavenReviews")) || [];
+{
+ name:"Aloe Vera",
+ type:"Plant",
+ text:"Keep in bright light with some morning sun. Water only after the soil dries well. Use a fast-draining pot and soil."
+},
 
-let currentCategory = "all";
+{
+ name:"Alternanthera",
+ type:"Plant",
+ text:"Give bright light and regular watering when the top soil becomes slightly dry. Trim lightly to keep the plant bushy."
+},
 
-let selectedReviewProduct = null;
+{
+ name:"Carrot Seeds",
+ type:"Seeds",
+ text:"Sow seeds in loose, deep and well-draining soil. Keep soil evenly moist during germination. Avoid transplanting after roots start developing."
+},
 
-let selectedRating = 0;
+{
+ name:"Chrysanthemum",
+ type:"Plant",
+ text:"Give good sunlight and well-draining soil. Water when the upper soil starts becoming dry. Regular light trimming can encourage a fuller plant."
+},
 
+{
+ name:"Cocopeat",
+ type:"Gardening Material",
+ text:"Hydrate compressed cocopeat before use. It helps retain moisture and improves aeration. Mix it with suitable soil and compost rather than using it as the only nutrient source."
+},
 
-/* =====================================================
-   WELCOME SCREEN
-===================================================== */
+{
+ name:"Methi Seeds",
+ type:"Seeds",
+ text:"Sow shallowly in moist soil. Keep the seedbed lightly moist and provide good sunlight after germination."
+},
+
+{
+ name:"Mother of Thousands",
+ type:"Plant",
+ text:"Give bright light and allow the soil to dry between watering. Avoid overwatering. Small plantlets can develop along the leaf edges."
+},
+
+{
+ name:"Organic Compost",
+ type:"Gardening Material",
+ text:"Mix mature organic compost into garden soil to add organic matter and improve soil structure. Use clean, well-decomposed compost."
+},
+
+{
+ name:"Purslane",
+ type:"Plant",
+ text:"Give plenty of sunlight and use well-draining soil. Water when the soil becomes dry and avoid constantly wet roots."
+},
+
+{
+ name:"Spanish Seeds",
+ type:"Seeds",
+ text:"Sow according to the seed variety instructions. Use suitable soil, keep moisture consistent during germination and provide adequate sunlight after seedlings appear."
+},
+
+{
+ name:"Spinach Seeds",
+ type:"Seeds",
+ text:"Sow seeds in fertile, moist and well-draining soil. Keep moisture consistent during germination and give seedlings good light."
+},
+
+{
+ name:"Tomato Seeds",
+ type:"Seeds",
+ text:"Sow in a light seed-starting mix. Keep moist but not waterlogged. Provide strong light after germination and transplant healthy seedlings once established."
+}
+
+].sort((a,b)=>a.name.localeCompare(b.name));
+
+/* =========================
+   STATE
+========================= */
+
+let cart =
+  JSON.parse(localStorage.getItem("craftedHeavenCart") || "[]");
+
+let reviews =
+  JSON.parse(localStorage.getItem("craftedHeavenReviews") || "[]");
+
+let currentCategory="all";
+let selectedReviewProduct=null;
+let selectedRating=0;
+
+/* =========================
+   WELCOME
+========================= */
 
 function enterWebsite(){
-
-  const screen = document.getElementById("welcomeScreen");
-
-  screen.classList.add("hide");
-
+  document
+    .getElementById("welcomeScreen")
+    .classList.add("hide");
 }
 
-
-/* Automatically hide after 6 seconds */
-
-setTimeout(function(){
-
-  const screen = document.getElementById("welcomeScreen");
-
-  if(screen){
-
-    screen.classList.add("hide");
-
-  }
-
+setTimeout(()=>{
+  document
+    .getElementById("welcomeScreen")
+    ?.classList.add("hide");
 },6000);
 
+/* =========================
+   SIDEBAR
+========================= */
 
-/* =====================================================
-   PRODUCT HELPERS
-===================================================== */
+function openMenu(){
+  document.getElementById("sideMenu").classList.add("show");
+  document.getElementById("menuOverlay").classList.add("show");
+  document.body.style.overflow="hidden";
+}
+
+function closeMenu(){
+  document.getElementById("sideMenu").classList.remove("show");
+  document.getElementById("menuOverlay").classList.remove("show");
+
+  if(!document.querySelector(".modalOverlay.show")){
+    document.body.style.overflow="";
+  }
+}
+
+function menuGo(target){
+  closeMenu();
+
+  setTimeout(()=>{
+    document
+      .querySelector(target)
+      ?.scrollIntoView({behavior:"smooth"});
+  },200);
+}
+
+function menuCategory(category){
+
+  closeMenu();
+
+  currentCategory=category;
+
+  document
+    .querySelectorAll(".categoryBtn")
+    .forEach(b=>b.classList.remove("active"));
+
+  const button=[
+    ...document.querySelectorAll(".categoryBtn")
+  ].find(b=>{
+
+    if(category==="all")
+      return b.textContent.trim()==="All";
+
+    return b.textContent
+      .toLowerCase()
+      .includes(category==="plants"
+        ?"plants"
+        :category==="gardening"
+        ?"gardening"
+        :category==="crochet"
+        ?"crochet"
+        :category==="crafts"
+        ?"crafts"
+        :category==="keychains"
+        ?"keychains"
+        :category==="kids"
+        ?"kids"
+        :"supplies"
+      );
+  });
+
+  if(button)button.classList.add("active");
+
+  renderProducts();
+
+  setTimeout(()=>{
+    document
+      .getElementById("products")
+      .scrollIntoView({behavior:"smooth"});
+  },200);
+}
+
+/* =========================
+   HELPERS
+========================= */
 
 function getProductById(id){
-
-  return products.find(product => product.id === id);
-
+  return products.find(p=>Number(p.id)===Number(id));
 }
 
-
-function getProductImages(product){
-
-  if(product.images && product.images.length){
-
-    return product.images;
-
-  }
-
-  if(product.image){
-
-    return [product.image];
-
-  }
-
-  return [];
-
+function getProductImages(p){
+  return p.images?.length
+    ? p.images
+    : p.image
+    ? [p.image]
+    : [];
 }
-
 
 function starsHTML(rating){
-
-  let html = "";
-
-  const rounded = Math.round(rating);
+  let s="";
 
   for(let i=1;i<=5;i++){
-
-    html += i <= rounded ? "★" : "☆";
-
+    s+=i<=Math.round(rating)?"★":"☆";
   }
 
-  return html;
-
+  return s;
 }
 
+function getProductRating(id){
 
-function getProductRating(productId){
-
-  const productReviews = reviews.filter(
-    review => Number(review.productId) === Number(productId)
+  const r=reviews.filter(
+    x=>Number(x.productId)===Number(id)
   );
 
-  if(productReviews.length === 0){
-
-    return {
-      rating:5,
-      count:0
-    };
-
-  }
-
-  const total = productReviews.reduce(
-    (sum,review) => sum + Number(review.rating),
-    0
-  );
+  if(!r.length)
+    return {rating:5,count:0};
 
   return {
-    rating:total / productReviews.length,
-    count:productReviews.length
+    rating:r.reduce(
+      (a,x)=>a+Number(x.rating),0
+    )/r.length,
+    count:r.length
   };
-
 }
 
+function formatPrice(value){
+  return Number(value).toLocaleString("en-PK");
+}
 
-/* =====================================================
-   RENDER PRODUCTS
-===================================================== */
+function escapeHTML(v){
+  return String(v)
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;")
+    .replace(/'/g,"&#039;");
+}
+
+/* =========================
+   PRODUCTS
+========================= */
 
 function renderProducts(){
 
-  const grid = document.getElementById("productGrid");
+  const grid=document.getElementById("productGrid");
 
-  const searchValue = document
-    .getElementById("searchInput")
-    .value
-    .toLowerCase()
-    .trim();
+  const q=
+    document
+      .getElementById("searchInput")
+      .value
+      .toLowerCase()
+      .trim();
 
+  const sort=
+    document
+      .getElementById("sortSelect")
+      .value;
 
-  let filtered = products.filter(product => {
+  let filtered=products.filter(p=>{
 
-    const matchesCategory =
-      currentCategory === "all" ||
-      product.category === currentCategory;
+    const cat=
+      currentCategory==="all" ||
+      p.category===currentCategory;
 
-
-    const searchableText = (
-      product.name + " " +
-      product.description + " " +
-      product.category
+    const text=(
+      p.name+" "+
+      p.description+" "+
+      p.category
     ).toLowerCase();
 
-
-    const matchesSearch =
-      searchableText.includes(searchValue);
-
-
-    return matchesCategory && matchesSearch;
-
+    return cat && text.includes(q);
   });
 
+  if(sort==="priceLow")
+    filtered.sort((a,b)=>a.price-b.price);
 
-  if(filtered.length === 0){
+  if(sort==="priceHigh")
+    filtered.sort((a,b)=>b.price-a.price);
 
-    grid.innerHTML = `
+  if(sort==="nameAZ")
+    filtered.sort((a,b)=>a.name.localeCompare(b.name));
+
+  if(sort==="nameZA")
+    filtered.sort((a,b)=>b.name.localeCompare(a.name));
+
+  if(!filtered.length){
+
+    grid.innerHTML=`
       <div class="noResults">
-        <div style="font-size:45px;margin-bottom:10px;">🔍</div>
+        <div style="font-size:45px">🔍</div>
         <h3>No products found</h3>
         <p>Try another search or category.</p>
       </div>
     `;
 
     return;
-
   }
 
+  grid.innerHTML=filtered.map(p=>{
 
-  grid.innerHTML = filtered.map(product => {
+    const imgs=getProductImages(p);
+    const r=getProductRating(p.id);
 
-    const images = getProductImages(product);
+    let imageHTML="";
 
-    const ratingInfo = getProductRating(product.id);
+    if(imgs.length>1){
 
-    let imageHTML = "";
-
-
-    if(images.length > 1){
-
-      imageHTML = `
+      imageHTML=`
         <div class="productImages">
-
-          ${images.map(img => `
+          ${imgs.map(i=>`
             <img
-              src="${img}"
-              alt="${product.name}"
+              src="${i}"
+              alt="${escapeHTML(p.name)}"
               loading="lazy"
               onerror="this.style.display='none'"
             >
           `).join("")}
-
         </div>
       `;
 
     }else{
 
-      imageHTML = `
+      imageHTML=`
         <img
-          src="${images[0] || ""}"
-          alt="${product.name}"
+          src="${imgs[0]||""}"
+          alt="${escapeHTML(p.name)}"
           loading="lazy"
           onerror="this.style.display='none'"
         >
@@ -2091,76 +2888,60 @@ function renderProducts(){
 
     }
 
-
     return `
 
       <article class="productCard">
 
         <div class="productImageWrap">
-
           ${imageHTML}
-
         </div>
-
 
         <div class="productInfo">
 
           <div class="productCategory">
-            ${product.category}
+            ${escapeHTML(p.category)}
           </div>
-
 
           <h3 class="productName">
-            ${product.emoji || ""} ${product.name}
+            ${p.emoji||""}
+            ${escapeHTML(p.name)}
           </h3>
 
-
           <p class="productDescription">
-            ${product.description}
+            ${escapeHTML(p.description)}
           </p>
 
-
           <div class="productRating">
-
-            ${starsHTML(ratingInfo.rating)}
-
+            ${starsHTML(r.rating)}
             <span class="ratingCount">
-              ${
-                ratingInfo.count
-                ? `(${ratingInfo.count})`
-                : "(New)"
-              }
+              ${r.count?`(${r.count})`:"(New)"}
             </span>
-
           </div>
-
 
           <div class="priceRow">
 
             <div class="price">
-              Rs. ${product.price}
+              Rs. ${formatPrice(p.price)}
             </div>
 
             <div class="unit">
-              ${product.unit}
+              ${escapeHTML(p.unit||"1 pc")}
             </div>
 
           </div>
-
 
           <div class="productActions">
 
             <button
               class="addBtn"
-              onclick="addToCart(${product.id})"
+              onclick="addToCart(${p.id})"
             >
               🛒 Add to Cart
             </button>
 
-
             <button
               class="reviewBtn"
-              onclick="openReview(${product.id})"
+              onclick="openReview(${p.id})"
             >
               ⭐ Write a Review
             </button>
@@ -2174,199 +2955,189 @@ function renderProducts(){
     `;
 
   }).join("");
-
 }
-
-
-/* =====================================================
-   SEARCH
-===================================================== */
-
-function searchProducts(){
-
-  renderProducts();
-
-}
-
-
-/* =====================================================
-   CATEGORY FILTER
-===================================================== */
 
 function filterCategory(category,button){
 
-  currentCategory = category;
+  currentCategory=category;
 
+  document
+    .querySelectorAll(".categoryBtn")
+    .forEach(b=>b.classList.remove("active"));
 
-  document.querySelectorAll(".categoryBtn").forEach(btn => {
-
-    btn.classList.remove("active");
-
-  });
-
-
-  if(button){
-
+  if(button)
     button.classList.add("active");
 
-  }
-
-
   renderProducts();
-
 }
 
-
-/* =====================================================
+/* =========================
    CART
-===================================================== */
+========================= */
 
-function addToCart(productId){
+function addToCart(id){
 
-  const existing = cart.find(
-    item => item.id === productId
-  );
+  const x=cart.find(i=>i.id===id);
 
-
-  if(existing){
-
-    existing.quantity += 1;
-
-  }else{
-
+  if(x)
+    x.quantity++;
+  else
     cart.push({
-      id:productId,
+      id:id,
       quantity:1
     });
 
-  }
-
-
   saveCart();
-
   renderCart();
 
   showToast("Product added to cart 🛒");
-
 }
 
-
 function saveCart(){
-
   localStorage.setItem(
     "craftedHeavenCart",
     JSON.stringify(cart)
   );
-
 }
 
+function cartTotalValue(){
+
+  return cart.reduce((sum,i)=>{
+
+    const p=getProductById(i.id);
+
+    return sum+
+      (p ? p.price*i.quantity : 0);
+
+  },0);
+}
 
 function renderCart(){
 
-  const cartBody = document.getElementById("cartBody");
+  const body=
+    document.getElementById("cartBody");
 
-  const cartCount = document.getElementById("cartCount");
+  const count=
+    document.getElementById("cartCount");
 
-  const cartTotal = document.getElementById("cartTotal");
+  const total=
+    document.getElementById("cartTotal");
 
+  if(!cart.length){
 
-  if(cart.length === 0){
-
-    cartBody.innerHTML = `
-      <div class="emptyCart">
+    body.innerHTML=`
+      <div style="
+        text-align:center;
+        color:#777;
+        padding:35px 10px
+      ">
         Your cart is empty.
       </div>
     `;
 
-    cartCount.textContent = "0";
-
-    cartTotal.textContent = "0";
+    count.textContent="0";
+    total.textContent="0";
 
     return;
-
   }
 
+  let itemCount=0;
 
-  let total = 0;
+  body.innerHTML=cart.map(i=>{
 
-  let itemCount = 0;
+    const p=getProductById(i.id);
 
+    if(!p)return"";
 
-  cartBody.innerHTML = cart.map(cartItem => {
-
-    const product = getProductById(cartItem.id);
-
-    if(!product){
-
-      return "";
-
-    }
-
-
-    const itemTotal =
-      Number(product.price) * Number(cartItem.quantity);
-
-
-    total += itemTotal;
-
-    itemCount += Number(cartItem.quantity);
-
-
-    const images = getProductImages(product);
-
-    const image = images[0] || "";
-
+    itemCount+=i.quantity;
 
     return `
 
-      <div class="cartItem">
+      <div style="
+        background:#fafaf6;
+        border:1px solid #e4e2d8;
+        border-radius:13px;
+        padding:11px;
+        margin-bottom:9px;
+        display:grid;
+        grid-template-columns:60px 1fr auto;
+        gap:10px;
+        align-items:center
+      ">
 
         <img
-          src="${image}"
-          alt="${product.name}"
+          src="${getProductImages(p)[0]||""}"
+          alt="${escapeHTML(p.name)}"
+          style="
+            width:60px;
+            height:60px;
+            border-radius:9px;
+            object-fit:cover
+          "
           onerror="this.style.display='none'"
         >
 
-
         <div>
 
-          <div class="cartItemName">
-            ${product.emoji || ""} ${product.name}
+          <strong>
+            ${p.emoji||""}
+            ${escapeHTML(p.name)}
+          </strong>
+
+          <div style="
+            font-size:12px;
+            color:#777;
+            margin-top:4px
+          ">
+            Rs. ${formatPrice(p.price)} × ${i.quantity}
           </div>
 
-          <div class="cartItemPrice">
-            Rs. ${product.price} / ${product.unit || "1 pc"}
-          </div>
-
-
-          <div class="qtyControls">
-
-            <button
-              class="qtyBtn"
-              onclick="changeQuantity(${product.id},-1)"
-            >
-              −
-            </button>
-
-            <span>
-              ${cartItem.quantity}
-            </span>
+          <div style="
+            display:flex;
+            align-items:center;
+            gap:7px;
+            margin-top:7px
+          ">
 
             <button
-              class="qtyBtn"
-              onclick="changeQuantity(${product.id},1)"
-            >
-              +
-            </button>
+              onclick="changeQuantity(${p.id},-1)"
+              style="
+                width:26px;
+                height:26px;
+                border:0;
+                border-radius:50%;
+                background:#173d2a;
+                color:white
+              "
+            >−</button>
+
+            <span>${i.quantity}</span>
+
+            <button
+              onclick="changeQuantity(${p.id},1)"
+              style="
+                width:26px;
+                height:26px;
+                border:0;
+                border-radius:50%;
+                background:#173d2a;
+                color:white
+              "
+            >+</button>
 
           </div>
 
         </div>
 
-
         <button
-          class="removeBtn"
-          onclick="removeFromCart(${product.id})"
+          onclick="removeFromCart(${p.id})"
+          style="
+            border:0;
+            background:#f1e7e2;
+            color:#b13b25;
+            padding:6px;
+            border-radius:7px
+          "
         >
           Remove
         </button>
@@ -2377,256 +3148,473 @@ function renderCart(){
 
   }).join("");
 
-
-  cartCount.textContent = itemCount;
-
-  cartTotal.textContent = total;
-
+  count.textContent=itemCount;
+  total.textContent=formatPrice(cartTotalValue());
 }
 
+function changeQuantity(id,c){
 
-function changeQuantity(productId,change){
+  const x=cart.find(i=>i.id===id);
 
-  const item = cart.find(
-    cartItem => cartItem.id === productId
-  );
+  if(!x)return;
 
+  x.quantity+=c;
 
-  if(!item){
-
-    return;
-
+  if(x.quantity<=0){
+    cart=cart.filter(i=>i.id!==id);
   }
-
-
-  item.quantity += change;
-
-
-  if(item.quantity <= 0){
-
-    cart = cart.filter(
-      cartItem => cartItem.id !== productId
-    );
-
-  }
-
 
   saveCart();
-
   renderCart();
-
 }
 
+function removeFromCart(id){
 
-function removeFromCart(productId){
-
-  cart = cart.filter(
-    item => item.id !== productId
-  );
-
+  cart=cart.filter(i=>i.id!==id);
 
   saveCart();
-
   renderCart();
 
   showToast("Product removed.");
-
 }
-
 
 function clearCart(){
 
-  if(cart.length === 0){
+  if(!cart.length)return;
 
-    return;
-
-  }
-
-
-  cart = [];
+  cart=[];
 
   saveCart();
-
   renderCart();
 
   showToast("Cart cleared.");
-
 }
-
-
-/* =====================================================
-   OPEN / CLOSE CART
-===================================================== */
 
 function openCart(){
 
-  document
-    .getElementById("cartDrawer")
-    .classList.add("show");
-
+  renderCart();
 
   document
     .getElementById("cartOverlay")
     .classList.add("show");
 
-
-  document.body.style.overflow = "hidden";
-
+  document.body.classList.add("modalOpen");
+  document.body.style.overflow="hidden";
 }
-
 
 function closeCart(){
 
   document
-    .getElementById("cartDrawer")
-    .classList.remove("show");
-
-
-  document
     .getElementById("cartOverlay")
     .classList.remove("show");
 
+  document.body.classList.remove("modalOpen");
 
-  if(
-    !document
-      .getElementById("reviewOverlay")
-      .classList.contains("show")
-  ){
-
-    document.body.style.overflow = "";
-
-  }
-
+  if(!document.querySelector(".modalOverlay.show"))
+    document.body.style.overflow="";
 }
 
+/* =========================
+   CHECKOUT
+========================= */
 
-/* =====================================================
-   WHATSAPP CHECKOUT
-===================================================== */
+function fillSavedCustomer(){
 
-function checkoutWhatsApp(){
+  const d=JSON.parse(
+    localStorage.getItem("craftedHeavenCustomer")||"null"
+  );
 
-  if(cart.length === 0){
+  if(!d)return;
+
+  document.getElementById("customerName").value=d.name||"";
+  document.getElementById("customerPhone").value=d.phone||"";
+  document.getElementById("customerEmail").value=d.email||"";
+  document.getElementById("deliveryAddress").value=d.address||"";
+}
+
+function openCheckout(){
+
+  if(!cart.length){
 
     showToast("Your cart is empty.");
 
     return;
-
   }
 
+  closeCart();
+  fillSavedCustomer();
 
-  let message =
-    "Assalam-o-Alaikum! I want to place an order from Crafted Heaven PK.%0A%0A";
+  document.getElementById("checkoutSummary")
+    .innerHTML=buildOrderSummary();
 
+  document
+    .getElementById("checkoutOverlay")
+    .classList.add("show");
 
-  let total = 0;
+  document.body.classList.add("modalOpen");
+  document.body.style.overflow="hidden";
+}
 
+function closeCheckout(){
 
-  cart.forEach(cartItem => {
+  document
+    .getElementById("checkoutOverlay")
+    .classList.remove("show");
 
-    const product = getProductById(cartItem.id);
+  document.body.classList.remove("modalOpen");
 
-    if(!product){
+  if(!document.querySelector(".modalOverlay.show"))
+    document.body.style.overflow="";
+}
 
-      return;
+function buildOrderSummary(){
+
+  const lines=cart.map(i=>{
+
+    const p=getProductById(i.id);
+
+    return p
+      ? `• ${escapeHTML(p.name)} × ${i.quantity} = Rs. ${formatPrice(p.price*i.quantity)}`
+      : "";
+
+  }).filter(Boolean).join("<br>");
+
+  return `
+
+    <strong>Order Summary</strong>
+
+    <div style="margin-top:7px">
+      ${lines}
+    </div>
+
+    <div class="checkoutTotal">
+      Total: Rs. ${formatPrice(cartTotalValue())}
+    </div>
+
+  `;
+}
+
+function submitCheckout(event){
+
+  event.preventDefault();
+
+  if(!cart.length){
+
+    showToast("Your cart is empty.");
+    closeCheckout();
+
+    return;
+  }
+
+  const name=
+    document.getElementById("customerName").value.trim();
+
+  const phone=
+    document.getElementById("customerPhone").value.trim();
+
+  const email=
+    document.getElementById("customerEmail").value.trim();
+
+  const address=
+    document.getElementById("deliveryAddress").value.trim();
+
+  const note=
+    document.getElementById("specialNote").value.trim();
+
+  if(!name||!phone||!email||!address){
+
+    showToast(
+      "Please complete all required customer details."
+    );
+
+    return;
+  }
+
+  localStorage.setItem(
+    "craftedHeavenCustomer",
+    JSON.stringify({
+      name,
+      phone,
+      email,
+      address
+    })
+  );
+
+  let message=
+`Assalam-o-Alaikum! I want to place an order from Crafted Heaven PK.
+
+CUSTOMER DETAILS
+Name: ${name}
+Contact Number: ${phone}
+Email: ${email}
+Complete Delivery Address: ${address}
+Special Note: ${note||"No special note"}
+
+ORDER DETAILS
+`;
+
+  cart.forEach(i=>{
+
+    const p=getProductById(i.id);
+
+    if(p){
+
+      message+=
+`• ${p.name} × ${i.quantity} = Rs. ${p.price*i.quantity}
+`;
 
     }
 
-
-    const itemTotal =
-      Number(product.price) * Number(cartItem.quantity);
-
-
-    total += itemTotal;
-
-
-    message +=
-      "• " +
-      encodeURIComponent(product.name) +
-      " × " +
-      cartItem.quantity +
-      " (" +
-      encodeURIComponent(product.unit || "1 pc") +
-      " each) = Rs. " +
-      itemTotal +
-      "%0A";
-
   });
 
+  message+=
+`
+TOTAL: Rs. ${cartTotalValue()}
 
-  message +=
-    "%0A*Total: Rs. " +
-    total +
-    "*%0A%0A";
+DELIVERY: Lahore only
+DELIVERY TIME: 2–3 working days
+PAYMENT: Online payment required
 
-
-  message +=
-    "Please confirm my order. Thank you!";
-
-
-  const whatsappURL =
-    "https://wa.me/923034812714?text=" + message;
-
+Please confirm my order.
+Thank you!`;
 
   window.open(
-    whatsappURL,
+    `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`,
     "_blank"
   );
 
+  closeCheckout();
+
+  showToast(
+    "Order details opened in WhatsApp 💚"
+  );
 }
 
+/* =========================
+   ACCOUNT
+========================= */
 
-/* =====================================================
-   REVIEWS
-===================================================== */
+function openAccount(){
 
-function openReview(productId){
+  closeMenu();
 
-  const product = getProductById(productId);
+  const d=JSON.parse(
+    localStorage.getItem("craftedHeavenCustomer")||"{}"
+  );
 
-  if(!product){
+  document.getElementById("accountName").value=d.name||"";
+  document.getElementById("accountPhone").value=d.phone||"";
+  document.getElementById("accountEmail").value=d.email||"";
+  document.getElementById("accountAddress").value=d.address||"";
 
-    return;
+  document
+    .getElementById("accountOverlay")
+    .classList.add("show");
+
+  document.body.classList.add("modalOpen");
+  document.body.style.overflow="hidden";
+}
+
+function closeAccount(){
+
+  document
+    .getElementById("accountOverlay")
+    .classList.remove("show");
+
+  document.body.classList.remove("modalOpen");
+
+  if(!document.querySelector(".modalOverlay.show"))
+    document.body.style.overflow="";
+}
+
+function saveAccount(e){
+
+  e.preventDefault();
+
+  localStorage.setItem(
+    "craftedHeavenCustomer",
+    JSON.stringify({
+
+      name:
+        document.getElementById("accountName")
+        .value.trim(),
+
+      phone:
+        document.getElementById("accountPhone")
+        .value.trim(),
+
+      email:
+        document.getElementById("accountEmail")
+        .value.trim(),
+
+      address:
+        document.getElementById("accountAddress")
+        .value.trim()
+
+    })
+  );
+
+  closeAccount();
+
+  showToast(
+    "Your details have been saved on this device."
+  );
+}
+
+/* =========================
+   TRACK ORDER / HELP
+========================= */
+
+function trackOrder(){
+
+  closeMenu();
+
+  const orderNo=prompt(
+    "Enter your order number:"
+  );
+
+  if(orderNo){
+
+    window.open(
+      `https://wa.me/${WHATSAPP_NUMBER}?text=${
+        encodeURIComponent(
+          "Assalam-o-Alaikum! I want to track my Crafted Heaven order.\nOrder Number: "+orderNo
+        )
+      }`,
+      "_blank"
+    );
 
   }
+}
 
+function openHelp(){
 
-  selectedReviewProduct = productId;
+  closeMenu();
 
-  selectedRating = 0;
+  window.open(
+    `https://wa.me/${WHATSAPP_NUMBER}?text=${
+      encodeURIComponent(
+        "Assalam-o-Alaikum! I need help with my Crafted Heaven order."
+      )
+    }`,
+    "_blank"
+  );
+}
 
+/* =========================
+   GUIDES
+========================= */
 
-  document.getElementById(
-    "selectedProductName"
-  ).textContent =
-    "Reviewing: " + product.name;
+function openGuide(){
 
+  closeMenu();
 
-  document.getElementById("reviewerName").value = "";
+  document.getElementById("guideSearch").value="";
 
-  document.getElementById("reviewText").value = "";
+  renderGuides();
 
+  document
+    .getElementById("guideOverlay")
+    .classList.add("show");
+
+  document.body.classList.add("modalOpen");
+  document.body.style.overflow="hidden";
+}
+
+function closeGuide(){
+
+  document
+    .getElementById("guideOverlay")
+    .classList.remove("show");
+
+  document.body.classList.remove("modalOpen");
+
+  if(!document.querySelector(".modalOverlay.show"))
+    document.body.style.overflow="";
+}
+
+function renderGuides(){
+
+  const q=
+    document
+      .getElementById("guideSearch")
+      .value
+      .toLowerCase()
+      .trim();
+
+  const list=guides.filter(g=>
+    (
+      g.name+" "+
+      g.type+" "+
+      g.text
+    ).toLowerCase().includes(q)
+  );
+
+  document.getElementById("guideList").innerHTML=
+
+    list.length
+
+      ? list.map(g=>`
+
+        <div class="guideCard">
+
+          <div class="guideTag">
+            ${escapeHTML(g.type)}
+          </div>
+
+          <h3>
+            ${escapeHTML(g.name)}
+          </h3>
+
+          <p>
+            ${escapeHTML(g.text)}
+          </p>
+
+        </div>
+
+      `).join("")
+
+      : `
+        <div style="
+          text-align:center;
+          color:#777;
+          padding:20px
+        ">
+          No guide found.
+        </div>
+      `;
+}
+
+/* =========================
+   REVIEWS
+========================= */
+
+function openReview(id){
+
+  const p=getProductById(id);
+
+  if(!p)return;
+
+  selectedReviewProduct=id;
+  selectedRating=0;
+
+  document.getElementById("selectedProductName")
+    .textContent="Reviewing: "+p.name;
+
+  document.getElementById("reviewerName").value="";
+  document.getElementById("reviewText").value="";
 
   document
     .querySelectorAll("#starSelect span")
-    .forEach(star => {
-
-      star.classList.remove("active");
-
-    });
-
+    .forEach(s=>s.style.color="#ccc");
 
   document
     .getElementById("reviewOverlay")
     .classList.add("show");
 
-
   document.body.classList.add("modalOpen");
-
-  document.body.style.overflow = "hidden";
-
+  document.body.style.overflow="hidden";
 }
-
 
 function closeReview(){
 
@@ -2634,95 +3622,52 @@ function closeReview(){
     .getElementById("reviewOverlay")
     .classList.remove("show");
 
-
   document.body.classList.remove("modalOpen");
 
-
-  if(
-    !document
-      .getElementById("cartDrawer")
-      .classList.contains("show")
-  ){
-
-    document.body.style.overflow = "";
-
-  }
-
+  if(!document.querySelector(".modalOverlay.show"))
+    document.body.style.overflow="";
 }
 
+function selectStar(n){
 
-function selectStar(starNumber){
-
-  selectedRating = starNumber;
-
+  selectedRating=n;
 
   document
     .querySelectorAll("#starSelect span")
-    .forEach(star => {
+    .forEach(s=>{
 
-      const value =
-        Number(star.getAttribute("data-star"));
-
-
-      star.classList.toggle(
-        "active",
-        value <= selectedRating
-      );
+      s.style.color=
+        Number(s.dataset.star)<=n
+          ? "#d4af37"
+          : "#ccc";
 
     });
-
 }
-
 
 function submitReview(){
 
-  const name =
-    document
-      .getElementById("reviewerName")
-      .value
-      .trim();
+  const name=
+    document.getElementById("reviewerName")
+    .value.trim();
 
-
-  const text =
-    document
-      .getElementById("reviewText")
-      .value
-      .trim();
-
-
-  if(!selectedReviewProduct){
-
-    return;
-
-  }
-
+  const text=
+    document.getElementById("reviewText")
+    .value.trim();
 
   if(!name){
-
     showToast("Please enter your name.");
-
     return;
-
   }
-
 
   if(!selectedRating){
-
     showToast("Please select a star rating.");
-
     return;
-
   }
-
 
   if(!text){
-
     showToast("Please write your review.");
-
     return;
-
   }
-
 
   reviews.push({
 
@@ -2730,63 +3675,39 @@ function submitReview(){
 
     productId:selectedReviewProduct,
 
-    name:name,
+    name,
 
     rating:selectedRating,
 
-    text:text,
+    text,
 
     date:new Date().toLocaleDateString()
 
   });
-
 
   localStorage.setItem(
     "craftedHeavenReviews",
     JSON.stringify(reviews)
   );
 
-
   closeReview();
 
   renderProducts();
-
   renderReviews();
 
-  showToast("Thank you for your review! ⭐");
-
+  showToast(
+    "Thank you for your review! ⭐"
+  );
 }
-
-
-/* =====================================================
-   ESCAPE HTML
-===================================================== */
-
-function escapeHTML(value){
-
-  return String(value)
-    .replace(/&/g,"&amp;")
-    .replace(/</g,"&lt;")
-    .replace(/>/g,"&gt;")
-    .replace(/"/g,"&quot;")
-    .replace(/'/g,"&#039;");
-
-}
-
-
-/* =====================================================
-   RENDER REVIEWS
-===================================================== */
 
 function renderReviews(){
 
-  const container =
+  const c=
     document.getElementById("reviewsGrid");
 
+  if(!reviews.length){
 
-  if(reviews.length === 0){
-
-    container.innerHTML = `
+    c.innerHTML=`
 
       <div class="reviewCard">
 
@@ -2807,148 +3728,135 @@ function renderReviews(){
     `;
 
     return;
-
   }
 
-
-  const latestReviews =
+  c.innerHTML=
     [...reviews]
       .reverse()
-      .slice(0,9);
+      .slice(0,9)
+      .map(r=>{
 
+        const p=
+          getProductById(r.productId);
 
-  container.innerHTML =
-    latestReviews.map(review => {
+        return `
 
-      const product =
-        getProductById(review.productId);
+          <div class="reviewCard">
 
+            <div class="reviewStars">
+              ${starsHTML(Number(r.rating))}
+            </div>
 
-      return `
+            <div class="reviewName">
+              ${escapeHTML(r.name)}
+            </div>
 
-        <div class="reviewCard">
+            <div class="reviewText">
+              ${escapeHTML(r.text)}
+            </div>
 
-          <div class="reviewStars">
-            ${starsHTML(Number(review.rating))}
-          </div>
-
-
-          <div class="reviewName">
-            ${escapeHTML(review.name)}
-          </div>
-
-
-          <div
-            class="reviewText"
-            style="margin-bottom:7px;"
-          >
-            ${escapeHTML(review.text)}
-          </div>
-
-
-          <div
-            style="
+            <div style="
               font-size:11px;
               color:#999;
-            "
-          >
-            ${
-              product
-              ? escapeHTML(product.name)
-              : "Product"
-            }
-            ${
-              review.date
-              ? " • " + escapeHTML(review.date)
-              : ""
-            }
+              margin-top:7px
+            ">
+              ${p?escapeHTML(p.name):"Product"}
+              ${r.date?" • "+escapeHTML(r.date):""}
+            </div>
+
           </div>
 
-        </div>
+        `;
 
-      `;
-
-    }).join("");
-
+      })
+      .join("");
 }
 
-
-/* =====================================================
+/* =========================
    TOAST
-===================================================== */
+========================= */
 
 let toastTimer;
 
-
 function showToast(message){
 
-  const toast =
+  const t=
     document.getElementById("toast");
 
+  t.textContent=message;
 
-  toast.textContent = message;
-
-  toast.classList.add("show");
-
+  t.classList.add("show");
 
   clearTimeout(toastTimer);
 
-
-  toastTimer = setTimeout(function(){
-
-    toast.classList.remove("show");
-
-  },2500);
-
+  toastTimer=setTimeout(
+    ()=>t.classList.remove("show"),
+    2500
+  );
 }
 
+/* =========================
+   ESC KEY
+========================= */
 
-/* =====================================================
-   CLOSE MODAL BY CLICKING OUTSIDE
-===================================================== */
+document.addEventListener(
+  "keydown",
+  e=>{
 
-document
-  .getElementById("reviewOverlay")
-  .addEventListener("click",function(event){
+    if(e.key==="Escape"){
 
-    if(event.target === this){
-
+      closeMenu();
+      closeCart();
+      closeCheckout();
+      closeAccount();
+      closeGuide();
       closeReview();
 
     }
 
+  }
+);
+
+/* =========================
+   MODAL BACKDROP CLOSE
+========================= */
+
+document
+  .querySelectorAll(".modalOverlay")
+  .forEach(o=>{
+
+    o.addEventListener("click",e=>{
+
+      if(e.target!==o)return;
+
+      if(o.id==="cartOverlay")
+        closeCart();
+
+      if(o.id==="checkoutOverlay")
+        closeCheckout();
+
+      if(o.id==="accountOverlay")
+        closeAccount();
+
+      if(o.id==="guideOverlay")
+        closeGuide();
+
+      if(o.id==="reviewOverlay")
+        closeReview();
+
+    });
+
   });
 
-
-/* =====================================================
-   ESC KEY
-===================================================== */
-
-document.addEventListener("keydown",function(event){
-
-  if(event.key === "Escape"){
-
-    closeCart();
-
-    closeReview();
-
-  }
-
-});
-
-
-/* =====================================================
+/* =========================
    INITIALIZE
-===================================================== */
+========================= */
 
 renderProducts();
-
 renderCart();
-
 renderReviews();
 
 </script>
 
 </body>
-   </html>
-      
+  </html>
