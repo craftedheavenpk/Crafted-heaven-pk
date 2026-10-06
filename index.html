@@ -5649,11 +5649,16 @@ renderReviews();
     }
 
     products.forEach(item => {
+      // Automatic detection for product title, price, and image
+      const titleName = item.name || item.title || item.product_name || item.item_name || 'Product';
+      const itemPrice = item.price || item.product_price || item.amount || '0';
+      const imageUrl = item.image_url || item.image || item.img_url || item.photo || '';
+
       productGrid.innerHTML += `
         <div class="product-card">
-          <img src="${item.image_url}" alt="${item.name || item.title}">
-          <h3>${item.name || item.title}</h3>
-          <p class="price">Rs. ${item.price}</p>
+          <img src="${imageUrl}" alt="${titleName}">
+          <h3>${titleName}</h3>
+          <p class="price">Rs. ${itemPrice}</p>
           <p class="description">${item.description || ''}</p>
         </div>
       `;
@@ -5662,6 +5667,7 @@ renderReviews();
 
   document.addEventListener("DOMContentLoaded", fetchProductsFromSupabase);
 </script>
+
 
 
 
