@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html>w
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -5625,14 +5625,11 @@ renderReviews();
   
   const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
-  // Variable to store loaded products
-  let allSupabaseProducts = [];
-
-  // Fetch Products Function
-  async function fetchProductsFromSupabase() {
-    console.log("Loading products...");
+  // Supabase se products fetch karke purane array mein daalna
+  async function loadSupabaseProductsIntoOriginalDesign() {
+    console.log("Loading products for original design...");
     
-    const { data: products, error } = await supabaseClient
+    const { data: dbProducts, error } = await supabaseClient
       .from('products')
       .select('*');
 
@@ -5641,53 +5638,39 @@ renderReviews();
       return;
     }
 
-    allSupabaseProducts = products || [];
-    displayProductsList(allSupabaseProducts);
-  }
+    if (dbProducts && dbProducts.length > 0) {
+      // Streamline format to match your original beautiful product structure
+      const formattedProducts = dbProducts.map(item => ({
+        id: item.id || Math.random(),
+        title: item.name || item.title || item.product_name || 'Product',
+        name: item.name || item.title || item.product_name || 'Product',
+        price: item.price || item.product_price || 0,
+        category: item.category || item.cat || 'Plants',
+        image: item.image_url || item.image || item.img_url || '',
+        description: item.description || '',
+        rating: item.rating || 5,
+        reviewsCount: item.reviews_count || 1
+      }));
 
-  // Display Products Function
-  function displayProductsList(products) {
-    const productGrid = document.getElementById('productGrid'); 
-    if (!productGrid) return;
-    
-    productGrid.innerHTML = '';
+      // Replace global products array if available
+      if (typeof products !== 'undefined') {
+        products = formattedProducts;
+      } else {
+        window.products = formattedProducts;
+      }
 
-    if (!products || products.length === 0) {
-      productGrid.innerHTML = '<p style="text-align:center; padding: 20px;">کوئی پروڈکٹ دستیاب نہیں ہے۔</p>';
-      return;
-    }
-
-    products.forEach(item => {
-      const titleName = item.name || item.title || item.product_name || item.item_name || 'Product';
-      const itemPrice = item.price || item.product_price || item.amount || '0';
-      const imageUrl = item.image_url || item.image || item.img_url || item.photo || '';
-
-      productGrid.innerHTML += `
-        <div class="product-card">
-          <img src="${imageUrl}" alt="${titleName}">
-          <h3>${titleName}</h3>
-          <p class="price">Rs. ${itemPrice}</p>
-          <p class="description">${item.description || ''}</p>
-        </div>
-      `;
-    });
-  }
-
-  // Category Filter Function
-  function filterByCategory(categoryName) {
-    if (!categoryName || categoryName === 'All' || categoryName === 'all') {
-      displayProductsList(allSupabaseProducts);
-    } else {
-      const filtered = allSupabaseProducts.filter(item => {
-        const itemCat = item.category || item.cat || '';
-        return itemCat.toLowerCase() === categoryName.toLowerCase();
-      });
-      displayProductsList(filtered);
+      // Re-render original UI and categories
+      if (typeof renderProducts === 'function') {
+        renderProducts();
+      }
     }
   }
 
-  document.addEventListener("DOMContentLoaded", fetchProductsFromSupabase);
+  document.addEventListener("DOMContentLoaded", () => {
+    loadSupabaseProductsIntoOriginalDesign();
+  });
 </script>
+
 
 
 
