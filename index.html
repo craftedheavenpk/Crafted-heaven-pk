@@ -5615,7 +5615,54 @@ renderCart();
 
 renderReviews();
 
+</script><!-- Supabase SDK JavaScript -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script>
+  // Supabase Connection Settings
+  const SUPABASE_URL = "https://qyiohberbkudtuolpmyd.supabase.co";
+  const SUPABASE_ANON_KEY = "sb_publishable_RdTzt951O8A8ipMDS87siA_tf_SLjeR";
+  
+  const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+  // Products Fetching Function
+  async function fetchProductsFromSupabase() {
+    console.log("Loading products...");
+    
+    const { data: products, error } = await supabaseClient
+      .from('products')
+      .select('*');
+
+    if (error) {
+      console.error("Supabase Error:", error.message);
+      return;
+    }
+
+    const productGrid = document.getElementById('productGrid'); 
+    if (!productGrid) return;
+    
+    productGrid.innerHTML = '';
+
+    if (!products || products.length === 0) {
+      productGrid.innerHTML = '<p style="text-align:center; padding: 20px;">ابھی کوئی پروڈکٹ دستیاب نہیں ہے۔</p>';
+      return;
+    }
+
+    products.forEach(item => {
+      productGrid.innerHTML += `
+        <div class="product-card">
+          <img src="${item.image_url}" alt="${item.title}">
+          <h3>${item.title}</h3>
+          <p class="price">Rs. ${item.price}</p>
+          <p class="description">${item.description || ''}</p>
+        </div>
+      `;
+    });
+  }
+
+  document.addEventListener("DOMContentLoaded", fetchProductsFromSupabase);
 </script>
+
 
 </body>
     </html>
