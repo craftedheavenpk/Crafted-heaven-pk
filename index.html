@@ -5651,8 +5651,8 @@ renderReviews();
     products.forEach(item => {
       productGrid.innerHTML += `
         <div class="product-card">
-          <img src="${item.image_url}" alt="${item.title}">
-          <h3>${item.title}</h3>
+          <img src="${item.image_url}" alt="${item.name || item.title}">
+          <h3>${item.name || item.title}</h3>
           <p class="price">Rs. ${item.price}</p>
           <p class="description">${item.description || ''}</p>
         </div>
@@ -5662,6 +5662,7 @@ renderReviews();
 
   document.addEventListener("DOMContentLoaded", fetchProductsFromSupabase);
 </script>
+
 
 
 </body>
