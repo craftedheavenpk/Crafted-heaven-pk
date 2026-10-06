@@ -5625,7 +5625,10 @@ renderReviews();
   
   const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
-  // Products Fetching Function
+  // Variable to store loaded products
+  let allSupabaseProducts = [];
+
+  // Fetch Products Function
   async function fetchProductsFromSupabase() {
     console.log("Loading products...");
     
@@ -5638,18 +5641,23 @@ renderReviews();
       return;
     }
 
+    allSupabaseProducts = products || [];
+    displayProductsList(allSupabaseProducts);
+  }
+
+  // Display Products Function
+  function displayProductsList(products) {
     const productGrid = document.getElementById('productGrid'); 
     if (!productGrid) return;
     
     productGrid.innerHTML = '';
 
     if (!products || products.length === 0) {
-      productGrid.innerHTML = '<p style="text-align:center; padding: 20px;">ابھی کوئی پروڈکٹ دستیاب نہیں ہے۔</p>';
+      productGrid.innerHTML = '<p style="text-align:center; padding: 20px;">کوئی پروڈکٹ دستیاب نہیں ہے۔</p>';
       return;
     }
 
     products.forEach(item => {
-      // Automatic detection for product title, price, and image
       const titleName = item.name || item.title || item.product_name || item.item_name || 'Product';
       const itemPrice = item.price || item.product_price || item.amount || '0';
       const imageUrl = item.image_url || item.image || item.img_url || item.photo || '';
@@ -5665,8 +5673,22 @@ renderReviews();
     });
   }
 
+  // Category Filter Function
+  function filterByCategory(categoryName) {
+    if (!categoryName || categoryName === 'All' || categoryName === 'all') {
+      displayProductsList(allSupabaseProducts);
+    } else {
+      const filtered = allSupabaseProducts.filter(item => {
+        const itemCat = item.category || item.cat || '';
+        return itemCat.toLowerCase() === categoryName.toLowerCase();
+      });
+      displayProductsList(filtered);
+    }
+  }
+
   document.addEventListener("DOMContentLoaded", fetchProductsFromSupabase);
 </script>
+
 
 
 
