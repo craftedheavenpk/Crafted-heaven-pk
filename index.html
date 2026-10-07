@@ -5625,41 +5625,53 @@ renderReviews();
   
   const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
-  // Supabase se products fetch karke purane array mein daalna
+  // Fetch products from Supabase and sync with the original UI design
   async function loadSupabaseProductsIntoOriginalDesign() {
-    console.log("Loading products for original design...");
+    console.log("Fetching products from Supabase 'products' table...");
     
+    // Fetching data from the seller dashboard table ('products')
     const { data: dbProducts, error } = await supabaseClient
       .from('products')
       .select('*');
 
     if (error) {
-      console.error("Supabase Error:", error.message);
+      console.error("Supabase Fetch Error:", error.message);
       return;
     }
 
     if (dbProducts && dbProducts.length > 0) {
-      // Streamline format to match your original beautiful product structure
-      const formattedProducts = dbProducts.map(item => ({
-        id: item.id || Math.random(),
-        title: item.name || item.title || item.product_name || 'Product',
-        name: item.name || item.title || item.product_name || 'Product',
-        price: item.price || item.product_price || 0,
-        category: item.category || item.cat || 'Plants',
-        image: item.image_url || item.image || item.img_url || '',
-        description: item.description || '',
-        rating: item.rating || 5,
-        reviewsCount: item.reviews_count || 1
-      }));
+      // Map Supabase columns to match original application layout
+      const formattedProducts = dbProducts.map(item => {
+        // Normalize categories for proper filtering
+        let rawCat = (item.category || '').toLowerCase();
+        let cat = 'plants';
+        
+        if (rawCat.includes('plant')) cat = 'plants';
+        else if (rawCat.includes('garden') || rawCat.includes('seed')) cat = 'gardening';
+        else if (rawCat.includes('keychain')) cat = 'keychains';
+        else if (rawCat.includes('craft')) cat = 'crafts';
+        else if (rawCat.includes('crochet')) cat = 'crochet';
+        else if (rawCat.includes('kid')) cat = 'kids';
+        else if (rawCat.includes('supply')) cat = 'supplies';
 
-      // Replace global products array if available
-      if (typeof products !== 'undefined') {
-        products = formattedProducts;
-      } else {
-        window.products = formattedProducts;
-      }
+        return {
+          id: item.id || Math.random(),
+          name: item.name || item.title || 'Product',
+          price: item.price || 0,
+          category: cat,
+          image: item.image_url || item.image || '',
+          description: item.short_description || item.description || '',
+          emoji: item.emoji || '🌿',
+          unit: item.unit || '1 pc',
+          sold: item.sold || 0
+        };
+      });
 
-      // Re-render original UI and categories
+      // Clear static local array and load dynamic data from Supabase
+      products.length = 0; 
+      products.push(...formattedProducts); 
+
+      // Re-render UI grid and categories
       if (typeof renderProducts === 'function') {
         renderProducts();
       }
@@ -5670,6 +5682,7 @@ renderReviews();
     loadSupabaseProductsIntoOriginalDesign();
   });
 </script>
+
 
 
 
