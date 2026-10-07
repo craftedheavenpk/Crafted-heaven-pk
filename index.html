@@ -4791,204 +4791,101 @@ function buildOrderSummary(){
       Total:
       Rs. ${money(cartTotalValue())}
 
-    </div>
-
+    </Div>
   `;
-
 }
 
-
-function openCheckout(){
-
-  if(!cart.length){
-
-    showToast(
-      "Your cart is empty."
-    );
-
-    return;
-
-  }
-
-  closeCart();
-
-  fillSavedCustomer();
-
-  document.getElementById(
-    "checkoutSummary"
-  ).innerHTML =
-    buildOrderSummary();
-
-  document
-    .getElementById("checkoutOverlay")
-    .classList.add("show");
-
-  document.body.classList.add("modalOpen");
-
-  document.body.style.overflow="hidden";
-
-}
-
-
-function closeCheckout(){
-
-  document
-    .getElementById("checkoutOverlay")
-    .classList.remove("show");
-
-  document.body.classList.remove("modalOpen");
-
-  if(!document.querySelector(".modalOverlay.show")){
-
-    document.body.style.overflow="";
-
-  }
-
-}
-
-
-function submitCheckout(event){
-
+// Checkout Form Submit Event
+document.getElementById("checkoutForm").addEventListener("submit", function(event) {
   event.preventDefault();
 
   if(!cart.length){
-
-    showToast(
-      "Your cart is empty."
-    );
-
+    showToast("Your cart is empty.");
     closeCheckout();
-
     return;
-
   }
 
-  const name =
-    document.getElementById(
-      "customerName"
-    ).value.trim();
-
-  const phone =
-    document.getElementById(
-      "customerPhone"
-    ).value.trim();
-
-  const email =
-    document.getElementById(
-      "customerEmail"
-    ).value.trim();
-
-  const address =
-    document.getElementById(
-      "deliveryAddress"
-    ).value.trim();
-
-  const note =
-    document.getElementById(
-      "specialNote"
-    ).value.trim();
+  const name = document.getElementById("customerName").value.trim();
+  const phone = document.getElementById("customerPhone").value.trim();
+  const email = document.getElementById("customerEmail").value.trim();
+  const address = document.getElementById("deliveryAddress").value.trim();
+  const note = document.getElementById("specialNote").value.trim();
 
   if(!name || !phone || !address){
-
-    showToast(
-      "Please complete the required details."
-    );
-
+    showToast("Please complete the required details.");
     return;
-
   }
 
   localStorage.setItem(
     "craftedHeavenCustomer",
-    JSON.stringify({
-      name,
-      phone,
-      email,
-      address
-    })
+    JSON.stringify({ name, phone, email, address })
   );
 
+  // Auto Generate Date and Random Order ID
+  const orderDate = new Date().toLocaleDateString('en-PK', { day: 'numeric', month: 'short', year: 'numeric' });
+  const orderId = "CH-" + Math.floor(1000 + Math.random() * 9000);
 
-  let message =
-`Assalam-o-Alaikum!
+  let itemsList = "";
+  
+  cart.forEach(item => {
+    const product = getProductById(item.id);
+    if(!product) return;
 
-I want to place an order from Crafted Heaven PK.
+    const quantity = Number(item.quantity) || 0;
+    const unitPrice = getCartPrice(item);
+    const variant = getCartVariantLabel(item);
 
-CUSTOMER DETAILS
-Name: ${name}
-Contact Number: ${phone}
-Email: ${email || "Not provided"}
-Complete Delivery Address: ${address}
-Special Note: ${note || "No special note"}
-
-ORDER DETAILS
-`;
-
-
-  cart.forEach(item=>{
-
-    const product =
-      getProductById(item.id);
-
-    if(!product){
-      return;
-    }
-
-    const quantity =
-      Number(item.quantity) || 0;
-
-    const unitPrice =
-      getCartPrice(item);
-
-    const variant =
-      getCartVariantLabel(item);
-
-    message +=
-`• ${product.name}${variant ? ` (${variant})` : ""} × ${quantity} = Rs. ${unitPrice * quantity}
-`;
-
+    itemsList += `• *${product.name}*${variant ? ` (${variant})` : ""}\n   Qty: ${quantity} × Rs. ${unitPrice} = *Rs. ${unitPrice * quantity}*\n`;
   });
 
+  // Dynamic Beautiful Receipt Message
+  let message = 
+`🧾 *OFFICIAL ORDER RECEIPT*
+----------------------------------
+🛍️ *Store:* Crafted Heaven PK 🌿
+🆔 *Order ID:* ${orderId}
+📅 *Date:* ${orderDate}
 
-  message +=
-`
-TOTAL: Rs. ${cartTotalValue()}
+👤 *CUSTOMER DETAILS*
+• *Name:* ${name}
+• *Phone:* ${phone}
+• *Email:* ${email || "Not provided"}
+• *Address:* ${address}, Lahore
+• *Special Note:* ${note || "None"}
 
-DELIVERY:
-Lahore only
-2–3 working days
+📦 *ORDER SUMMARY*
+${itemsList}
+----------------------------------
+💰 *TOTAL AMOUNT:* *Rs. ${cartTotalValue()}*
 
-PAYMENT:
-Online payment only
-JazzCash / EasyPaisa
+💳 *PAYMENT DETAILS*
+• Status: Online Payment Only
+• Method: JazzCash / EasyPaisa
+• Title: Taha Shahid
+• Number: 0303-4812714
 
-PAYMENT ACCOUNT:
-Taha Shahid
-0303-4812714
+🚚 *DELIVERY DETAILS*
+• Area: Lahore Only
+• Time: 2–3 Working Days
 
-Please confirm my order.
-
-Thank you!`;
-
+----------------------------------
+Thank you for shopping with *Crafted Heaven PK*! ✨`;
 
   window.open(
     `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`,
     "_blank"
   );
 
-
   closeCheckout();
 
-  showToast(
-    "Complete order opened in WhatsApp 💚"
-  );
-
-}
+  showToast("Complete order receipt opened in WhatsApp 💚");
+});
 
 
 /* =========================================================
    ACCOUNT
 ========================================================= */
+
 
 function openAccount(){
 
