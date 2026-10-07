@@ -5625,11 +5625,10 @@ renderReviews();
   
   const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
-  // Fetch products from Supabase and sync with the original UI design
+  // Fetch products from Supabase dynamically
   async function loadSupabaseProductsIntoOriginalDesign() {
     console.log("Fetching products from Supabase 'products' table...");
     
-    // Fetching data from the seller dashboard table ('products')
     const { data: dbProducts, error } = await supabaseClient
       .from('products')
       .select('*');
@@ -5640,9 +5639,7 @@ renderReviews();
     }
 
     if (dbProducts && dbProducts.length > 0) {
-      // Map Supabase columns to match original application layout
       const formattedProducts = dbProducts.map(item => {
-        // Normalize categories for proper filtering
         let rawCat = (item.category || '').toLowerCase();
         let cat = 'plants';
         
@@ -5654,10 +5651,15 @@ renderReviews();
         else if (rawCat.includes('kid')) cat = 'kids';
         else if (rawCat.includes('supply')) cat = 'supplies';
 
+        // Har product ki apni alag price jo aap dashboard me likhenge wahi aayegi
+        const dynamicPrice = item.sale_price !== null && item.sale_price !== undefined && item.sale_price !== ''
+          ? item.sale_price 
+          : (item.price || 0);
+
         return {
           id: item.id || Math.random(),
           name: item.name || item.title || 'Product',
-          price: item.price || 0,
+          price: dynamicPrice, 
           category: cat,
           image: item.image_url || item.image || '',
           description: item.short_description || item.description || '',
@@ -5667,11 +5669,9 @@ renderReviews();
         };
       });
 
-      // Clear static local array and load dynamic data from Supabase
       products.length = 0; 
       products.push(...formattedProducts); 
 
-      // Re-render UI grid and categories
       if (typeof renderProducts === 'function') {
         renderProducts();
       }
@@ -5682,6 +5682,7 @@ renderReviews();
     loadSupabaseProductsIntoOriginalDesign();
   });
 </script>
+
 
 
 
