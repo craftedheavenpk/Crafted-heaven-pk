@@ -4795,31 +4795,41 @@ function buildOrderSummary(){
   `;
 }
 
-// Checkout Form Submit Event
-document.getElementById("checkoutForm").addEventListener("submit", function(event) {
-  event.preventDefault();
+/* =========================================================
+   CHECKOUT SUBMIT FUNCTION
+========================================================= */
+function processCheckoutOrder(event) {
+  if (event) event.preventDefault();
 
-  if(!cart.length){
-    showToast("Your cart is empty.");
-    closeCheckout();
+  if (!cart || !cart.length) {
+    if (typeof showToast === "function") showToast("Your cart is empty.");
+    if (typeof closeCheckout === "function") closeCheckout();
     return;
   }
 
-  const name = document.getElementById("customerName").value.trim();
-  const phone = document.getElementById("customerPhone").value.trim();
-  const email = document.getElementById("customerEmail").value.trim();
-  const address = document.getElementById("deliveryAddress").value.trim();
-  const note = document.getElementById("specialNote").value.trim();
+  const nameInput = document.getElementById("customerName");
+  const phoneInput = document.getElementById("customerPhone");
+  const emailInput = document.getElementById("customerEmail");
+  const addressInput = document.getElementById("deliveryAddress");
+  const noteInput = document.getElementById("specialNote");
 
-  if(!name || !phone || !address){
-    showToast("Please complete the required details.");
+  const name = nameInput ? nameInput.value.trim() : "";
+  const phone = phoneInput ? phoneInput.value.trim() : "";
+  const email = emailInput ? emailInput.value.trim() : "";
+  const address = addressInput ? addressInput.value.trim() : "";
+  const note = noteInput ? noteInput.value.trim() : "";
+
+  if (!name || !phone || !address) {
+    if (typeof showToast === "function") showToast("Please complete the required details.");
     return;
   }
 
-  localStorage.setItem(
-    "craftedHeavenCustomer",
-    JSON.stringify({ name, phone, email, address })
-  );
+  try {
+    localStorage.setItem(
+      "craftedHeavenCustomer",
+      JSON.stringify({ name, phone, email, address })
+    );
+  } catch(e) {}
 
   // Auto Generate Date and Random Order ID
   const orderDate = new Date().toLocaleDateString('en-PK', { day: 'numeric', month: 'short', year: 'numeric' });
@@ -4828,15 +4838,17 @@ document.getElementById("checkoutForm").addEventListener("submit", function(even
   let itemsList = "";
   
   cart.forEach(item => {
-    const product = getProductById(item.id);
-    if(!product) return;
+    let product = typeof getProductById === "function" ? getProductById(item.id) : null;
+    let prodName = product ? product.name : (item.name || "Product");
 
-    const quantity = Number(item.quantity) || 0;
-    const unitPrice = getCartPrice(item);
-    const variant = getCartVariantLabel(item);
+    const quantity = Number(item.quantity) || 1;
+    const unitPrice = typeof getCartPrice === "function" ? getCartPrice(item) : (item.price || 0);
+    const variant = typeof getCartVariantLabel === "function" ? getCartVariantLabel(item) : "";
 
-    itemsList += `• *${product.name}*${variant ? ` (${variant})` : ""}\n   Qty: ${quantity} × Rs. ${unitPrice} = *Rs. ${unitPrice * quantity}*\n`;
+    itemsList += `• *${prodName}*${variant ? ` (${variant})` : ""}\n   Qty: ${quantity} × Rs. ${unitPrice} = *Rs. ${unitPrice * quantity}*\n`;
   });
+
+  let totalVal = typeof cartTotalValue === "function" ? cartTotalValue() : 0;
 
   // Dynamic Beautiful Receipt Message
   let message = 
@@ -4856,7 +4868,7 @@ document.getElementById("checkoutForm").addEventListener("submit", function(even
 📦 *ORDER SUMMARY*
 ${itemsList}
 ----------------------------------
-💰 *TOTAL AMOUNT:* *Rs. ${cartTotalValue()}*
+💰 *TOTAL AMOUNT:* *Rs. ${totalVal}*
 
 💳 *PAYMENT DETAILS*
 • Status: Online Payment Only
@@ -4871,15 +4883,23 @@ ${itemsList}
 ----------------------------------
 Thank you for shopping with *Crafted Heaven PK*! ✨`;
 
+  let waNumber = typeof WHATSAPP_NUMBER !== "undefined" ? WHATSAPP_NUMBER : "923034812714";
+
   window.open(
-    `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`,
+    `https://wa.me/${waNumber}?text=${encodeURIComponent(message)}`,
     "_blank"
   );
 
-  closeCheckout();
+  if (typeof closeCheckout === "function") closeCheckout();
+  if (typeof showToast === "function") showToast("Complete order receipt opened in WhatsApp 💚");
+}
 
-  showToast("Complete order receipt opened in WhatsApp 💚");
-});
+// Form Event Listener
+const chkForm = document.getElementById("checkoutForm");
+if (chkForm) {
+  chkForm.addEventListener("submit", processCheckoutOrder);
+}
+
 
 
 /* =========================================================
