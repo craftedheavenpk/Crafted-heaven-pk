@@ -5625,9 +5625,9 @@ renderReviews();
   
   const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
-  // Fetch products from Supabase dynamically
+  // Fetch products, sale_price, stock & sold units from Supabase
   async function loadSupabaseProductsIntoOriginalDesign() {
-    console.log("Fetching products from Supabase 'products' table...");
+    console.log("Fetching dynamic products data from Supabase...");
     
     const { data: dbProducts, error } = await supabaseClient
       .from('products')
@@ -5651,27 +5651,34 @@ renderReviews();
         else if (rawCat.includes('kid')) cat = 'kids';
         else if (rawCat.includes('supply')) cat = 'supplies';
 
-        // Har product ki apni alag price jo aap dashboard me likhenge wahi aayegi
-        const dynamicPrice = item.sale_price !== null && item.sale_price !== undefined && item.sale_price !== ''
-          ? item.sale_price 
-          : (item.price || 0);
+        // 1. Sale Price (Discounted Price) priority
+        let finalPrice = item.sale_price;
+        if (finalPrice === null || finalPrice === undefined || finalPrice === '' || Number(finalPrice) === 0) {
+          finalPrice = item.price || 0;
+        }
+
+        // 2. Total Sold count from Supabase
+        let soldCount = Number(item.sold) || 0;
 
         return {
           id: item.id || Math.random(),
           name: item.name || item.title || 'Product',
-          price: dynamicPrice, 
+          price: Number(finalPrice), 
           category: cat,
           image: item.image_url || item.image || '',
           description: item.short_description || item.description || '',
           emoji: item.emoji || '🌿',
           unit: item.unit || '1 pc',
-          sold: item.sold || 0
+          sold: soldCount,
+          stock: item.stock !== undefined ? Number(item.stock) : 10
         };
       });
 
+      // Clear static products array and insert fresh database products
       products.length = 0; 
       products.push(...formattedProducts); 
 
+      // Re-render UI grid
       if (typeof renderProducts === 'function') {
         renderProducts();
       }
@@ -5682,6 +5689,7 @@ renderReviews();
     loadSupabaseProductsIntoOriginalDesign();
   });
 </script>
+
 
 
 
