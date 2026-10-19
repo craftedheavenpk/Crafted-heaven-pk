@@ -698,7 +698,7 @@ footer{
       <input type="search" id="searchInput" placeholder="🔍 Search products..." oninput="renderProducts()">
     </div>
     <select id="sortSelect" class="sortSelect" onchange="renderProducts()">
-      <option value="default">↕️ Latest First</option>
+      <option value="default">↕️ Latest First (Top)</option>
       <option value="priceLow">Price: Low to High</option>
       <option value="priceHigh">Price: High to Low</option>
     </select>
@@ -792,14 +792,13 @@ function autoSlide(){
 }
 setInterval(autoSlide, 3000);
 
-/* FETCH PRODUCTS FROM SUPABASE (NEWEST FIRST) */
+/* FETCH PRODUCTS FROM SUPABASE & FORCE REVERSE (NEWEST ON TOP) */
 async function loadProducts(){
   const grid = document.getElementById("productGrid");
   
   const { data, error } = await db
     .from("products")
-    .select("*")
-    .order("created_at", { ascending: false });
+    .select("*");
 
   if(error){
     grid.innerHTML = `<div style="grid-column:1/-1; text-align:center; color:#a15d50; padding:30px;">Error loading products: ${error.message}</div>`;
@@ -811,7 +810,10 @@ async function loadProducts(){
     return;
   }
 
-  products = data.map(p => ({
+  // Force reverse array so latest added products appear right at the top
+  const reversedData = data.reverse();
+
+  products = reversedData.map(p => ({
     id: p.id,
     name: p.name || "Product",
     category: (p.category || "other").toLowerCase(),
