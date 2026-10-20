@@ -56,7 +56,7 @@ button{
 }
 
 /* =========================
-   WELCOME
+   WELCOME (CENTERED LOGO)
 ========================= */
 
 #welcomeScreen{
@@ -112,6 +112,10 @@ button{
   position:relative;
   z-index:2;
   padding:25px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
 }
 
 .welcomeLogo{
@@ -122,7 +126,8 @@ button{
   background:white;
   padding:8px;
   box-shadow:0 0 35px rgba(212,175,55,.35);
-  margin-bottom:22px;
+  margin:0 auto 22px auto;
+  display:block;
 }
 
 .welcomeContent h1{
@@ -2342,7 +2347,7 @@ function closeCart(){
   }
 }
 
-/* CHECKOUT & AUTOMATIC PDF GENERATOR */
+/* CHECKOUT & AUTOMATIC CLEAN PDF GENERATOR WITH BRAND LOGO */
 function openCheckout(){
   if(!cart.length){
     showToast("Your cart is empty!");
@@ -2397,86 +2402,102 @@ function buildOrderSummary(){
   `;
 }
 
-/* jsPDF RECEIPT GENERATOR */
+/* ACCURATE jsPDF RECEIPT GENERATOR WITH LOGO */
 function generateOrderPDFReceipt(orderDetails) {
   if (typeof window.jspdf === "undefined") return;
   const { jsPDF } = window.jspdf;
   const doc = new jsPDF();
 
-  doc.setFontSize(15);
-  doc.setFont("helvetica", "bold");
-  doc.text("CRAFTED HEAVEN - Garden & Crafts", 115, 20);
+  const logoImg = new Image();
+  logoImg.src = 'crafted_heaven_logo.png';
 
-  doc.setFontSize(9);
-  doc.setFont("helvetica", "normal");
-  doc.text("Gajjumatta, Ferozepur Road", 115, 26);
-  doc.text("Lahore, Punjab, 54770, Pakistan", 115, 31);
-  doc.text("Phone: +92 303 4812714", 115, 36);
+  logoImg.onload = function() {
+    doc.addImage(logoImg, 'PNG', 15, 15, 25, 25);
+    createPDFBody();
+  };
 
-  doc.setFontSize(16);
-  doc.setFont("helvetica", "bold");
-  doc.text("INVOICE", 15, 55);
+  logoImg.onerror = function() {
+    createPDFBody();
+  };
 
-  doc.setFontSize(9);
-  doc.setFont("helvetica", "bold");
-  doc.text("Ship To:", 15, 65);
-  doc.setFont("helvetica", "normal");
-  doc.text(orderDetails.customerName, 15, 71);
-  doc.text(orderDetails.address, 15, 76, { maxWidth: 85 });
-  doc.text(orderDetails.phone, 15, 86);
+  function createPDFBody() {
+    doc.setFontSize(16);
+    doc.setFont("helvetica", "bold");
+    doc.setTextColor(23, 61, 42);
+    doc.text("CRAFTED HEAVEN PK", 45, 22);
 
-  doc.setFont("helvetica", "bold");
-  doc.text("Order Number:", 120, 65);
-  doc.text("Order Date:", 120, 71);
-  doc.text("Payment Method:", 120, 76);
+    doc.setFontSize(9);
+    doc.setFont("helvetica", "normal");
+    doc.setTextColor(80, 80, 80);
+    doc.text("Plants, Gardening Supplies & Handmade Crafts", 45, 28);
+    doc.text("Gajjumatta, Ferozepur Road, Lahore, Pakistan", 45, 33);
+    doc.text("Phone: +92 303 4812714", 45, 38);
 
-  doc.setFont("helvetica", "normal");
-  doc.text(orderDetails.orderNum, 155, 65);
-  doc.text(orderDetails.date, 155, 71);
-  doc.text(orderDetails.paymentMethod, 155, 76);
+    doc.setDrawColor(220, 220, 220);
+    doc.line(15, 45, 195, 45);
 
-  let yPos = 100;
-  doc.setFillColor(0, 0, 0);
-  doc.rect(15, yPos, 180, 8, "F");
+    doc.setFontSize(14);
+    doc.setFont("helvetica", "bold");
+    doc.setTextColor(0, 0, 0);
+    doc.text("OFFICIAL RECEIPT", 15, 55);
 
-  doc.setTextColor(255, 255, 255);
-  doc.setFont("helvetica", "bold");
-  doc.text("Product", 18, yPos + 5.5);
-  doc.text("Quantity", 130, yPos + 5.5);
-  doc.text("Price", 170, yPos + 5.5);
+    doc.setFontSize(9);
+    doc.setFont("helvetica", "bold");
+    doc.text("CUSTOMER DETAILS:", 15, 66);
+    doc.setFont("helvetica", "normal");
+    doc.text("Name: " + orderDetails.customerName, 15, 72);
+    doc.text("Address: " + orderDetails.address, 15, 77, { maxWidth: 90 });
+    doc.text("Phone: " + orderDetails.phone, 15, 87);
 
-  doc.setTextColor(0, 0, 0);
-  doc.setFont("helvetica", "normal");
-  yPos += 14;
+    doc.setFont("helvetica", "bold");
+    doc.text("ORDER INFO:", 120, 66);
+    doc.setFont("helvetica", "normal");
+    doc.text("Order ID: " + orderDetails.orderNum, 120, 72);
+    doc.text("Order Date: " + orderDetails.date, 120, 77);
+    doc.text("Payment: " + orderDetails.paymentMethod, 120, 82);
 
-  let subtotal = 0;
-  orderDetails.items.forEach(item => {
-    const itemTotal = item.price * item.quantity;
-    subtotal += itemTotal;
-    doc.text(item.title, 18, yPos, { maxWidth: 100 });
-    doc.text(item.quantity.toString(), 135, yPos);
-    doc.text(`Rs. ${itemTotal}`, 170, yPos);
-    yPos += 12;
-  });
+    let yPos = 98;
+    doc.setFillColor(23, 61, 42);
+    doc.rect(15, yPos, 180, 8, "F");
 
-  doc.setDrawColor(220, 220, 220);
-  doc.line(15, yPos, 195, yPos);
-  yPos += 8;
+    doc.setTextColor(255, 255, 255);
+    doc.setFont("helvetica", "bold");
+    doc.text("Product Description", 18, yPos + 5.5);
+    doc.text("Qty", 135, yPos + 5.5);
+    doc.text("Total Price", 165, yPos + 5.5);
 
-  doc.text("Subtotal", 130, yPos);
-  doc.text(`Rs. ${subtotal}`, 170, yPos);
-  yPos += 6;
+    doc.setTextColor(0, 0, 0);
+    doc.setFont("helvetica", "normal");
+    yPos += 14;
 
-  doc.setFont("helvetica", "bold");
-  doc.text("Total", 130, yPos);
-  doc.text(`Rs. ${subtotal}`, 170, yPos);
+    let subtotal = 0;
+    orderDetails.items.forEach(item => {
+      const itemTotal = item.price * item.quantity;
+      subtotal += itemTotal;
+      doc.text(item.title, 18, yPos, { maxWidth: 105 });
+      doc.text(item.quantity.toString(), 137, yPos);
+      doc.text("Rs. " + itemTotal.toLocaleString('en-PK'), 165, yPos);
+      yPos += 10;
+    });
 
-  doc.setFont("helvetica", "normal");
-  doc.setFontSize(8);
-  doc.setTextColor(120, 120, 120);
-  doc.text("https://craftedheavenpk.github.io/Crafted-heaven-pk/", 105, 280, { align: "center" });
+    doc.setDrawColor(220, 220, 220);
+    doc.line(15, yPos, 195, yPos);
+    yPos += 8;
 
-  doc.save(`invoice-${orderDetails.orderNum}.pdf`);
+    doc.setFont("helvetica", "bold");
+    doc.setFontSize(11);
+    doc.text("TOTAL AMOUNT:", 120, yPos);
+    doc.text("Rs. " + subtotal.toLocaleString('en-PK'), 165, yPos);
+
+    yPos += 15;
+    doc.setFontSize(8);
+    doc.setFont("helvetica", "normal");
+    doc.setTextColor(120, 120, 120);
+    doc.text("Thank you for shopping with Crafted Heaven PK!", 105, yPos, { align: "center" });
+    doc.text("Official Website: https://craftedheavenpk.github.io/Crafted-heaven-pk/", 105, yPos + 5, { align: "center" });
+
+    doc.save("Crafted-Heaven-Invoice-" + orderDetails.orderNum + ".pdf");
+  }
 }
 
 function processCheckoutOrder(event) {
@@ -2531,7 +2552,7 @@ function processCheckoutOrder(event) {
     customerName: name,
     address: address,
     phone: phone,
-    paymentMethod: "JazzCash / EasyPaisa",
+    paymentMethod: "JazzCash / EasyPaisa (0303-4812714)",
     shipping: 0,
     items: pdfItemsList
   });
