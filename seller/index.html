@@ -23,48 +23,50 @@
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       background: #f4efe9;
       color: #2d2825;
+      -webkit-tap-highlight-color: transparent;
     }
 
-    /* LOGIN SCREEN (UNTOUCHED LOGIC) */
+    /* LOGIN SCREEN */
     .login-screen {
       min-height: 100vh;
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 20px;
+      padding: 16px;
       background: #f7f4ef;
     }
 
     .login-box {
       width: 100%;
-      max-width: 420px;
+      max-width: 400px;
       background: white;
-      padding: 35px 28px;
-      border-radius: 24px;
-      box-shadow: 0 10px 35px rgba(0,0,0,.08);
+      padding: 30px 20px;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,.06);
       text-align: center;
     }
 
     .logo {
-      font-size: 30px;
+      font-size: 26px;
       font-weight: 700;
       color: #2f4024;
-      margin-bottom: 8px;
+      margin-bottom: 6px;
     }
 
     .subtitle {
       color: #888;
-      margin-bottom: 25px;
+      font-size: 14px;
+      margin-bottom: 20px;
     }
 
     input, textarea, select {
       width: 100%;
-      padding: 13px 14px;
+      padding: 12px 14px;
       border: 1px solid #ddd7cf;
-      border-radius: 12px;
-      margin-top: 7px;
-      margin-bottom: 15px;
-      font-size: 15px;
+      border-radius: 10px;
+      margin-top: 6px;
+      margin-bottom: 14px;
+      font-size: 16px; /* Prevents auto-zoom on mobile safari/chrome */
       background: #fff;
       outline: none;
     }
@@ -74,7 +76,7 @@
     }
 
     textarea {
-      min-height: 100px;
+      min-height: 90px;
       resize: vertical;
     }
 
@@ -82,17 +84,16 @@
       display: block;
       text-align: left;
       font-weight: 600;
-      font-size: 14px;
+      font-size: 13.5px;
     }
 
     button {
       border: none;
-      border-radius: 12px;
-      padding: 12px 18px;
+      border-radius: 10px;
+      padding: 12px 16px;
       cursor: pointer;
       font-weight: 600;
       font-size: 14px;
-      transition: all 0.2s ease;
     }
 
     .primary {
@@ -101,141 +102,60 @@
       width: 100%;
     }
 
-    .primary:hover {
-      background: #2a3a20;
-    }
-
-    /* MAIN APP LAYOUT */
+    /* MOBILE FIRST APP LAYOUT */
     .dashboard-app {
       display: none;
       min-height: 100vh;
+      padding-bottom: 70px; /* Space for bottom mobile nav */
     }
 
     .app-wrapper {
       display: flex;
+      flex-direction: column;
       min-height: 100vh;
     }
 
-    /* SIDEBAR STYLES */
-    .sidebar {
-      width: 250px;
-      background: #ffffff;
-      border-right: 1px solid #e7e2d9;
-      padding: 20px 15px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      position: sticky;
-      top: 0;
-      height: 100vh;
-    }
-
-    .brand-header {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      padding: 5px 5px 20px;
-      border-bottom: 1px solid #f0ebe1;
-      margin-bottom: 20px;
-    }
-
-    .brand-header img {
-      width: 38px;
-      height: 38px;
-      object-fit: cover;
-      border-radius: 50%;
-    }
-
-    .brand-name {
-      font-size: 18px;
-      font-weight: 800;
-      color: #2f4024;
-    }
-
-    .nav-menu {
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-    }
-
-    .nav-item {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      padding: 12px 16px;
-      color: #5d5650;
-      border-radius: 12px;
-      cursor: pointer;
-      font-size: 14.5px;
-      font-weight: 600;
-      text-decoration: none;
-      transition: 0.2s;
-    }
-
-    .nav-item:hover, .nav-item.active {
-      background: #2f4024;
-      color: white;
-    }
-
-    .sidebar-promo {
-      background: linear-gradient(135deg, #eaf2e3 0%, #d8e5cd 100%);
-      padding: 16px;
-      border-radius: 16px;
-      text-align: center;
-      margin-top: 20px;
-    }
-
-    .sidebar-promo h5 {
-      color: #2f4024;
-      font-size: 14px;
-      margin-bottom: 5px;
-    }
-
-    .sidebar-promo p {
-      font-size: 12px;
-      color: #55634b;
-    }
-
-    /* MAIN CONTENT AREA */
-    .main-content {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      min-width: 0;
-    }
-
-    /* TOP ANNOUNCEMENT BAR */
-    .announcement-bar {
-      background: #2f4024;
-      color: #ffffff;
-      padding: 9px 20px;
-      font-size: 13.5px;
-      text-align: center;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-    }
-
-    /* APP TOP HEADER */
+    /* TOP HEADER FOR MOBILE */
     .top-header {
       background: white;
-      padding: 15px 30px;
+      padding: 12px 16px;
       display: flex;
       align-items: center;
       justify-content: space-between;
       border-bottom: 1px solid #e7e2d9;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .top-header-brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .top-header-brand img {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    .top-header-brand span {
+      font-weight: 800;
+      color: #2f4024;
+      font-size: 16px;
     }
 
     .user-profile {
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 8px;
     }
 
     .avatar {
-      width: 38px;
-      height: 38px;
+      width: 32px;
+      height: 32px;
       background: #3b502d;
       color: white;
       border-radius: 50%;
@@ -243,88 +163,151 @@
       align-items: center;
       justify-content: center;
       font-weight: bold;
+      font-size: 13px;
     }
 
-    .user-name {
-      font-weight: 700;
-      font-size: 14px;
+    /* MOBILE BOTTOM NAVIGATION BAR */
+    .sidebar {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background: #ffffff;
+      border-top: 1px solid #e7e2d9;
+      padding: 8px 12px;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      z-index: 100;
+      box-shadow: 0 -4px 15px rgba(0,0,0,0.05);
+    }
+
+    .brand-header, .sidebar-promo {
+      display: none; /* Hidden on mobile to save space, visible on desktop */
+    }
+
+    .nav-menu {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-around;
+      width: 100%;
+    }
+
+    .nav-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 3px;
+      padding: 6px 12px;
+      color: #777;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 11px;
+      font-weight: 600;
+      text-decoration: none;
+    }
+
+    .nav-item i {
+      font-size: 18px;
+    }
+
+    .nav-item.active {
+      background: #eef5ea;
+      color: #2f4024;
+    }
+
+    /* MAIN CONTENT AREA */
+    .main-content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+    }
+
+    .announcement-bar {
+      background: #2f4024;
+      color: #ffffff;
+      padding: 8px 12px;
+      font-size: 12px;
+      text-align: center;
     }
 
     .container {
-      padding: 25px 30px;
-      max-width: 1400px;
+      padding: 16px 12px;
+      max-width: 1200px;
       margin: 0 auto;
       width: 100%;
     }
 
-    /* HERO BANNER SECTION */
+    /* HERO BANNER */
     .hero-banner {
-      background: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.1)), url('https://images.unsplash.com/photo-1512436991641-6745cdb1723f?q=80&w=1200&auto=format&fit=crop');
+      background: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)), url('https://images.unsplash.com/photo-1512436991641-6745cdb1723f?q=80&w=800&auto=format&fit=crop');
       background-size: cover;
       background-position: center;
-      height: 170px;
-      border-radius: 20px;
-      margin-bottom: 25px;
+      height: 130px;
+      border-radius: 16px;
+      margin-bottom: 16px;
       display: flex;
       align-items: center;
-      padding: 0 35px;
+      padding: 0 20px;
       color: white;
-      box-shadow: 0 8px 25px rgba(0,0,0,0.08);
     }
 
     .hero-text h2 {
-      font-size: 26px;
-      margin-bottom: 6px;
-      text-shadow: 0 2px 4px rgba(0,0,0,0.4);
+      font-size: 18px;
+      margin-bottom: 4px;
     }
 
     .hero-text p {
-      font-size: 14px;
+      font-size: 12px;
       opacity: 0.95;
-      text-shadow: 0 1px 3px rgba(0,0,0,0.4);
     }
 
-    /* STATS CARDS GRID */
+    /* STATS CARDS GRID - MOBILE OPTIMIZED */
     .stats-grid {
       display: grid;
-      grid-template-columns: repeat(5, 1fr);
-      gap: 15px;
-      margin-bottom: 25px;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+      margin-bottom: 16px;
     }
 
     .stat-card {
       background: white;
-      padding: 18px 16px;
-      border-radius: 16px;
-      box-shadow: 0 4px 15px rgba(0,0,0,.03);
+      padding: 14px 12px;
+      border-radius: 14px;
+      box-shadow: 0 2px 10px rgba(0,0,0,.03);
       display: flex;
       align-items: center;
-      gap: 14px;
+      gap: 10px;
+    }
+
+    .stat-card.full-width {
+      grid-column: span 2;
     }
 
     .stat-icon {
-      width: 46px;
-      height: 46px;
-      border-radius: 12px;
+      width: 38px;
+      height: 38px;
+      border-radius: 10px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 20px;
+      font-size: 16px;
     }
 
     .stat-info h5 {
-      font-size: 12px;
+      font-size: 11px;
       color: #777;
-      margin-bottom: 4px;
+      margin-bottom: 2px;
     }
 
     .stat-info .val {
-      font-size: 18px;
+      font-size: 15px;
       font-weight: 700;
       color: #2d2825;
     }
 
-    /* CONTENT TABS & SECTIONS */
+    /* CONTENT TABS */
     .tab-content {
       display: none;
     }
@@ -334,97 +317,99 @@
     }
 
     .section-title {
-      font-size: 20px;
+      font-size: 17px;
       font-weight: 700;
-      margin-bottom: 18px;
+      margin-bottom: 14px;
       color: #2f4024;
       display: flex;
       align-items: center;
       justify-content: space-between;
     }
 
-    /* DASHBOARD GRID TWO COLUMN LAYOUT */
-    .dashboard-grid {
-      display: grid;
-      grid-template-columns: 2fr 1fr;
-      gap: 25px;
-    }
-
     .card-box {
       background: white;
-      border-radius: 20px;
-      padding: 22px;
-      box-shadow: 0 5px 20px rgba(0,0,0,.04);
-      margin-bottom: 25px;
+      border-radius: 16px;
+      padding: 16px;
+      box-shadow: 0 3px 15px rgba(0,0,0,.03);
+      margin-bottom: 16px;
     }
 
-    /* PRODUCT GRID STYLES */
+    /* PRODUCTS GRID - 1 CARD PER ROW ON SMALL PHONES, 2 ON TABLET */
     .filter-bar {
       display: flex;
-      gap: 12px;
-      margin-bottom: 20px;
+      flex-direction: column;
+      gap: 8px;
+      margin-bottom: 14px;
     }
 
     .products-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 18px;
+      grid-template-columns: 1fr;
+      gap: 14px;
     }
 
     .product-card {
       background: white;
-      border-radius: 18px;
+      border-radius: 14px;
       overflow: hidden;
-      box-shadow: 0 5px 18px rgba(0,0,0,.05);
+      box-shadow: 0 3px 12px rgba(0,0,0,.04);
       border: 1px solid #f0ebe1;
+      display: flex;
+      flex-direction: row; /* Horizontal layout for mobile ease */
     }
 
     .product-card img {
-      width: 100%;
-      height: 180px;
+      width: 110px;
+      height: 110px;
       object-fit: cover;
       background: #f5f1eb;
+      flex-shrink: 0;
     }
 
     .product-info {
-      padding: 15px;
+      padding: 12px;
+      flex: 1;
+      min-width: 0;
     }
 
     .product-info h4 {
-      font-size: 16px;
-      margin-bottom: 5px;
+      font-size: 14px;
+      margin-bottom: 3px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
     .cat {
-      font-size: 12px;
+      font-size: 11px;
       color: #888;
-      margin-bottom: 8px;
+      margin-bottom: 6px;
     }
 
     .price-row {
       display: flex;
       align-items: center;
-      gap: 8px;
-      margin-bottom: 8px;
+      gap: 6px;
+      margin-bottom: 6px;
     }
 
     .price {
-      font-size: 17px;
+      font-size: 15px;
       font-weight: 700;
       color: #2f4024;
     }
 
     .old-price {
-      font-size: 13px;
+      font-size: 12px;
       color: #aaa;
       text-decoration: line-through;
     }
 
     .badge-status {
       display: inline-block;
-      padding: 4px 10px;
-      border-radius: 20px;
-      font-size: 11px;
+      padding: 3px 8px;
+      border-radius: 12px;
+      font-size: 10px;
       font-weight: 600;
       background: #eef5ea;
       color: #3b502d;
@@ -437,70 +422,77 @@
 
     .card-actions {
       display: flex;
-      gap: 8px;
-      margin-top: 12px;
+      gap: 6px;
+      margin-top: 8px;
     }
 
-    .btn-edit {
-      background: #eaf2e3;
-      color: #2f4024;
-      flex: 1;
+    .btn-edit, .btn-archive {
+      padding: 6px 10px;
+      font-size: 11px;
+      border-radius: 8px;
     }
 
-    .btn-archive {
-      background: #faf3eb;
-      color: #b86e28;
-      flex: 1;
-    }
+    .btn-edit { background: #eaf2e3; color: #2f4024; flex: 1; }
+    .btn-archive { background: #faf3eb; color: #b86e28; flex: 1; }
 
-    /* OUT OF STOCK ALERT CONTAINER */
+    /* OUT OF STOCK HIGHLIGHT BOX - PROMINENT ON MOBILE */
     .out-stock-box {
       background: #fff5f5;
       border: 2px dashed #e56b6b;
-      border-radius: 18px;
-      padding: 18px;
-      margin-bottom: 22px;
+      border-radius: 16px;
+      padding: 14px;
+      margin-bottom: 16px;
     }
 
     .out-stock-box h4 {
       color: #c0392b;
-      margin-bottom: 12px;
+      margin-bottom: 10px;
+      font-size: 14px;
     }
 
     .out-stock-flex {
       display: flex;
-      gap: 14px;
+      gap: 10px;
       overflow-x: auto;
+      padding-bottom: 4px;
     }
 
     .out-stock-item {
       background: white;
-      padding: 10px;
-      border-radius: 12px;
-      min-width: 140px;
+      padding: 8px;
+      border-radius: 10px;
+      min-width: 110px;
       text-align: center;
       border: 1px solid #f8d7da;
+      flex-shrink: 0;
     }
 
     .out-stock-item img {
-      width: 50px;
-      height: 50px;
-      border-radius: 8px;
+      width: 45px;
+      height: 45px;
+      border-radius: 6px;
       object-fit: cover;
-      margin-bottom: 6px;
+      margin-bottom: 4px;
     }
 
-    /* TABLE STYLES FOR ORDERS */
+    /* TABLES SCROLLABLE ON MOBILE */
+    .table-responsive {
+      width: 100%;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+
     .data-table {
       width: 100%;
       border-collapse: collapse;
+      white-space: nowrap;
     }
 
     .data-table th, .data-table td {
-      padding: 12px 14px;
+      padding: 10px 12px;
       text-align: left;
       border-bottom: 1px solid #f0ebe1;
-      font-size: 13.5px;
+      font-size: 13px;
     }
 
     .data-table th {
@@ -509,81 +501,66 @@
     }
 
     .status-select {
-      padding: 5px 8px;
-      margin: 0;
-      font-size: 12px;
-      border-radius: 6px;
-    }
-
-    /* GRAPH PLACEHOLDER VISUAL */
-    .chart-box {
-      height: 180px;
-      display: flex;
-      align-items: flex-end;
-      gap: 15px;
-      padding-top: 20px;
-    }
-
-    .chart-bar-wrap {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 8px;
-      height: 100%;
-      justify-content: flex-end;
-    }
-
-    .chart-bar {
-      width: 100%;
-      background: #3b502d;
-      border-radius: 6px 6px 0 0;
-      transition: 0.3s;
-    }
-
-    .chart-bar-wrap:hover .chart-bar {
-      background: #5b7947;
-    }
-
-    .chart-label {
+      padding: 4px 6px;
       font-size: 11px;
-      color: #888;
+      border-radius: 6px;
     }
 
     .message {
       display: none;
-      padding: 12px;
-      border-radius: 10px;
-      margin-bottom: 15px;
-      font-size: 14px;
+      padding: 10px;
+      border-radius: 8px;
+      margin-bottom: 12px;
+      font-size: 13px;
     }
 
     .error { background: #fdeaea; color: #c0392b; }
     .success { background: #eef5ea; color: #2f4024; }
 
-    @media(max-width: 1100px) {
-      .stats-grid { grid-template-columns: repeat(3, 1fr); }
-      .dashboard-grid { grid-template-columns: 1fr; }
+    /* DESKTOP RESPONSIVE ADAPTATION */
+    @media(min-width: 768px) {
+      .dashboard-app { padding-bottom: 0; }
+      .app-wrapper { flex-direction: row; }
+      .sidebar {
+        position: sticky;
+        top: 0;
+        width: 240px;
+        height: 100vh;
+        flex-direction: column;
+        justify-content: space-between;
+        border-top: none;
+        border-right: 1px solid #e7e2d9;
+        padding: 20px 12px;
+      }
+      .brand-header { display: flex; align-items: center; gap: 10px; padding-bottom: 15px; border-bottom: 1px solid #f0ebe1; margin-bottom: 15px; }
+      .brand-header img { width: 36px; height: 36px; border-radius: 50%; object-fit: cover; }
+      .brand-name { font-size: 17px; font-weight: 800; color: #2f4024; }
+      .sidebar-promo { display: block; background: #eaf2e3; padding: 12px; border-radius: 12px; text-align: center; }
+      .nav-menu { flex-direction: column; gap: 4px; width: 100%; }
+      .nav-item { flex-direction: row; padding: 10px 14px; font-size: 14px; }
+      .nav-item i { font-size: 16px; }
+      .top-header { display: none; } /* Hide mobile top header on desktop */
       .products-grid { grid-template-columns: repeat(2, 1fr); }
+      .product-card { flex-direction: column; }
+      .product-card img { width: 100%; height: 160px; }
+      .stats-grid { grid-template-columns: repeat(5, 1fr); }
+      .stat-card.full-width { grid-column: span 1; }
+      .filter-bar { flex-direction: row; }
     }
 
-    @media(max-width: 800px) {
-      .sidebar { width: 70px; padding: 15px 8px; }
-      .brand-name, .nav-text, .sidebar-promo { display: none; }
-      .brand-header img { width: 32px; height: 32px; margin: 0 auto; }
-      .stats-grid { grid-template-columns: repeat(2, 1fr); }
-      .products-grid { grid-template-columns: 1fr; }
+    @media(min-width: 1024px) {
+      .products-grid { grid-template-columns: repeat(3, 1fr); }
     }
   </style>
 </head>
 
 <body>
 
-<!-- LOGIN SCREEN (UNTOUCHED LOGIC) -->
+<!-- LOGIN SCREEN -->
 <section class="login-screen" id="loginScreen">
   <div class="login-box">
     <div class="logo">🌿 Crafted Heaven</div>
-    <div class="subtitle">Seller Studio & Dashboard</div>
+    <div class="subtitle">Mobile Seller Studio</div>
 
     <div id="loginError" class="message error"></div>
 
@@ -601,59 +578,60 @@
 <!-- MAIN APP DASHBOARD -->
 <section class="dashboard-app" id="dashboardApp">
   
-  <div class="main-content">
+  <!-- MOBILE TOP HEADER -->
+  <div class="top-header">
+    <div class="top-header-brand">
+      <img src="icon.png" alt="Logo">
+      <span>Crafted Heaven</span>
+    </div>
+    <div class="user-profile">
+      <div class="avatar">T</div>
+      <button onclick="logout()" style="background:#f0ebe1; padding:5px 10px; font-size:11px;">Logout</button>
+    </div>
+  </div>
+
+  <div class="app-wrapper">
     
-    <!-- TOP ANNOUNCEMENT BAR -->
-    <div class="announcement-bar">
-      <span>📣 <strong>11.11 Sale Alert:</strong> Express Dispatching Enabled Across Pakistan!</span>
-    </div>
+    <!-- SIDEBAR / BOTTOM MOBILE NAVIGATION -->
+    <aside class="sidebar">
+      <div>
+        <div class="brand-header">
+          <img src="icon.png" alt="Logo">
+          <span class="brand-name">Crafted Heaven</span>
+        </div>
 
-    <!-- TOP APP BAR HEADER -->
-    <div class="top-header">
-      <div style="font-weight: 700; color: #2f4024; font-size: 18px;">Crafted Heaven Seller Studio</div>
-      <div class="user-profile">
-        <div class="avatar">T</div>
-        <div class="user-name">Taha Malik</div>
-        <button onclick="logout()" style="background:#f0ebe1; padding:6px 12px; font-size:12px; margin-left:10px;">Logout</button>
+        <div class="nav-menu">
+          <div class="nav-item active" onclick="switchTab('homeTab', this)">
+            <i class="fa-solid fa-chart-line"></i>
+            <span>Dashboard</span>
+          </div>
+          <div class="nav-item" onclick="switchTab('productsTab', this)">
+            <i class="fa-solid fa-box"></i>
+            <span>Products</span>
+          </div>
+          <div class="nav-item" onclick="switchTab('ordersTab', this)">
+            <i class="fa-solid fa-shopping-bag"></i>
+            <span>Orders</span>
+          </div>
+        </div>
       </div>
-    </div>
 
-    <div class="app-wrapper">
+      <div class="sidebar-promo">
+        <h5 style="color:#2f4024; font-size:13px; margin-bottom:3px;">Grow Business</h5>
+        <p style="font-size:11px; color:#55634b;">Mobile Studio Active</p>
+      </div>
+    </aside>
+
+    <!-- MAIN CONTENT CONTAINER -->
+    <main class="main-content">
       
-      <!-- APP SIDEBAR MENU WITH LOGO -->
-      <aside class="sidebar">
-        <div>
-          <div class="brand-header">
-            <img src="icon.png" alt="Logo">
-            <span class="brand-name">Crafted</span>
-          </div>
+      <div class="announcement-bar">
+        <span>📣 <strong>11.11 Sale:</strong> Express Dispatching Active Across Pakistan!</span>
+      </div>
 
-          <div class="nav-menu">
-            <div class="nav-item active" onclick="switchTab('homeTab', this)">
-              <i class="fa-solid fa-chart-line"></i>
-              <span class="nav-text">Dashboard</span>
-            </div>
-            <div class="nav-item" onclick="switchTab('productsTab', this)">
-              <i class="fa-solid fa-box"></i>
-              <span class="nav-text">Products</span>
-            </div>
-            <div class="nav-item" onclick="switchTab('ordersTab', this)">
-              <i class="fa-solid fa-shopping-bag"></i>
-              <span class="nav-text">Orders</span>
-            </div>
-          </div>
-        </div>
+      <div class="container">
 
-        <div class="sidebar-promo">
-          <h5>Grow Business</h5>
-          <p>Crafted Heaven Studio</p>
-        </div>
-      </aside>
-
-      <!-- CONTAINER CONTENT -->
-      <main class="container">
-
-        <!-- GLOBAL STATS CARDS -->
+        <!-- STATS CARDS -->
         <div class="stats-grid">
           <div class="stat-card">
             <div class="stat-icon" style="background: #eef5ea; color: #2f4024;"><i class="fa-solid fa-wallet"></i></div>
@@ -683,7 +661,7 @@
               <div class="val" id="statLowStock" style="color:#c0392b;">0 Items</div>
             </div>
           </div>
-          <div class="stat-card">
+          <div class="stat-card full-width">
             <div class="stat-icon" style="background: #f4ecf7; color: #8e44ad;"><i class="fa-solid fa-boxes-stacked"></i></div>
             <div class="stat-info">
               <h5>Total Products</h5>
@@ -692,34 +670,29 @@
           </div>
         </div>
 
-        <div id="globalMessage" class="message"></div>
-
-        <!-- OUT OF STOCK VISUAL ALERT CONTAINER -->
+        <!-- OUT OF STOCK VISUAL ALERT CONTAINER (VISIBLE ON MOBILE) -->
         <div id="outOfStockContainer" class="out-stock-box" style="display: none;">
-          <h4>⚠️ Out of Stock Products (Needs Restocking)</h4>
+          <h4>⚠️ Out of Stock Items (Restock Needed)</h4>
           <div class="out-stock-flex" id="outOfStockList"></div>
         </div>
 
-        <!-- 1. HOME DASHBOARD TAB -->
+        <!-- 1. HOME TAB -->
         <div id="homeTab" class="tab-content active">
           
-          <!-- HERO BANNER -->
           <div class="hero-banner">
             <div class="hero-text">
-              <h2>Crafted Heaven — Plants, Gardening & Crafts</h2>
-              <p>Little things, beautifully crafted ♥</p>
+              <h2>Crafted Heaven Studio</h2>
+              <p>Plants, Gardening & Handmade Crafts ♥</p>
             </div>
           </div>
 
-          <div class="dashboard-grid">
-            
-            <!-- LEFT MAIN: RECENT ORDERS -->
-            <div class="card-box">
-              <div class="section-title">
-                <span>📦 Recent Orders</span>
-                <button class="primary" style="width: auto; padding: 6px 14px; font-size: 12px;" onclick="switchTab('ordersTab', document.querySelectorAll('.nav-item')[2])">View All Orders</button>
-              </div>
+          <div class="card-box">
+            <div class="section-title">
+              <span>📦 Recent Orders</span>
+              <button class="primary" style="width: auto; padding: 5px 12px; font-size: 11px;" onclick="switchTab('ordersTab', document.querySelectorAll('.nav-item')[2])">View All</button>
+            </div>
 
+            <div class="table-responsive">
               <table class="data-table">
                 <thead>
                   <tr>
@@ -730,26 +703,10 @@
                   </tr>
                 </thead>
                 <tbody id="recentOrdersList">
-                  <tr><td colspan="4" style="text-align:center; color:#888;">Loading recent orders...</td></tr>
+                  <tr><td colspan="4" style="text-align:center; color:#888;">Loading orders...</td></tr>
                 </tbody>
               </table>
             </div>
-
-            <!-- RIGHT SIDEBAR: QUICK STATS GRAPH CHART -->
-            <div class="card-box">
-              <div class="section-title">
-                <span>📈 Sales Velocity</span>
-              </div>
-              <p style="font-size: 12px; color:#888; margin-bottom: 15px;">Monthly performance graph</p>
-              
-              <div class="chart-box">
-                <div class="chart-bar-wrap"><div class="chart-bar" style="height: 40%;"></div><span class="chart-label">W1</span></div>
-                <div class="chart-bar-wrap"><div class="chart-bar" style="height: 65%;"></div><span class="chart-label">W2</span></div>
-                <div class="chart-bar-wrap"><div class="chart-bar" style="height: 50%;"></div><span class="chart-label">W3</span></div>
-                <div class="chart-bar-wrap"><div class="chart-bar" style="height: 85%;"></div><span class="chart-label">W4</span></div>
-              </div>
-            </div>
-
           </div>
         </div>
 
@@ -757,51 +714,52 @@
         <div id="productsTab" class="tab-content">
           <div class="section-title">
             <span>🛍️ Products Inventory</span>
-            <button class="primary" style="width: auto;" onclick="showProductForm()">＋ Add Product</button>
+            <button class="primary" style="width: auto; padding: 8px 14px;" onclick="showProductForm()">＋ Add</button>
           </div>
 
-          <!-- PRODUCT ADD/EDIT FORM -->
+          <!-- ADD/EDIT FORM -->
           <div class="card-box" id="productFormCard" style="display: none;">
-            <h3 style="margin-bottom: 15px; color:#2f4024;" id="formTitleText">Add Product</h3>
+            <h3 style="margin-bottom: 12px; color:#2f4024; font-size: 16px;" id="formTitleText">Add Product</h3>
             <input type="hidden" id="productId">
 
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
-              <div>
-                <label>Product Name</label>
-                <input type="text" id="pName" placeholder="e.g. Donut Keychain">
-              </div>
-              <div>
-                <label>Category</label>
-                <select id="pCategory">
-                  <option value="">Select Category</option>
-                  <option value="Live Plants">Live Plants</option>
-                  <option value="Gardening">Gardening</option>
-                  <option value="Handmade Crafts">Handmade Crafts</option>
-                  <option value="Crochet">Crochet</option>
-                  <option value="Keychains">Keychains</option>
-                  <option value="Other">Other</option>
-                </select>
-              </div>
+            <label>Product Name</label>
+            <input type="text" id="pName" placeholder="e.g. Donut Keychain">
+
+            <label>Category</label>
+            <select id="pCategory">
+              <option value="">Select Category</option>
+              <option value="Live Plants">Live Plants</option>
+              <option value="Gardening">Gardening</option>
+              <option value="Handmade Crafts">Handmade Crafts</option>
+              <option value="Crochet">Crochet</option>
+              <option value="Keychains">Keychains</option>
+              <option value="Other">Other</option>
+            </select>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
               <div>
                 <label>Price (Rs.)</label>
                 <input type="number" id="pPrice" placeholder="300">
               </div>
               <div>
-                <label>Sale Price (Rs.)</label>
+                <label>Sale Price</label>
                 <input type="number" id="pSalePrice" placeholder="250">
               </div>
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
               <div>
                 <label>Stock Count</label>
                 <input type="number" id="pStock" value="1">
               </div>
               <div>
                 <label>Badge Tag</label>
-                <input type="text" id="pBadge" placeholder="New / Sale / Best Seller">
+                <input type="text" id="pBadge" placeholder="New / Sale">
               </div>
             </div>
 
-            <div style="display:flex; gap:10px; margin-top:10px;">
-              <button class="primary" id="saveProductBtn" onclick="saveProduct()">Save Product</button>
+            <div style="display:flex; gap:8px; margin-top:10px;">
+              <button class="primary" onclick="saveProduct()">Save Product</button>
               <button style="background:#eee;" onclick="hideProductForm()">Cancel</button>
             </div>
           </div>
@@ -820,40 +778,41 @@
           </div>
 
           <div class="products-grid" id="productsGridList">
-            <div style="grid-column: 1/-1; text-align:center; padding:30px; color:#888;">Loading products...</div>
+            <div style="text-align:center; padding:20px; color:#888;">Loading products...</div>
           </div>
         </div>
 
         <!-- 3. ORDERS TAB -->
         <div id="ordersTab" class="tab-content">
           <div class="section-title">
-            <span>📦 Order Management & Tracking</span>
-            <button class="primary" style="width:auto;" onclick="loadOrders()">🔄 Refresh Orders</button>
+            <span>📦 Orders & Tracking</span>
+            <button class="primary" style="width:auto; padding:8px 12px;" onclick="loadOrders()">🔄 Refresh</button>
           </div>
 
           <div class="card-box">
-            <table class="data-table">
-              <thead>
-                <tr>
-                  <th>Order ID</th>
-                  <th>Customer</th>
-                  <th>Phone</th>
-                  <th>Address</th>
-                  <th>Total</th>
-                  <th>Status</th>
-                  <th>Action</th>
-                </tr>
-              </thead>
-              <tbody id="ordersFullTable">
-                <tr><td colspan="7" style="text-align:center; color:#888;">Loading orders...</td></tr>
-              </tbody>
-            </table>
+            <div class="table-responsive">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Order ID</th>
+                    <th>Customer</th>
+                    <th>Phone</th>
+                    <th>Address</th>
+                    <th>Total</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody id="ordersFullTable">
+                  <tr><td colspan="7" style="text-align:center; color:#888;">Loading orders...</td></tr>
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
 
-      </main>
-    </div>
-
+      </div>
+    </main>
   </div>
 </section>
 
@@ -882,10 +841,11 @@
     if (el) el.classList.add('active');
 
     if (tabId === 'ordersTab') loadOrders();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
   // ==============================
-  // AUTHENTICATION (UNTOUCHED LOGIC)
+  // AUTHENTICATION
   // ==============================
   async function login() {
     const email = document.getElementById("email").value.trim();
@@ -938,11 +898,11 @@
   // ==============================
   async function loadProducts() {
     const grid = document.getElementById("productsGridList");
-    grid.innerHTML = '<div style="grid-column: 1/-1; text-align:center; padding:30px; color:#888;">Loading products...</div>';
+    grid.innerHTML = '<div style="text-align:center; padding:20px; color:#888;">Loading products...</div>';
 
     const { data, error } = await db.from("products").select("*").order("created_at", { ascending: false });
     if (error) {
-      grid.innerHTML = `<div style="grid-column: 1/-1; color:red;">Failed to load products: ${error.message}</div>`;
+      grid.innerHTML = `<div style="color:red;">Failed to load products: ${error.message}</div>`;
       return;
     }
 
@@ -955,13 +915,13 @@
   function renderProducts(list) {
     const grid = document.getElementById("productsGridList");
     if (!list || list.length === 0) {
-      grid.innerHTML = '<div style="grid-column: 1/-1; text-align:center; padding:30px; color:#888;">No products found.</div>';
+      grid.innerHTML = '<div style="text-align:center; padding:20px; color:#888;">No products found.</div>';
       return;
     }
 
     grid.innerHTML = "";
     list.forEach(p => {
-      const img = p.image_url || "https://via.placeholder.com/400x300?text=Crafted+Heaven";
+      const img = p.image_url || "https://via.placeholder.com/300x300?text=Crafted+Heaven";
       const isOut = (p.stock ?? 0) <= 0;
       const statusClass = p.status === 'active' ? '' : 'inactive';
 
@@ -975,9 +935,9 @@
               <span class="price">Rs. ${p.sale_price || p.price}</span>
               ${p.sale_price ? `<span class="old-price">Rs. ${p.price}</span>` : ''}
             </div>
-            <div style="font-size:12px; margin-bottom:8px;">
+            <div style="font-size:11.5px; margin-bottom:6px;">
               📦 Stock: <strong>${p.stock ?? 0}</strong>
-              ${isOut ? '<span style="color:#c0392b; font-weight:bold; margin-left:5px;">(Out of Stock)</span>' : ''}
+              ${isOut ? '<span style="color:#c0392b; font-weight:bold; display:block; margin-top:2px;">⚠️ Out of Stock</span>' : ''}
             </div>
             <span class="badge-status ${statusClass}">${p.status || 'active'}</span>
             <div class="card-actions">
@@ -1002,8 +962,8 @@
         flex.innerHTML += `
           <div class="out-stock-item">
             <img src="${escapeHTML(i.image_url || 'https://via.placeholder.com/80')}" alt="">
-            <div style="font-size:12px; font-weight:bold; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">${escapeHTML(i.name)}</div>
-            <div style="font-size:11px; color:#c0392b;">Stock: 0</div>
+            <div style="font-size:11px; font-weight:bold; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">${escapeHTML(i.name)}</div>
+            <div style="font-size:10px; color:#c0392b; font-weight:bold;">Stock: 0</div>
           </div>
         `;
       });
@@ -1057,6 +1017,7 @@
     document.getElementById("pSalePrice").value = p.sale_price || "";
     document.getElementById("pStock").value = p.stock ?? 0;
     document.getElementById("pBadge").value = p.badge || "";
+    window.scrollTo({ top: 100, behavior: 'smooth' });
   }
 
   async function saveProduct() {
@@ -1108,7 +1069,6 @@
       return;
     }
 
-    // Render Full Orders Table
     fullT.innerHTML = "";
     orders.forEach(o => {
       fullT.innerHTML += `
@@ -1131,7 +1091,6 @@
       `;
     });
 
-    // Render Recent Orders Dashboard Widget (Top 4)
     recT.innerHTML = "";
     orders.slice(0, 4).forEach(o => {
       recT.innerHTML += `
