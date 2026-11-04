@@ -41,7 +41,7 @@
     .logo {
       font-size: 30px;
       font-weight: 700;
-      color: #6c7b55;
+      color: #5c3541;
       margin-bottom: 8px;
     }
 
@@ -63,7 +63,7 @@
     }
 
     input:focus, textarea:focus, select:focus {
-      border-color: #8b9a70;
+      border-color: #6b3f4c;
     }
 
     textarea {
@@ -88,13 +88,13 @@
     }
 
     .primary {
-      background: #71815b;
+      background: #5c3541;
       color: white;
       width: 100%;
     }
 
     .primary:hover {
-      background: #5f704b;
+      background: #4a2b34;
     }
 
     .dashboard {
@@ -115,7 +115,7 @@
     }
 
     header h1 {
-      color: #667650;
+      color: #5c3541;
       font-size: 21px;
     }
 
@@ -125,9 +125,37 @@
     }
 
     .container {
-      max-width: 1100px;
+      max-width: 1200px;
       margin: auto;
       padding: 22px 16px 50px;
+    }
+
+    /* STATS / KPI CARDS */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 15px;
+      margin-bottom: 25px;
+    }
+
+    .stat-card {
+      background: white;
+      padding: 18px;
+      border-radius: 16px;
+      box-shadow: 0 4px 15px rgba(0,0,0,.04);
+      border-left: 5px solid #5c3541;
+    }
+
+    .stat-card h4 {
+      font-size: 13px;
+      color: #777;
+      margin-bottom: 6px;
+    }
+
+    .stat-card .stat-value {
+      font-size: 22px;
+      font-weight: 700;
+      color: #3f3a35;
     }
 
     /* NAVIGATION TABS */
@@ -137,18 +165,20 @@
       margin-bottom: 20px;
       border-bottom: 2px solid #e2ddd5;
       padding-bottom: 10px;
+      overflow-x: auto;
     }
 
     .tab-btn {
       background: transparent;
       color: #777;
-      font-size: 16px;
+      font-size: 15px;
       padding: 8px 16px;
       border-radius: 8px;
+      white-space: nowrap;
     }
 
     .tab-btn.active {
-      background: #71815b;
+      background: #5c3541;
       color: white;
     }
 
@@ -170,15 +200,29 @@
     }
 
     .topbar h2 {
-      font-size: 24px;
+      font-size: 22px;
+    }
+
+    .filter-bar {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+
+    .filter-bar input, .filter-bar select {
+      margin: 0;
+      padding: 10px 14px;
+      flex: 1;
+      min-width: 180px;
     }
 
     .add-btn {
-      background: #71815b;
+      background: #5c3541;
       color: white;
     }
 
-    .form-card {
+    .form-card, .settings-card {
       display: none;
       background: white;
       border-radius: 20px;
@@ -189,7 +233,7 @@
 
     .form-title {
       margin-bottom: 18px;
-      color: #687852;
+      color: #5c3541;
     }
 
     .grid {
@@ -228,7 +272,7 @@
     }
 
     .save {
-      background: #71815b;
+      background: #5c3541;
       color: white;
       flex: 1;
     }
@@ -250,6 +294,7 @@
       border-radius: 18px;
       overflow: hidden;
       box-shadow: 0 5px 18px rgba(0,0,0,.06);
+      position: relative;
     }
 
     .product-card img {
@@ -277,7 +322,7 @@
     .price {
       font-size: 18px;
       font-weight: 700;
-      color: #667650;
+      color: #5c3541;
     }
 
     .old-price {
@@ -299,12 +344,12 @@
       border-radius: 20px;
       font-size: 11px;
       background: #e8efe1;
-      color: #587043;
+      color: #3b522b;
     }
 
     .status.off {
       background: #f3e4e1;
-      color: #a15d50;
+      color: #8c3f35;
     }
 
     .actions {
@@ -314,14 +359,14 @@
     }
 
     .edit {
-      background: #e9eee3;
-      color: #586747;
+      background: #eee6e8;
+      color: #5c3541;
       flex: 1;
     }
 
-    .delete {
-      background: #f5e2df;
-      color: #a25549;
+    .archive-btn {
+      background: #f5ebe6;
+      color: #8c6235;
       flex: 1;
     }
 
@@ -344,7 +389,7 @@
 
     .order-table th {
       background: #f1eee9;
-      color: #667650;
+      color: #5c3541;
     }
 
     .order-status-select {
@@ -378,7 +423,7 @@
 
     .success {
       background: #e5efdc;
-      color: #557044;
+      color: #4b6638;
     }
 
     .upload-note {
@@ -395,6 +440,12 @@
       grid-column: 1 / -1;
     }
 
+    @media(max-width: 900px) {
+      .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
     @media(max-width: 800px) {
       .products {
         grid-template-columns: repeat(2, 1fr);
@@ -406,6 +457,9 @@
     }
 
     @media(max-width: 600px) {
+      .stats-grid {
+        grid-template-columns: 1fr;
+      }
       .grid {
         grid-template-columns: 1fr;
       }
@@ -431,7 +485,7 @@
 
 <body>
 
-<!-- LOGIN -->
+<!-- ORIGINAL LOGIN SECTION (UNTOUCHED) -->
 <section class="login-screen" id="loginScreen">
   <div class="login-box">
     <div class="logo">Crafted Heaven</div>
@@ -454,16 +508,37 @@
 <section class="dashboard" id="dashboard">
 
   <header>
-    <h1>🌿 Crafted Heaven</h1>
+    <h1>🌿 Crafted Heaven — Seller Dashboard</h1>
     <button class="logout" onclick="logout()">Logout</button>
   </header>
 
   <div class="container">
 
+    <!-- KPI STATS OVERVIEW -->
+    <div class="stats-grid">
+      <div class="stat-card">
+        <h4>Total Products</h4>
+        <div class="stat-value" id="statTotalProducts">0</div>
+      </div>
+      <div class="stat-card">
+        <h4>Out of Stock</h4>
+        <div class="stat-value" id="statOutOfStock" style="color: #a15d50;">0</div>
+      </div>
+      <div class="stat-card">
+        <h4>Total Orders</h4>
+        <div class="stat-value" id="statTotalOrders">0</div>
+      </div>
+      <div class="stat-card">
+        <h4>Total Revenue</h4>
+        <div class="stat-value" id="statTotalRevenue">Rs. 0</div>
+      </div>
+    </div>
+
     <!-- TABS -->
     <div class="tab-nav">
-      <button class="tab-btn active" onclick="switchTab('productsTab', this)">🛍️ Products</button>
+      <button class="tab-btn active" onclick="switchTab('productsTab', this)">🛍️ Products & Inventory</button>
       <button class="tab-btn" onclick="switchTab('ordersTab', this)">📦 Orders & Tracking</button>
+      <button class="tab-btn" onclick="switchTab('promosTab', this)">📢 Banners & Announcements</button>
     </div>
 
     <div id="message" class="message"></div>
@@ -473,6 +548,26 @@
       <div class="topbar">
         <h2>My Products</h2>
         <button class="add-btn" onclick="showForm()">＋ Add Product</button>
+      </div>
+
+      <!-- SEARCH & FILTER BAR -->
+      <div class="filter-bar">
+        <input type="text" id="searchProductInput" placeholder="🔍 Search products by name..." oninput="filterProducts()">
+        <select id="filterCategorySelect" onchange="filterProducts()">
+          <option value="">All Categories</option>
+          <option value="Live Plants">Live Plants</option>
+          <option value="Gardening">Gardening</option>
+          <option value="Handmade Crafts">Handmade Crafts</option>
+          <option value="Crochet">Crochet</option>
+          <option value="Keychains">Keychains</option>
+          <option value="Kids">Kids</option>
+          <option value="Other">Other</option>
+        </select>
+        <select id="filterStatusSelect" onchange="filterProducts()">
+          <option value="">All Status</option>
+          <option value="active">Active</option>
+          <option value="inactive">Inactive / Archived</option>
+        </select>
       </div>
 
       <!-- PRODUCT FORM -->
@@ -537,7 +632,7 @@
             <label>Status</label>
             <select id="status">
               <option value="active">Active</option>
-              <option value="inactive">Inactive</option>
+              <option value="inactive">Inactive / Archived</option>
             </select>
           </div>
 
@@ -602,6 +697,57 @@
       </table>
     </div>
 
+    <!-- PROMOS & BANNERS TAB -->
+    <div id="promosTab" class="tab-content">
+      <div class="topbar">
+        <h2>Store Banners & Top Announcement Bar</h2>
+      </div>
+
+      <div class="settings-card" style="display: block;">
+        <h3 class="form-title">📢 Top Announcement Bar (e.g. 11.11 Sale Alert)</h3>
+        
+        <label>Announcement Text</label>
+        <input type="text" id="announcementText" placeholder="e.g. 🎉 11.11 Grand Sale Live Now! Get 20% off on all items.">
+
+        <div class="grid">
+          <div>
+            <label>Background Color</label>
+            <input type="color" id="announcementBgColor" value="#5c3541" style="height: 45px; padding: 4px;">
+          </div>
+          <div>
+            <label>Text Color</label>
+            <input type="color" id="announcementTextColor" value="#ffffff" style="height: 45px; padding: 4px;">
+          </div>
+        </div>
+
+        <button class="primary" onclick="saveAnnouncement()" style="margin-top: 10px;">Save & Publish Announcement Bar</button>
+      </div>
+
+      <div class="settings-card" style="display: block;">
+        <h3 class="form-title">🖼️ 3-in-1 Banner Manager (Store Homepage Sliders)</h3>
+        
+        <div class="grid">
+          <div>
+            <label>Banner 1 Image</label>
+            <input type="file" id="banner1File" accept="image/*">
+            <div id="banner1Preview" style="margin-bottom: 10px; font-size:12px; color:#666;"></div>
+          </div>
+          <div>
+            <label>Banner 2 Image</label>
+            <input type="file" id="banner2File" accept="image/*">
+            <div id="banner2Preview" style="margin-bottom: 10px; font-size:12px; color:#666;"></div>
+          </div>
+          <div class="full">
+            <label>Banner 3 Image</label>
+            <input type="file" id="banner3File" accept="image/*">
+            <div id="banner3Preview" style="margin-bottom: 10px; font-size:12px; color:#666;"></div>
+          </div>
+        </div>
+
+        <button class="primary" onclick="saveBanners()" style="margin-top: 10px;">Upload & Save 3 Banners</button>
+      </div>
+    </div>
+
   </div>
 </section>
 
@@ -618,6 +764,8 @@
   const { createClient } = supabase;
   const db = createClient(SUPABASE_URL, SUPABASE_KEY);
 
+  let allProductsCache = [];
+
 
   // ==============================
   // TAB SWITCHING
@@ -632,12 +780,14 @@
 
     if (tabId === 'ordersTab') {
       loadOrders();
+    } else if (tabId === 'promosTab') {
+      loadSettings();
     }
   }
 
 
   // ==============================
-  // LOGIN & LOGOUT
+  // LOGIN & LOGOUT (ORIGINAL FLOW)
   // ==============================
 
   async function login() {
@@ -662,7 +812,7 @@
     document.getElementById("loginScreen").style.display = "none";
     document.getElementById("dashboard").style.display = "block";
 
-    loadProducts();
+    initDashboard();
   }
 
   function showLoginError(message) {
@@ -682,13 +832,18 @@
     if (data.session) {
       document.getElementById("loginScreen").style.display = "none";
       document.getElementById("dashboard").style.display = "block";
-      loadProducts();
+      initDashboard();
     }
+  }
+
+  async function initDashboard() {
+    await loadProducts();
+    await loadDashboardStats();
   }
 
 
   // ==============================
-  // LOAD PRODUCTS
+  // LOAD & FILTER PRODUCTS
   // ==============================
 
   async function loadProducts() {
@@ -705,21 +860,29 @@
       return;
     }
 
-    if (!data || data.length === 0) {
-      list.innerHTML = '<div class="empty">🌿 No products yet.<br><br>Tap "Add Product" to add your first product.</div>';
+    allProductsCache = data || [];
+    renderProducts(allProductsCache);
+    loadDashboardStats();
+  }
+
+  function renderProducts(products) {
+    const list = document.getElementById("productsList");
+
+    if (!products || products.length === 0) {
+      list.innerHTML = '<div class="empty">🌿 No products match your filter.<br><br>Tap "Add Product" to add your first product.</div>';
       return;
     }
 
     list.innerHTML = "";
 
-    data.forEach(product => {
+    products.forEach(product => {
       const image = product.image_url || "https://via.placeholder.com/500x400?text=Crafted+Heaven";
       const salePrice = product.sale_price && Number(product.sale_price) > 0
           ? `<span class="price">Rs. ${product.sale_price}</span> <span class="old-price">Rs. ${product.price}</span>`
           : `<span class="price">Rs. ${product.price}</span>`;
 
       const statusClass = product.status === "active" ? "" : "off";
-      const statusText = product.status === "active" ? "Active" : "Inactive";
+      const statusText = product.status === "active" ? "Active" : "Inactive / Archived";
 
       list.innerHTML += `
         <div class="product-card">
@@ -732,7 +895,7 @@
             <span class="status ${statusClass}">${statusText}</span>
             <div class="actions">
               <button class="edit" onclick='editProduct(${JSON.stringify(product)})'>✏️ Edit</button>
-              <button class="delete" onclick="deleteProduct('${product.id}')">🗑️ Delete</button>
+              <button class="archive-btn" onclick="toggleArchive('${product.id}', '${product.status}')" style="background:#f5ebe6; color:#8c6235; flex:1;">${product.status === 'active' ? '📂 Archive' : '📁 Activate'}</button>
             </div>
           </div>
         </div>
@@ -740,9 +903,44 @@
     });
   }
 
+  function filterProducts() {
+    const searchVal = document.getElementById("searchProductInput").value.toLowerCase().trim();
+    const catVal = document.getElementById("filterCategorySelect").value;
+    const statusVal = document.getElementById("filterStatusSelect").value;
+
+    const filtered = allProductsCache.filter(p => {
+      const matchName = (p.name || "").toLowerCase().includes(searchVal);
+      const matchCat = !catVal || p.category === catVal;
+      const matchStatus = !statusVal || p.status === statusVal;
+      return matchName && matchCat && matchStatus;
+    });
+
+    renderProducts(filtered);
+  }
+
+  async function loadDashboardStats() {
+    const totalProd = allProductsCache.length;
+    const outStock = allProductsCache.filter(p => (p.stock ?? 0) <= 0).length;
+
+    document.getElementById("statTotalProducts").textContent = totalProd;
+    document.getElementById("statOutOfStock").textContent = outStock;
+
+    const { data: orders } = await db.from("orders").select("total_amount, status");
+    if (orders) {
+      document.getElementById("statTotalOrders").textContent = orders.length;
+      let revenue = 0;
+      orders.forEach(o => {
+        if (o.status !== 'Cancelled') {
+          revenue += Number(o.total_amount || 0);
+        }
+      });
+      document.getElementById("statTotalRevenue").textContent = "Rs. " + revenue.toLocaleString();
+    }
+  }
+
 
   // ==============================
-  // FORM ACTIONS
+  // FORM ACTIONS (PRODUCTS)
   // ==============================
 
   function showForm() {
@@ -792,11 +990,6 @@
 
     window.scrollTo({ top: 0, behavior: "smooth" });
   }
-
-
-  // ==============================
-  // SAVE PRODUCT
-  // ==============================
 
   async function saveProduct() {
     const saveBtn = document.getElementById("saveBtn");
@@ -879,11 +1072,6 @@
     }
   }
 
-
-  // ==============================
-  // IMAGE UPLOAD
-  // ==============================
-
   async function uploadImage(file) {
     const extension = file.name.split(".").pop();
     const fileName = Date.now() + "-" + Math.random().toString(36).substring(2) + "." + extension;
@@ -896,26 +1084,24 @@
     return data.publicUrl;
   }
 
+  async function toggleArchive(id, currentStatus) {
+    const newStatus = currentStatus === "active" ? "inactive" : "active";
+    const actionText = newStatus === "inactive" ? "archive" : "activate";
 
-  // ==============================
-  // DELETE PRODUCT
-  // ==============================
+    if (!confirm(`Are you sure you want to ${actionText} this product?`)) return;
 
-  async function deleteProduct(id) {
-    if (!confirm("Are you sure you want to delete this product?")) return;
-
-    const { error } = await db.from("products").delete().eq("id", id);
+    const { error } = await db.from("products").update({ status: newStatus }).eq("id", id);
     if (error) {
-      showMessage("Delete failed: " + error.message, true);
+      showMessage("Action failed: " + error.message, true);
       return;
     }
-    showMessage("Product deleted successfully! ✅");
+    showMessage(`Product status updated to ${newStatus}! ✅`);
     loadProducts();
   }
 
 
   // ==============================
-  // ORDERS & TRACKING MANAGEMENT
+  // ORDERS MANAGEMENT
   // ==============================
 
   async function loadOrders() {
@@ -955,7 +1141,7 @@
             </select>
           </td>
           <td>
-            <button style="background:#71815b; color:white; padding:6px 12px; font-size:12px;" onclick="updateOrderStatus('${order.id}')">Update</button>
+            <button style="background:#5c3541; color:white; padding:6px 12px; font-size:12px;" onclick="updateOrderStatus('${order.id}')">Update</button>
           </td>
         </tr>
       `;
@@ -975,6 +1161,71 @@
       showMessage("Failed to update status: " + error.message, true);
     } else {
       showMessage("Parcel Status updated successfully! Customer can now see new status ✅");
+      loadDashboardStats();
+    }
+  }
+
+
+  // ==============================
+  // SETTINGS & PROMOS (ANNOUNCEMENTS & BANNERS)
+  // ==============================
+
+  async function loadSettings() {
+    const { data } = await db.from("store_settings").select("*").single();
+    if (data) {
+      if (data.announcement_text) document.getElementById("announcementText").value = data.announcement_text;
+      if (data.announcement_bg) document.getElementById("announcementBgColor").value = data.announcement_bg;
+      if (data.announcement_color) document.getElementById("announcementTextColor").value = data.announcement_color;
+
+      if (data.banner_1) document.getElementById("banner1Preview").textContent = "Current: " + data.banner_1;
+      if (data.banner_2) document.getElementById("banner2Preview").textContent = "Current: " + data.banner_2;
+      if (data.banner_3) document.getElementById("banner3Preview").textContent = "Current: " + data.banner_3;
+    }
+  }
+
+  async function saveAnnouncement() {
+    const text = document.getElementById("announcementText").value.trim();
+    const bg = document.getElementById("announcementBgColor").value;
+    const color = document.getElementById("announcementTextColor").value;
+
+    const { error } = await db.from("store_settings").upsert({
+      id: 1,
+      announcement_text: text,
+      announcement_bg: bg,
+      announcement_color: color
+    });
+
+    if (error) {
+      showMessage("Failed to update announcement: " + error.message, true);
+    } else {
+      showMessage("Announcement Bar published successfully! ✅");
+    }
+  }
+
+  async function saveBanners() {
+    try {
+      let b1 = document.getElementById("banner1File").files[0];
+      let b2 = document.getElementById("banner2File").files[0];
+      let b3 = document.getElementById("banner3File").files[0];
+
+      let updateData = {};
+      if (b1) updateData.banner_1 = await uploadImage(b1);
+      if (b2) updateData.banner_2 = await uploadImage(b2);
+      if (b3) updateData.banner_3 = await uploadImage(b3);
+
+      if (Object.keys(updateData).length === 0) {
+        showMessage("Please select at least one banner image to upload.", true);
+        return;
+      }
+
+      updateData.id = 1;
+      const { error } = await db.from("store_settings").upsert(updateData);
+
+      if (error) throw error;
+      showMessage("3-in-1 Banners updated successfully! ✅");
+      loadSettings();
+    } catch (err) {
+      showMessage("Banner upload failed: " + err.message, true);
     }
   }
 
