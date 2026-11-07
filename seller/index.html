@@ -14,14 +14,14 @@
 
   <style>
     :root {
-      --primary: #3b502d;
-      --primary-hover: #2f4024;
-      --accent: #b86e28;
-      --light-bg: #f7f4ef;
+      --primary: #173d2a;
+      --primary-hover: #0f291c;
+      --accent: #d4af37;
+      --light-bg: #f9f8f3;
       --card-bg: #ffffff;
-      --text-main: #2d2825;
-      --text-muted: #777777;
-      --border-color: #e7e2d9;
+      --text-main: #173d2a;
+      --text-muted: #666666;
+      --border-color: #e2ded4;
     }
 
     * {
@@ -31,7 +31,7 @@
     }
 
     body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      font-family: Arial, Helvetica, sans-serif;
       background: var(--light-bg);
       color: var(--text-main);
       -webkit-tap-highlight-color: transparent;
@@ -44,7 +44,7 @@
       align-items: center;
       justify-content: center;
       padding: 16px;
-      background: #f7f4ef;
+      background: var(--light-bg);
     }
 
     .login-box {
@@ -53,7 +53,7 @@
       background: white;
       padding: 30px 20px;
       border-radius: 20px;
-      box-shadow: 0 10px 30px rgba(0,0,0,.06);
+      box-shadow: 0 10px 30px rgba(0,0,0,.05);
       text-align: center;
       border: 1px solid var(--border-color);
     }
@@ -74,12 +74,13 @@
     input, textarea, select {
       width: 100%;
       padding: 12px 14px;
-      border: 1px solid #ddd7cf;
+      border: 1px solid #d8d4c8;
       border-radius: 10px;
       margin-top: 6px;
       margin-bottom: 14px;
-      font-size: 16px; 
-      background: #fff;
+      font-size: 15px; 
+      background: #ffffff !important;
+      color: #173d2a !important;
       outline: none;
     }
 
@@ -97,6 +98,7 @@
       text-align: left;
       font-weight: 600;
       font-size: 13.5px;
+      color: var(--primary);
     }
 
     button {
@@ -115,7 +117,7 @@
 
     .primary {
       background: var(--primary);
-      color: white;
+      color: #f1d57a;
       width: 100%;
     }
 
@@ -124,6 +126,7 @@
       display: none;
       min-height: 100vh;
       padding-bottom: 75px; 
+      background: var(--light-bg);
     }
 
     .app-wrapper {
@@ -152,8 +155,8 @@
     }
 
     .top-header-brand img {
-      width: 32px;
-      height: 32px;
+      width: 34px;
+      height: 34px;
       border-radius: 50%;
       object-fit: cover;
     }
@@ -174,7 +177,7 @@
       width: 32px;
       height: 32px;
       background: var(--primary);
-      color: white;
+      color: #f1d57a;
       border-radius: 50%;
       display: flex;
       align-items: center;
@@ -189,7 +192,7 @@
       bottom: 0;
       left: 0;
       width: 100%;
-      background: #ffffff;
+      background: #ffffff !important;
       border-top: 1px solid var(--border-color);
       padding: 6px 4px;
       display: flex;
@@ -233,7 +236,7 @@
     }
 
     .nav-item.active {
-      background: #eef5ea;
+      background: #eaf2ed;
       color: var(--primary);
     }
 
@@ -243,15 +246,6 @@
       display: flex;
       flex-direction: column;
       width: 100%;
-    }
-
-    .announcement-bar {
-      background: var(--primary);
-      color: #ffffff;
-      padding: 8px 12px;
-      font-size: 12px;
-      text-align: center;
-      font-weight: 500;
     }
 
     .container {
@@ -270,7 +264,7 @@
     }
 
     .stat-card {
-      background: white;
+      background: white !important;
       padding: 14px 12px;
       border-radius: 14px;
       box-shadow: 0 2px 10px rgba(0,0,0,.03);
@@ -326,7 +320,7 @@
     }
 
     .card-box {
-      background: white;
+      background: white !important;
       border-radius: 16px;
       padding: 16px;
       box-shadow: 0 3px 15px rgba(0,0,0,.03);
@@ -349,7 +343,7 @@
     }
 
     .product-card {
-      background: white;
+      background: white !important;
       border-radius: 14px;
       overflow: hidden;
       box-shadow: 0 3px 12px rgba(0,0,0,.04);
@@ -362,7 +356,7 @@
       width: 110px;
       height: 110px;
       object-fit: cover;
-      background: #f5f1eb;
+      background: #f1f0e8;
       flex-shrink: 0;
     }
 
@@ -378,6 +372,7 @@
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
+      color: var(--primary);
     }
 
     .cat {
@@ -411,7 +406,7 @@
       border-radius: 12px;
       font-size: 10px;
       font-weight: 600;
-      background: #eef5ea;
+      background: #eaf2ed;
       color: var(--primary);
     }
 
@@ -432,12 +427,12 @@
       border-radius: 8px;
     }
 
-    .btn-edit { background: #eaf2e3; color: var(--primary); flex: 1; }
-    .btn-archive { background: #faf3eb; color: var(--accent); flex: 1; }
+    .btn-edit { background: #eaf2ed; color: var(--primary); flex: 1; }
+    .btn-archive { background: #fdf5e8; color: #b86e28; flex: 1; }
 
     /* OUT OF STOCK ALERT BOX */
     .out-stock-box {
-      background: #fff5f5;
+      background: #fff8f8;
       border: 2px dashed #e56b6b;
       border-radius: 16px;
       padding: 14px;
@@ -496,7 +491,7 @@
     }
 
     .data-table th {
-      background: #f9f6f0;
+      background: #f4f1e8;
       color: var(--primary);
     }
 
@@ -515,7 +510,7 @@
     }
 
     .error { background: #fdeaea; color: #c0392b; }
-    .success { background: #eef5ea; color: var(--primary); }
+    .success { background: #eaf2ed; color: var(--primary); }
 
     .pos-grid {
       display: grid;
@@ -523,7 +518,7 @@
       gap: 16px;
     }
     .pos-product-item {
-      background: #f9f6f0;
+      background: #f9f8f3;
       border: 1px solid var(--border-color);
       padding: 10px;
       border-radius: 10px;
@@ -552,7 +547,7 @@
       .brand-header { display: flex; align-items: center; gap: 10px; padding-bottom: 15px; border-bottom: 1px solid var(--border-color); margin-bottom: 15px; }
       .brand-header img { width: 36px; height: 36px; border-radius: 50%; object-fit: cover; }
       .brand-name { font-size: 17px; font-weight: 800; color: var(--primary); }
-      .sidebar-promo { display: block; background: #eaf2e3; padding: 12px; border-radius: 12px; text-align: center; }
+      .sidebar-promo { display: block; background: #eaf2ed; padding: 12px; border-radius: 12px; text-align: center; }
       .nav-menu { flex-direction: column; gap: 4px; width: 100%; overflow-x: visible; }
       .nav-item { flex-direction: row; padding: 10px 14px; font-size: 14px; gap: 10px; }
       .nav-item i { font-size: 16px; }
@@ -597,12 +592,12 @@
   
   <div class="top-header">
     <div class="top-header-brand">
-      <img src="icon.png" alt="Logo">
+      <img src="crafted_heaven_logo.png" alt="Logo" onerror="this.src='icon.png'">
       <span>Crafted Heaven</span>
     </div>
     <div class="user-profile">
       <div class="avatar">T</div>
-      <button onclick="logout()" style="background:#f0ebe1; color:var(--primary); padding:5px 10px; font-size:11px;">Logout</button>
+      <button onclick="logout()" style="background:#f4f1e8; color:var(--primary); padding:5px 10px; font-size:11px;">Logout</button>
     </div>
   </div>
 
@@ -611,7 +606,7 @@
     <aside class="sidebar">
       <div>
         <div class="brand-header">
-          <img src="icon.png" alt="Logo">
+          <img src="crafted_heaven_logo.png" alt="Logo" onerror="this.src='icon.png'">
           <span class="brand-name">Crafted Heaven</span>
         </div>
 
@@ -664,7 +659,7 @@
         <!-- STATS CARDS -->
         <div class="stats-grid">
           <div class="stat-card">
-            <div class="stat-icon" style="background: #eef5ea; color: var(--primary);"><i class="fa-solid fa-wallet"></i></div>
+            <div class="stat-icon" style="background: #eaf2ed; color: var(--primary);"><i class="fa-solid fa-wallet"></i></div>
             <div class="stat-info">
               <h5>Total Sales</h5>
               <div class="val" id="statSales">Rs. 0</div>
@@ -678,7 +673,7 @@
             </div>
           </div>
           <div class="stat-card">
-            <div class="stat-icon" style="background: #fef5e7; color: #d35400;"><i class="fa-solid fa-chart-pie"></i></div>
+            <div class="stat-icon" style="background: #fdf5e8; color: #d35400;"><i class="fa-solid fa-chart-pie"></i></div>
             <div class="stat-info">
               <h5>Net Profit</h5>
               <div class="val" id="statProfit">Rs. 0</div>
@@ -793,7 +788,7 @@
 
             <div style="display:flex; gap:8px; margin-top:10px;">
               <button class="primary" onclick="saveProduct()">Save Product</button>
-              <button style="background:#eee;" onclick="hideProductForm()">Cancel</button>
+              <button style="background:#eee; color:#333;" onclick="hideProductForm()">Cancel</button>
             </div>
           </div>
 
@@ -921,29 +916,32 @@
           </div>
         </div>
 
-        <!-- 6. WEBSITE CONTENT (BANNERS & NOTIFICATIONS MANAGER) -->
+        <!-- 6. WEBSITE CONTENT (BANNERS & NOTIFICATIONS MANAGER WITH GALLERY FILE UPLOAD) -->
         <div id="contentTab" class="tab-content">
           <div class="section-title"><span>🖼️ Website Banners & Top Bar Manager</span></div>
           
           <div class="card-box">
-            <h3 style="font-size:15px; margin-bottom:10px; color:var(--primary);">Add New Sliding Banner (3-in-1)</h3>
+            <h3 style="font-size:15px; margin-bottom:10px; color:var(--primary);">Add New Sliding Banner</h3>
+            
+            <label>Select Image from Device / Gallery</label>
+            <input type="file" id="bannerFileInput" accept="image/*">
+            
             <label>Banner Title / Subtitle</label>
             <input type="text" id="bannerTitle" placeholder="e.g. 11.11 Grand Sale Live!">
-            <label>Image URL</label>
-            <input type="text" id="bannerImage" placeholder="https://images.unsplash.com/photo-...">
-            <button class="primary" onclick="addBannerToSupabase()">Publish Banner to Website</button>
+            
+            <button class="primary" onclick="uploadAndSaveBanner()">📤 Upload Image & Publish Banner</button>
 
-            <h4 style="font-size:14px; margin: 16px 0 8px 0; color:var(--primary);">Active Banners</h4>
+            <h4 style="font-size:14px; margin: 18px 0 8px 0; color:var(--primary);">Active Banners List</h4>
             <div id="activeBannersList">Loading banners...</div>
           </div>
 
           <div class="card-box">
             <h3 style="font-size:15px; margin-bottom:10px; color:var(--primary);">Add Top Bar Sliding Announcement</h3>
             <label>Notification Text</label>
-            <input type="text" id="notifText" placeholder="📣 Crafted Heaven: Free Express Delivery in Lahore!">
+            <input type="text" id="notifText" placeholder="🎉 11.11 Mega Sale is Live at Crafted Heaven!">
             <button class="primary" onclick="addNotificationToSupabase()">Add Announcement</button>
 
-            <h4 style="font-size:14px; margin: 16px 0 8px 0; color:var(--primary);">Active Announcements</h4>
+            <h4 style="font-size:14px; margin: 18px 0 8px 0; color:var(--primary);">Active Announcements List</h4>
             <div id="activeNotifsList">Loading announcements...</div>
           </div>
         </div>
@@ -1010,7 +1008,6 @@
   let cacheOrders = [];
   let cacheExpenses = [];
   let cacheReviews = [];
-  let cacheBanners = [];
   let posCart = [];
   let homeChartInstance = null;
   let reportChartInstance = null;
@@ -1255,7 +1252,7 @@
                 <option value="Cancelled" ${o.status === 'Cancelled' ? 'selected' : ''}>Cancelled</option>
               </select>
             </td>
-            <td><button style="background:var(--primary); color:white; padding:4px 8px; font-size:11px;" onclick="updateOrdStatus('${o.id}')">Save</button></td>
+            <td><button style="background:var(--primary); color:#f1d57a; padding:4px 8px; font-size:11px;" onclick="updateOrdStatus('${o.id}')">Save</button></td>
           </tr>
         `;
       });
@@ -1424,7 +1421,7 @@
     if (document.getElementById("finNetProfit")) document.getElementById("finNetProfit").textContent = "Rs. " + Math.round(netProfit).toLocaleString();
   }
 
-  // MULTI-BANNER ADMIN MANAGEMENT
+  // MULTI-BANNER MANAGEMENT WITH GALLERY UPLOAD
   async function loadAdminBanners() {
     const container = document.getElementById("activeBannersList");
     if(!container) return;
@@ -1438,25 +1435,59 @@
     container.innerHTML = dbBanners.map(b => `
       <div style="display:flex; align-items:center; justify-content:space-between; background:#fff; padding:10px; border:1px solid #e0e0e0; border-radius:8px; margin-bottom:8px;">
         <div style="display:flex; align-items:center; gap:10px;">
-          <img src="${b.image_url}" style="width:50px; height:35px; object-fit:cover; border-radius:5px;">
-          <div><strong>${escapeHTML(b.title || 'Banner')}</strong></div>
+          <img src="${b.image_url}" style="width:55px; height:38px; object-fit:cover; border-radius:5px;">
+          <div><strong style="color:var(--primary); font-size:13px;">${escapeHTML(b.title || 'Banner')}</strong></div>
         </div>
         <button onclick="deleteBannerFromSupabase('${b.id}')" style="background:#ff4d4d; color:white; border:0; padding:6px 12px; border-radius:6px; cursor:pointer; font-size:12px;">Delete</button>
       </div>
     `).join('');
   }
 
-  async function addBannerToSupabase() {
+  async function uploadAndSaveBanner() {
+    const fileInput = document.getElementById("bannerFileInput");
     const title = document.getElementById("bannerTitle").value.trim();
-    const image_url = document.getElementById("bannerImage").value.trim();
-    if(!image_url) return alert("Please provide an Image URL.");
 
-    const { error } = await db.from('banners').insert([{ title, image_url }]);
-    if(error) alert("Error: " + error.message);
-    else {
-      alert("Banner published successfully!");
+    if (!fileInput.files || fileInput.files.length === 0) {
+      alert("Please select an image file from your device/gallery.");
+      return;
+    }
+
+    const file = fileInput.files[0];
+    const fileExt = file.name.split('.').pop();
+    const fileName = `banner_${Date.now()}.${fileExt}`;
+
+    // 1. Upload file to Supabase Storage
+    const { data: uploadData, error: uploadError } = await db.storage
+      .from('banners')
+      .upload(fileName, file);
+
+    let image_url = "";
+
+    if (uploadError) {
+      // Fallback if bucket fails or public URL fallback
+      console.warn("Storage upload fallback:", uploadError.message);
+      // Read as Data URL fallback for fast rendering if bucket policy is restricted
+      image_url = await new Promise((resolve) => {
+        const reader = new FileReader();
+        reader.onload = e => resolve(e.target.result);
+        reader.readAsDataURL(file);
+      });
+    } else {
+      const { data: publicUrlData } = db.storage.from('banners').getPublicUrl(fileName);
+      image_url = publicUrlData.publicUrl;
+    }
+
+    // 2. Insert into database
+    const { error: dbError } = await db
+      .from('banners')
+      .insert([{ title, image_url }]);
+
+    if (dbError) {
+      alert("Error saving banner: " + dbError.message);
+    } else {
+      alert("Banner uploaded and published successfully!");
+      fileInput.value = "";
       document.getElementById("bannerTitle").value = "";
-      document.getElementById("bannerImage").value = "";
       loadAdminBanners();
     }
   }
@@ -1467,7 +1498,7 @@
     loadAdminBanners();
   }
 
-  // ANNOUNCEMENTS ADMIN MANAGEMENT
+  // ANNOUNCEMENTS MANAGEMENT
   async function loadAdminNotifications() {
     const container = document.getElementById("activeNotifsList");
     if(!container) return;
@@ -1528,7 +1559,7 @@
     container.innerHTML = "";
     cacheReviews.forEach(r => {
       container.innerHTML += `
-        <div style="background:#f9f6f0; padding:12px; border-radius:10px; margin-bottom:10px; border:1px solid var(--border-color);">
+        <div style="background:#f9f8f3; padding:12px; border-radius:10px; margin-bottom:10px; border:1px solid var(--border-color);">
           <div style="display:flex; justify-content:space-between; font-weight:bold; font-size:13px; color:var(--primary);">
             <span>${escapeHTML(r.author)}</span>
             <span>${'⭐'.repeat(r.rating || 5)}</span>
@@ -1583,8 +1614,8 @@
         datasets: [{
           label: 'Sales (Rs.)',
           data: [1200, 2500, 1800, 3200, 4100, 3800, 5200],
-          borderColor: '#3b502d',
-          backgroundColor: 'rgba(59, 80, 45, 0.1)',
+          borderColor: '#173d2a',
+          backgroundColor: 'rgba(23, 61, 42, 0.1)',
           fill: true,
           tension: 0.3
         }]
@@ -1613,7 +1644,7 @@
       type: 'bar',
       data: {
         labels: labels,
-        datasets: [{ label: 'Revenue (Rs.)', data: dataVals, backgroundColor: '#b86e28', borderRadius: 8 }]
+        datasets: [{ label: 'Revenue (Rs.)', data: dataVals, backgroundColor: '#d4af37', borderRadius: 8 }]
       },
       options: { responsive: true, plugins: { legend: { display: false } } }
     });
