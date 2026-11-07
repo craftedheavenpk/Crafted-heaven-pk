@@ -5,26 +5,23 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Crafted Heaven | Seller Studio Dashboard</title>
 
-  <!-- App Icon & Favicon -->
   <link rel="icon" type="image/png" href="icon.png">
   <link rel="apple-touch-icon" href="icon.png">
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <!-- Chart.js for Professional Charts -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
   <style>
     :root {
-      --primary: #5c1d35; /* Wine / Deep Rose */
-      --primary-hover: #471428;
-      --secondary: #9b4d6b; /* Rose Accent */
-      --light-bg: #fdfbfb;
+      --primary: #3b502d; /* Classic Crafted Heaven Green */
+      --primary-hover: #2f4024;
+      --accent: #b86e28;
+      --light-bg: #f7f4ef;
       --card-bg: #ffffff;
-      --text-main: #2d2328;
-      --text-muted: #75686d;
-      --border-color: #f1e4e8;
-      --accent-green: #2f4024;
+      --text-main: #2d2825;
+      --text-muted: #777777;
+      --border-color: #e7e2d9;
     }
 
     * {
@@ -47,16 +44,16 @@
       align-items: center;
       justify-content: center;
       padding: 16px;
-      background: linear-gradient(135deg, #fdfbfb 0%, #f7ebee 100%);
+      background: #f7f4ef;
     }
 
     .login-box {
       width: 100%;
       max-width: 400px;
       background: white;
-      padding: 35px 25px;
+      padding: 30px 20px;
       border-radius: 20px;
-      box-shadow: 0 15px 35px rgba(92, 29, 53, 0.08);
+      box-shadow: 0 10px 30px rgba(0,0,0,.06);
       text-align: center;
       border: 1px solid var(--border-color);
     }
@@ -71,25 +68,23 @@
     .subtitle {
       color: var(--text-muted);
       font-size: 14px;
-      margin-bottom: 25px;
+      margin-bottom: 20px;
     }
 
     input, textarea, select {
       width: 100%;
       padding: 12px 14px;
-      border: 1px solid #e0d0d5;
+      border: 1px solid #ddd7cf;
       border-radius: 10px;
       margin-top: 6px;
       margin-bottom: 14px;
       font-size: 16px; 
       background: #fff;
       outline: none;
-      transition: border-color 0.2s;
     }
 
     input:focus, textarea:focus, select:focus {
       border-color: var(--primary);
-      box-shadow: 0 0 0 3px rgba(92, 29, 53, 0.1);
     }
 
     textarea {
@@ -102,7 +97,6 @@
       text-align: left;
       font-weight: 600;
       font-size: 13.5px;
-      color: var(--text-main);
     }
 
     button {
@@ -112,7 +106,11 @@
       cursor: pointer;
       font-weight: 600;
       font-size: 14px;
-      transition: background 0.2s;
+      transition: opacity 0.2s;
+    }
+
+    button:active {
+      opacity: 0.8;
     }
 
     .primary {
@@ -121,11 +119,7 @@
       width: 100%;
     }
 
-    .primary:hover {
-      background: var(--primary-hover);
-    }
-
-    /* MOBILE FIRST APP LAYOUT */
+    /* APP LAYOUT */
     .dashboard-app {
       display: none;
       min-height: 100vh;
@@ -138,7 +132,7 @@
       min-height: 100vh;
     }
 
-    /* TOP HEADER FOR MOBILE */
+    /* TOP HEADER MOBILE */
     .top-header {
       background: white;
       padding: 12px 16px;
@@ -197,7 +191,7 @@
       width: 100%;
       background: #ffffff;
       border-top: 1px solid var(--border-color);
-      padding: 8px 6px;
+      padding: 6px 4px;
       display: flex;
       justify-content: space-around;
       align-items: center;
@@ -215,7 +209,7 @@
       justify-content: space-around;
       width: 100%;
       overflow-x: auto;
-      gap: 4px;
+      gap: 2px;
     }
 
     .nav-item {
@@ -223,11 +217,11 @@
       flex-direction: column;
       align-items: center;
       gap: 2px;
-      padding: 6px 8px;
+      padding: 6px 6px;
       color: var(--text-muted);
-      border-radius: 10px;
+      border-radius: 8px;
       cursor: pointer;
-      font-size: 10px;
+      font-size: 9.5px;
       font-weight: 600;
       text-decoration: none;
       white-space: nowrap;
@@ -239,11 +233,11 @@
     }
 
     .nav-item.active {
-      background: #f7ebee;
+      background: #eef5ea;
       color: var(--primary);
     }
 
-    /* MAIN CONTENT AREA */
+    /* MAIN CONTENT */
     .main-content {
       flex: 1;
       display: flex;
@@ -257,6 +251,7 @@
       padding: 8px 12px;
       font-size: 12px;
       text-align: center;
+      font-weight: 500;
     }
 
     .container {
@@ -266,28 +261,51 @@
       width: 100%;
     }
 
-    /* HERO BANNER */
-    .hero-banner {
-      background: linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.35)), url('https://images.unsplash.com/photo-1512436991641-6745cdb1723f?q=80&w=800&auto=format&fit=crop');
+    /* SLIDING BANNER STYLES */
+    .slider-container {
+      position: relative;
+      width: 100%;
+      height: 140px;
+      border-radius: 16px;
+      overflow: hidden;
+      margin-bottom: 16px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+    }
+
+    .slide {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
       background-size: cover;
       background-position: center;
-      height: 130px;
-      border-radius: 16px;
-      margin-bottom: 16px;
       display: flex;
       align-items: center;
       padding: 0 20px;
       color: white;
+      opacity: 0;
+      transition: opacity 0.8s ease-in-out;
     }
 
-    .hero-text h2 {
-      font-size: 18px;
-      margin-bottom: 4px;
+    .slide.active {
+      opacity: 1;
     }
 
-    .hero-text p {
-      font-size: 12px;
-      opacity: 0.95;
+    .slide-content {
+      background: rgba(0, 0, 0, 0.4);
+      padding: 10px 14px;
+      border-radius: 10px;
+      backdrop-filter: blur(3px);
+    }
+
+    .slide-content h2 {
+      font-size: 16px;
+      margin-bottom: 2px;
+    }
+
+    .slide-content p {
+      font-size: 11.5px;
     }
 
     /* STATS CARDS GRID */
@@ -335,7 +353,7 @@
       color: var(--text-main);
     }
 
-    /* CONTENT TABS */
+    /* TABS */
     .tab-content {
       display: none;
     }
@@ -440,7 +458,7 @@
       border-radius: 12px;
       font-size: 10px;
       font-weight: 600;
-      background: #f7ebee;
+      background: #eef5ea;
       color: var(--primary);
     }
 
@@ -461,10 +479,10 @@
       border-radius: 8px;
     }
 
-    .btn-edit { background: #f9eff2; color: var(--primary); flex: 1; }
-    .btn-archive { background: #faf3eb; color: #b86e28; flex: 1; }
+    .btn-edit { background: #eaf2e3; color: var(--primary); flex: 1; }
+    .btn-archive { background: #faf3eb; color: var(--accent); flex: 1; }
 
-    /* OUT OF STOCK HIGHLIGHT BOX */
+    /* OUT OF STOCK ALERT BOX */
     .out-stock-box {
       background: #fff5f5;
       border: 2px dashed #e56b6b;
@@ -504,7 +522,7 @@
       margin-bottom: 4px;
     }
 
-    /* TABLES SCROLLABLE */
+    /* TABLES */
     .table-responsive {
       width: 100%;
       overflow-x: auto;
@@ -525,7 +543,7 @@
     }
 
     .data-table th {
-      background: #faf4f6;
+      background: #f9f6f0;
       color: var(--primary);
     }
 
@@ -544,16 +562,15 @@
     }
 
     .error { background: #fdeaea; color: #c0392b; }
-    .success { background: #f7ebee; color: var(--primary); }
+    .success { background: #eef5ea; color: var(--primary); }
 
-    /* POS & NEW SALE STYLES */
     .pos-grid {
       display: grid;
       grid-template-columns: 1fr;
       gap: 16px;
     }
     .pos-product-item {
-      background: #faf4f6;
+      background: #f9f6f0;
       border: 1px solid var(--border-color);
       padding: 10px;
       border-radius: 10px;
@@ -563,14 +580,14 @@
       margin-bottom: 8px;
     }
 
-    /* DESKTOP RESPONSIVE ADAPTATION */
+    /* DESKTOP RESPONSIVE */
     @media(min-width: 768px) {
       .dashboard-app { padding-bottom: 0; }
       .app-wrapper { flex-direction: row; }
       .sidebar {
         position: sticky;
         top: 0;
-        width: 250px;
+        width: 240px;
         height: 100vh;
         flex-direction: column;
         justify-content: space-between;
@@ -582,7 +599,7 @@
       .brand-header { display: flex; align-items: center; gap: 10px; padding-bottom: 15px; border-bottom: 1px solid var(--border-color); margin-bottom: 15px; }
       .brand-header img { width: 36px; height: 36px; border-radius: 50%; object-fit: cover; }
       .brand-name { font-size: 17px; font-weight: 800; color: var(--primary); }
-      .sidebar-promo { display: block; background: #f7ebee; padding: 12px; border-radius: 12px; text-align: center; }
+      .sidebar-promo { display: block; background: #eaf2e3; padding: 12px; border-radius: 12px; text-align: center; }
       .nav-menu { flex-direction: column; gap: 4px; width: 100%; overflow-x: visible; }
       .nav-item { flex-direction: row; padding: 10px 14px; font-size: 14px; gap: 10px; }
       .nav-item i { font-size: 16px; }
@@ -608,7 +625,7 @@
 <section class="login-screen" id="loginScreen">
   <div class="login-box">
     <div class="logo">🌿 Crafted Heaven</div>
-    <div class="subtitle">Mobile Seller Studio Dashboard</div>
+    <div class="subtitle">Seller Studio Dashboard</div>
 
     <div id="loginError" class="message error"></div>
 
@@ -622,11 +639,9 @@
   </div>
 </section>
 
-
 <!-- MAIN APP DASHBOARD -->
 <section class="dashboard-app" id="dashboardApp">
   
-  <!-- MOBILE TOP HEADER -->
   <div class="top-header">
     <div class="top-header-brand">
       <img src="icon.png" alt="Logo">
@@ -634,13 +649,12 @@
     </div>
     <div class="user-profile">
       <div class="avatar">T</div>
-      <button onclick="logout()" style="background:#f1e4e8; color:var(--primary); padding:5px 10px; font-size:11px;">Logout</button>
+      <button onclick="logout()" style="background:#f0ebe1; color:var(--primary); padding:5px 10px; font-size:11px;">Logout</button>
     </div>
   </div>
 
   <div class="app-wrapper">
     
-    <!-- SIDEBAR / BOTTOM MOBILE NAVIGATION -->
     <aside class="sidebar">
       <div>
         <div class="brand-header">
@@ -663,11 +677,15 @@
           </div>
           <div class="nav-item" onclick="switchTab('posTab', this)">
             <i class="fa-solid fa-cash-register"></i>
-            <span>POS / Sale</span>
+            <span>POS Sale</span>
           </div>
           <div class="nav-item" onclick="switchTab('financesTab', this)">
             <i class="fa-solid fa-wallet"></i>
-            <span>Profit & Exp</span>
+            <span>Finances</span>
+          </div>
+          <div class="nav-item" onclick="switchTab('contentTab', this)">
+            <i class="fa-solid fa-images"></i>
+            <span>Banners & Notif</span>
           </div>
           <div class="nav-item" onclick="switchTab('reviewsTab', this)">
             <i class="fa-solid fa-star"></i>
@@ -681,16 +699,16 @@
       </div>
 
       <div class="sidebar-promo">
-        <h5 style="color:var(--primary); font-size:13px; margin-bottom:3px;">Studio Active</h5>
-        <p style="font-size:11px; color:var(--text-muted);">Wine & Rose Theme</p>
+        <h5 style="color:var(--primary); font-size:13px; margin-bottom:3px;">Mobile Studio</h5>
+        <p style="font-size:11px; color:#55634b;">Active & Connected</p>
       </div>
     </aside>
 
-    <!-- MAIN CONTENT CONTAINER -->
     <main class="main-content">
       
-      <div class="announcement-bar">
-        <span>📣 <strong>Crafted Heaven Studio:</strong> Express Dispatching & Real-Time Sync Active!</span>
+      <!-- TOP NOTIFICATION BAR -->
+      <div class="announcement-bar" id="topAnnouncementBar">
+        <span>📣 <strong>Crafted Heaven Studio:</strong> Express Dispatching Active Across Pakistan!</span>
       </div>
 
       <div class="container">
@@ -698,7 +716,7 @@
         <!-- STATS CARDS -->
         <div class="stats-grid">
           <div class="stat-card">
-            <div class="stat-icon" style="background: #f7ebee; color: var(--primary);"><i class="fa-solid fa-wallet"></i></div>
+            <div class="stat-icon" style="background: #eef5ea; color: var(--primary);"><i class="fa-solid fa-wallet"></i></div>
             <div class="stat-info">
               <h5>Total Sales</h5>
               <div class="val" id="statSales">Rs. 0</div>
@@ -734,7 +752,7 @@
           </div>
         </div>
 
-        <!-- OUT OF STOCK VISUAL ALERT CONTAINER -->
+        <!-- OUT OF STOCK ALERT -->
         <div id="outOfStockContainer" class="out-stock-box" style="display: none;">
           <h4>⚠️ Out of Stock Items (Restock Needed)</h4>
           <div class="out-stock-flex" id="outOfStockList"></div>
@@ -743,10 +761,13 @@
         <!-- 1. HOME TAB -->
         <div id="homeTab" class="tab-content active">
           
-          <div class="hero-banner">
-            <div class="hero-text">
-              <h2>Crafted Heaven Studio</h2>
-              <p>Plants, Gardening & Handmade Crafts ♥</p>
+          <!-- 3-IN-1 SLIDING BANNER CAROUSEL -->
+          <div class="slider-container" id="homeSlider">
+            <div class="slide active" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://images.unsplash.com/photo-1512436991641-6745cdb1723f?q=80&w=800&auto=format&fit=crop');">
+              <div class="slide-content">
+                <h2>Crafted Heaven Studio</h2>
+                <p>Plants, Gardening & Handmade Crafts ♥</p>
+              </div>
             </div>
           </div>
 
@@ -773,7 +794,6 @@
             </div>
           </div>
 
-          <!-- Quick Analytics Preview Chart -->
           <div class="card-box">
             <div class="section-title"><span>📈 Sales Overview Trend</span></div>
             <canvas id="homeChart" height="90"></canvas>
@@ -787,7 +807,6 @@
             <button class="primary" style="width: auto; padding: 8px 14px;" onclick="showProductForm()">＋ Add</button>
           </div>
 
-          <!-- ADD/EDIT FORM -->
           <div class="card-box" id="productFormCard" style="display: none;">
             <h3 style="margin-bottom: 12px; color:var(--primary); font-size: 16px;" id="formTitleText">Add Product</h3>
             <input type="hidden" id="productId">
@@ -840,7 +859,6 @@
             </div>
           </div>
 
-          <!-- FILTER BAR -->
           <div class="filter-bar">
             <input type="text" id="searchProduct" placeholder="🔍 Search product name..." oninput="filterProducts()">
             <select id="filterCategory" onchange="filterProducts()">
@@ -887,7 +905,7 @@
           </div>
         </div>
 
-        <!-- 4. POS & NEW SALE TAB -->
+        <!-- 4. POS SYSTEM -->
         <div id="posTab" class="tab-content">
           <div class="section-title"><span>🛒 POS System & New Sale</span></div>
           <div class="pos-grid">
@@ -911,12 +929,12 @@
               <input type="text" id="posCustPhone" placeholder="03001234567">
               <label>Shipping Address</label>
               <textarea id="posCustAddress" placeholder="Enter delivery address..."></textarea>
-              <button class="primary" onclick="completePosSale()">Complete Order & Save to Supabase</button>
+              <button class="primary" onclick="completePosSale()">Complete Order & Save</button>
             </div>
           </div>
         </div>
 
-        <!-- 5. FINANCES & EXPENSES TAB -->
+        <!-- 5. FINANCES & EXPENSES -->
         <div id="financesTab" class="tab-content">
           <div class="section-title"><span>💰 Cost, Expenses & Net Profit</span></div>
           
@@ -935,7 +953,7 @@
             </div>
             <div class="stat-card full-width">
               <div class="stat-info">
-                <h5>True Net Profit (After Expenses & Cost)</h5>
+                <h5>True Net Profit</h5>
                 <div class="val" id="finNetProfit" style="color:var(--primary); font-size:18px;">Rs. 0</div>
               </div>
             </div>
@@ -965,11 +983,37 @@
           </div>
         </div>
 
-        <!-- 6. CUSTOMER REVIEWS TAB -->
+        <!-- 6. WEBSITE CONTENT (BANNERS & NOTIFICATIONS MANAGER) -->
+        <div id="contentTab" class="tab-content">
+          <div class="section-title"><span>🖼️ Website Banners & Top Bar Manager</span></div>
+          
+          <!-- BANNER MANAGER -->
+          <div class="card-box">
+            <h3 style="font-size:15px; margin-bottom:10px; color:var(--primary);">Add New Sliding Banner (3-in-1)</h3>
+            <label>Banner Title / Subtitle</label>
+            <input type="text" id="bannerTitle" placeholder="e.g. 11.11 Grand Sale Live!">
+            <label>Image URL</label>
+            <input type="text" id="bannerImage" placeholder="https://images.unsplash.com/photo-...">
+            <button class="primary" onclick="saveBanner()">Publish Banner to Website</button>
+
+            <h4 style="font-size:14px; margin: 16px 0 8px 0; color:var(--primary);">Active Banners</h4>
+            <div id="bannersListAdmin">Loading banners...</div>
+          </div>
+
+          <!-- ANNOUNCEMENT NOTIFICATION BAR MANAGER -->
+          <div class="card-box">
+            <h3 style="font-size:15px; margin-bottom:10px; color:var(--primary);">Update Top Bar Notification</h3>
+            <label>Notification Text</label>
+            <input type="text" id="notifText" placeholder="📣 Crafted Heaven Studio: Free Delivery Available!">
+            <button class="primary" onclick="saveAnnouncement()">Update Top Bar Notification</button>
+          </div>
+        </div>
+
+        <!-- 7. CUSTOMER REVIEWS -->
         <div id="reviewsTab" class="tab-content">
           <div class="section-title"><span>⭐ Customer Reviews & Seller Replies</span></div>
           <div class="card-box">
-            <label>Select Product to Review / Reply</label>
+            <label>Select Product</label>
             <select id="reviewProductSelect"></select>
             <label>Customer Name</label>
             <input type="text" id="revAuthor" placeholder="Ayesha Khan">
@@ -982,23 +1026,21 @@
               <option value="1">⭐ (1/5)</option>
             </select>
             <label>Customer Review Comment</label>
-            <textarea id="revComment" placeholder="Amazing product quality! Loved it."></textarea>
+            <textarea id="revComment" placeholder="Amazing product quality!"></textarea>
             <label>Seller Reply (Public Response)</label>
-            <textarea id="revReply" placeholder="Thank you so much for shopping with Crafted Heaven! ♥"></textarea>
+            <textarea id="revReply" placeholder="Thank you so much! ♥"></textarea>
             <button class="primary" onclick="saveReview()">Publish Review & Reply</button>
           </div>
 
           <div class="card-box">
             <h3 style="font-size:15px; margin-bottom:10px; color:var(--primary);">All Customer Reviews</h3>
-            <div id="reviewsListContainer">
-              <p style="color:#888; text-align:center;">No reviews yet.</p>
-            </div>
+            <div id="reviewsListContainer"><p style="color:#888; text-align:center;">No reviews yet.</p></div>
           </div>
         </div>
 
-        <!-- 7. REPORTS TAB -->
+        <!-- 8. REPORTS -->
         <div id="reportsTab" class="tab-content">
-          <div class="section-title"><span>📊 Professional Sales Reports & Charts</span></div>
+          <div class="section-title"><span>📊 Professional Sales Reports</span></div>
           <div class="card-box">
             <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px;">
               <h3 style="font-size:15px; color:var(--primary);">Sales Analytics Report</h3>
@@ -1033,9 +1075,12 @@
   let cacheOrders = [];
   let cacheExpenses = [];
   let cacheReviews = [];
+  let cacheBanners = [];
   let posCart = [];
   let homeChartInstance = null;
   let reportChartInstance = null;
+  let currentSlideIndex = 0;
+  let slideInterval = null;
 
   // ==============================
   // TAB SWITCHING
@@ -1050,6 +1095,7 @@
     if (tabId === 'ordersTab') loadOrders();
     if (tabId === 'posTab') initPos();
     if (tabId === 'financesTab') loadFinances();
+    if (tabId === 'contentTab') loadBannersAdmin();
     if (tabId === 'reviewsTab') initReviews();
     if (tabId === 'reportsTab') renderReports();
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -1104,6 +1150,8 @@
     await loadOrders();
     await loadExpenses();
     await loadReviews();
+    await loadPublicBanners();
+    await loadPublicAnnouncement();
   }
 
   // ==============================
@@ -1114,10 +1162,7 @@
     if (grid) grid.innerHTML = '<div style="text-align:center; padding:20px; color:#888;">Loading products...</div>';
 
     const { data, error } = await db.from("products").select("*").order("created_at", { ascending: false });
-    if (error) {
-      if (grid) grid.innerHTML = `<div style="color:red;">Failed to load products: ${error.message}</div>`;
-      return;
-    }
+    if (error) return;
 
     cacheProducts = data || [];
     renderProducts(cacheProducts);
@@ -1190,13 +1235,7 @@
   function filterProducts() {
     const s = document.getElementById("searchProduct").value.toLowerCase().trim();
     const c = document.getElementById("filterCategory").value;
-
-    const res = cacheProducts.filter(p => {
-      const matchName = (p.name || "").toLowerCase().includes(s);
-      const matchCat = !c || p.category === c;
-      return matchName && matchCat;
-    });
-
+    const res = cacheProducts.filter(p => (p.name || "").toLowerCase().includes(s) && (!c || p.category === c));
     renderProducts(res);
   }
 
@@ -1226,7 +1265,6 @@
   function editProduct(p) {
     document.getElementById("productFormCard").style.display = "block";
     document.getElementById("formTitleText").textContent = "Edit Product";
-
     document.getElementById("productId").value = p.id || "";
     document.getElementById("pName").value = p.name || "";
     document.getElementById("pCategory").value = p.category || "";
@@ -1256,10 +1294,7 @@
     }
 
     const payload = { name, category, cost_price, price, sale_price, stock, image_url, badge, status: 'active' };
-
-    let res;
-    if (id) res = await db.from("products").update(payload).eq("id", id);
-    else res = await db.from("products").insert(payload);
+    let res = id ? await db.from("products").update(payload).eq("id", id) : await db.from("products").insert(payload);
 
     if (res.error) alert("Error saving product: " + res.error.message);
     else {
@@ -1269,8 +1304,7 @@
   }
 
   async function toggleArchive(id, status) {
-    const newS = status === 'active' ? 'inactive' : 'active';
-    await db.from("products").update({ status: newS }).eq("id", id);
+    await db.from("products").update({ status: status === 'active' ? 'inactive' : 'active' }).eq("id", id);
     loadProducts();
   }
 
@@ -1280,18 +1314,10 @@
   async function loadOrders() {
     const fullT = document.getElementById("ordersFullTable");
     const recT = document.getElementById("recentOrdersList");
-
     const { data: orders, error } = await db.from("orders").select("*").order("created_at", { ascending: false });
     if (error) return;
 
     cacheOrders = orders || [];
-
-    if (!cacheOrders || cacheOrders.length === 0) {
-      if (fullT) fullT.innerHTML = '<tr><td colspan="7" style="text-align:center;">No orders found.</td></tr>';
-      if (recT) recT.innerHTML = '<tr><td colspan="4" style="text-align:center;">No orders found.</td></tr>';
-      return;
-    }
-
     if (fullT) {
       fullT.innerHTML = "";
       cacheOrders.forEach(o => {
@@ -1329,7 +1355,6 @@
         `;
       });
     }
-
     calculateStats(cacheOrders);
     renderHomeChart();
   }
@@ -1341,7 +1366,7 @@
   }
 
   // ==============================
-  // POS SYSTEM & NEW SALE
+  // POS SYSTEM
   // ==============================
   function initPos() {
     renderPosProducts();
@@ -1354,12 +1379,7 @@
     if (!list) return;
 
     const filtered = cacheProducts.filter(p => (p.name || "").toLowerCase().includes(q) && (p.stock ?? 0) > 0);
-    if (filtered.length === 0) {
-      list.innerHTML = '<p style="color:#888; font-size:13px; text-align:center;">No available products in stock</p>';
-      return;
-    }
-
-    list.innerHTML = "";
+    list.innerHTML = filtered.length === 0 ? '<p style="color:#888; font-size:13px; text-align:center;">No available products in stock</p>' : '';
     filtered.forEach(p => {
       list.innerHTML += `
         <div class="pos-product-item">
@@ -1379,12 +1399,7 @@
       if (existing.qty < p.stock) existing.qty++;
       else alert("Reached maximum stock limit!");
     } else {
-      posCart.push({
-        id: p.id,
-        name: p.name,
-        price: p.sale_price || p.price,
-        qty: 1
-      });
+      posCart.push({ id: p.id, name: p.name, price: p.sale_price || p.price, qty: 1 });
     }
     renderPosCart();
   }
@@ -1420,46 +1435,25 @@
   }
 
   async function completePosSale() {
-    if (posCart.length === 0) {
-      alert("Cart is empty!");
-      return;
-    }
+    if (posCart.length === 0) return alert("Cart is empty!");
     const name = document.getElementById("posCustName").value.trim();
     const phone = document.getElementById("posCustPhone").value.trim();
     const address = document.getElementById("posCustAddress").value.trim();
 
-    if (!name || !phone) {
-      alert("Please enter customer name and phone number.");
-      return;
-    }
+    if (!name || !phone) return alert("Please enter customer name and phone number.");
 
     let total_amount = posCart.reduce((sum, item) => sum + (item.price * item.qty), 0);
     const order_id = "CH-" + Math.floor(100000 + Math.random() * 900000);
 
-    const { error } = await db.from("orders").insert({
-      order_id,
-      customer_name: name,
-      phone,
-      address,
-      total_amount,
-      status: "Processing"
-    });
+    const { error } = await db.from("orders").insert({ order_id, customer_name: name, phone, address, total_amount, status: "Processing" });
+    if (error) return alert("Error: " + error.message);
 
-    if (error) {
-      alert("Error completing sale: " + error.message);
-      return;
-    }
-
-    // Deduct stock
     for (const item of posCart) {
       const prod = cacheProducts.find(p => p.id === item.id);
-      if (prod) {
-        const newStock = Math.max(0, (prod.stock || 0) - item.qty);
-        await db.from("products").update({ stock: newStock }).eq("id", item.id);
-      }
+      if (prod) await db.from("products").update({ stock: Math.max(0, (prod.stock || 0) - item.qty) }).eq("id", item.id);
     }
 
-    alert("Sale completed successfully! Order ID: " + order_id);
+    alert("Sale completed! Order ID: " + order_id);
     posCart = [];
     document.getElementById("posCustName").value = "";
     document.getElementById("posCustPhone").value = "";
@@ -1475,7 +1469,6 @@
   async function loadFinances() {
     const { data, error } = await db.from("expenses").select("*").order("created_at", { ascending: false });
     if (!error) cacheExpenses = data || [];
-
     renderExpensesTable();
     calculateFinances();
   }
@@ -1483,15 +1476,10 @@
   async function addExpense() {
     const title = document.getElementById("expTitle").value.trim();
     const amount = Number(document.getElementById("expAmount").value);
-
-    if (!title || !amount) {
-      alert("Please enter expense title and amount.");
-      return;
-    }
+    if (!title || !amount) return alert("Enter title and amount.");
 
     const { error } = await db.from("expenses").insert({ title, amount });
-    if (error) alert("Error adding expense: " + error.message);
-    else {
+    if (!error) {
       document.getElementById("expTitle").value = "";
       document.getElementById("expAmount").value = "";
       loadFinances();
@@ -1501,66 +1489,143 @@
   function renderExpensesTable() {
     const tbody = document.getElementById("expensesTableBody");
     if (!tbody) return;
-
     if (cacheExpenses.length === 0) {
       tbody.innerHTML = '<tr><td colspan="3" style="text-align:center;">No expenses recorded.</td></tr>';
       return;
     }
-
     tbody.innerHTML = "";
     cacheExpenses.forEach(e => {
-      tbody.innerHTML += `
-        <tr>
-          <td>${escapeHTML(e.title)}</td>
-          <td>Rs. ${e.amount}</td>
-          <td>${new Date(e.created_at || Date.now()).toLocaleDateString()}</td>
-        </tr>
-      `;
+      tbody.innerHTML += `<tr><td>${escapeHTML(e.title)}</td><td>Rs. ${e.amount}</td><td>${new Date(e.created_at).toLocaleDateString()}</td></tr>`;
     });
   }
 
   function calculateFinances() {
     let grossRev = 0;
     cacheOrders.forEach(o => { if (o.status !== 'Cancelled') grossRev += Number(o.total_amount || 0); });
-
-    let totalExp = 0;
-    cacheExpenses.forEach(e => { totalExp += Number(e.amount || 0); });
-
-    // Estimated product cost price deduction if cost price exists, otherwise ~40% margin
-    let totalCostPrice = 0;
-    cacheOrders.forEach(o => {
-      totalCostPrice += (o.total_amount || 0) * 0.45;
-    });
-
+    let totalExp = cacheExpenses.reduce((sum, e) => sum + Number(e.amount || 0), 0);
+    let totalCostPrice = cacheOrders.reduce((sum, o) => sum + (o.total_amount || 0) * 0.45, 0);
     let netProfit = grossRev - totalCostPrice - totalExp;
 
-    const gEl = document.getElementById("finGross");
-    const eEl = document.getElementById("finExpenses");
-    const nEl = document.getElementById("finNetProfit");
-
-    if (gEl) gEl.textContent = "Rs. " + grossRev.toLocaleString();
-    if (eEl) eEl.textContent = "Rs. " + totalExp.toLocaleString();
-    if (nEl) nEl.textContent = "Rs. " + Math.round(netProfit).toLocaleString();
+    if (document.getElementById("finGross")) document.getElementById("finGross").textContent = "Rs. " + grossRev.toLocaleString();
+    if (document.getElementById("finExpenses")) document.getElementById("finExpenses").textContent = "Rs. " + totalExp.toLocaleString();
+    if (document.getElementById("finNetProfit")) document.getElementById("finNetProfit").textContent = "Rs. " + Math.round(netProfit).toLocaleString();
   }
 
   // ==============================
-  // CUSTOMER REVIEWS & REPLIES
+  // 3-IN-1 SLIDING BANNERS & ANNOUNCEMENTS
+  // ==============================
+  async function loadPublicBanners() {
+    const { data } = await db.from("banners").select("*").order("created_at", { ascending: false });
+    cacheBanners = data || [];
+    const slider = document.getElementById("homeSlider");
+    if (!slider) return;
+
+    if (cacheBanners.length > 0) {
+      slider.innerHTML = "";
+      cacheBanners.forEach((b, idx) => {
+        slider.innerHTML += `
+          <div class="slide ${idx === 0 ? 'active' : ''}" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('${escapeHTML(b.image_url)}');">
+            <div class="slide-content">
+              <h2>${escapeHTML(b.title || 'Crafted Heaven')}</h2>
+              <p>Plants, Gardening & Handmade Crafts ♥</p>
+            </div>
+          </div>
+        `;
+      });
+      startSlider();
+    }
+  }
+
+  function startSlider() {
+    if (slideInterval) clearInterval(slideInterval);
+    const slides = document.querySelectorAll('.slide');
+    if (slides.length <= 1) return;
+    slideInterval = setInterval(() => {
+      slides[currentSlideIndex].classList.remove('active');
+      currentSlideIndex = (currentSlideIndex + 1) % slides.length;
+      slides[currentSlideIndex].classList.add('active');
+    }, 3500);
+  }
+
+  async function loadBannersAdmin() {
+    const { data } = await db.from("banners").select("*").order("created_at", { ascending: false });
+    const list = document.getElementById("bannersListAdmin");
+    if (!list) return;
+
+    if (!data || data.length === 0) {
+      list.innerHTML = '<p style="color:#888; font-size:13px;">No banners added yet.</p>';
+      return;
+    }
+
+    list.innerHTML = "";
+    data.forEach(b => {
+      list.innerHTML += `
+        <div style="display:flex; justify-content:space-between; align-items:center; background:#f9f6f0; padding:8px 12px; border-radius:8px; margin-bottom:6px; font-size:13px;">
+          <span><strong>${escapeHTML(b.title || 'Banner')}</strong></span>
+          <button onclick="deleteBanner('${b.id}')" style="background:none; color:red; border:none; cursor:pointer;"><i class="fa-solid fa-trash"></i></button>
+        </div>
+      `;
+    });
+  }
+
+  async function saveBanner() {
+    const title = document.getElementById("bannerTitle").value.trim();
+    const image_url = document.getElementById("bannerImage").value.trim();
+    if (!image_url) return alert("Please enter banner image URL.");
+
+    const { error } = await db.from("banners").insert({ title, image_url });
+    if (!error) {
+      document.getElementById("bannerTitle").value = "";
+      document.getElementById("bannerImage").value = "";
+      loadBannersAdmin();
+      loadPublicBanners();
+      alert("Banner added successfully!");
+    }
+  }
+
+  async function deleteBanner(id) {
+    await db.from("banners").delete().eq("id", id);
+    loadBannersAdmin();
+    loadPublicBanners();
+  }
+
+  async function loadPublicAnnouncement() {
+    const { data } = await db.from("announcements").select("*").eq("active", true).order("created_at", { ascending: false }).limit(1);
+    const bar = document.getElementById("topAnnouncementBar");
+    if (bar && data && data.length > 0) {
+      bar.innerHTML = `<span>📣 <strong>${escapeHTML(data[0].message)}</strong></span>`;
+    }
+  }
+
+  async function saveAnnouncement() {
+    const message = document.getElementById("notifText").value.trim();
+    if (!message) return alert("Please enter notification message.");
+
+    // Deactivate previous
+    await db.from("announcements").update({ active: false }).eq("active", true);
+    const { error } = await db.from("announcements").insert({ message, active: true });
+    if (!error) {
+      document.getElementById("notifText").value = "";
+      loadPublicAnnouncement();
+      alert("Top Bar Notification updated successfully!");
+    }
+  }
+
+  // ==============================
+  // CUSTOMER REVIEWS
   // ==============================
   async function initReviews() {
     const sel = document.getElementById("reviewProductSelect");
     if (sel) {
       sel.innerHTML = '<option value="">General Shop Review</option>';
-      cacheProducts.forEach(p => {
-        sel.innerHTML += `<option value="${p.id}">${escapeHTML(p.name)}</option>`;
-      });
+      cacheProducts.forEach(p => { sel.innerHTML += `<option value="${p.id}">${escapeHTML(p.name)}</option>`; });
     }
     loadReviews();
   }
 
   async function loadReviews() {
-    const { data, error } = await db.from("reviews").select("*").order("created_at", { ascending: false });
-    if (!error) cacheReviews = data || [];
-
+    const { data } = await db.from("reviews").select("*").order("created_at", { ascending: false });
+    cacheReviews = data || [];
     const container = document.getElementById("reviewsListContainer");
     if (!container) return;
 
@@ -1572,7 +1637,7 @@
     container.innerHTML = "";
     cacheReviews.forEach(r => {
       container.innerHTML += `
-        <div style="background:#faf4f6; padding:12px; border-radius:10px; margin-bottom:10px; border:1px solid var(--border-color);">
+        <div style="background:#f9f6f0; padding:12px; border-radius:10px; margin-bottom:10px; border:1px solid var(--border-color);">
           <div style="display:flex; justify-content:space-between; font-weight:bold; font-size:13px; color:var(--primary);">
             <span>${escapeHTML(r.author)}</span>
             <span>${'⭐'.repeat(r.rating || 5)}</span>
@@ -1591,14 +1656,10 @@
     const comment = document.getElementById("revComment").value.trim();
     const reply = document.getElementById("revReply").value.trim();
 
-    if (!author || !comment) {
-      alert("Please enter customer name and review comment.");
-      return;
-    }
+    if (!author || !comment) return alert("Enter customer name and comment.");
 
     const { error } = await db.from("reviews").insert({ product_id, author, rating, comment, reply });
-    if (error) alert("Error saving review: " + error.message);
-    else {
+    if (!error) {
       document.getElementById("revAuthor").value = "";
       document.getElementById("revComment").value = "";
       document.getElementById("revReply").value = "";
@@ -1607,32 +1668,24 @@
   }
 
   // ==============================
-  // CALCULATE STATS & CHARTS
+  // STATS & CHARTS
   // ==============================
   function calculateStats(ordersData) {
-    const totalProdEl = document.getElementById("statTotalProducts");
-    const lowStockEl = document.getElementById("statLowStock");
-    const ordCountEl = document.getElementById("statOrdersCount");
-    const statSalesEl = document.getElementById("statSales");
-    const statProfitEl = document.getElementById("statProfit");
-
-    if (totalProdEl) totalProdEl.textContent = cacheProducts.length;
+    if (document.getElementById("statTotalProducts")) document.getElementById("statTotalProducts").textContent = cacheProducts.length;
     const outCount = cacheProducts.filter(p => (p.stock ?? 0) <= 0).length;
-    if (lowStockEl) lowStockEl.textContent = outCount + " Items";
+    if (document.getElementById("statLowStock")) document.getElementById("statLowStock").textContent = outCount + " Items";
 
     if (ordersData) {
-      if (ordCountEl) ordCountEl.textContent = ordersData.length;
-      let rev = 0;
-      ordersData.forEach(o => { if (o.status !== 'Cancelled') rev += Number(o.total_amount || 0); });
-      if (statSalesEl) statSalesEl.textContent = "Rs. " + rev.toLocaleString();
-      if (statProfitEl) statProfitEl.textContent = "Rs. " + Math.round(rev * 0.4).toLocaleString();
+      if (document.getElementById("statOrdersCount")) document.getElementById("statOrdersCount").textContent = ordersData.length;
+      let rev = ordersData.reduce((sum, o) => o.status !== 'Cancelled' ? sum + Number(o.total_amount || 0) : sum, 0);
+      if (document.getElementById("statSales")) document.getElementById("statSales").textContent = "Rs. " + rev.toLocaleString();
+      if (document.getElementById("statProfit")) document.getElementById("statProfit").textContent = "Rs. " + Math.round(rev * 0.4).toLocaleString();
     }
   }
 
   function renderHomeChart() {
     const ctx = document.getElementById('homeChart');
     if (!ctx) return;
-
     if (homeChartInstance) homeChartInstance.destroy();
 
     homeChartInstance = new Chart(ctx, {
@@ -1642,8 +1695,8 @@
         datasets: [{
           label: 'Sales (Rs.)',
           data: [1200, 2500, 1800, 3200, 4100, 3800, 5200],
-          borderColor: '#5c1d35',
-          backgroundColor: 'rgba(92, 29, 53, 0.1)',
+          borderColor: '#3b502d',
+          backgroundColor: 'rgba(59, 80, 45, 0.1)',
           fill: true,
           tension: 0.3
         }]
@@ -1655,7 +1708,6 @@
   function renderReports() {
     const ctx = document.getElementById('detailedReportChart');
     if (!ctx) return;
-
     const timeframe = document.getElementById('reportTimeframe')?.value || 'monthly';
     let labels = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
     let dataVals = [15000, 22000, 18000, 35000, 42000, 39000, 48000, 51000, 46000, 53000, 68000, 75000];
@@ -1669,17 +1721,11 @@
     }
 
     if (reportChartInstance) reportChartInstance.destroy();
-
     reportChartInstance = new Chart(ctx, {
       type: 'bar',
       data: {
         labels: labels,
-        datasets: [{
-          label: 'Revenue (Rs.)',
-          data: dataVals,
-          backgroundColor: '#9b4d6b',
-          borderRadius: 8
-        }]
+        datasets: [{ label: 'Revenue (Rs.)', data: dataVals, backgroundColor: '#b86e28', borderRadius: 8 }]
       },
       options: { responsive: true, plugins: { legend: { display: false } } }
     });
