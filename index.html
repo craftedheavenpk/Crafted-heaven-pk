@@ -15,6 +15,7 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
 <style>
 *{
@@ -297,8 +298,15 @@ header{
 .price{ color:#173d2a; font-size:18px; font-weight:bold; }
 .addBtn{ border:0; background:#173d2a; color:#f1d57a; padding:11px; border-radius:9px; cursor:pointer; font-weight:bold; width:100%; }
 
-.contactBox{ background:linear-gradient(135deg,#173d2a,#0d2b1d); color:white; padding:35px 20px; border-radius:22px; text-align:center; }
-.contactBox h2{ color:#f1d57a; margin-bottom:10px; }
+/* CONTACT & SOCIAL FOOTER */
+.contactBox{ background:linear-gradient(135deg,#173d2a,#0d2b1d); color:white; padding:40px 20px; border-radius:22px; text-align:center; }
+.contactBox h2{ color:#f1d57a; margin-bottom:10px; font-size:24px; }
+.contactBox p{ margin-bottom:20px; opacity:0.9; font-size:15px; }
+.socialLinksRow{ display:flex; justify-content:center; gap:14px; flex-wrap:wrap; margin-top:15px; }
+.socialBtnLink{ display:inline-flex; align-items:center; gap:8px; padding:12px 22px; border-radius:30px; text-decoration:none; color:white; font-weight:bold; font-size:15px; box-shadow:0 4px 12px rgba(0,0,0,0.2); transition:opacity 0.2s; }
+.socialBtnLink:active{ opacity:0.85; }
+.fbBtn{ background:#1877f2; }
+.waBtn{ background:#25d366; color:#0b381e; }
 
 /* MODALS & CART */
 .modalOverlay{ position:fixed; inset:0; background:rgba(0,0,0,.65); z-index:10000; display:flex; align-items:center; justify-content:center; padding:15px; opacity:0; visibility:hidden; transition:.3s; }
@@ -405,12 +413,22 @@ header{
     <div class="productGrid" id="productGrid"></div>
   </section>
 
-  <!-- CONTACT SECTION -->
+  <!-- CONTACT & SOCIAL LINKS FOOTER -->
   <section class="section" id="contact">
     <div class="contactBox">
-      <h2>Contact Crafted Heaven</h2>
-      <p>Have a question or want to place an order? Contact us directly on WhatsApp.</p>
-      <a href="https://wa.me/923034812714" target="_blank" class="heroBtn primaryBtn" style="margin-top:15px; display:inline-block;">💬 Chat on WhatsApp</a>
+      <h2>Connect With Crafted Heaven</h2>
+      <p>Have questions or want to place a custom order? Reach out to us directly!</p>
+      
+      <div class="socialLinksRow">
+        <!-- Facebook Page Link -->
+        <a href="https://www.facebook.com/share/1DT9xWFBaT/" target="_blank" class="socialBtnLink fbBtn">
+          <i class="fa-brands fa-facebook-f"></i> Facebook Page
+        </a>
+        <!-- WhatsApp Link -->
+        <a href="https://wa.me/923034812714" target="_blank" class="socialBtnLink waBtn">
+          <i class="fa-brands fa-whatsapp"></i> Chat on WhatsApp
+        </a>
+      </div>
     </div>
   </section>
 
