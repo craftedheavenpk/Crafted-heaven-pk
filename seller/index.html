@@ -1421,7 +1421,7 @@
     if (document.getElementById("finNetProfit")) document.getElementById("finNetProfit").textContent = "Rs. " + Math.round(netProfit).toLocaleString();
   }
 
-  // MULTI-BANNER MANAGEMENT WITH GALLERY UPLOAD
+  // MULTI-BANNER MANAGEMENT WITH GALLERY FILE UPLOAD (DIRECT BASE64 - NO STORAGE PERMISSION ERROR)
   async function loadAdminBanners() {
     const container = document.getElementById("activeBannersList");
     if(!container) return;
@@ -1453,43 +1453,27 @@
     }
 
     const file = fileInput.files[0];
-    const fileExt = file.name.split('.').pop();
-    const fileName = `banner_${Date.now()}.${fileExt}`;
 
-    // 1. Upload file to Supabase Storage
-    const { data: uploadData, error: uploadError } = await db.storage
-      .from('banners')
-      .upload(fileName, file);
+    // Read image as Data URL (Base64) to bypass storage policies entirely
+    const reader = new FileReader();
+    reader.onload = async function(e) {
+      const image_url = e.target.result;
 
-    let image_url = "";
+      // Insert directly into database table 'banners'
+      const { error: dbError } = await db
+        .from('banners')
+        .insert([{ title, image_url }]);
 
-    if (uploadError) {
-      // Fallback if bucket fails or public URL fallback
-      console.warn("Storage upload fallback:", uploadError.message);
-      // Read as Data URL fallback for fast rendering if bucket policy is restricted
-      image_url = await new Promise((resolve) => {
-        const reader = new FileReader();
-        reader.onload = e => resolve(e.target.result);
-        reader.readAsDataURL(file);
-      });
-    } else {
-      const { data: publicUrlData } = db.storage.from('banners').getPublicUrl(fileName);
-      image_url = publicUrlData.publicUrl;
-    }
-
-    // 2. Insert into database
-    const { error: dbError } = await db
-      .from('banners')
-      .insert([{ title, image_url }]);
-
-    if (dbError) {
-      alert("Error saving banner: " + dbError.message);
-    } else {
-      alert("Banner uploaded and published successfully!");
-      fileInput.value = "";
-      document.getElementById("bannerTitle").value = "";
-      loadAdminBanners();
-    }
+      if (dbError) {
+        alert("Error saving banner: " + dbError.message);
+      } else {
+        alert("Banner uploaded and published successfully!");
+        fileInput.value = "";
+        document.getElementById("bannerTitle").value = "";
+        loadAdminBanners();
+      }
+    };
+    reader.readAsDataURL(file);
   }
 
   async function deleteBannerFromSupabase(id) {
