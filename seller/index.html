@@ -14,7 +14,7 @@
 
   <style>
     :root {
-      --primary: #3b502d; /* Classic Crafted Heaven Green */
+      --primary: #3b502d;
       --primary-hover: #2f4024;
       --accent: #b86e28;
       --light-bg: #f7f4ef;
@@ -259,53 +259,6 @@
       max-width: 1200px;
       margin: 0 auto;
       width: 100%;
-    }
-
-    /* SLIDING BANNER STYLES */
-    .slider-container {
-      position: relative;
-      width: 100%;
-      height: 140px;
-      border-radius: 16px;
-      overflow: hidden;
-      margin-bottom: 16px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.06);
-    }
-
-    .slide {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-size: cover;
-      background-position: center;
-      display: flex;
-      align-items: center;
-      padding: 0 20px;
-      color: white;
-      opacity: 0;
-      transition: opacity 0.8s ease-in-out;
-    }
-
-    .slide.active {
-      opacity: 1;
-    }
-
-    .slide-content {
-      background: rgba(0, 0, 0, 0.4);
-      padding: 10px 14px;
-      border-radius: 10px;
-      backdrop-filter: blur(3px);
-    }
-
-    .slide-content h2 {
-      font-size: 16px;
-      margin-bottom: 2px;
-    }
-
-    .slide-content p {
-      font-size: 11.5px;
     }
 
     /* STATS CARDS GRID */
@@ -706,11 +659,6 @@
 
     <main class="main-content">
       
-      <!-- TOP NOTIFICATION BAR -->
-      <div class="announcement-bar" id="topAnnouncementBar">
-        <span>📣 <strong>Crafted Heaven Studio:</strong> Express Dispatching Active Across Pakistan!</span>
-      </div>
-
       <div class="container">
 
         <!-- STATS CARDS -->
@@ -761,16 +709,6 @@
         <!-- 1. HOME TAB -->
         <div id="homeTab" class="tab-content active">
           
-          <!-- 3-IN-1 SLIDING BANNER CAROUSEL -->
-          <div class="slider-container" id="homeSlider">
-            <div class="slide active" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://images.unsplash.com/photo-1512436991641-6745cdb1723f?q=80&w=800&auto=format&fit=crop');">
-              <div class="slide-content">
-                <h2>Crafted Heaven Studio</h2>
-                <p>Plants, Gardening & Handmade Crafts ♥</p>
-              </div>
-            </div>
-          </div>
-
           <div class="card-box">
             <div class="section-title">
               <span>📦 Recent Orders</span>
@@ -987,25 +925,26 @@
         <div id="contentTab" class="tab-content">
           <div class="section-title"><span>🖼️ Website Banners & Top Bar Manager</span></div>
           
-          <!-- BANNER MANAGER -->
           <div class="card-box">
             <h3 style="font-size:15px; margin-bottom:10px; color:var(--primary);">Add New Sliding Banner (3-in-1)</h3>
             <label>Banner Title / Subtitle</label>
             <input type="text" id="bannerTitle" placeholder="e.g. 11.11 Grand Sale Live!">
             <label>Image URL</label>
             <input type="text" id="bannerImage" placeholder="https://images.unsplash.com/photo-...">
-            <button class="primary" onclick="saveBanner()">Publish Banner to Website</button>
+            <button class="primary" onclick="addBannerToSupabase()">Publish Banner to Website</button>
 
             <h4 style="font-size:14px; margin: 16px 0 8px 0; color:var(--primary);">Active Banners</h4>
-            <div id="bannersListAdmin">Loading banners...</div>
+            <div id="activeBannersList">Loading banners...</div>
           </div>
 
-          <!-- ANNOUNCEMENT NOTIFICATION BAR MANAGER -->
           <div class="card-box">
-            <h3 style="font-size:15px; margin-bottom:10px; color:var(--primary);">Update Top Bar Notification</h3>
+            <h3 style="font-size:15px; margin-bottom:10px; color:var(--primary);">Add Top Bar Sliding Announcement</h3>
             <label>Notification Text</label>
-            <input type="text" id="notifText" placeholder="📣 Crafted Heaven Studio: Free Delivery Available!">
-            <button class="primary" onclick="saveAnnouncement()">Update Top Bar Notification</button>
+            <input type="text" id="notifText" placeholder="📣 Crafted Heaven: Free Express Delivery in Lahore!">
+            <button class="primary" onclick="addNotificationToSupabase()">Add Announcement</button>
+
+            <h4 style="font-size:14px; margin: 16px 0 8px 0; color:var(--primary);">Active Announcements</h4>
+            <div id="activeNotifsList">Loading announcements...</div>
           </div>
         </div>
 
@@ -1061,10 +1000,6 @@
 
 
 <script>
-
-  // ==============================
-  // SUPABASE CONFIGURATION
-  // ==============================
   const SUPABASE_URL = "https://qyiohberbkudtuolpmyd.supabase.co";
   const SUPABASE_KEY = "sb_publishable_RdTzt951O8A8ipMDS87siA_tf_SLjeR";
 
@@ -1079,12 +1014,7 @@
   let posCart = [];
   let homeChartInstance = null;
   let reportChartInstance = null;
-  let currentSlideIndex = 0;
-  let slideInterval = null;
 
-  // ==============================
-  // TAB SWITCHING
-  // ==============================
   function switchTab(tabId, el) {
     document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
     document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
@@ -1095,15 +1025,12 @@
     if (tabId === 'ordersTab') loadOrders();
     if (tabId === 'posTab') initPos();
     if (tabId === 'financesTab') loadFinances();
-    if (tabId === 'contentTab') loadBannersAdmin();
+    if (tabId === 'contentTab') { loadAdminBanners(); loadAdminNotifications(); }
     if (tabId === 'reviewsTab') initReviews();
     if (tabId === 'reportsTab') renderReports();
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
-  // ==============================
-  // AUTHENTICATION
-  // ==============================
   async function login() {
     const email = document.getElementById("email").value.trim();
     const password = document.getElementById("password").value;
@@ -1150,13 +1077,8 @@
     await loadOrders();
     await loadExpenses();
     await loadReviews();
-    await loadPublicBanners();
-    await loadPublicAnnouncement();
   }
 
-  // ==============================
-  // PRODUCTS MANAGEMENT
-  // ==============================
   async function loadProducts() {
     const grid = document.getElementById("productsGridList");
     if (grid) grid.innerHTML = '<div style="text-align:center; padding:20px; color:#888;">Loading products...</div>';
@@ -1308,9 +1230,6 @@
     loadProducts();
   }
 
-  // ==============================
-  // ORDERS MANAGEMENT
-  // ==============================
   async function loadOrders() {
     const fullT = document.getElementById("ordersFullTable");
     const recT = document.getElementById("recentOrdersList");
@@ -1365,9 +1284,6 @@
     loadOrders();
   }
 
-  // ==============================
-  // POS SYSTEM
-  // ==============================
   function initPos() {
     renderPosProducts();
     renderPosCart();
@@ -1463,9 +1379,6 @@
     loadOrders();
   }
 
-  // ==============================
-  // EXPENSES & FINANCES
-  // ==============================
   async function loadFinances() {
     const { data, error } = await db.from("expenses").select("*").order("created_at", { ascending: false });
     if (!error) cacheExpenses = data || [];
@@ -1511,109 +1424,87 @@
     if (document.getElementById("finNetProfit")) document.getElementById("finNetProfit").textContent = "Rs. " + Math.round(netProfit).toLocaleString();
   }
 
-  // ==============================
-  // 3-IN-1 SLIDING BANNERS & ANNOUNCEMENTS
-  // ==============================
-  async function loadPublicBanners() {
-    const { data } = await db.from("banners").select("*").order("created_at", { ascending: false });
-    cacheBanners = data || [];
-    const slider = document.getElementById("homeSlider");
-    if (!slider) return;
+  // MULTI-BANNER ADMIN MANAGEMENT
+  async function loadAdminBanners() {
+    const container = document.getElementById("activeBannersList");
+    if(!container) return;
 
-    if (cacheBanners.length > 0) {
-      slider.innerHTML = "";
-      cacheBanners.forEach((b, idx) => {
-        slider.innerHTML += `
-          <div class="slide ${idx === 0 ? 'active' : ''}" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('${escapeHTML(b.image_url)}');">
-            <div class="slide-content">
-              <h2>${escapeHTML(b.title || 'Crafted Heaven')}</h2>
-              <p>Plants, Gardening & Handmade Crafts ♥</p>
-            </div>
-          </div>
-        `;
-      });
-      startSlider();
-    }
-  }
-
-  function startSlider() {
-    if (slideInterval) clearInterval(slideInterval);
-    const slides = document.querySelectorAll('.slide');
-    if (slides.length <= 1) return;
-    slideInterval = setInterval(() => {
-      slides[currentSlideIndex].classList.remove('active');
-      currentSlideIndex = (currentSlideIndex + 1) % slides.length;
-      slides[currentSlideIndex].classList.add('active');
-    }, 3500);
-  }
-
-  async function loadBannersAdmin() {
-    const { data } = await db.from("banners").select("*").order("created_at", { ascending: false });
-    const list = document.getElementById("bannersListAdmin");
-    if (!list) return;
-
-    if (!data || data.length === 0) {
-      list.innerHTML = '<p style="color:#888; font-size:13px;">No banners added yet.</p>';
+    const { data: dbBanners, error } = await db.from('banners').select('*').order('created_at', { ascending: false });
+    if(error || !dbBanners || dbBanners.length === 0) {
+      container.innerHTML = `<p style="color:#888; font-size:13px;">No active banners found.</p>`;
       return;
     }
 
-    list.innerHTML = "";
-    data.forEach(b => {
-      list.innerHTML += `
-        <div style="display:flex; justify-content:space-between; align-items:center; background:#f9f6f0; padding:8px 12px; border-radius:8px; margin-bottom:6px; font-size:13px;">
-          <span><strong>${escapeHTML(b.title || 'Banner')}</strong></span>
-          <button onclick="deleteBanner('${b.id}')" style="background:none; color:red; border:none; cursor:pointer;"><i class="fa-solid fa-trash"></i></button>
+    container.innerHTML = dbBanners.map(b => `
+      <div style="display:flex; align-items:center; justify-content:space-between; background:#fff; padding:10px; border:1px solid #e0e0e0; border-radius:8px; margin-bottom:8px;">
+        <div style="display:flex; align-items:center; gap:10px;">
+          <img src="${b.image_url}" style="width:50px; height:35px; object-fit:cover; border-radius:5px;">
+          <div><strong>${escapeHTML(b.title || 'Banner')}</strong></div>
         </div>
-      `;
-    });
+        <button onclick="deleteBannerFromSupabase('${b.id}')" style="background:#ff4d4d; color:white; border:0; padding:6px 12px; border-radius:6px; cursor:pointer; font-size:12px;">Delete</button>
+      </div>
+    `).join('');
   }
 
-  async function saveBanner() {
+  async function addBannerToSupabase() {
     const title = document.getElementById("bannerTitle").value.trim();
     const image_url = document.getElementById("bannerImage").value.trim();
-    if (!image_url) return alert("Please enter banner image URL.");
+    if(!image_url) return alert("Please provide an Image URL.");
 
-    const { error } = await db.from("banners").insert({ title, image_url });
-    if (!error) {
+    const { error } = await db.from('banners').insert([{ title, image_url }]);
+    if(error) alert("Error: " + error.message);
+    else {
+      alert("Banner published successfully!");
       document.getElementById("bannerTitle").value = "";
       document.getElementById("bannerImage").value = "";
-      loadBannersAdmin();
-      loadPublicBanners();
-      alert("Banner added successfully!");
+      loadAdminBanners();
     }
   }
 
-  async function deleteBanner(id) {
-    await db.from("banners").delete().eq("id", id);
-    loadBannersAdmin();
-    loadPublicBanners();
+  async function deleteBannerFromSupabase(id) {
+    if(!confirm("Delete this banner?")) return;
+    await db.from('banners').delete().eq('id', id);
+    loadAdminBanners();
   }
 
-  async function loadPublicAnnouncement() {
-    const { data } = await db.from("announcements").select("*").eq("active", true).order("created_at", { ascending: false }).limit(1);
-    const bar = document.getElementById("topAnnouncementBar");
-    if (bar && data && data.length > 0) {
-      bar.innerHTML = `<span>📣 <strong>${escapeHTML(data[0].message)}</strong></span>`;
+  // ANNOUNCEMENTS ADMIN MANAGEMENT
+  async function loadAdminNotifications() {
+    const container = document.getElementById("activeNotifsList");
+    if(!container) return;
+
+    const { data: dbNotifs, error } = await db.from('announcements').select('*').order('created_at', { ascending: false });
+    if(error || !dbNotifs || dbNotifs.length === 0) {
+      container.innerHTML = `<p style="color:#888; font-size:13px;">No active announcements found.</p>`;
+      return;
     }
+
+    container.innerHTML = dbNotifs.map(n => `
+      <div style="display:flex; align-items:center; justify-content:space-between; background:#fff; padding:10px; border:1px solid #e0e0e0; border-radius:8px; margin-bottom:8px;">
+        <span style="color:#333; font-size:13px;">${escapeHTML(n.message)}</span>
+        <button onclick="deleteNotificationFromSupabase('${n.id}')" style="background:#ff4d4d; color:white; border:0; padding:6px 12px; border-radius:6px; cursor:pointer; font-size:12px;">Delete</button>
+      </div>
+    `).join('');
   }
 
-  async function saveAnnouncement() {
+  async function addNotificationToSupabase() {
     const message = document.getElementById("notifText").value.trim();
-    if (!message) return alert("Please enter notification message.");
+    if(!message) return alert("Please enter notification text.");
 
-    // Deactivate previous
-    await db.from("announcements").update({ active: false }).eq("active", true);
-    const { error } = await db.from("announcements").insert({ message, active: true });
-    if (!error) {
+    const { error } = await db.from('announcements').insert([{ message, active: true }]);
+    if(error) alert("Error: " + error.message);
+    else {
+      alert("Announcement added!");
       document.getElementById("notifText").value = "";
-      loadPublicAnnouncement();
-      alert("Top Bar Notification updated successfully!");
+      loadAdminNotifications();
     }
   }
 
-  // ==============================
-  // CUSTOMER REVIEWS
-  // ==============================
+  async function deleteNotificationFromSupabase(id) {
+    if(!confirm("Delete this announcement?")) return;
+    await db.from('announcements').delete().eq('id', id);
+    loadAdminNotifications();
+  }
+
   async function initReviews() {
     const sel = document.getElementById("reviewProductSelect");
     if (sel) {
@@ -1667,9 +1558,6 @@
     }
   }
 
-  // ==============================
-  // STATS & CHARTS
-  // ==============================
   function calculateStats(ordersData) {
     if (document.getElementById("statTotalProducts")) document.getElementById("statTotalProducts").textContent = cacheProducts.length;
     const outCount = cacheProducts.filter(p => (p.stock ?? 0) <= 0).length;
@@ -1736,7 +1624,6 @@
   }
 
   checkUser();
-
 </script>
 
 </body>
