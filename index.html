@@ -46,20 +46,20 @@ img{
 }
 
 /* =========================
-   TOP SLIDING NOTIFICATION BAR (ONLY FOR NOTIFICATIONS)
+   PROMINENT GOLD TOP NOTIFICATION BAR
 ========================= */
 #topAnnouncementBar{
-  background:#173d2a;
-  color:#f1d57a;
-  padding:9px 12px;
-  font-size:13px;
+  background:linear-gradient(135deg, #d4af37, #f1d57a);
+  color:#173d2a;
+  padding:10px 14px;
+  font-size:13.5px;
   text-align:center;
   font-weight:bold;
   position:sticky;
   top:0;
   z-index:6000;
-  border-bottom:1px solid rgba(241,213,122,0.2);
-  min-height:36px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  min-height:38px;
   display:flex;
   align-items:center;
   justify-content:center;
@@ -147,11 +147,11 @@ img{
 }
 
 /* =========================
-   HEADER
+   GREEN HEADER BAR
 ========================= */
 header{
   position:sticky;
-  top:36px;
+  top:38px;
   z-index:5000;
   background:rgba(15,55,36,.97);
   backdrop-filter:blur(10px);
@@ -214,7 +214,7 @@ header{
 }
 
 /* =========================
-   BANNERS CAROUSEL (WITH MANUAL ARROWS & FAST SPEED)
+   PURE IMAGE BANNERS CAROUSEL (NO TEXT OVERLAY)
 ========================= */
 .slider-container{
   position:relative;
@@ -225,6 +225,7 @@ header{
   border-radius:16px;
   overflow:hidden;
   box-shadow:0 4px 15px rgba(0,0,0,0.08);
+  background:#000;
 }
 
 .slide{
@@ -235,34 +236,12 @@ header{
   height:100%;
   background-size:cover;
   background-position:center;
-  display:flex;
-  align-items:center;
-  padding:0 50px;
-  color:white;
   opacity:0;
   transition:opacity 0.4s ease-in-out;
 }
 
 .slide.active{
   opacity:1;
-}
-
-.slide-content{
-  background:rgba(0, 0, 0, 0.55);
-  padding:15px 22px;
-  border-radius:12px;
-  backdrop-filter:blur(4px);
-  max-width:500px;
-}
-
-.slide-content h2{
-  font-size:22px;
-  margin-bottom:5px;
-  color:#f1d57a;
-}
-
-.slide-content p{
-  font-size:14px;
 }
 
 .slider-arrow {
@@ -343,14 +322,14 @@ header{
 
 <body>
 
-<!-- TOP SLIDING NOTIFICATION BAR -->
+<!-- TOP SLIDING NOTIFICATION BAR (GOLD PROMINENT BAR) -->
 <div id="topAnnouncementBar">
-  <div class="notif-slide-item active">📣 <strong>Crafted Heaven Studio:</strong> 11.11 Mega Sale is Live Now!</div>
+  <div class="notif-slide-item active">🎉 <strong>Crafted Heaven Studio:</strong> 11.11 Mega Sale is Live Now!</div>
 </div>
 
 <div id="main-store-container">
 
-  <!-- WELCOME -->
+  <!-- WELCOME SCREEN -->
   <div id="welcomeScreen">
     <div class="welcomeContent">
       <img src="crafted_heaven_logo.png" alt="Logo" class="welcomeLogo" onerror="this.style.display='none'">
@@ -390,16 +369,11 @@ header{
     </div>
   </aside>
 
-  <!-- BANNERS CAROUSEL (WITH MANUAL ARROWS) -->
+  <!-- CLEAN BANNERS CAROUSEL (PURE IMAGES ONLY) -->
   <div class="slider-container" id="homeSlider">
     <button class="slider-arrow slider-prev" onclick="changeSlide(-1)">❮</button>
     <button class="slider-arrow slider-next" onclick="changeSlide(1)">❯</button>
-    <div class="slide active" style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1607083206869-4c7672e72a8a?q=80&w=1000&auto=format&fit=crop');">
-      <div class="slide-content">
-        <h2>11.11 Grand Sale Live! 🎉</h2>
-        <p>Explore amazing discounts on plants and crafts.</p>
-      </div>
-    </div>
+    <div class="slide active" style="background-image: url('https://images.unsplash.com/photo-1607083206869-4c7672e72a8a?q=80&w=1000&auto=format&fit=crop');"></div>
   </div>
 
   <!-- PRODUCTS SECTION -->
@@ -431,7 +405,7 @@ header{
     <div class="productGrid" id="productGrid"></div>
   </section>
 
-  <!-- CONTACT -->
+  <!-- CONTACT SECTION -->
   <section class="section" id="contact">
     <div class="contactBox">
       <h2>Contact Crafted Heaven</h2>
@@ -547,12 +521,7 @@ async function loadSupabaseData() {
   if (dbBanners && dbBanners.length > 0 && slider) {
     let arrowsHTML = `<button class="slider-arrow slider-prev" onclick="changeSlide(-1)">❮</button><button class="slider-arrow slider-next" onclick="changeSlide(1)">❯</button>`;
     slider.innerHTML = arrowsHTML + dbBanners.map((b, idx) => `
-      <div class="slide ${idx === 0 ? 'active' : ''}" style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('${b.image_url}');">
-        <div class="slide-content">
-          <h2>${b.title || 'Crafted Heaven'}</h2>
-          <p>Plants, Gardening & Handmade Crafts ♥</p>
-        </div>
-      </div>
+      <div class="slide ${idx === 0 ? 'active' : ''}" style="background-image: url('${b.image_url}');"></div>
     `).join('');
     slideElements = document.querySelectorAll('.slide');
     resetSlideTimer();
