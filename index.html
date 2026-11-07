@@ -10,12 +10,16 @@
 <meta name="description" content="Crafted Heaven PK - Plants, gardening supplies, seeds, handmade crafts, crochet, keychains, kids products and more.">
 <meta name="keywords" content="Crafted Heaven PK, plants, gardening, seeds, cocopeat, organic compost, crochet, keychains, crafts, Lahore">
 
+<!-- PWA & Add to Home Screen Icons -->
 <link rel="icon" type="image/png" href="crafted_heaven_logo.png">
 <link rel="apple-touch-icon" href="crafted_heaven_logo.png">
+<meta name="apple-mobile-web-app-title" content="Crafted Heaven">
+<meta name="application-name" content="Crafted Heaven">
 
+<!-- jsPDF CDN for PDF Invoice Generation -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<!-- Supabase SDK -->
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
 <style>
 *{
@@ -39,11 +43,16 @@ button,a{
   -webkit-tap-highlight-color:transparent;
 }
 
+/* Responsive Image Fix for Laptop & PC */
 img{
   max-width:100%;
   height:auto;
   display:block;
   object-fit:cover;
+}
+
+button{
+  font-family:inherit;
 }
 
 /* =========================
@@ -82,8 +91,9 @@ img{
 }
 
 /* =========================
-   WELCOME SCREEN
+   WELCOME (CENTERED LOGO)
 ========================= */
+
 #welcomeScreen{
   position:fixed;
   inset:0;
@@ -101,6 +111,36 @@ img{
   opacity:0;
   visibility:hidden;
   pointer-events:none;
+}
+
+.welcomeRings{
+  position:absolute;
+  width:500px;
+  height:500px;
+  border:1px solid rgba(212,175,55,.25);
+  border-radius:50%;
+  animation:rotateRing 15s linear infinite;
+}
+
+.welcomeRings:before,
+.welcomeRings:after{
+  content:"";
+  position:absolute;
+  border:1px solid rgba(212,175,55,.18);
+  border-radius:50%;
+}
+
+.welcomeRings:before{
+  inset:40px;
+}
+
+.welcomeRings:after{
+  inset:90px;
+}
+
+@keyframes rotateRing{
+  from{transform:rotate(0)}
+  to{transform:rotate(360deg)}
 }
 
 .welcomeContent{
@@ -122,6 +162,7 @@ img{
   padding:8px;
   box-shadow:0 0 35px rgba(212,175,55,.35);
   margin:0 auto 22px auto;
+  display:block;
 }
 
 .welcomeContent h1{
@@ -148,8 +189,9 @@ img{
 }
 
 /* =========================
-   GREEN HEADER BAR
+   HEADER
 ========================= */
+
 header{
   position:sticky;
   top:38px;
@@ -214,6 +256,20 @@ header{
   line-height:1;
 }
 
+@media(max-width:800px){
+  .logoText{
+    font-size:15px;
+  }
+
+  .navbar{
+    padding:9px 12px;
+  }
+
+  .cartBtn{
+    padding:9px 12px;
+  }
+}
+
 /* =========================
    PURE IMAGE BANNERS CAROUSEL (NO TEXT OVERLAY)
 ========================= */
@@ -269,105 +325,1100 @@ header{
 .slider-next { right: 12px; }
 
 /* =========================
-   SECTIONS & PRODUCTS
+   HERO
 ========================= */
-.section{ max-width:1200px; margin:auto; padding:50px 18px; }
-.sectionTitle{ text-align:center; margin-bottom:25px; }
-.sectionTitle h2{ font-size:28px; color:#173d2a; margin-bottom:6px; }
-.sectionTitle p{ color:#5c6b61; }
 
-.categoryBar{ display:flex; justify-content:center; flex-wrap:wrap; gap:9px; margin-bottom:18px; }
-.categoryBtn{ border:1px solid #d6d0bc; background:white; color:#173d2a; padding:9px 15px; border-radius:25px; cursor:pointer; font-weight:600; }
-.categoryBtn.active{ background:#173d2a; color:#f1d57a; border-color:#173d2a; }
-
-.controlsRow{ max-width:850px; margin:0 auto 22px; display:grid; grid-template-columns:1fr 220px; gap:10px; }
-.searchBox input, .sortSelect{ width:100%; padding:13px 16px; border:1px solid #d8d4c5; border-radius:30px; outline:none; font-size:15px; background:white; }
-.sortSelect{ border-radius:12px; color:#173d2a; }
-
-.productGrid{ display:grid; grid-template-columns:repeat(4,1fr); gap:20px; }
-@media(max-width:1000px){ .productGrid{ grid-template-columns:repeat(3,1fr); } }
-@media(max-width:720px){ .productGrid{ grid-template-columns:repeat(2,1fr); gap:13px; } .controlsRow{ grid-template-columns:1fr; } }
-
-.productCard{ background:white; border-radius:18px; overflow:hidden; box-shadow:0 6px 20px rgba(22,55,39,.09); border:1px solid #eeeade; display:flex; flex-direction:column; cursor:pointer; transition:.25s; }
-.productCard:hover{ transform: translateY(-3px); }
-.productImageWrap{ width:100%; aspect-ratio:1/1; background:#f1f0e8; overflow:hidden; display:flex; align-items:center; justify-content:center; }
-.productImageWrap img{ width:100%; height:100%; object-fit:cover; }
-.productInfo{ padding:14px; display:flex; flex-direction:column; flex:1; }
-.productCategory{ font-size:11px; text-transform:uppercase; color:#8b7650; font-weight:bold; margin-bottom:5px; }
-.productName{ font-size:16px; margin-bottom:7px; color:#173d2a; }
-.priceRow{ display:flex; align-items:center; justify-content:space-between; gap:8px; margin-top:auto; margin-bottom:10px; }
-.price{ color:#173d2a; font-size:18px; font-weight:bold; }
-.addBtn{ border:0; background:#173d2a; color:#f1d57a; padding:11px; border-radius:9px; cursor:pointer; font-weight:bold; width:100%; }
-
-/* REVIEWS SECTION */
-.reviews-section {
-  background: white;
-  border-radius: 20px;
-  padding: 30px 20px;
-  margin: 40px auto;
-  max-width: 1200px;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-  border: 1px solid #e2ded4;
-}
-.reviews-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 15px;
-  margin-top: 20px;
-}
-.review-card {
-  background: #f9f8f3;
-  padding: 18px;
-  border-radius: 14px;
-  border: 1px solid #e2ded4;
-}
-.review-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 8px;
-  font-weight: bold;
-  color: var(--primary);
-}
-.review-stars { color: #d4af37; font-size: 14px; }
-.review-comment { font-size: 13.5px; color: #444; line-height: 1.5; }
-.seller-reply {
-  background: white;
-  margin-top: 10px;
-  padding: 10px;
-  border-radius: 8px;
-  font-size: 12.5px;
-  border-left: 3px solid #173d2a;
-  color: #333;
+.hero{
+  min-height:470px;
+  background:
+    linear-gradient(rgba(7,38,24,.68),rgba(7,38,24,.72)),
+    url("file_00000000111c820a85835b2be6015af8.png") center/cover;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  color:white;
+  padding:70px 20px;
 }
 
-/* CONTACT & SOCIAL FOOTER */
-.contactBox{ background:linear-gradient(135deg,#173d2a,#0d2b1d); color:white; padding:40px 20px; border-radius:22px; text-align:center; }
-.contactBox h2{ color:#f1d57a; margin-bottom:10px; font-size:24px; }
-.contactBox p{ margin-bottom:20px; opacity:0.9; font-size:15px; }
-.socialLinksRow{ display:flex; justify-content:center; gap:14px; flex-wrap:wrap; margin-top:15px; }
-.socialBtnLink{ display:inline-flex; align-items:center; gap:8px; padding:12px 22px; border-radius:30px; text-decoration:none; color:white; font-weight:bold; font-size:15px; box-shadow:0 4px 12px rgba(0,0,0,0.2); transition:opacity 0.2s; }
-.socialBtnLink:active{ opacity:0.85; }
-.fbBtn{ background:#1877f2; }
-.waBtn{ background:#25d366; color:#0b381e; }
+.heroContent{
+  max-width:850px;
+}
 
-/* MODALS (CART & PRODUCT DETAIL) */
-.modalOverlay{ position:fixed; inset:0; background:rgba(0,0,0,.65); z-index:10000; display:flex; align-items:center; justify-content:center; padding:15px; opacity:0; visibility:hidden; transition:.3s; }
-.modalOverlay.show{ opacity:1; visibility:visible; }
-.modalBox{ background:#fff; color:#173d2a; width:min(650px,100%); border-radius:20px; padding:23px; position:relative; max-height:92vh; overflow-y:auto; }
-.closeModal{ position:absolute; top:10px; right:14px; border:0; background:transparent; font-size:28px; cursor:pointer; color:#555; }
+.hero h1{
+  font-size:clamp(34px,7vw,65px);
+  color:#f1d57a;
+  margin-bottom:15px;
+}
 
-/* SIDEBAR */
-.menuOverlay{ position:fixed; inset:0; background:rgba(0,0,0,.55); z-index:7000; opacity:0; visibility:hidden; transition:.3s; }
-.menuOverlay.show{ opacity:1; visibility:visible; }
-.sideMenu{ position:fixed; top:0; left:-430px; width:min(390px,92vw); height:100vh; background:#262626; color:white; z-index:7500; transition:.35s; overflow-y:auto; }
-.sideMenu.show{ left:0; }
-.sideHeader{ padding:18px 22px; display:flex; align-items:center; justify-content:space-between; border-bottom:1px solid #555; }
-.sideClose{ border:0; background:#666; color:white; width:45px; height:45px; border-radius:12px; font-size:24px; cursor:pointer; }
-.sideItem{ width:calc(100% - 28px); margin:0 14px; border:0; background:#666; color:white; padding:15px; text-align:left; font-size:16px; font-weight:bold; cursor:pointer; display:flex; gap:10px; border-bottom:1px solid #777; }
+.hero p{
+  font-size:18px;
+  line-height:1.7;
+  margin-bottom:28px;
+}
 
-.toast{ position:fixed; bottom:25px; left:50%; transform:translate(-50%,20px); background:#173d2a; color:white; padding:12px 18px; border-radius:25px; z-index:12000; opacity:0; visibility:hidden; transition:.3s; }
-.toast.show{ opacity:1; visibility:visible; transform:translate(-50%,0); }
+.heroButtons,
+.socialButtons{
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  gap:12px;
+}
+
+.heroBtn{
+  display:inline-block;
+  padding:13px 23px;
+  border-radius:30px;
+  font-weight:bold;
+  text-decoration:none;
+}
+
+.primaryBtn{
+  background:#d4af37;
+  color:#173d2a;
+}
+
+.secondaryBtn{
+  background:rgba(255,255,255,.12);
+  border:1px solid rgba(255,255,255,.5);
+  color:white;
+}
+
+.socialButtons{
+  margin-top:22px;
+}
+
+.socialBtn{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:11px 18px;
+  border-radius:28px;
+  text-decoration:none;
+  color:white;
+  font-weight:bold;
+  box-shadow:0 5px 15px rgba(0,0,0,.12);
+}
+
+.facebookBtn{
+  background:#1877f2;
+}
+
+.whatsappBtn{
+  background:#25d366;
+}
+
+.socialIcon{
+  width:22px;
+  height:22px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.socialIcon svg,
+.floatBtn svg,
+.footerSocial svg{
+  width:21px;
+  height:21px;
+  fill:currentColor;
+}
+
+/* =========================
+   SECTIONS
+========================= */
+
+.section{
+  max-width:1200px;
+  margin:auto;
+  padding:55px 18px;
+}
+
+.sectionTitle{
+  text-align:center;
+  margin-bottom:28px;
+}
+
+.sectionTitle h2{
+  font-size:30px;
+  color:#173d2a;
+  margin-bottom:8px;
+}
+
+.sectionTitle p{
+  color:#5c6b61;
+}
+
+/* =========================
+   PRODUCTS
+========================= */
+
+.categoryBar{
+  display:flex;
+  justify-content:center;
+  flex-wrap:wrap;
+  gap:9px;
+  margin-bottom:18px;
+}
+
+.categoryBtn{
+  border:1px solid #d6d0bc;
+  background:white;
+  color:#173d2a;
+  padding:9px 15px;
+  border-radius:25px;
+  cursor:pointer;
+  font-weight:600;
+}
+
+.categoryBtn.active{
+  background:#173d2a;
+  color:#f1d57a;
+  border-color:#173d2a;
+}
+
+.controlsRow{
+  max-width:850px;
+  margin:0 auto 22px;
+  display:grid;
+  grid-template-columns:1fr 220px;
+  gap:10px;
+}
+
+.searchBox input,
+.sortSelect{
+  width:100%;
+  padding:14px 17px;
+  border:1px solid #d8d4c5;
+  border-radius:30px;
+  outline:none;
+  font-size:15px;
+  background:white;
+}
+
+.sortSelect{
+  border-radius:12px;
+  color:#173d2a;
+}
+
+.productGrid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:20px;
+}
+
+@media(max-width:1000px){
+  .productGrid{
+    grid-template-columns:repeat(3,1fr);
+  }
+}
+
+@media(max-width:720px){
+  .productGrid{
+    grid-template-columns:repeat(2,1fr);
+    gap:13px;
+  }
+
+  .controlsRow{
+    grid-template-columns:1fr;
+  }
+}
+
+@media(max-width:480px){
+  .productGrid{
+    grid-template-columns:repeat(2,1fr);
+  }
+}
+
+.productCard{
+  background:white;
+  border-radius:18px;
+  overflow:hidden;
+  box-shadow:0 6px 20px rgba(22,55,39,.09);
+  border:1px solid #eeeade;
+  display:flex;
+  flex-direction:column;
+  cursor:pointer;
+  transition:.25s;
+}
+
+.productCard:hover{
+  transform:translateY(-4px);
+  box-shadow:0 12px 28px rgba(22,55,39,.15);
+}
+
+.productImageWrap{
+  width:100%;
+  aspect-ratio:1/1;
+  background:#f1f0e8;
+  overflow:hidden;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.productImageWrap img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+.productImages{
+  display:flex;
+  width:100%;
+  gap:2px;
+}
+
+.productImages img{
+  width:50%;
+  object-fit:cover;
+}
+
+.productInfo{
+  padding:14px;
+  display:flex;
+  flex-direction:column;
+  flex:1;
+}
+
+.productCategory{
+  font-size:11px;
+  text-transform:uppercase;
+  color:#8b7650;
+  font-weight:bold;
+  margin-bottom:5px;
+}
+
+.productName{
+  font-size:17px;
+  margin-bottom:7px;
+  color:#173d2a;
+}
+
+.productRating{
+  font-size:13px;
+  margin-bottom:7px;
+  color:#d39d00;
+}
+
+.ratingCount{
+  color:#777;
+  font-size:11px;
+}
+
+.priceRow{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:8px;
+  margin-top:auto;
+  margin-bottom:10px;
+}
+
+.price{
+  color:#173d2a;
+  font-size:19px;
+  font-weight:bold;
+}
+
+.unit{
+  font-size:11px;
+  color:#777;
+  text-align:right;
+}
+
+.productActions{
+  display:grid;
+  grid-template-columns:1fr;
+  gap:7px;
+}
+
+.addBtn{
+  border:0;
+  background:#173d2a;
+  color:#f1d57a;
+  padding:11px;
+  border-radius:9px;
+  cursor:pointer;
+  font-weight:bold;
+}
+
+/* =========================
+   ABOUT / REVIEWS / CONTACT
+========================= */
+
+.aboutBox{
+  background:white;
+  border-radius:20px;
+  padding:30px;
+  box-shadow:0 5px 20px rgba(0,0,0,.06);
+  line-height:1.8;
+  text-align:center;
+}
+
+.aboutBox strong{
+  color:#173d2a;
+}
+
+.reviewsGrid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:16px;
+}
+
+@media(max-width:800px){
+  .reviewsGrid{
+    grid-template-columns:1fr;
+  }
+}
+
+.reviewCard{
+  background:white;
+  padding:18px;
+  border-radius:16px;
+  box-shadow:0 4px 15px rgba(0,0,0,.06);
+}
+
+.reviewStars{
+  color:#d39d00;
+  margin-bottom:7px;
+}
+
+.reviewName{
+  font-weight:bold;
+  margin-bottom:5px;
+}
+
+.reviewText{
+  color:#68736c;
+  font-size:14px;
+  line-height:1.6;
+}
+
+.contactBox{
+  background:linear-gradient(135deg,#173d2a,#0d2b1d);
+  color:white;
+  padding:35px 20px;
+  border-radius:22px;
+  text-align:center;
+}
+
+.contactBox h2{
+  color:#f1d57a;
+  margin-bottom:10px;
+}
+
+.contactBox p{
+  opacity:.9;
+  margin-bottom:18px;
+}
+
+.contactInfo{
+  display:flex;
+  justify-content:center;
+  flex-wrap:wrap;
+  gap:12px;
+  margin-bottom:12px;
+}
+
+.contactItem{
+  background:rgba(255,255,255,.1);
+  padding:11px 15px;
+  border-radius:25px;
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+footer{
+  background:#0b2418;
+  color:white;
+  padding:45px 18px 25px;
+}
+
+.footerGrid{
+  max-width:1200px;
+  margin:auto;
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:30px;
+}
+
+.footerColumn h3{
+  color:#f1d57a;
+  margin-bottom:12px;
+}
+
+.footerColumn p,
+.footerColumn li{
+  color:#cbd5ce;
+  font-size:13px;
+  line-height:1.8;
+}
+
+.footerColumn ul{
+  list-style:none;
+}
+
+.footerColumn button{
+  background:none;
+  border:0;
+  color:#cbd5ce;
+  cursor:pointer;
+  font-size:13px;
+  padding:4px 0;
+}
+
+.footerLogo{
+  width:65px;
+  height:65px;
+  background:white;
+  padding:4px;
+  object-fit:contain;
+  border-radius:50%;
+  margin-bottom:10px;
+}
+
+.footerSocial{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+}
+
+.footerSocial a{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:7px;
+  padding:9px 14px;
+  border-radius:22px;
+  color:white;
+  text-decoration:none;
+  font-size:13px;
+  font-weight:bold;
+}
+
+.footerFacebook{
+  background:#1877f2;
+}
+
+.footerWhatsApp{
+  background:#25d366;
+}
+
+.deliveryNote{
+  margin:15px auto;
+  color:#e7eee9;
+  font-weight:bold;
+}
+
+.copyright{
+  max-width:1200px;
+  margin:30px auto 0;
+  padding-top:15px;
+  border-top:1px solid rgba(255,255,255,.1);
+  color:#9faea5;
+  font-size:11px;
+  text-align:center;
+}
+
+@media(max-width:800px){
+  .footerGrid{
+    grid-template-columns:1fr 1fr;
+  }
+}
+
+@media(max-width:520px){
+  .footerGrid{
+    grid-template-columns:1fr;
+  }
+}
+
+/* =========================
+   SIDEBAR
+========================= */
+
+.menuOverlay{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.55);
+  z-index:7000;
+  opacity:0;
+  visibility:hidden;
+  transition:.3s;
+}
+
+.menuOverlay.show{
+  opacity:1;
+  visibility:visible;
+}
+
+.sideMenu{
+  position:fixed;
+  top:0;
+  left:-430px;
+  width:min(390px,92vw);
+  height:100vh;
+  background:#262626;
+  color:white;
+  z-index:7500;
+  transition:.35s;
+  overflow-y:auto;
+  box-shadow:5px 0 25px rgba(0,0,0,.3);
+}
+
+.sideMenu.show{
+  left:0;
+}
+
+.sideHeader{
+  padding:18px 22px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  border-bottom:1px solid #555;
+}
+
+.sideBrand{
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+
+.sideBrand img{
+  width:58px;
+  height:58px;
+  border-radius:50%;
+  background:white;
+  padding:3px;
+  object-fit:contain;
+}
+
+.sideBrand strong{
+  font-size:21px;
+}
+
+.sideBrand small{
+  display:block;
+  color:#aaa;
+  margin-top:3px;
+}
+
+.sideClose{
+  border:0;
+  background:#666;
+  color:white;
+  width:58px;
+  height:58px;
+  border-radius:17px;
+  font-size:28px;
+  cursor:pointer;
+}
+
+.menuSectionTitle{
+  font-size:12px;
+  letter-spacing:2px;
+  color:#a9d2b6;
+  font-weight:bold;
+  padding:22px 22px 10px;
+  text-transform:uppercase;
+}
+
+.sideList{
+  margin:0 0 3px;
+}
+
+.sideItem{
+  width:calc(100% - 28px);
+  margin:0 14px;
+  border:0;
+  border-bottom:1px solid #707070;
+  background:#666;
+  color:white;
+  padding:16px 10px;
+  text-align:left;
+  font-size:17px;
+  font-weight:bold;
+  cursor:pointer;
+  display:flex;
+  align-items:center;
+  gap:14px;
+}
+
+.sideItem:hover{
+  background:#777;
+}
+
+.sideBottom{
+  padding:20px 22px;
+  color:#c8c8c8;
+  font-size:13px;
+  line-height:1.6;
+}
+
+.sideSocial{
+  display:flex;
+  gap:10px;
+  margin:15px 0;
+}
+
+.sideSocial a{
+  width:54px;
+  height:54px;
+  border-radius:15px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:white;
+  text-decoration:none;
+}
+
+.sideFB{
+  background:#1877f2;
+}
+
+.sideWA{
+  background:#25d366;
+}
+
+.sidePhone{
+  background:#444;
+}
+
+/* =========================
+   MODALS
+========================= */
+
+.modalOverlay{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.65);
+  z-index:10000;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:15px;
+  opacity:0;
+  visibility:hidden;
+  transition:.3s;
+}
+
+.modalOverlay.show{
+  opacity:1;
+  visibility:visible;
+}
+
+.modalBox{
+  background:#fff;
+  color:#173d2a;
+  width:min(650px,100%);
+  border-radius:20px;
+  padding:23px;
+  position:relative;
+  max-height:92vh;
+  overflow-y:auto;
+}
+
+.closeModal{
+  position:absolute;
+  top:10px;
+  right:14px;
+  border:0;
+  background:transparent;
+  font-size:28px;
+  cursor:pointer;
+  color:#555;
+}
+
+.modalBox h2{
+  color:#173d2a;
+  margin-bottom:5px;
+}
+
+.modalSub{
+  color:#777;
+  font-size:13px;
+  margin-bottom:16px;
+}
+
+/* =========================
+   CART
+========================= */
+
+.cartItem{
+  background:#fafaf6;
+  border:1px solid #e4e2d8;
+  border-radius:13px;
+  padding:11px;
+  margin-bottom:9px;
+  display:grid;
+  grid-template-columns:60px 1fr auto;
+  gap:10px;
+  align-items:center;
+}
+
+.cartItem img{
+  width:60px;
+  height:60px;
+  border-radius:9px;
+  object-fit:cover;
+}
+
+.cartItemName{
+  font-weight:bold;
+}
+
+.cartItemPrice{
+  font-size:12px;
+  color:#777;
+  margin-top:4px;
+}
+
+.qtyControls{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  margin-top:8px;
+}
+
+.qtyBtn{
+  width:28px;
+  height:28px;
+  border:0;
+  border-radius:50%;
+  background:#173d2a;
+  color:white;
+  cursor:pointer;
+  font-size:17px;
+}
+
+.removeBtn{
+  border:0;
+  background:#f1e7e2;
+  color:#b13b25;
+  padding:7px;
+  border-radius:7px;
+  cursor:pointer;
+}
+
+.checkoutSummary{
+  background:#f5f5ed;
+  padding:15px;
+  border-radius:12px;
+  margin:15px 0;
+  line-height:1.7;
+  font-size:13px;
+}
+
+.checkoutTotal{
+  font-size:22px;
+  font-weight:bold;
+  color:#173d2a;
+  margin-top:8px;
+}
+
+.cartButtons{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:9px;
+}
+
+.clearCart{
+  border:1px solid #ccc;
+  background:white;
+  color:#9a3d2c;
+  padding:12px;
+  border-radius:9px;
+  cursor:pointer;
+  font-weight:bold;
+}
+
+.checkoutBtn{
+  border:0;
+  background:#25d366;
+  color:white;
+  padding:12px;
+  border-radius:9px;
+  cursor:pointer;
+  font-weight:bold;
+}
+
+/* =========================
+   DARK CHECKOUT
+========================= */
+
+#checkoutOverlay .modalBox{
+  background:#252525;
+  color:#fff;
+  border-radius:24px;
+  width:min(650px,100%);
+  box-shadow:0 15px 50px rgba(0,0,0,.45);
+}
+
+#checkoutOverlay .closeModal{
+  color:#ddd;
+}
+
+#checkoutOverlay h2{
+  color:white;
+  font-size:27px;
+}
+
+#checkoutOverlay .modalSub{
+  color:#bdbdbd;
+}
+
+.checkoutForm{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
+}
+
+.fieldFull{
+  grid-column:1/-1;
+}
+
+.checkoutForm label{
+  display:block;
+  font-size:13px;
+  font-weight:bold;
+  color:#ddd;
+  margin-bottom:6px;
+}
+
+.checkoutForm input,
+.checkoutForm textarea{
+  width:100%;
+  padding:13px;
+  border:1px solid #555;
+  border-radius:11px;
+  outline:none;
+  font-size:14px;
+  background:#303030;
+  color:white;
+}
+
+.checkoutForm input::placeholder,
+.checkoutForm textarea::placeholder{
+  color:#999;
+}
+
+.checkoutForm input:focus,
+.checkoutForm textarea:focus{
+  border-color:#4d9b70;
+}
+
+.checkoutForm textarea{
+  min-height:90px;
+  resize:vertical;
+}
+
+.checkoutRequired{
+  color:#ff8574;
+}
+
+#checkoutOverlay .checkoutSummary{
+  background:#303030;
+  border:1px solid #444;
+  color:#eee;
+}
+
+#checkoutOverlay .checkoutTotal{
+  color:#fff;
+}
+
+.paymentBox{
+  background:#202020;
+  border:1px solid #4c4c4c;
+  border-radius:15px;
+  padding:16px;
+}
+
+.paymentBox h3{
+  color:#fff;
+  margin-bottom:10px;
+}
+
+.paymentRow{
+  display:flex;
+  justify-content:space-between;
+  gap:10px;
+  padding:9px 0;
+  border-bottom:1px solid #3e3e3e;
+  font-size:14px;
+}
+
+.paymentRow:last-child{
+  border-bottom:0;
+}
+
+.paymentLabel{
+  color:#aaa;
+}
+
+.paymentValue{
+  color:#fff;
+  font-weight:bold;
+  text-align:right;
+}
+
+.paymentNotice{
+  background:#183b2a;
+  border:1px solid #3b7657;
+  color:#d9f0df;
+  padding:12px;
+  border-radius:11px;
+  font-size:13px;
+  line-height:1.6;
+  margin-top:12px;
+}
+
+.submitOrder{
+  width:100%;
+  border:0;
+  background:#25d366;
+  color:white;
+  padding:15px;
+  border-radius:11px;
+  font-size:16px;
+  font-weight:bold;
+  cursor:pointer;
+}
+
+.checkoutDelivery{
+  font-size:12px;
+  color:#aaa;
+  margin-top:10px;
+  text-align:center;
+}
+
+@media(max-width:520px){
+  .checkoutForm{
+    grid-template-columns:1fr;
+  }
+
+  .fieldFull{
+    grid-column:auto;
+  }
+
+  .cartItem{
+    grid-template-columns:55px 1fr auto;
+  }
+}
+
+/* =========================
+   GUIDE
+========================= */
+
+.guideSearch{
+  width:100%;
+  padding:12px;
+  border:1px solid #ddd;
+  border-radius:10px;
+  margin-bottom:13px;
+}
+
+.guideList{
+  display:grid;
+  gap:9px;
+}
+
+.guideCard{
+  border:1px solid #e1e0d8;
+  border-radius:12px;
+  padding:13px;
+  background:#fafaf6;
+}
+
+.guideCard h3{
+  font-size:16px;
+  color:#173d2a;
+  margin-bottom:5px;
+}
+
+.guideCard p{
+  font-size:13px;
+  color:#5f6b63;
+  line-height:1.6;
+}
+
+.guideTag{
+  font-size:10px;
+  color:#8b7650;
+  text-transform:uppercase;
+  font-weight:bold;
+  margin-bottom:4px;
+}
+
+/* =========================
+   FLOATING
+========================= */
+
+.floatingSocial{
+  position:fixed;
+  right:15px;
+  bottom:18px;
+  z-index:6000;
+  display:flex;
+  flex-direction:column;
+  gap:9px;
+}
+
+.floatBtn{
+  width:50px;
+  height:50px;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-decoration:none;
+  color:white;
+  font-size:23px;
+  box-shadow:0 5px 15px rgba(0,0,0,.2);
+}
+
+.floatFacebook{
+  background:#1877f2;
+}
+
+.floatWhatsApp{
+  background:#25d366;
+}
+
+.noResults{
+  text-align:center;
+  grid-column:1/-1;
+  padding:40px 10px;
+  color:#777;
+}
+
+.toast{
+  position:fixed;
+  bottom:25px;
+  left:50%;
+  transform:translate(-50%,20px);
+  background:#173d2a;
+  color:white;
+  padding:12px 18px;
+  border-radius:25px;
+  z-index:12000;
+  opacity:0;
+  visibility:hidden;
+  transition:.3s;
+  box-shadow:0 5px 20px rgba(0,0,0,.2);
+  font-size:14px;
+}
+
+.toast.show{
+  opacity:1;
+  visibility:visible;
+  transform:translate(-50%,0);
+}
+
+body.modalOpen .floatingSocial{
+  display:none;
+}
 </style>
 </head>
 
@@ -378,14 +1429,16 @@ header{
   <div class="notif-slide-item active">🎉 <strong>Crafted Heaven Studio:</strong> 11.11 Mega Sale is Live Now!</div>
 </div>
 
+<!-- MAIN STORE FRONT WRAPPER -->
 <div id="main-store-container">
 
-  <!-- WELCOME SCREEN -->
+  <!-- WELCOME -->
   <div id="welcomeScreen">
+    <div class="welcomeRings"></div>
     <div class="welcomeContent">
-      <img src="crafted_heaven_logo.png" alt="Logo" class="welcomeLogo" onerror="this.style.display='none'">
+      <img src="crafted_heaven_logo.png" alt="Crafted Heaven Logo" class="welcomeLogo" onerror="this.style.display='none'">
       <h1>Welcome To Crafted Heaven PK</h1>
-      <p>Plants • Crafts • Keychains • Gardening & More</p>
+      <p>Plants • Crafts • Keychains • Kids Fun • Gardening & More</p>
       <button class="enterBtn" onclick="enterWebsite()">Enter Store →</button>
     </div>
   </div>
@@ -393,41 +1446,107 @@ header{
   <!-- HEADER -->
   <header>
     <div class="navbar">
-      <button class="menuBtn" onclick="openMenu()">☰</button>
+      <button class="menuBtn" onclick="openMenu()" aria-label="Open customer menu">☰</button>
       <a href="#home" class="logoArea">
-        <img src="crafted_heaven_logo.png" alt="Logo" onerror="this.style.display='none'">
+        <img src="crafted_heaven_logo.png" alt="Crafted Heaven" onerror="this.style.display='none'">
         <span class="logoText">Crafted Heaven PK</span>
       </a>
       <button class="cartBtn" onclick="openCart()">🛒 Cart (<span id="cartCount">0</span>)</button>
     </div>
   </header>
 
-  <!-- SIDEBAR MENU -->
+  <!-- SIDEBAR -->
   <div class="menuOverlay" id="menuOverlay" onclick="closeMenu()"></div>
   <aside class="sideMenu" id="sideMenu">
     <div class="sideHeader">
-      <strong>Menu</strong>
+      <div class="sideBrand">
+        <img src="crafted_heaven_logo.png" alt="Crafted Heaven" onerror="this.style.display='none'">
+        <div>
+          <strong>Crafted Heaven</strong>
+          <small>Customer Menu</small>
+        </div>
+      </div>
       <button class="sideClose" onclick="closeMenu()">×</button>
     </div>
-    <div style="padding-top:15px;">
+
+    <div class="menuSectionTitle">Shop</div>
+    <div class="sideList">
       <button class="sideItem" onclick="menuGo('#home')">🏠 Home</button>
-      <button class="sideItem" onclick="showAllProducts()">🛍️ All Products</button>
-      <button class="sideItem" onclick="menuCategory('Live Plants')">🌿 Live Plants</button>
-      <button class="sideItem" onclick="menuCategory('Gardening')">🌱 Gardening</button>
-      <button class="sideItem" onclick="menuCategory('Keychains')">🔑 Keychains</button>
-      <button class="sideItem" onclick="menuCategory('Crochet')">🎨 Crochet & Crafts</button>
-      <button class="sideItem" onclick="openCart()">🛒 My Cart</button>
+      <button class="sideItem" onclick="showAllProducts()">🛍️ Existing Products</button>
+      <button class="sideItem" onclick="menuCategory('plants')">🌿 Plants</button>
+      <button class="sideItem" onclick="menuCategory('gardening')">🌱 Gardening</button>
+      <button class="sideItem" onclick="menuCategory('gardening')">🌱 Seeds</button>
+      <button class="sideItem" onclick="menuCategory('crochet')">🧶 Crochet Creations</button>
+      <button class="sideItem" onclick="menuCategory('crafts')">📿 Beads & Bracelets</button>
+      <button class="sideItem" onclick="menuCategory('keychains')">🔑 Keychains & Accessories</button>
+      <button class="sideItem" onclick="menuCategory('kids')">🎀 Hair Accessories</button>
+      <button class="sideItem" onclick="menuCategory('kids')">🎨 Kids & Creative</button>
+    </div>
+
+    <div class="menuSectionTitle">Customer</div>
+    <div class="sideList">
+      <button class="sideItem" onclick="openAccount()">👤 My Account</button>
+      <button class="sideItem" onclick="closeMenu();openCart()">🛒 My Cart</button>
+      <button class="sideItem" onclick="trackOrder()">📦 Track Order</button>
+    </div>
+
+    <div class="menuSectionTitle">Gardening & Help</div>
+    <div class="sideList">
+      <button class="sideItem" onclick="openGuide()">📖 A-Z Plant & Gardening Guide</button>
+      <button class="sideItem" onclick="menuGo('#delivery')">🚚 Home Delivery</button>
+      <button class="sideItem" onclick="menuGo('#about')">ℹ️ About Us</button>
+      <button class="sideItem" onclick="openHelp()">💬 Need Help</button>
+    </div>
+
+    <div class="menuSectionTitle">Social</div>
+    <div class="sideBottom">
+      <div class="sideSocial">
+        <a class="sideWA" href="https://wa.me/923034812714" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
+          <span class="socialIcon">
+            <svg viewBox="0 0 24 24"><path d="M20.5 3.5A11.7 11.7 0 0 0 12.1 0C5.6 0 .3 5.3.3 11.8c0 2.1.6 4.1 1.6 5.9L.2 24l6.5-1.7c1.7.9 3.5 1.3 5.4 1.3h.1c6.5 0 11.8-5.3 11.8-11.8 0-3.2-1.2-6.1-3.5-8.3ZM12.1 21.6c-1.7 0-3.4-.5-4.8-1.3l-.3-.2-3.8 1 1-3.7-.2-.3a9.7 9.7 0 1 1 8.1 4.5Zm5.3-7.2c-.3-.2-1.7-.9-2-.9-.3-.1-.5-.1-.7.2-.2.3-.7.9-.8 1.1-.2.2-.3.2-.6.1-1.5-.8-2.5-1.4-3.5-3.1-.3-.5.3-.5.8-1.7.1-.2 0-.4 0-.6l-.9-2.1c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4-.3.3-1.2 1.1-1.2 2.7s1.2 3.1 1.4 3.3c.2.2 2.4 3.7 5.9 5.2.8.3 1.4.5 1.9.6.8.3 1.5.2 2 .1.6-.1 1.7-.7 1.9-1.3.2-.7.2-1.2.1-1.3-.1-.2-.3-.3-.6-.4Z"/></svg>
+          </span>
+        </a>
+        <a class="sideFB" href="https://www.facebook.com/share/1DT9xWFBaT/" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+          <svg viewBox="0 0 24 24" width="25" height="25" fill="currentColor"><path d="M13.7 21v-8h2.7l.4-3h-3.1V8.1c0-.9.3-1.5 1.6-1.5h1.7V4c-.3 0-1.3-.1-2.4-.1-2.4 0-4 1.5-4 4.1V10H8v3h2.6v8h3.1Z"/></svg>
+        </a>
+        <a class="sidePhone" href="tel:+923034812714" aria-label="Call Crafted Heaven">☎</a>
+      </div>
+      <div>Delivery is currently available in Lahore only.</div>
+      <div><strong>Delivery time: 2–3 working days.</strong></div>
+      <div>Online payment is required.</div>
     </div>
   </aside>
 
-  <!-- BANNERS CAROUSEL -->
+  <!-- CLEAN BANNERS CAROUSEL (PURE IMAGES WITH ARROWS) -->
   <div class="slider-container" id="homeSlider">
     <button class="slider-arrow slider-prev" onclick="changeSlide(-1)">❮</button>
     <button class="slider-arrow slider-next" onclick="changeSlide(1)">❯</button>
     <div class="slide active" style="background-image: url('https://images.unsplash.com/photo-1607083206869-4c7672e72a8a?q=80&w=1000&auto=format&fit=crop');"></div>
   </div>
 
-  <!-- PRODUCTS SECTION -->
+  <!-- HERO -->
+  <section class="hero" id="home">
+    <div class="heroContent">
+      <h1>Crafted Heaven PK</h1>
+      <p>Discover beautiful plants, gardening essentials, handmade crafts, cute keychains, kids' fun products and much more — all in one place.</p>
+      <div class="heroButtons">
+        <a href="#products" class="heroBtn primaryBtn">Shop Now 🛍️</a>
+        <a href="https://wa.me/923034812714" target="_blank" rel="noopener noreferrer" class="heroBtn secondaryBtn">WhatsApp Us 💬</a>
+      </div>
+      <div class="socialButtons">
+        <a href="https://www.facebook.com/share/1DT9xWFBaT/" target="_blank" rel="noopener noreferrer" class="socialBtn facebookBtn">
+          <span class="socialIcon"><svg viewBox="0 0 24 24"><path d="M13.7 21v-8h2.7l.4-3h-3.1V8.1c0-.9.3-1.5 1.6-1.5h1.7V4c-.3 0-1.3-.1-2.4-.1-2.4 0-4 1.5-4 4.1V10H8v3h2.6v8h3.1Z"/></svg></span>
+          Facebook
+        </a>
+        <a href="https://wa.me/923034812714" target="_blank" rel="noopener noreferrer" class="socialBtn whatsappBtn">
+          <span class="socialIcon"><svg viewBox="0 0 24 24"><path d="M20.5 3.5A11.7 11.7 0 0 0 12.1 0C5.6 0 .3 5.3.3 11.8c0 2.1.6 4.1 1.6 5.9L.2 24l6.5-1.7c1.7.9 3.5 1.3 5.4 1.3h.1c6.5 0 11.8-5.3 11.8-11.8 0-3.2-1.2-6.1-3.5-8.3Z"/></svg></span>
+          WhatsApp
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRODUCTS -->
   <section class="section" id="products">
     <div class="sectionTitle">
       <h2>Our Products</h2>
@@ -436,103 +1555,477 @@ header{
 
     <div class="categoryBar">
       <button class="categoryBtn active" onclick="filterCategory('all',this)">All Types</button>
-      <button class="categoryBtn" onclick="filterCategory('Live Plants',this)">🌿 Plants</button>
-      <button class="categoryBtn" onclick="filterCategory('Gardening',this)">🌱 Gardening</button>
-      <button class="categoryBtn" onclick="filterCategory('Keychains',this)">🔑 Keychains</button>
-      <button class="categoryBtn" onclick="filterCategory('Crochet',this)">🎨 Crafts</button>
+      <button class="categoryBtn" onclick="filterCategory('plants',this)">🌿 Plants</button>
+      <button class="categoryBtn" onclick="filterCategory('gardening',this)">🌱 Gardening</button>
+      <button class="categoryBtn" onclick="filterCategory('keychains',this)">🔑 Keychains</button>
+      <button class="categoryBtn" onclick="filterCategory('crafts',this)">🎨 Crafts</button>
+      <button class="categoryBtn" onclick="filterCategory('crochet',this)">🧶 Crochet</button>
+      <button class="categoryBtn" onclick="filterCategory('kids',this)">🧸 Kids & Fun</button>
+      <button class="categoryBtn" onclick="filterCategory('supplies',this)">📦 Supplies</button>
     </div>
 
     <div class="controlsRow">
       <div class="searchBox">
         <input type="search" id="searchInput" placeholder="🔍 Search products..." oninput="renderProducts()">
       </div>
-      <select id="sortSelect" class="sortSelect" onchange="renderProducts()">
-        <option value="default">↕️ Latest First</option>
+      <select id="sortSelect" class="sortSelect" onchange="renderProducts()" aria-label="Sort products">
+        <option value="default">↕️ Latest First (Top)</option>
         <option value="priceLow">Price: Low to High</option>
         <option value="priceHigh">Price: High to Low</option>
+        <option value="nameAZ">Name: A to Z</option>
+        <option value="nameZA">Name: Z to A</option>
       </select>
     </div>
 
     <div class="productGrid" id="productGrid"></div>
   </section>
 
-  <!-- CUSTOMER REVIEWS SECTION -->
-  <section class="section" style="padding-top:0; padding-bottom:20px;">
-    <div class="reviews-section">
-      <div class="sectionTitle" style="margin-bottom:10px;">
-        <h2>⭐ Trusted Customer Reviews</h2>
-        <p>See what our lovely customers say about Crafted Heaven products.</p>
-      </div>
-      <div class="reviews-grid" id="reviewsGridContainer">
-        <p style="text-align:center; color:#777; grid-column:1/-1;">Loading reviews...</p>
-      </div>
+  <!-- DELIVERY -->
+  <section class="section" id="delivery">
+    <div class="sectionTitle">
+      <h2>Home Delivery</h2>
+      <p>Simple and convenient delivery from Crafted Heaven.</p>
+    </div>
+    <div class="aboutBox">
+      <p>🚚 <strong>Lahore Delivery Only</strong></p>
+      <p>Delivery time is normally <strong>2–3 working days</strong>.</p>
+      <p>💳 Payment is accepted through <strong>JazzCash or EasyPaisa</strong>.</p>
+      <p>❌ Cash on Delivery is not available.</p>
     </div>
   </section>
 
-  <!-- CONTACT & SOCIAL LINKS FOOTER -->
+  <!-- ABOUT -->
+  <section class="section" id="about">
+    <div class="sectionTitle">
+      <h2>About Us</h2>
+      <p>Little things that make life more beautiful.</p>
+    </div>
+    <div class="aboutBox">
+      <p><strong>Crafted Heaven PK</strong> is a small online store bringing together plants, gardening essentials, seeds, handmade crafts, cute keychains, crochet items, kids' creative products and useful everyday items.</p>
+      <br>
+      <p>We aim to offer lovely products at reasonable prices while making shopping simple and convenient.</p>
+      <br>
+      <p><strong>Delivery:</strong> Lahore only • <strong>2–3 working days</strong> • Online payment required.</p>
+    </div>
+  </section>
+
+  <!-- REVIEWS -->
+  <section class="section" id="reviews">
+    <div class="sectionTitle">
+      <h2>Customer Reviews</h2>
+      <p>See what our customers say about Crafted Heaven.</p>
+    </div>
+    <div class="reviewsGrid" id="reviewsGrid"></div>
+  </section>
+
+  <!-- CONTACT -->
   <section class="section" id="contact">
     <div class="contactBox">
-      <h2>Connect With Crafted Heaven</h2>
-      <p>Have questions or want to place a custom order? Reach out to us directly!</p>
-      
-      <div class="socialLinksRow">
-        <a href="https://www.facebook.com/share/1DT9xWFBaT/" target="_blank" class="socialBtnLink fbBtn">
-          <i class="fa-brands fa-facebook-f"></i> Facebook Page
-        </a>
-        <a href="https://wa.me/923034812714" target="_blank" class="socialBtnLink waBtn">
-          <i class="fa-brands fa-whatsapp"></i> Chat on WhatsApp
+      <h2>Contact Crafted Heaven</h2>
+      <p>Have a question or want to place an order? Contact us directly.</p>
+      <div class="contactInfo">
+        <div class="contactItem">📱 0303-4812714</div>
+        <div class="contactItem">👤 Taha Shahid</div>
+        <div class="contactItem">🚚 2–3 Working Days</div>
+      </div>
+      <div class="socialButtons">
+        <a href="https://wa.me/923034812714" target="_blank" rel="noopener noreferrer" class="socialBtn whatsappBtn">💬 Chat on WhatsApp</a>
+        <a href="https://www.facebook.com/share/1DT9xWFBaT/" target="_blank" rel="noopener noreferrer" class="socialBtn facebookBtn">
+          <span class="socialIcon"><svg viewBox="0 0 24 24"><path d="M13.7 21v-8h2.7l.4-3h-3.1V8.1c0-.9.3-1.5 1.6-1.5h1.7V4c-.3 0-1.3-.1-2.4-.1-2.4 0-4 1.5-4 4.1V10H8v3h2.6v8h3.1Z"/></svg></span>
+          Visit Facebook Page
         </a>
       </div>
     </div>
   </section>
 
-</div>
-
-<!-- PRODUCT DETAIL MODAL -->
-<div class="modalOverlay" id="productModal">
-  <div class="modalBox" style="max-width:500px; text-align:center;">
-    <button class="closeModal" onclick="closeProductModal()">×</button>
-    <div id="modalImageContainer" style="width:100%; aspect-ratio:1/1; border-radius:12px; overflow:hidden; background:#f1f0e8; margin-bottom:15px;">
-      <img id="modalImg" src="" alt="" style="width:100%; height:100%; object-fit:cover;">
+  <!-- FOOTER -->
+  <footer>
+    <div class="footerGrid">
+      <div class="footerColumn">
+        <img src="crafted_heaven_logo.png" alt="Crafted Heaven Logo" class="footerLogo" onerror="this.style.display='none'">
+        <h3>Crafted Heaven PK</h3>
+        <p>Plants • Gardening • Seeds • Crafts • Crochet • Keychains • Kids Creative</p>
+      </div>
+      <div class="footerColumn">
+        <h3>Shop</h3>
+        <ul>
+          <li><button onclick="showAllProducts()">Existing Products</button></li>
+          <li><button onclick="menuCategory('plants')">Plants</button></li>
+          <li><button onclick="menuCategory('gardening')">Gardening & Seeds</button></li>
+          <li><button onclick="menuCategory('crafts')">Crafts</button></li>
+        </ul>
+      </div>
+      <div class="footerColumn">
+        <h3>Customer Care</h3>
+        <ul>
+          <li><button onclick="openAccount()">My Account</button></li>
+          <li><button onclick="openCart()">My Cart</button></li>
+          <li><button onclick="trackOrder()">Track Order</button></li>
+          <li><button onclick="openHelp()">Need Help</button></li>
+        </ul>
+      </div>
+      <div class="footerColumn">
+        <h3>Gardening & Delivery</h3>
+        <ul>
+          <li><button onclick="openGuide()">A-Z Plant Guide</button></li>
+          <li>Lahore Delivery</li>
+          <li>2–3 Working Days</li>
+          <li>Online Payment Only</li>
+          <li>JazzCash / EasyPaisa</li>
+        </ul>
+      </div>
     </div>
-    <div id="modalCat" style="font-size:12px; font-weight:bold; color:#8b7650; text-transform:uppercase; margin-bottom:5px;"></div>
-    <h2 id="modalTitle" style="font-size:22px; color:#173d2a; margin-bottom:10px;"></h2>
-    <div id="modalPrice" style="font-size:20px; font-weight:bold; color:#173d2a; margin-bottom:15px;"></div>
-    <p id="modalDesc" style="font-size:14px; color:#555; line-height:1.6; margin-bottom:20px; text-align:left; background:#f9f8f3; padding:12px; border-radius:10px;"></p>
-    <button id="modalAddBtn" class="addBtn" style="font-size:16px; padding:14px;">🛒 Add to Cart</button>
+
+    <div style="text-align:center;margin-top:30px">
+      <div class="footerSocial">
+        <a href="https://www.facebook.com/share/1DT9xWFBaT/" target="_blank" rel="noopener noreferrer" class="footerFacebook">
+          <svg viewBox="0 0 24 24"><path d="M13.7 21v-8h2.7l.4-3h-3.1V8.1c0-.9.3-1.5 1.6-1.5h1.7V4c-.3 0-1.3-.1-2.4-.1-2.4 0-4 1.5-4 4.1V10H8v3h2.6v8h3.1Z"/></svg>
+          Facebook
+        </a>
+        <a href="https://wa.me/923034812714" target="_blank" rel="noopener noreferrer" class="footerWhatsApp">
+          <svg viewBox="0 0 24 24"><path d="M20.5 3.5A11.7 11.7 0 0 0 12.1 0C5.6 0 .3 5.3.3 11.8c0 2.1.6 4.1 1.6 5.9L.2 24l6.5-1.7c1.7.9 3.5 1.3 5.4 1.3h.1c6.5 0 11.8-5.3 11.8-11.8 0-3.2-1.2-6.1-3.5-8.3Z"/></svg>
+          WhatsApp
+        </a>
+      </div>
+    </div>
+
+    <p class="deliveryNote" style="text-align:center">🚚 Lahore Delivery • 2–3 working days • Online Payment Only</p>
+    <div class="copyright">© 2026 Crafted Heaven PK. All Rights Reserved.</div>
+  </footer>
+
+  <!-- Trust Factors & FAQs Section -->
+  <section class="store-extras-section" style="padding: 30px 15px; background-color: #f9f9f9; font-family: inherit; margin-top: 20px; border-top: 1px solid #eaeaea;">
+    <div class="trust-badges-container" style="display: flex; justify-content: space-around; flex-wrap: wrap; gap: 15px; margin-bottom: 30px; text-align: center;">
+      <div style="flex: 1; min-width: 130px; background: #fff; padding: 15px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
+        <div style="font-size: 24px; margin-bottom: 5px;">🚚</div>
+        <h4 style="font-size: 14px; margin: 5px 0; color: #333;">Fast Delivery</h4>
+        <p style="font-size: 12px; color: #666; margin: 0;">2-3 Working Days</p>
+      </div>
+      <div style="flex: 1; min-width: 130px; background: #fff; padding: 15px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
+        <div style="font-size: 24px; margin-bottom: 5px;">💵</div>
+        <h4 style="font-size: 14px; margin: 5px 0; color: #333;">Online Payment</h4>
+        <p style="font-size: 12px; color: #666; margin: 0;">JazzCash / EasyPaisa</p>
+      </div>
+      <div style="flex: 1; min-width: 130px; background: #fff; padding: 15px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
+        <div style="font-size: 24px; margin-bottom: 5px;">💬</div>
+        <h4 style="font-size: 14px; margin: 5px 0; color: #333;">Easy WhatsApp Order</h4>
+        <p style="font-size: 12px; color: #666; margin: 0;">Direct support</p>
+      </div>
+    </div>
+
+    <div class="faq-container" style="max-width: 600px; margin: 0 auto; background: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
+      <h3 style="text-align: center; font-size: 18px; margin-bottom: 15px; color: #333;">Frequently Asked Questions</h3>
+      
+      <details style="margin-bottom: 10px; border-bottom: 1px solid #eee; padding-bottom: 8px;">
+        <summary style="font-size: 14px; font-weight: 600; cursor: pointer; color: #444;">Order kaise place karna hoga?</summary>
+        <p style="font-size: 13px; color: #666; margin: 8px 0 0 0;">Aap product cart mein add karke Checkout form fill kar saktay hain. Order WhatsApp par jaayega aur automatic PDF receipt aap ki device par download ho jaayegi.</p>
+      </details>
+
+      <details style="margin-bottom: 10px; border-bottom: 1px solid #eee; padding-bottom: 8px;">
+        <summary style="font-size: 14px; font-weight: 600; cursor: pointer; color: #444;">Delivery mein kitna waqt lagta hai?</summary>
+        <p style="font-size: 13px; color: #666; margin: 8px 0 0 0;">Lahore mein delivery ka waqt aam taur par 2 se 3 working days hai.</p>
+      </details>
+
+      <details style="margin-bottom: 5px; padding-bottom: 5px;">
+        <summary style="font-size: 14px; font-weight: 600; cursor: pointer; color: #444;">Payment ka kya tareeqa hai?</summary>
+        <p style="font-size: 13px; color: #666; margin: 8px 0 0 0;">Payment JazzCash / EasyPaisa (Taha Shahid - 0303-4812714) ke zariye hoti hai.</p>
+      </details>
+    </div>
+  </section>
+
+</div> <!-- END MAIN STORE FRONT WRAPPER -->
+
+
+<!-- ==========================================
+     DEDICATED FULL PRODUCT DETAIL PAGE VIEW
+========================================== -->
+<div id="product-detail-page" style="display: none; width: 100%; min-height: 100vh; padding: 25px 18px; background: #f5f3ea; max-width: 1200px; margin: 0 auto;">
+  <!-- Back Button -->
+  <button id="back-to-store-btn" onclick="showMainPage()" style="margin-bottom: 25px; padding: 11px 22px; border: 1px solid #173d2a; background: #white; color: #173d2a; cursor: pointer; border-radius: 25px; font-weight: bold; font-size: 15px;">
+    ← Back to Products
+  </button>
+
+  <div class="product-main-wrapper" style="display: flex; flex-wrap: wrap; gap: 35px; background: #fff; padding: 25px; border-radius: 20px; box-shadow: 0 6px 20px rgba(0,0,0,0.05);">
+    <!-- Left: Image Gallery -->
+    <div class="product-gallery" style="flex: 1 1 380px;">
+      <div class="main-image-box" style="width: 100%; text-align: center; background: #f1f0e8; border-radius: 16px; padding: 15px;">
+        <img id="detail-main-img" src="" alt="Product Image" style="max-width: 100%; max-height: 420px; object-fit: contain; border-radius: 12px;" />
+      </div>
+      <div id="detail-thumbnails" class="thumbnail-list" style="display: flex; gap: 10px; margin-top: 15px; justify-content: center; flex-wrap: wrap;">
+        <!-- Dynamic Thumbnails -->
+      </div>
+    </div>
+
+    <!-- Right: Product Info & Actions -->
+    <div class="product-info-box" style="flex: 1 1 380px;">
+      <span id="detail-category" class="productCategory" style="font-size: 13px;">Category</span>
+      <h1 id="detail-title" style="margin: 10px 0; font-size: 28px; color: #173d2a;">Product Title</h1>
+      
+      <div id="detail-price-box" style="font-size: 26px; font-weight: bold; color: #173d2a; margin-bottom: 15px;">Rs. 0</div>
+
+      <div class="action-buttons" style="display: flex; gap: 12px; margin-bottom: 25px;">
+        <button id="detail-add-cart-btn" style="flex: 1; padding: 14px; background: #173d2a; color: #f1d57a; border: 0; border-radius: 10px; font-weight: bold; cursor: pointer; font-size: 15px;">🛒 Add to Cart</button>
+        <button id="detail-buy-now-btn" style="flex: 1; padding: 14px; background: #d4af37; color: #173d2a; border: 0; border-radius: 10px; font-weight: bold; cursor: pointer; font-size: 15px;">Buy Now</button>
+      </div>
+
+      <!-- Views Counter Badge -->
+      <div class="view-count-tag" style="background: #eef6ff; color: #1e88e5; padding: 9px 16px; border-radius: 20px; display: inline-block; font-size: 13px; font-weight: 600; margin-bottom: 22px;">
+        ↗ 269+ people viewed this product recently
+      </div>
+
+      <!-- Product Tags -->
+      <div class="product-tags-section" style="margin-bottom: 25px;">
+        <h4 style="margin-bottom: 8px; color: #173d2a;">Product Tags</h4>
+        <div id="detail-tags-list" style="display: flex; gap: 8px; flex-wrap: wrap;">
+          <!-- Tags populated dynamically -->
+        </div>
+      </div>
+
+      <!-- Full Product Details -->
+      <div class="product-details-section">
+        <h2 style="font-size: 22px; color: #173d2a; border-bottom: 2px solid #f1f0e8; padding-bottom: 8px; margin-bottom: 12px;">Product Details</h2>
+        <ul id="detail-description-list" style="line-height: 1.8; padding-left: 20px; color: #444; font-size: 15px;">
+          <!-- Dynamic Details -->
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Customer Reviews Section -->
+  <div class="reviews-container" style="max-width: 800px; margin: 40px auto 0; background: #fff; padding: 25px; border-radius: 20px; box-shadow: 0 5px 15px rgba(0,0,0,0.05);">
+    <h2 style="font-size: 26px; color: #173d2a; margin-bottom: 15px;">Reviews</h2>
+    <p id="reviews-status" style="color: #666; margin-bottom: 10px;">There are no reviews yet.</p>
+    <p style="font-size: 14px; color: #555;">Be the first to review "<span id="review-product-title" style="font-weight: bold;"></span>"</p>
+
+    <form id="review-form" onsubmit="submitCustomerReview(event)" style="margin-top: 20px; display: flex; flex-direction: column; gap: 15px;">
+      <div>
+        <label style="display: block; font-weight: bold; margin-bottom: 5px;">Your rating *</label>
+        <div id="star-rating-chooser" style="font-size: 28px; color: #ccc; cursor: pointer; user-select: none;">
+          <span onclick="setRating(1)">★</span><span onclick="setRating(2)">★</span><span onclick="setRating(3)">★</span><span onclick="setRating(4)">★</span><span onclick="setRating(5)">★</span>
+        </div>
+      </div>
+      <div>
+        <label style="display: block; font-weight: bold; margin-bottom: 5px;">Your review *</label>
+        <textarea id="review-text-input" required style="width: 100%; height: 100px; padding: 12px; border-radius: 8px; border: 1px solid #ccc; outline: none;"></textarea>
+      </div>
+      <div style="display: flex; gap: 15px; flex-wrap: wrap;">
+        <div style="flex: 1; min-width: 220px;">
+          <label style="display: block; font-weight: bold; margin-bottom: 5px;">Name *</label>
+          <input type="text" id="review-name-input" required style="width: 100%; padding: 11px; border-radius: 8px; border: 1px solid #ccc; outline: none;" />
+        </div>
+        <div style="flex: 1; min-width: 220px;">
+          <label style="display: block; font-weight: bold; margin-bottom: 5px;">Email *</label>
+          <input type="email" id="review-email-input" required style="width: 100%; padding: 11px; border-radius: 8px; border: 1px solid #ccc; outline: none;" />
+        </div>
+      </div>
+      <button type="submit" style="width: 130px; padding: 12px; background: #173d2a; color: #f1d57a; border: 0; border-radius: 8px; font-weight: bold; cursor: pointer;">Submit</button>
+    </form>
+  </div>
+
+  <!-- You May Also Like Section -->
+  <div class="you-may-also-like-section" style="margin-top: 45px;">
+    <h2 style="font-size: 28px; color: #173d2a; text-align: center; margin-bottom: 25px;">You May Also Like</h2>
+    <div id="you-may-also-like-grid" class="productGrid">
+      <!-- Related products rendered dynamically -->
+    </div>
   </div>
 </div>
 
+
 <!-- CART MODAL -->
 <div class="modalOverlay" id="cartOverlay">
-  <div class="modalBox">
+  <div class="modalBox" style="width:min(540px,100%)">
     <button class="closeModal" onclick="closeCart()">×</button>
-    <h2>🛒 Your Cart & Checkout</h2>
-    <div id="cartBody" style="margin: 15px 0;"></div>
-    <div style="font-weight:bold; font-size:18px; margin:15px 0; text-align:right;">Total: Rs. <span id="cartTotal">0</span></div>
+    <h2>🛒 Your Cart</h2>
+    <div class="modalSub">Review your products before checkout.</div>
+    <div id="cartBody"></div>
+    <div class="checkoutSummary">
+      <strong>Total</strong>
+      <div class="checkoutTotal">Rs. <span id="cartTotal">0</span></div>
+    </div>
+    <div class="cartButtons">
+      <button class="clearCart" onclick="clearCart()">Clear Cart</button>
+      <button class="checkoutBtn" onclick="openCheckout()">Checkout</button>
+    </div>
+  </div>
+</div>
+
+<!-- DARK CHECKOUT MODAL -->
+<div class="modalOverlay" id="checkoutOverlay">
+  <div class="modalBox">
+    <button class="closeModal" onclick="closeCheckout()">×</button>
+    <h2>🛍️ Checkout</h2>
+    <div class="modalSub">Enter your delivery details. PDF Invoice will download and order will be sent to WhatsApp.</div>
+    <div class="checkoutSummary" id="checkoutSummary"></div>
+
+    <form class="checkoutForm" id="checkoutForm" onsubmit="processCheckoutOrder(event)">
+      <div>
+        <label>Customer Name <span class="checkoutRequired">*</span></label>
+        <input id="customerName" required maxlength="80" autocomplete="name" placeholder="Your full name">
+      </div>
+
+      <div>
+        <label>Contact Number <span class="checkoutRequired">*</span></label>
+        <input id="customerPhone" required type="tel" maxlength="25" autocomplete="tel" placeholder="03XXXXXXXXX">
+      </div>
+
+      <div class="fieldFull">
+        <label>Email ID <span style="color:#aaa">(Optional)</span></label>
+        <input id="customerEmail" type="email" maxlength="120" autocomplete="email" placeholder="your@email.com">
+      </div>
+
+      <div class="fieldFull">
+        <label>Complete Delivery Address <span class="checkoutRequired">*</span></label>
+        <textarea id="deliveryAddress" required maxlength="600" autocomplete="street-address" placeholder="House/Street, Area, City, nearby landmark..."></textarea>
+      </div>
+
+      <div class="fieldFull">
+        <label>Special Note <span style="color:#aaa">(Optional)</span></label>
+        <textarea id="specialNote" maxlength="400" placeholder="Any special instructions..."></textarea>
+      </div>
+
+      <!-- PAYMENT -->
+      <div class="fieldFull">
+        <div class="paymentBox">
+          <h3>💳 Online Payment</h3>
+          <div class="paymentRow">
+            <span class="paymentLabel">Payment Method</span>
+            <span class="paymentValue">JazzCash / EasyPaisa</span>
+          </div>
+          <div class="paymentRow">
+            <span class="paymentLabel">Account Name</span>
+            <span class="paymentValue">Taha Shahid</span>
+          </div>
+          <div class="paymentRow">
+            <span class="paymentLabel">Account Number</span>
+            <span class="paymentValue">0303-4812714</span>
+          </div>
+          <div class="paymentNotice">
+            Please transfer the order total to <strong>Taha Shahid — 0303-4812714</strong> through JazzCash or EasyPaisa.
+            After payment, send the payment screenshot / receipt on our WhatsApp.
+            <br><br>
+            <strong>Cash on Delivery is not available.</strong>
+          </div>
+        </div>
+      </div>
+
+      <div class="fieldFull">
+        <button type="submit" class="submitOrder">💬 Send Order & Get PDF Receipt</button>
+        <div class="checkoutDelivery">🚚 Lahore delivery • 2–3 working days • Online payment only</div>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- ACCOUNT -->
+<div class="modalOverlay" id="accountOverlay">
+  <div class="modalBox">
+    <button class="closeModal" onclick="closeAccount()">×</button>
+    <h2>👤 My Account</h2>
+    <div class="modalSub">Save your customer details on this device for faster checkout.</div>
+    <form class="checkoutForm" onsubmit="saveAccount(event)">
+      <div>
+        <label>Full Name</label>
+        <input id="accountName" maxlength="80">
+      </div>
+      <div>
+        <label>Contact Number</label>
+        <input id="accountPhone" maxlength="25">
+      </div>
+      <div class="fieldFull">
+        <label>Email ID</label>
+        <input id="accountEmail" type="email" maxlength="120">
+      </div>
+      <div class="fieldFull">
+        <label>Delivery Address</label>
+        <textarea id="accountAddress" maxlength="600"></textarea>
+      </div>
+      <div class="fieldFull">
+        <button class="submitOrder" type="submit">Save My Details</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- GUIDE -->
+<div class="modalOverlay" id="guideOverlay">
+  <div class="modalBox">
+    <button class="closeModal" onclick="closeGuide()">×</button>
+    <h2>📖 A-Z Plant & Gardening Guide</h2>
+    <div class="modalSub">All guides are arranged alphabetically from A to Z.</div>
+    <input class="guideSearch" id="guideSearch" placeholder="🔍 Search guide..." oninput="renderGuides()">
+    <div class="guideList" id="guideList"></div>
+  </div>
+</div>
+
+<!-- TRACKING MODAL -->
+<div class="modalOverlay" id="trackingOverlay">
+  <div class="modalBox" style="background:#1e1e1e; color:#fff; width:min(500px, 100%);">
+    <button class="closeModal" onclick="closeTrackingModal()" style="color:#fff;">×</button>
+    <h2 style="color:#f1d57a; margin-bottom:5px;">📦 Shipment Tracking</h2>
+    <div style="font-size:13px; color:#aaa; margin-bottom:15px;">Enter your Order ID to check live status</div>
     
-    <div id="checkoutForm" style="border-top:1px solid #ddd; padding-top:15px; margin-top:15px;">
-      <h3 style="font-size:16px; margin-bottom:10px; color:#173d2a;">Customer Details for Order</h3>
-      <label style="font-size:13px; font-weight:bold; display:block; margin-bottom:4px;">Full Name</label>
-      <input type="text" id="custName" placeholder="Your Name" style="width:100%; padding:10px; border:1px solid #ccc; border-radius:8px; margin-bottom:10px;">
-      
-      <label style="font-size:13px; font-weight:bold; display:block; margin-bottom:4px;">Phone Number</label>
-      <input type="text" id="custPhone" placeholder="03001234567" style="width:100%; padding:10px; border:1px solid #ccc; border-radius:8px; margin-bottom:10px;">
-      
-      <label style="font-size:13px; font-weight:bold; display:block; margin-bottom:4px;">Delivery Address</label>
-      <textarea id="custAddress" placeholder="Complete address with city..." style="width:100%; padding:10px; border:1px solid #ccc; border-radius:8px; margin-bottom:15px; min-height:70px;"></textarea>
-      
-      <button class="addBtn" onclick="checkoutWhatsApp()" style="background:#25d366; color:#fff; font-size:16px; padding:14px;">📲 Complete Order via WhatsApp & PDF</button>
+    <div style="display:flex; gap:8px; margin-bottom:20px;">
+      <input type="text" id="trackInput" placeholder="e.g. CH-11650" style="flex:1; padding:12px; border-radius:8px; border:1px solid #444; background:#333; color:#fff; outline:none;">
+      <button onclick="checkOrderStatus()" style="padding:12px 18px; background:#d4af37; border:0; border-radius:8px; font-weight:bold; cursor:pointer; color:#173d2a;">Track</button>
+    </div>
+
+    <div id="trackingResult" style="display:none; background:#282828; padding:15px; border-radius:12px; margin-top:10px;">
+      <p style="font-size:14px; margin-bottom:8px;"><strong>Order ID:</strong> <span id="track-id-disp"></span></p>
+      <p style="font-size:14px; margin-bottom:8px;"><strong>Status:</strong> <span style="color:#f1d57a; font-weight:bold;">In Transit / Dispatched 🚚</span></p>
+      <p style="font-size:12px; color:#aaa;">Your order has been packed and handed over to delivery partner. Estimated delivery within 2–3 working days.</p>
     </div>
   </div>
 </div>
 
 <div class="toast" id="toast"></div>
 
+<!-- FLOATING SOCIAL -->
+<div class="floatingSocial">
+  <a href="https://www.facebook.com/share/1DT9xWFBaT/" target="_blank" rel="noopener noreferrer" class="floatBtn floatFacebook" title="Facebook">
+    <svg viewBox="0 0 24 24"><path d="M13.7 21v-8h2.7l.4-3h-3.1V8.1c0-.9.3-1.5 1.6-1.5h1.7V4c-.3 0-1.3-.1-2.4-.1-2.4 0-4 1.5-4 4.1V10H8v3h2.6v8h3.1Z"/></svg>
+  </a>
+  <a href="https://wa.me/923034812714" target="_blank" rel="noopener noreferrer" class="floatBtn floatWhatsApp" title="WhatsApp">
+    <svg viewBox="0 0 24 24"><path d="M20.5 3.5A11.7 11.7 0 0 0 12.1 0C5.6 0 .3 5.3.3 11.8c0 2.1.6 4.1 1.6 5.9L.2 24l6.5-1.7c1.7.9 3.5 1.3 5.4 1.3h.1c6.5 0 11.8-5.3 11.8-11.8 0-3.2-1.2-6.1-3.5-8.3Z"/></svg>
+  </a>
+</div>
+
+
 <script>
+/* STORE SETTINGS */
+const WHATSAPP_NUMBER = "923034812714";
+const DISPLAY_PHONE = "0303-4812714";
+const PAYMENT_NAME = "Taha Shahid";
+const FACEBOOK_URL = "https://www.facebook.com/share/1DT9xWFBaT/";
+const DELIVERY_TEXT = "Lahore only • 2–3 working days • Online payment required";
+
+/* PRODUCTS */
 let products = [];
+
+/* A-Z GUIDES */
+const guides = [
+  { name:"Ajwain Plant", type:"Plant", text:"Keep in bright light or gentle morning sun. Water when the upper soil starts drying. Use well-draining soil and avoid constant soggy soil." },
+  { name:"Aloe Vera", type:"Plant", text:"Keep in bright light with some morning sun. Water only after the soil dries well. Use fast-draining soil and avoid overwatering." },
+  { name:"Alternanthera", type:"Plant", text:"Give bright light and regular watering when the top soil becomes slightly dry. Trim lightly to keep the plant bushy." },
+  { name:"Carrot Seeds", type:"Seeds", text:"Sow seeds in loose, deep and well-draining soil. Keep soil evenly moist during germination. Avoid transplanting once roots start developing." },
+  { name:"Chrysanthemum", type:"Plant", text:"Give Chrysanthemum bright light and gentle morning sun. Water when the top layer of soil starts drying while avoiding standing water." },
+  { name:"Cocopeat", type:"Gardening Material", text:"Cocopeat helps improve moisture retention and aeration. Hydrate compressed cocopeat before use and mix it with suitable soil or compost." },
+  { name:"Methi Seeds", type:"Seeds", text:"Sow shallowly in moist soil and keep the seedbed lightly moist. Provide sunlight after germination and harvest young leaves as needed." },
+  { name:"Mother of Thousands", type:"Plant", text:"Give bright light and allow the soil to dry between watering. Avoid overwatering." },
+  { name:"Organic Compost", type:"Gardening Material", text:"Mix mature organic compost into garden soil to add organic matter and support soil structure. Use clean, well-decomposed compost." },
+  { name:"Purslane", type:"Plant", text:"Give plenty of sunlight and use well-draining soil. Water when the soil becomes dry and avoid constantly wet roots." },
+  { name:"Spanish Seeds", type:"Seeds", text:"Follow the seed packet instructions for sowing depth and spacing. Keep the soil lightly moist during germination and provide suitable sunlight." },
+  { name:"Spinach Seeds", type:"Seeds", text:"Sow seeds in fertile, moist and well-draining soil. Keep moisture consistent during germination and give seedlings good light." },
+  { name:"Tomato Seeds", type:"Seeds", text:"Sow in a light seed-starting mix and keep it moist but not waterlogged. Provide strong light after germination." }
+].sort((a,b)=>a.name.localeCompare(b.name));
+
+/* STATE */
 let cart = JSON.parse(localStorage.getItem("craftedHeavenCart") || "[]");
+let reviews = JSON.parse(localStorage.getItem("craftedHeavenReviews") || "[]");
 let currentCategory = "all";
+let selectedReviewProduct = null;
+let selectedRating = 0;
+let currentSelectedProduct = null;
 
 let currentSlideIndex = 0;
 let slideInterval = null;
@@ -541,44 +2034,49 @@ let notifInterval = null;
 let slideElements = [];
 let notifElements = [];
 
-function enterWebsite(){
-  document.getElementById("welcomeScreen").classList.add("hide");
+/* HELPERS */
+function money(value){
+  const number = Number(value);
+  if(!Number.isFinite(number)) return "0";
+  return number.toLocaleString("en-PK");
 }
 
-function openMenu(){
-  document.getElementById("sideMenu").classList.add("show");
-  document.getElementById("menuOverlay").classList.add("show");
+function escapeHTML(value){
+  return String(value ??"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;").replace(/'/g,"&#039;");
 }
 
-function closeMenu(){
-  document.getElementById("sideMenu").classList.remove("show");
-  document.getElementById("menuOverlay").classList.remove("show");
+function getProductById(id){
+  return products.find(p => Number(p.id) === Number(id));
 }
 
-function menuGo(target){
-  closeMenu();
-  document.querySelector(target)?.scrollIntoView({ behavior:"smooth" });
+function getProductImages(product){
+  if(product?.images?.length) return product.images;
+  if(product?.image) return [product.image];
+  return [];
 }
 
-function showAllProducts(){
-  closeMenu();
-  currentCategory="all";
-  renderProducts();
+function getCartPrice(item){
+  const product = getProductById(item.id);
+  if(!product) return 0;
+  return Number(product.price) || 0;
 }
 
-function menuCategory(cat){
-  closeMenu();
-  currentCategory=cat;
-  renderProducts();
+function starsHTML(rating){
+  let result = "";
+  for(let i=1;i<=5;i++){
+    result += i <= Math.round(Number(rating) || 0) ? "★" : "☆";
+  }
+  return result;
 }
 
-function filterCategory(cat, btn){
-  currentCategory = cat;
-  document.querySelectorAll('.categoryBtn').forEach(b => b.classList.remove('active'));
-  if(btn) btn.classList.add('active');
-  renderProducts();
+function getProductRating(id){
+  const list = reviews.filter(r => Number(r.productId) === Number(id));
+  if(!list.length) return { rating:5, count:0 };
+  const rating = list.reduce((total,r)=>total + Number(r.rating || 0), 0) / list.length;
+  return { rating, count:list.length };
 }
 
+/* CAROUSEL & NOTIFICATION CONTROLLER */
 function changeSlide(direction) {
   if(slideElements.length === 0) return;
   slideElements[currentSlideIndex].classList.remove('active');
@@ -605,282 +2103,841 @@ function startNotificationSlider() {
   }, 2200);
 }
 
-const SUPABASE_URL = "https://qyiohberbkudtuolpmyd.supabase.co";
-const SUPABASE_ANON_KEY = "sb_publishable_RdTzt951O8A8ipMDS87siA_tf_SLjeR";
-const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+/* WELCOME */
+function enterWebsite(){
+  document.getElementById("welcomeScreen").classList.add("hide");
+}
+setTimeout(()=>{
+  document.getElementById("welcomeScreen")?.classList.add("hide");
+},6000);
 
-async function loadSupabaseData() {
-  // 1. Products
-  const { data: dbProducts } = await supabaseClient.from('products').select('*').order('created_at', { ascending: false });
-  if (dbProducts && dbProducts.length > 0) {
-    products = dbProducts.map(item => ({
-      id: item.id,
-      name: item.name || 'Product',
-      price: Number(item.sale_price || item.price || 0),
-      category: item.category || 'Other',
-      image: item.image_url || '',
-      description: item.description || 'Premium quality product from Crafted Heaven. Perfect for your home and garden.'
-    }));
-    renderProducts();
-  }
+/* SIDEBAR */
+function openMenu(){
+  document.getElementById("sideMenu").classList.add("show");
+  document.getElementById("menuOverlay").classList.add("show");
+  document.body.style.overflow="hidden";
+}
 
-  // 2. Banners
-  const { data: dbBanners } = await supabaseClient.from('banners').select('*').order('created_at', { ascending: false });
-  const slider = document.getElementById("homeSlider");
-  if (dbBanners && dbBanners.length > 0 && slider) {
-    let arrowsHTML = `<button class="slider-arrow slider-prev" onclick="changeSlide(-1)">❮</button><button class="slider-arrow slider-next" onclick="changeSlide(1)">❯</button>`;
-    slider.innerHTML = arrowsHTML + dbBanners.map((b, idx) => `
-      <div class="slide ${idx === 0 ? 'active' : ''}" style="background-image: url('${b.image_url}');"></div>
-    `).join('');
-    slideElements = document.querySelectorAll('.slide');
-    resetSlideTimer();
-  }
-
-  // 3. Announcements
-  const { data: dbAnnouncements } = await supabaseClient.from('announcements').select('*').eq('active', true).order('created_at', { ascending: false });
-  const bar = document.getElementById("topAnnouncementBar");
-  if (bar && dbAnnouncements && dbAnnouncements.length > 0) {
-    bar.innerHTML = dbAnnouncements.map((n, idx) => `
-      <div class="notif-slide-item ${idx === 0 ? 'active' : ''}">
-        📣 <strong>${n.message}</strong>
-      </div>
-    `).join('');
-    startNotificationSlider();
-  }
-
-  // 4. Reviews
-  const { data: dbReviews } = await supabaseClient.from('reviews').select('*').order('created_at', { ascending: false });
-  const revContainer = document.getElementById("reviewsGridContainer");
-  if (revContainer) {
-    if (!dbReviews || dbReviews.length === 0) {
-      revContainer.innerHTML = '<p style="text-align:center; color:#777; grid-column:1/-1;">No customer reviews yet.</p>';
-    } else {
-      revContainer.innerHTML = dbReviews.map(r => `
-        <div class="review-card">
-          <div class="review-header">
-            <span>${escapeHTML(r.author)}</span>
-            <span class="review-stars">${'⭐'.repeat(r.rating || 5)}</span>
-          </div>
-          <p class="review-comment">"${escapeHTML(r.comment)}"</p>
-          ${r.reply ? `<div class="seller-reply"><strong>Seller Reply:</strong> ${escapeHTML(r.reply)}</div>` : ''}
-        </div>
-      `).join('');
-    }
+function closeMenu(){
+  document.getElementById("sideMenu").classList.remove("show");
+  document.getElementById("menuOverlay").classList.remove("show");
+  if(!document.querySelector(".modalOverlay.show")){
+    document.body.style.overflow="";
   }
 }
 
-function renderProducts() {
+function menuGo(target){
+  closeMenu();
+  showMainPage();
+  setTimeout(()=>{
+    document.querySelector(target)?.scrollIntoView({ behavior:"smooth" });
+  },200);
+}
+
+function showAllProducts(){
+  closeMenu();
+  showMainPage();
+  currentCategory="all";
+  document.querySelectorAll(".categoryBtn").forEach(b=>b.classList.remove("active"));
+  const allButton = [...document.querySelectorAll(".categoryBtn")].find(b => b.textContent.toLowerCase().includes("all"));
+  if(allButton) allButton.classList.add("active");
+  renderProducts();
+  setTimeout(()=>{
+    document.getElementById("products")?.scrollIntoView({ behavior:"smooth" });
+  },200);
+}
+
+function menuCategory(category){
+  closeMenu();
+  showMainPage();
+  currentCategory=category;
+  document.querySelectorAll(".categoryBtn").forEach(b=>b.classList.remove("active"));
+  const btn = [...document.querySelectorAll(".categoryBtn")].find(b => b.textContent.toLowerCase().includes(category));
+  if(btn) btn.classList.add("active");
+  renderProducts();
+  setTimeout(()=>{
+    document.getElementById("products")?.scrollIntoView({ behavior:"smooth" });
+  },200);
+}
+
+/* ==========================================
+   RENDER PRODUCTS
+========================================== */
+function renderProducts(){
   const grid = document.getElementById("productGrid");
-  const searchVal = (document.getElementById("searchInput")?.value || "").toLowerCase().trim();
-  const sortVal = document.getElementById("sortSelect")?.value || "default";
+  const searchElement = document.getElementById("searchInput");
+  const sortElement = document.getElementById("sortSelect");
+  const q = (searchElement?.value || "").toLowerCase().trim();
+  const sort = sortElement?.value || "default";
 
-  if(!grid) return;
-
-  let filtered = products.filter(p => {
-    let matchCat = (currentCategory === 'all' || (p.category && p.category.toLowerCase() === currentCategory.toLowerCase()));
-    let matchSearch = (p.name && p.name.toLowerCase().includes(searchVal));
-    return matchCat && matchSearch;
+  let filtered = products.filter(product=>{
+    const categoryMatch = currentCategory === "all" || product.category === currentCategory;
+    const searchable = (product.name + " " + (product.description || "") + " " + product.category + " " + product.unit).toLowerCase();
+    return categoryMatch && searchable.includes(q);
   });
 
-  if (sortVal === 'priceLow') {
-    filtered.sort((a, b) => a.price - b.price);
-  } else if (sortVal === 'priceHigh') {
-    filtered.sort((a, b) => b.price - a.price);
-  }
+  if(sort==="priceLow") filtered.sort((a,b)=> Number(a.price || 0) - Number(b.price || 0));
+  if(sort==="priceHigh") filtered.sort((a,b)=> Number(b.price || 0) - Number(a.price || 0));
+  if(sort==="nameAZ") filtered.sort((a,b)=> a.name.localeCompare(b.name));
+  if(sort==="nameZA") filtered.sort((a,b)=> b.name.localeCompare(a.name));
 
-  if(!filtered.length) {
-    grid.innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:30px;color:#666;">No products found.</div>';
+  if(!filtered.length){
+    grid.innerHTML=`<div class="noResults"><div style="font-size:45px">🔍</div><h3>No products found</h3><p>Try another search or category.</p></div>`;
     return;
   }
 
-  grid.innerHTML = filtered.map(p => `
-    <div class="productCard" onclick="openProductModal('${p.id}')">
-      <div class="productImageWrap"><img src="${p.image}" alt="${escapeHTML(p.name)}" onerror="this.src='https://via.placeholder.com/300'"></div>
-      <div class="productInfo">
-        <div class="productCategory">${escapeHTML(p.category)}</div>
-        <h3 class="productName">${escapeHTML(p.name)}</h3>
-        <div class="priceRow"><div class="price">Rs. ${p.price}</div></div>
-        <button class="addBtn" onclick="event.stopPropagation(); addToCart('${p.id}')">🛒 Add to Cart</button>
-      </div>
-    </div>
-  `).join('');
+  grid.innerHTML = filtered.map(product=>{
+    const images = getProductImages(product);
+    const rating = getProductRating(product.id);
+    const imageHTML = images.length > 1
+      ? `<div class="productImages">${images.map(image=>`<img src="${escapeHTML(image)}" alt="${escapeHTML(product.name)}" loading="lazy" onerror="this.style.display='none'">`).join("")}</div>`
+      : `<img src="${escapeHTML(images[0] || "")}" alt="${escapeHTML(product.name)}" loading="lazy" onerror="this.style.display='none'">`;
+
+    return `
+      <article class="productCard" onclick="openProductPage(${product.id})">
+        <div class="productImageWrap">${imageHTML}</div>
+        <div class="productInfo">
+          <div class="productCategory">${escapeHTML(product.category)}</div>
+          <h3 class="productName">${product.emoji || ""} ${escapeHTML(product.name)}</h3>
+          <div class="productRating">${starsHTML(rating.rating)} <span class="ratingCount">${rating.count ? `(${rating.count})` : "(New)"}</span></div>
+          <div class="priceRow">
+            <div class="price">Rs. ${money(product.price)}</div>
+            <div class="unit">${escapeHTML(product.unit || "1 pc")}</div>
+          </div>
+          <div class="productActions" onclick="event.stopPropagation()">
+            <button class="addBtn" onclick="addToCart(${product.id})">🛒 Add to Cart</button>
+          </div>
+        </div>
+      </article>
+    `;
+  }).join("");
 }
 
-// Product Detail Modal Actions
-function openProductModal(id) {
-  let p = products.find(x => String(x.id) === String(id));
-  if(!p) return;
+function filterCategory(category,button){
+  currentCategory=category;
+  document.querySelectorAll(".categoryBtn").forEach(b=>b.classList.remove("active"));
+  button?.classList.add("active");
+  renderProducts();
+}
 
-  document.getElementById("modalImg").src = p.image || 'https://via.placeholder.com/300';
-  document.getElementById("modalCat").textContent = p.category;
-  document.getElementById("modalTitle").textContent = p.name;
-  document.getElementById("modalPrice").textContent = "Rs. " + p.price;
-  document.getElementById("modalDesc").textContent = p.description || "No description provided.";
+/* ==========================================
+   DEDICATED FULL PRODUCT PAGE NAVIGATION
+========================================== */
+function openProductPage(productId){
+  const product = getProductById(productId);
+  if(!product) return;
+  currentSelectedProduct = product;
+
+  document.getElementById("main-store-container").style.display = "none";
+  const detailContainer = document.getElementById("product-detail-page");
+  detailContainer.style.display = "block";
+  window.scrollTo(0, 0);
+
+  const images = getProductImages(product);
+  document.getElementById("detail-main-img").src = images[0] || "";
   
-  document.getElementById("modalAddBtn").onclick = function() {
-    addToCart(p.id);
-    closeProductModal();
+  const thumbContainer = document.getElementById("detail-thumbnails");
+  if(images.length > 1){
+    thumbContainer.innerHTML = images.map(img => `
+      <img src="${escapeHTML(img)}" style="width:65px; height:65px; object-fit:cover; border-radius:8px; cursor:pointer; border:2px solid #ddd;" onclick="document.getElementById('detail-main-img').src='${escapeHTML(img)}'" />
+    `).join("");
+  } else {
+    thumbContainer.innerHTML = "";
+  }
+
+  document.getElementById("detail-category").innerText = product.category.toUpperCase();
+  document.getElementById("detail-title").innerText = (product.emoji ? product.emoji + " " : "") + product.name;
+  document.getElementById("detail-price-box").innerText = `Rs. ${money(product.price)} (${product.unit || "1 pc"})`;
+  document.getElementById("review-product-title").innerText = product.name;
+
+  const tagsList = product.tags || ["#craftedheaven", "#lahore", "#online"];
+  document.getElementById("detail-tags-list").innerHTML = tagsList.map(t => `<span style="background:#e0f2fe; color:#0369a1; padding:5px 12px; border-radius:15px; font-size:13px; font-weight:bold;">${escapeHTML(t)}</span>`).join("");
+
+  const detailsList = product.details || [product.description || "High quality product from Crafted Heaven PK."];
+  document.getElementById("detail-description-list").innerHTML = detailsList.map(d => `<li style="margin-bottom:8px;">${escapeHTML(d)}</li>`).join("");
+
+  document.getElementById("detail-add-cart-btn").onclick = () => {
+    addToCart(product.id);
+  };
+  document.getElementById("detail-buy-now-btn").onclick = () => {
+    addToCart(product.id);
+    openCart();
   };
 
-  document.getElementById("productModal").classList.add("show");
+  renderYouMayAlsoLike(product.id);
 }
 
-function closeProductModal() {
-  document.getElementById("productModal").classList.remove("show");
+function showMainPage(){
+  document.getElementById("product-detail-page").style.display = "none";
+  document.getElementById("main-store-container").style.display = "block";
+  window.scrollTo(0, 0);
 }
 
-function addToCart(id){
-  let p = products.find(x => String(x.id) === String(id));
-  if(!p) return;
-  let ex = cart.find(x => String(x.id) === String(id));
-  if(ex) ex.quantity++;
-  else cart.push({ id: p.id, name: p.name, price: p.price, image: p.image, quantity: 1 });
-  
-  localStorage.setItem("craftedHeavenCart", JSON.stringify(cart));
-  updateCartCount();
-  showToast(`${p.name} added to cart!`);
+function renderYouMayAlsoLike(currentProductId){
+  const grid = document.getElementById("you-may-also-like-grid");
+  const related = products.filter(p => Number(p.id) !== Number(currentProductId)).slice(0, 4);
+
+  grid.innerHTML = related.map(product => `
+    <article class="productCard" onclick="openProductPage(${product.id})">
+      <div class="productImageWrap">
+        <img src="${escapeHTML(getProductImages(product)[0] || "")}" alt="${escapeHTML(product.name)}" />
+      </div>
+      <div class="productInfo">
+        <div class="productCategory">${escapeHTML(product.category)}</div>
+        <h3 class="productName">${product.emoji || ""} ${escapeHTML(product.name)}</h3>
+        <div class="priceRow">
+          <div class="price">Rs. ${money(product.price)}</div>
+        </div>
+        <button class="addBtn" style="margin-top:8px;" onclick="event.stopPropagation(); addToCart(${product.id});">🛒 Add to Cart</button>
+      </div>
+    </article>
+  `).join("");
 }
 
-function updateCartCount(){
-  let totalCount = cart.reduce((a,b)=>a+b.quantity, 0);
-  document.getElementById("cartCount").textContent = totalCount;
+/* REVIEWS HANDLER IN PRODUCT PAGE */
+let userRatingChoice = 0;
+function setRating(r){
+  userRatingChoice = r;
+  const stars = document.querySelectorAll("#star-rating-chooser span");
+  stars.forEach((s, idx) => {
+    s.style.color = idx < r ? "#ffb400" : "#ccc";
+  });
 }
 
-function openCart(){ 
-  renderCartModal();
-  document.getElementById("cartOverlay").classList.add("show"); 
-}
+function submitCustomerReview(e){
+  e.preventDefault();
+  const name = document.getElementById("review-name-input").value.trim();
+  const email = document.getElementById("review-email-input").value.trim();
+  const text = document.getElementById("review-text-input").value.trim();
 
-function closeCart(){ 
-  document.getElementById("cartOverlay").classList.remove("show"); 
-}
-
-function renderCartModal() {
-  const body = document.getElementById("cartBody");
-  const totalEl = document.getElementById("cartTotal");
-  if(!body) return;
-
-  if(cart.length === 0) {
-    body.innerHTML = '<p style="text-align:center;color:#777;padding:15px;">Your cart is empty.</p>';
-    totalEl.textContent = "0";
+  if(!userRatingChoice){
+    alert("Please select a star rating.");
     return;
   }
 
-  let total = 0;
-  body.innerHTML = cart.map((item, idx) => {
-    let sub = item.price * item.quantity;
-    total += sub;
+  if(currentSelectedProduct){
+    reviews.push({
+      id: Date.now(),
+      productId: currentSelectedProduct.id,
+      name,
+      rating: userRatingChoice,
+      text,
+      date: new Date().toLocaleDateString()
+    });
+    localStorage.setItem("craftedHeavenReviews", JSON.stringify(reviews));
+  }
+
+  alert("Thank you! Your review has been submitted successfully.");
+  e.target.reset();
+  setRating(0);
+  renderReviews();
+}
+
+/* CART OPERATIONS */
+function addToCart(id,variantKey=null){
+  const product = getProductById(id);
+  if(!product){
+    showToast("Product not found.");
+    return;
+  }
+
+  const existing = cart.find(item=> Number(item.id)===Number(id));
+  if(existing){
+    existing.quantity = Math.max(1, Number(existing.quantity || 0)+1);
+  } else {
+    cart.push({ id:Number(id), quantity:1 });
+  }
+
+  saveCart();
+  renderCart();
+  showToast(`${product.name} added to cart 🛒`);
+}
+
+function saveCart(){
+  localStorage.setItem("craftedHeavenCart", JSON.stringify(cart));
+}
+
+function cartTotalValue(){
+  return cart.reduce((total,item)=>{
+    const quantity = Number(item.quantity) || 0;
+    const price = Number(getCartPrice(item)) || 0;
+    return total + price * quantity;
+  },0);
+}
+
+function cartItemCount(){
+  return cart.reduce((total,item)=> total + (Number(item.quantity) || 0), 0);
+}
+
+function renderCart(){
+  const body = document.getElementById("cartBody");
+  const count = document.getElementById("cartCount");
+  const total = document.getElementById("cartTotal");
+
+  if(!body) return;
+
+  if(!cart.length){
+    body.innerHTML=`<div style="text-align:center;color:#777;padding:35px 10px;">🛒<br><br>Your cart is empty.</div>`;
+    count.textContent="0";
+    total.textContent="0";
+    return;
+  }
+
+  body.innerHTML = cart.map(item=>{
+    const product = getProductById(item.id);
+    if(!product) return "";
+    const quantity = Number(item.quantity) || 1;
+    const unitPrice = getCartPrice(item);
+    const image = getProductImages(product)[0] || "";
+
     return `
-      <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid #eee; padding:8px 0; font-size:14px;">
+      <div class="cartItem">
+        <img src="${escapeHTML(image)}" alt="${escapeHTML(product.name)}" onerror="this.style.display='none'">
         <div>
-          <strong>${escapeHTML(item.name)}</strong><br>
-          <span style="color:#555; font-size:12px;">Rs. ${item.price} x ${item.quantity}</span>
+          <div class="cartItemName">${product.emoji || ""} ${escapeHTML(product.name)}</div>
+          <div class="cartItemPrice">Rs. ${money(unitPrice)} × ${quantity} = <strong>Rs. ${money(unitPrice * quantity)}</strong></div>
+          <div class="qtyControls">
+            <button class="qtyBtn" onclick="changeQuantity(${product.id},-1)">−</button>
+            <strong>${quantity}</strong>
+            <button class="qtyBtn" onclick="changeQuantity(${product.id},1)">+</button>
+          </div>
         </div>
-        <div style="display:flex; align-items:center; gap:8px;">
-          <span style="font-weight:bold;">Rs. ${sub}</span>
-          <button onclick="changeQty(${idx}, 1)" style="padding:2px 8px; background:#173d2a; color:#fff; border:none; border-radius:4px; cursor:pointer;">+</button>
-          <button onclick="changeQty(${idx}, -1)" style="padding:2px 8px; background:#c0392b; color:#fff; border:none; border-radius:4px; cursor:pointer;">-</button>
-        </div>
+        <button class="removeBtn" onclick="removeFromCart(${product.id})">Remove</button>
       </div>
     `;
-  }).join('');
-  totalEl.textContent = total.toLocaleString();
+  }).join("");
+
+  count.textContent = cartItemCount();
+  total.textContent = money(cartTotalValue());
 }
 
-function changeQty(idx, delta) {
-  cart[idx].quantity += delta;
-  if(cart[idx].quantity <= 0) {
-    cart.splice(idx, 1);
+function changeQuantity(id, change){
+  const item = cart.find(x=> Number(x.id)===Number(id));
+  if(!item) return;
+  item.quantity = Number(item.quantity || 0) + Number(change);
+
+  if(item.quantity<=0){
+    cart = cart.filter(x=> Number(x.id)!==Number(id));
   }
-  localStorage.setItem("craftedHeavenCart", JSON.stringify(cart));
-  updateCartCount();
-  renderCartModal();
+  saveCart();
+  renderCart();
 }
 
-function checkoutWhatsApp(){
-  if(cart.length === 0) {
+function removeFromCart(id){
+  cart = cart.filter(item=> Number(item.id)!==Number(id));
+  saveCart();
+  renderCart();
+  showToast("Product removed.");
+}
+
+function clearCart(){
+  if(!cart.length) return;
+  cart=[];
+  saveCart();
+  renderCart();
+  showToast("Cart cleared.");
+}
+
+function openCart(){
+  renderCart();
+  document.getElementById("cartOverlay").classList.add("show");
+  document.body.classList.add("modalOpen");
+  document.body.style.overflow="hidden";
+}
+
+function closeCart(){
+  document.getElementById("cartOverlay").classList.remove("show");
+  document.body.classList.remove("modalOpen");
+  if(!document.querySelector(".modalOverlay.show")){
+    document.body.style.overflow="";
+  }
+}
+
+/* CHECKOUT & AUTOMATIC CLEAN PDF GENERATOR WITH BRAND LOGO */
+function openCheckout(){
+  if(!cart.length){
+    showToast("Your cart is empty!");
+    return;
+  }
+  closeCart();
+  buildOrderSummary();
+  fillSavedCustomer();
+  document.getElementById("checkoutOverlay").classList.add("show");
+  document.body.classList.add("modalOpen");
+  document.body.style.overflow="hidden";
+}
+
+function closeCheckout(){
+  document.getElementById("checkoutOverlay").classList.remove("show");
+  document.body.classList.remove("modalOpen");
+  if(!document.querySelector(".modalOverlay.show")){
+    document.body.style.overflow="";
+  }
+}
+
+function fillSavedCustomer(){
+  const data = JSON.parse(localStorage.getItem("craftedHeavenCustomer") || "null");
+  if(!data) return;
+  if(document.getElementById("customerName")) document.getElementById("customerName").value = data.name || "";
+  if(document.getElementById("customerPhone")) document.getElementById("customerPhone").value = data.phone || "";
+  if(document.getElementById("customerEmail")) document.getElementById("customerEmail").value = data.email || "";
+  if(document.getElementById("deliveryAddress")) document.getElementById("deliveryAddress").value = data.address || "";
+}
+
+function buildOrderSummary(){
+  const summaryBox = document.getElementById("checkoutSummary");
+  if(!summaryBox) return;
+
+  const lines = cart.map(item=>{
+    const product = getProductById(item.id);
+    if(!product) return "";
+    const quantity = Number(item.quantity) || 0;
+    const unitPrice = getCartPrice(item);
+
+    return `
+      <div style="margin-bottom:7px">
+        • ${escapeHTML(product.name)} × ${quantity} = <strong>Rs. ${money(unitPrice * quantity)}</strong>
+      </div>
+    `;
+  }).filter(Boolean).join("");
+
+  summaryBox.innerHTML = `
+    <strong>Order Summary</strong>
+    <div style="margin-top:10px">${lines}</div>
+    <div class="checkoutTotal">Total: Rs. ${money(cartTotalValue())}</div>
+  `;
+}
+
+/* ACCURATE jsPDF RECEIPT GENERATOR WITH LOGO */
+function generateOrderPDFReceipt(orderDetails) {
+  if (typeof window.jspdf === "undefined") return;
+  const { jsPDF } = window.jspdf;
+  const doc = new jsPDF();
+
+  const logoImg = new Image();
+  logoImg.src = 'crafted_heaven_logo.png';
+
+  logoImg.onload = function() {
+    doc.addImage(logoImg, 'PNG', 15, 15, 25, 25);
+    createPDFBody();
+  };
+
+  logoImg.onerror = function() {
+    createPDFBody();
+  };
+
+  function createPDFBody() {
+    doc.setFontSize(16);
+    doc.setFont("helvetica", "bold");
+    doc.setTextColor(23, 61, 42);
+    doc.text("CRAFTED HEAVEN PK", 45, 22);
+
+    doc.setFontSize(9);
+    doc.setFont("helvetica", "normal");
+    doc.setTextColor(80, 80, 80);
+    doc.text("Plants, Gardening Supplies & Handmade Crafts", 45, 28);
+    doc.text("Gajjumatta, Ferozepur Road, Lahore, Pakistan", 45, 33);
+    doc.text("Phone: +92 303 4812714", 45, 38);
+
+    doc.setDrawColor(220, 220, 220);
+    doc.line(15, 45, 195, 45);
+
+    doc.setFontSize(14);
+    doc.setFont("helvetica", "bold");
+    doc.setTextColor(0, 0, 0);
+    doc.text("OFFICIAL RECEIPT", 15, 55);
+
+    doc.setFontSize(9);
+    doc.setFont("helvetica", "bold");
+    doc.text("CUSTOMER DETAILS:", 15, 66);
+    doc.setFont("helvetica", "normal");
+    doc.text("Name: " + orderDetails.customerName, 15, 72);
+    doc.text("Address: " + orderDetails.address, 15, 77, { maxWidth: 90 });
+    doc.text("Phone: " + orderDetails.phone, 15, 87);
+
+    doc.setFont("helvetica", "bold");
+    doc.text("ORDER INFO:", 120, 66);
+    doc.setFont("helvetica", "normal");
+    doc.text("Order ID: " + orderDetails.orderNum, 120, 72);
+    doc.text("Order Date: " + orderDetails.date, 120, 77);
+    doc.text("Payment: " + orderDetails.paymentMethod, 120, 82);
+
+    let yPos = 98;
+    doc.setFillColor(23, 61, 42);
+    doc.rect(15, yPos, 180, 8, "F");
+
+    doc.setTextColor(255, 255, 255);
+    doc.setFont("helvetica", "bold");
+    doc.text("Product Description", 18, yPos + 5.5);
+    doc.text("Qty", 135, yPos + 5.5);
+    doc.text("Total Price", 165, yPos + 5.5);
+
+    doc.setTextColor(0, 0, 0);
+    doc.setFont("helvetica", "normal");
+    yPos += 14;
+
+    let subtotal = 0;
+    orderDetails.items.forEach(item => {
+      const itemTotal = item.price * item.quantity;
+      subtotal += itemTotal;
+      doc.text(item.title, 18, yPos, { maxWidth: 105 });
+      doc.text(item.quantity.toString(), 137, yPos);
+      doc.text("Rs. " + itemTotal.toLocaleString('en-PK'), 165, yPos);
+      yPos += 10;
+    });
+
+    doc.setDrawColor(220, 220, 220);
+    doc.line(15, yPos, 195, yPos);
+    yPos += 8;
+
+    doc.setFont("helvetica", "bold");
+    doc.setFontSize(11);
+    doc.text("TOTAL AMOUNT:", 120, yPos);
+    doc.text("Rs. " + subtotal.toLocaleString('en-PK'), 165, yPos);
+
+    yPos += 15;
+    doc.setFontSize(8);
+    doc.setFont("helvetica", "normal");
+    doc.setTextColor(120, 120, 120);
+    doc.text("Thank you for shopping with Crafted Heaven PK!", 105, yPos, { align: "center" });
+    doc.text("Official Website: https://craftedheavenpk.github.io/Crafted-heaven-pk/", 105, yPos + 5, { align: "center" });
+
+    doc.save("Crafted-Heaven-Invoice-" + orderDetails.orderNum + ".pdf");
+  }
+}
+
+function processCheckoutOrder(event) {
+  if (event) {
+    event.preventDefault();
+    event.stopPropagation();
+  }
+
+  if (!cart || cart.length === 0) {
     alert("Your cart is empty!");
     return;
   }
-  let name = document.getElementById("custName").value.trim();
-  let phone = document.getElementById("custPhone").value.trim();
-  let address = document.getElementById("custAddress").value.trim();
 
-  if(!name || !phone || !address) {
+  const name = document.getElementById("customerName")?.value.trim() || "";
+  const phone = document.getElementById("customerPhone")?.value.trim() || "";
+  const email = document.getElementById("customerEmail")?.value.trim() || "";
+  const address = document.getElementById("deliveryAddress")?.value.trim() || "";
+  const note = document.getElementById("specialNote")?.value.trim() || "";
+
+  if (!name || !phone || !address) {
     alert("Please fill in your Name, Phone Number, and Delivery Address.");
     return;
   }
 
-  let total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-  let orderText = `🌿 *New Order - Crafted Heaven PK* 🌿\n\n*Customer Name:* ${name}\n*Phone:* ${phone}\n*Address:* ${address}\n\n*Ordered Items:*`;
-  
-  cart.forEach(item => {
-    orderText += `\n- ${item.name} (x${item.quantity}) : Rs. ${item.price * item.quantity}`;
-  });
-  
-  orderText += `\n\n*Total Amount:* Rs. ${total}`;
-
-  // Generate PDF Invoice
   try {
-    const { jsPDF } = window.jspdf;
-    const doc = new jsPDF();
-    doc.setFont("helvetica", "bold");
-    doc.text("Crafted Heaven PK - Order Invoice", 14, 20);
-    doc.setFont("helvetica", "normal");
-    doc.setFontSize(11);
-    doc.text(`Customer Name: ${name}`, 14, 30);
-    doc.text(`Phone: ${phone}`, 14, 38);
-    doc.text(`Delivery Address: ${address}`, 14, 46);
-    
-    let y = 60;
-    doc.text("Item", 14, y);
-    doc.text("Qty", 100, y);
-    doc.text("Price", 140, y);
-    doc.line(14, y+2, 196, y+2);
-    
-    y += 10;
-    cart.forEach(item => {
-      doc.text(String(item.name), 14, y);
-      doc.text(String(item.quantity), 100, y);
-      doc.text(`Rs. ${item.price * item.quantity}`, 140, y);
-      y += 8;
-    });
-    
-    doc.line(14, y+2, 196, y+2);
-    doc.setFont("helvetica", "bold");
-    doc.text(`Total Amount: Rs. ${total}`, 14, y+12);
-    doc.save(`Crafted_Heaven_Invoice_${Date.now()}.pdf`);
-  } catch(e) {
-    console.log("PDF generation error:", e);
+    localStorage.setItem("craftedHeavenCustomer", JSON.stringify({ name, phone, email, address }));
+  } catch(e){}
+
+  const orderDate = new Date().toLocaleDateString('en-PK', { day: 'numeric', month: 'short', year: 'numeric' });
+  const randomNum = Math.floor(10000 + Math.random() * 90000);
+  const orderId = "CH-" + randomNum;
+
+  let itemsListText = "";
+  let totalAmount = 0;
+  let pdfItemsList = [];
+
+  cart.forEach((item, index) => {
+    let p = getProductById(item.id);
+    let pName = p ? p.name : "Product";
+    let qty = Number(item.quantity) || 1;
+    let price = getCartPrice(item);
+    let itemTotal = qty * price;
+    totalAmount += itemTotal;
+
+    itemsListText += `${index + 1}. *${pName}*\n   Qty: ${qty} × Rs. ${price} = *Rs. ${itemTotal}*\n`;
+    pdfItemsList.push({ title: pName, quantity: qty, price: price });
+  });
+
+  generateOrderPDFReceipt({
+    orderNum: orderId,
+    date: orderDate,
+    customerName: name,
+    address: address,
+    phone: phone,
+    paymentMethod: "JazzCash / EasyPaisa (0303-4812714)",
+    shipping: 0,
+    items: pdfItemsList
+  });
+
+  const message = 
+`🧾 *OFFICIAL ORDER RECEIPT*
+----------------------------------
+🛍️ *Store:* Crafted Heaven PK 🌿
+🆔 *Order ID:* ${orderId}
+📅 *Date:* ${orderDate}
+
+👤 *CUSTOMER DETAILS*
+• *Name:* ${name}
+• *Phone:* ${phone}
+• *Address:* ${address}, Lahore
+
+📦 *ORDER SUMMARY*
+${itemsListText}
+----------------------------------
+💰 *TOTAL AMOUNT:* *Rs. ${totalAmount}*
+💳 *Payment:* JazzCash / EasyPaisa (0303-4812714)`;
+
+  window.open(`https://wa.me/923034812714?text=${encodeURIComponent(message)}`, "_blank");
+  closeCheckout();
+  clearCart();
+}
+
+/* ACCOUNT */
+function openAccount(){
+  closeMenu();
+  const data = JSON.parse(localStorage.getItem("craftedHeavenCustomer") || "{}");
+  document.getElementById("accountName").value = data.name || "";
+  document.getElementById("accountPhone").value = data.phone || "";
+  document.getElementById("accountEmail").value = data.email || "";
+  document.getElementById("accountAddress").value = data.address || "";
+  document.getElementById("accountOverlay").classList.add("show");
+  document.body.classList.add("modalOpen");
+  document.body.style.overflow="hidden";
+}
+
+function closeAccount(){
+  document.getElementById("accountOverlay").classList.remove("show");
+  document.body.classList.remove("modalOpen");
+  if(!document.querySelector(".modalOverlay.show")){
+    document.body.style.overflow="";
+  }
+}
+
+function saveAccount(event){
+  event.preventDefault();
+  const data={
+    name: document.getElementById("accountName").value.trim(),
+    phone: document.getElementById("accountPhone").value.trim(),
+    email: document.getElementById("accountEmail").value.trim(),
+    address: document.getElementById("accountAddress").value.trim()
+  };
+  localStorage.setItem("craftedHeavenCustomer", JSON.stringify(data));
+  closeAccount();
+  showToast("Your details have been saved.");
+}
+
+/* TRACK ORDER MODAL */
+function trackOrder(){
+  closeMenu();
+  document.getElementById("trackInput").value = "";
+  document.getElementById("trackingResult").style.display = "none";
+  document.getElementById("trackingOverlay").classList.add("show");
+  document.body.classList.add("modalOpen");
+  document.body.style.overflow="hidden";
+}
+
+function closeTrackingModal(){
+  document.getElementById("trackingOverlay").classList.remove("show");
+  document.body.classList.remove("modalOpen");
+  if(!document.querySelector(".modalOverlay.show")){
+    document.body.style.overflow="";
+  }
+}
+
+function checkOrderStatus(){
+  const id = document.getElementById("trackInput").value.trim();
+  if(!id){
+    alert("Please enter a valid Order ID");
+    return;
+  }
+  document.getElementById("track-id-disp").textContent = id;
+  document.getElementById("trackingResult").style.display = "block";
+}
+
+function openHelp(){
+  closeMenu();
+  window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent("Assalam-o-Alaikum! I need help with my Crafted Heaven order.")}`, "_blank");
+}
+
+/* GUIDES */
+function openGuide(){
+  closeMenu();
+  document.getElementById("guideSearch").value="";
+  renderGuides();
+  document.getElementById("guideOverlay").classList.add("show");
+  document.body.classList.add("modalOpen");
+  document.body.style.overflow="hidden";
+}
+
+function closeGuide(){
+  document.getElementById("guideOverlay").classList.remove("show");
+  document.body.classList.remove("modalOpen");
+  if(!document.querySelector(".modalOverlay.show")){
+    document.body.style.overflow="";
+  }
+}
+
+function renderGuides(){
+  const q = document.getElementById("guideSearch").value.toLowerCase().trim();
+  const list = guides.filter(g=> (g.name + " " + g.type + " " + g.text).toLowerCase().includes(q));
+
+  document.getElementById("guideList").innerHTML = list.length
+    ? list.map(g=>`
+      <div class="guideCard">
+        <div class="guideTag">${escapeHTML(g.type)}</div>
+        <h3>${escapeHTML(g.name)}</h3>
+        <p>${escapeHTML(g.text)}</p>
+      </div>
+    `).join("")
+    : `<div style="text-align:center;color:#777;padding:20px;">No guide found.</div>`;
+}
+
+function renderReviews(){
+  const container = document.getElementById("reviewsGrid");
+  if(!reviews.length){
+    container.innerHTML=`
+      <div class="reviewCard">
+        <div class="reviewStars">★★★★★</div>
+        <div class="reviewName">Be the first to review!</div>
+        <div class="reviewText">Your customer reviews will appear here.</div>
+      </div>
+    `;
+    return;
   }
 
-  let waUrl = `https://wa.me/923034812714?text=${encodeURIComponent(orderText)}`;
-  window.open(waUrl, '_blank');
-  
-  cart = [];
-  localStorage.setItem("craftedHeavenCart", JSON.stringify(cart));
-  updateCartCount();
+  container.innerHTML = [...reviews].reverse().slice(0,12).map(review=>{
+    const product = getProductById(review.productId);
+    return `
+      <div class="reviewCard">
+        <div class="reviewStars">${starsHTML(Number(review.rating))}</div>
+        <div class="reviewName">${escapeHTML(review.name)}</div>
+        <div class="reviewText">${escapeHTML(review.text)}</div>
+        <div style="font-size:11px;color:#999;margin-top:7px;">${product ? escapeHTML(product.name) : "Product"} ${review.date ? " • " + escapeHTML(review.date) : ""}</div>
+      </div>
+    `;
+  }).join("");
+}
+
+/* TOAST */
+let toastTimer;
+function showToast(message){
+  const toast = document.getElementById("toast");
+  toast.textContent=message;
+  toast.classList.add("show");
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(()=>toast.classList.remove("show"), 2500);
+}
+
+/* ESC KEY */
+document.addEventListener("keydown", event=>{
+  if(event.key!=="Escape") return;
+  closeMenu();
   closeCart();
-  alert("Order placed successfully & PDF Invoice downloaded!");
-}
-
-function showToast(msg){
-  let t = document.getElementById("toast");
-  t.textContent = msg; t.classList.add("show");
-  setTimeout(()=>t.classList.remove("show"), 2000);
-}
-
-function escapeHTML(str) {
-  return String(str ?? "").replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
-}
-
-document.addEventListener("DOMContentLoaded", () => {
-  slideElements = document.querySelectorAll('.slide');
-  resetSlideTimer();
-  startNotificationSlider();
-  loadSupabaseData();
-  updateCartCount();
+  closeCheckout();
+  closeAccount();
+  closeGuide();
+  closeTrackingModal();
 });
+
+/* MODAL BACKDROP CLOSE */
+document.querySelectorAll(".modalOverlay").forEach(overlay=>{
+  overlay.addEventListener("click", event=>{
+    if(event.target!==overlay) return;
+    if(overlay.id==="cartOverlay") closeCart();
+    if(overlay.id==="checkoutOverlay") closeCheckout();
+    if(overlay.id==="accountOverlay") closeAccount();
+    if(overlay.id==="guideOverlay") closeGuide();
+    if(overlay.id==="trackingOverlay") closeTrackingModal();
+  });
+});
+
+/* INITIALIZE */
+renderCart();
+renderReviews();
+</script>
+
+<!-- SUPABASE DYNAMIC PRODUCTS, BANNERS & ANNOUNCEMENTS LOADING -->
+<script>
+  const SUPABASE_URL = "https://qyiohberbkudtuolpmyd.supabase.co";
+  const SUPABASE_ANON_KEY = "sb_publishable_RdTzt951O8A8ipMDS87siA_tf_SLjeR";
+  
+  const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+  async function loadSupabaseData() {
+    console.log("Fetching dynamic store data from Supabase...");
+    
+    // 1. Fetch Products
+    const { data: dbProducts } = await supabaseClient
+      .from('products')
+      .select('*')
+      .order('created_at', { ascending: false });
+
+    if (dbProducts && dbProducts.length > 0) {
+      const formattedProducts = dbProducts.map(item => {
+        let rawCat = (item.category || '').toLowerCase();
+        let cat = 'plants';
+        
+        if (rawCat.includes('plant')) cat = 'plants';
+        else if (rawCat.includes('garden') || rawCat.includes('seed')) cat = 'gardening';
+        else if (rawCat.includes('keychain')) cat = 'keychains';
+        else if (rawCat.includes('craft')) cat = 'crafts';
+        else if (rawCat.includes('crochet')) cat = 'crochet';
+        else if (rawCat.includes('kid')) cat = 'kids';
+        else if (rawCat.includes('supply')) cat = 'supplies';
+
+        let finalPrice = item.sale_price;
+        if (finalPrice === null || finalPrice === undefined || finalPrice === '' || Number(finalPrice) === 0) {
+          finalPrice = item.price || 0;
+        }
+
+        return {
+          id: item.id || Math.random(),
+          name: item.name || item.title || 'Product',
+          price: Number(finalPrice), 
+          category: cat,
+          image: item.image_url || item.image || '',
+          description: item.short_description || item.description || '',
+          details: item.description ? item.description.split('\n') : [item.short_description || 'Crafted Heaven Product'],
+          emoji: item.emoji || '🌿',
+          unit: item.unit || '1 pc',
+          sold: Number(item.sold) || 0,
+          stock: item.stock !== undefined ? Number(item.stock) : 10
+        };
+      });
+
+      products.length = 0; 
+      products.push(...formattedProducts); 
+
+      if (typeof renderProducts === 'function') {
+        renderProducts();
+      }
+    }
+
+    // 2. Fetch Banners (3-in-1 Carousel)
+    const { data: dbBanners } = await supabaseClient.from('banners').select('*').order('created_at', { ascending: false });
+    const slider = document.getElementById("homeSlider");
+    if (dbBanners && dbBanners.length > 0 && slider) {
+      let arrowsHTML = `<button class="slider-arrow slider-prev" onclick="changeSlide(-1)">❮</button><button class="slider-arrow slider-next" onclick="changeSlide(1)">❯</button>`;
+      slider.innerHTML = arrowsHTML + dbBanners.map((b, idx) => `
+        <div class="slide ${idx === 0 ? 'active' : ''}" style="background-image: url('${b.image_url}');"></div>
+      `).join('');
+      slideElements = document.querySelectorAll('.slide');
+      resetSlideTimer();
+    }
+
+    // 3. Fetch Announcements (Prominent Gold Top Bar)
+    const { data: dbAnnouncements } = await supabaseClient.from('announcements').select('*').eq('active', true).order('created_at', { ascending: false });
+    const bar = document.getElementById("topAnnouncementBar");
+    if (bar && dbAnnouncements && dbAnnouncements.length > 0) {
+      bar.innerHTML = dbAnnouncements.map((n, idx) => `
+        <div class="notif-slide-item ${idx === 0 ? 'active' : ''}">
+          📣 <strong>${n.message}</strong>
+        </div>
+      `).join('');
+      startNotificationSlider();
+    }
+  }
+
+  document.addEventListener("DOMContentLoaded", () => {
+    slideElements = document.querySelectorAll('.slide');
+    resetSlideTimer();
+    startNotificationSlider();
+    loadSupabaseData();
+  });
 </script>
 
 </body>
