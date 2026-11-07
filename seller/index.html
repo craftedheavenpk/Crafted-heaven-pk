@@ -10,9 +10,23 @@
   <link rel="apple-touch-icon" href="icon.png">
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <!-- Chart.js for Professional Charts -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
   <style>
+    :root {
+      --primary: #5c1d35; /* Wine / Deep Rose */
+      --primary-hover: #471428;
+      --secondary: #9b4d6b; /* Rose Accent */
+      --light-bg: #fdfbfb;
+      --card-bg: #ffffff;
+      --text-main: #2d2328;
+      --text-muted: #75686d;
+      --border-color: #f1e4e8;
+      --accent-green: #2f4024;
+    }
+
     * {
       box-sizing: border-box;
       margin: 0;
@@ -21,8 +35,8 @@
 
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: #f4efe9;
-      color: #2d2825;
+      background: var(--light-bg);
+      color: var(--text-main);
       -webkit-tap-highlight-color: transparent;
     }
 
@@ -33,46 +47,49 @@
       align-items: center;
       justify-content: center;
       padding: 16px;
-      background: #f7f4ef;
+      background: linear-gradient(135deg, #fdfbfb 0%, #f7ebee 100%);
     }
 
     .login-box {
       width: 100%;
       max-width: 400px;
       background: white;
-      padding: 30px 20px;
+      padding: 35px 25px;
       border-radius: 20px;
-      box-shadow: 0 10px 30px rgba(0,0,0,.06);
+      box-shadow: 0 15px 35px rgba(92, 29, 53, 0.08);
       text-align: center;
+      border: 1px solid var(--border-color);
     }
 
     .logo {
       font-size: 26px;
       font-weight: 700;
-      color: #2f4024;
+      color: var(--primary);
       margin-bottom: 6px;
     }
 
     .subtitle {
-      color: #888;
+      color: var(--text-muted);
       font-size: 14px;
-      margin-bottom: 20px;
+      margin-bottom: 25px;
     }
 
     input, textarea, select {
       width: 100%;
       padding: 12px 14px;
-      border: 1px solid #ddd7cf;
+      border: 1px solid #e0d0d5;
       border-radius: 10px;
       margin-top: 6px;
       margin-bottom: 14px;
-      font-size: 16px; /* Prevents auto-zoom on mobile safari/chrome */
+      font-size: 16px; 
       background: #fff;
       outline: none;
+      transition: border-color 0.2s;
     }
 
     input:focus, textarea:focus, select:focus {
-      border-color: #3b502d;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(92, 29, 53, 0.1);
     }
 
     textarea {
@@ -85,6 +102,7 @@
       text-align: left;
       font-weight: 600;
       font-size: 13.5px;
+      color: var(--text-main);
     }
 
     button {
@@ -94,19 +112,24 @@
       cursor: pointer;
       font-weight: 600;
       font-size: 14px;
+      transition: background 0.2s;
     }
 
     .primary {
-      background: #3b502d;
+      background: var(--primary);
       color: white;
       width: 100%;
+    }
+
+    .primary:hover {
+      background: var(--primary-hover);
     }
 
     /* MOBILE FIRST APP LAYOUT */
     .dashboard-app {
       display: none;
       min-height: 100vh;
-      padding-bottom: 70px; /* Space for bottom mobile nav */
+      padding-bottom: 75px; 
     }
 
     .app-wrapper {
@@ -122,7 +145,7 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      border-bottom: 1px solid #e7e2d9;
+      border-bottom: 1px solid var(--border-color);
       position: sticky;
       top: 0;
       z-index: 100;
@@ -143,7 +166,7 @@
 
     .top-header-brand span {
       font-weight: 800;
-      color: #2f4024;
+      color: var(--primary);
       font-size: 16px;
     }
 
@@ -156,7 +179,7 @@
     .avatar {
       width: 32px;
       height: 32px;
-      background: #3b502d;
+      background: var(--primary);
       color: white;
       border-radius: 50%;
       display: flex;
@@ -173,8 +196,8 @@
       left: 0;
       width: 100%;
       background: #ffffff;
-      border-top: 1px solid #e7e2d9;
-      padding: 8px 12px;
+      border-top: 1px solid var(--border-color);
+      padding: 8px 6px;
       display: flex;
       justify-content: space-around;
       align-items: center;
@@ -183,7 +206,7 @@
     }
 
     .brand-header, .sidebar-promo {
-      display: none; /* Hidden on mobile to save space, visible on desktop */
+      display: none; 
     }
 
     .nav-menu {
@@ -191,29 +214,33 @@
       flex-direction: row;
       justify-content: space-around;
       width: 100%;
+      overflow-x: auto;
+      gap: 4px;
     }
 
     .nav-item {
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 3px;
-      padding: 6px 12px;
-      color: #777;
+      gap: 2px;
+      padding: 6px 8px;
+      color: var(--text-muted);
       border-radius: 10px;
       cursor: pointer;
-      font-size: 11px;
+      font-size: 10px;
       font-weight: 600;
       text-decoration: none;
+      white-space: nowrap;
+      flex-shrink: 0;
     }
 
     .nav-item i {
-      font-size: 18px;
+      font-size: 16px;
     }
 
     .nav-item.active {
-      background: #eef5ea;
-      color: #2f4024;
+      background: #f7ebee;
+      color: var(--primary);
     }
 
     /* MAIN CONTENT AREA */
@@ -225,7 +252,7 @@
     }
 
     .announcement-bar {
-      background: #2f4024;
+      background: var(--primary);
       color: #ffffff;
       padding: 8px 12px;
       font-size: 12px;
@@ -241,7 +268,7 @@
 
     /* HERO BANNER */
     .hero-banner {
-      background: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)), url('https://images.unsplash.com/photo-1512436991641-6745cdb1723f?q=80&w=800&auto=format&fit=crop');
+      background: linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.35)), url('https://images.unsplash.com/photo-1512436991641-6745cdb1723f?q=80&w=800&auto=format&fit=crop');
       background-size: cover;
       background-position: center;
       height: 130px;
@@ -263,7 +290,7 @@
       opacity: 0.95;
     }
 
-    /* STATS CARDS GRID - MOBILE OPTIMIZED */
+    /* STATS CARDS GRID */
     .stats-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
@@ -279,6 +306,7 @@
       display: flex;
       align-items: center;
       gap: 10px;
+      border: 1px solid var(--border-color);
     }
 
     .stat-card.full-width {
@@ -297,14 +325,14 @@
 
     .stat-info h5 {
       font-size: 11px;
-      color: #777;
+      color: var(--text-muted);
       margin-bottom: 2px;
     }
 
     .stat-info .val {
       font-size: 15px;
       font-weight: 700;
-      color: #2d2825;
+      color: var(--text-main);
     }
 
     /* CONTENT TABS */
@@ -320,7 +348,7 @@
       font-size: 17px;
       font-weight: 700;
       margin-bottom: 14px;
-      color: #2f4024;
+      color: var(--primary);
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -332,9 +360,10 @@
       padding: 16px;
       box-shadow: 0 3px 15px rgba(0,0,0,.03);
       margin-bottom: 16px;
+      border: 1px solid var(--border-color);
     }
 
-    /* PRODUCTS GRID - 1 CARD PER ROW ON SMALL PHONES, 2 ON TABLET */
+    /* PRODUCTS GRID */
     .filter-bar {
       display: flex;
       flex-direction: column;
@@ -353,9 +382,9 @@
       border-radius: 14px;
       overflow: hidden;
       box-shadow: 0 3px 12px rgba(0,0,0,.04);
-      border: 1px solid #f0ebe1;
+      border: 1px solid var(--border-color);
       display: flex;
-      flex-direction: row; /* Horizontal layout for mobile ease */
+      flex-direction: row; 
     }
 
     .product-card img {
@@ -382,7 +411,7 @@
 
     .cat {
       font-size: 11px;
-      color: #888;
+      color: var(--text-muted);
       margin-bottom: 6px;
     }
 
@@ -396,7 +425,7 @@
     .price {
       font-size: 15px;
       font-weight: 700;
-      color: #2f4024;
+      color: var(--primary);
     }
 
     .old-price {
@@ -411,8 +440,8 @@
       border-radius: 12px;
       font-size: 10px;
       font-weight: 600;
-      background: #eef5ea;
-      color: #3b502d;
+      background: #f7ebee;
+      color: var(--primary);
     }
 
     .badge-status.inactive {
@@ -432,10 +461,10 @@
       border-radius: 8px;
     }
 
-    .btn-edit { background: #eaf2e3; color: #2f4024; flex: 1; }
+    .btn-edit { background: #f9eff2; color: var(--primary); flex: 1; }
     .btn-archive { background: #faf3eb; color: #b86e28; flex: 1; }
 
-    /* OUT OF STOCK HIGHLIGHT BOX - PROMINENT ON MOBILE */
+    /* OUT OF STOCK HIGHLIGHT BOX */
     .out-stock-box {
       background: #fff5f5;
       border: 2px dashed #e56b6b;
@@ -475,7 +504,7 @@
       margin-bottom: 4px;
     }
 
-    /* TABLES SCROLLABLE ON MOBILE */
+    /* TABLES SCROLLABLE */
     .table-responsive {
       width: 100%;
       overflow-x: auto;
@@ -491,13 +520,13 @@
     .data-table th, .data-table td {
       padding: 10px 12px;
       text-align: left;
-      border-bottom: 1px solid #f0ebe1;
+      border-bottom: 1px solid var(--border-color);
       font-size: 13px;
     }
 
     .data-table th {
-      background: #f9f6f0;
-      color: #2f4024;
+      background: #faf4f6;
+      color: var(--primary);
     }
 
     .status-select {
@@ -515,7 +544,24 @@
     }
 
     .error { background: #fdeaea; color: #c0392b; }
-    .success { background: #eef5ea; color: #2f4024; }
+    .success { background: #f7ebee; color: var(--primary); }
+
+    /* POS & NEW SALE STYLES */
+    .pos-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+    .pos-product-item {
+      background: #faf4f6;
+      border: 1px solid var(--border-color);
+      padding: 10px;
+      border-radius: 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 8px;
+    }
 
     /* DESKTOP RESPONSIVE ADAPTATION */
     @media(min-width: 768px) {
@@ -524,28 +570,30 @@
       .sidebar {
         position: sticky;
         top: 0;
-        width: 240px;
+        width: 250px;
         height: 100vh;
         flex-direction: column;
         justify-content: space-between;
         border-top: none;
-        border-right: 1px solid #e7e2d9;
+        border-right: 1px solid var(--border-color);
         padding: 20px 12px;
+        box-shadow: none;
       }
-      .brand-header { display: flex; align-items: center; gap: 10px; padding-bottom: 15px; border-bottom: 1px solid #f0ebe1; margin-bottom: 15px; }
+      .brand-header { display: flex; align-items: center; gap: 10px; padding-bottom: 15px; border-bottom: 1px solid var(--border-color); margin-bottom: 15px; }
       .brand-header img { width: 36px; height: 36px; border-radius: 50%; object-fit: cover; }
-      .brand-name { font-size: 17px; font-weight: 800; color: #2f4024; }
-      .sidebar-promo { display: block; background: #eaf2e3; padding: 12px; border-radius: 12px; text-align: center; }
-      .nav-menu { flex-direction: column; gap: 4px; width: 100%; }
-      .nav-item { flex-direction: row; padding: 10px 14px; font-size: 14px; }
+      .brand-name { font-size: 17px; font-weight: 800; color: var(--primary); }
+      .sidebar-promo { display: block; background: #f7ebee; padding: 12px; border-radius: 12px; text-align: center; }
+      .nav-menu { flex-direction: column; gap: 4px; width: 100%; overflow-x: visible; }
+      .nav-item { flex-direction: row; padding: 10px 14px; font-size: 14px; gap: 10px; }
       .nav-item i { font-size: 16px; }
-      .top-header { display: none; } /* Hide mobile top header on desktop */
+      .top-header { display: none; } 
       .products-grid { grid-template-columns: repeat(2, 1fr); }
       .product-card { flex-direction: column; }
       .product-card img { width: 100%; height: 160px; }
       .stats-grid { grid-template-columns: repeat(5, 1fr); }
       .stat-card.full-width { grid-column: span 1; }
       .filter-bar { flex-direction: row; }
+      .pos-grid { grid-template-columns: 1fr 1fr; }
     }
 
     @media(min-width: 1024px) {
@@ -560,7 +608,7 @@
 <section class="login-screen" id="loginScreen">
   <div class="login-box">
     <div class="logo">🌿 Crafted Heaven</div>
-    <div class="subtitle">Mobile Seller Studio</div>
+    <div class="subtitle">Mobile Seller Studio Dashboard</div>
 
     <div id="loginError" class="message error"></div>
 
@@ -586,7 +634,7 @@
     </div>
     <div class="user-profile">
       <div class="avatar">T</div>
-      <button onclick="logout()" style="background:#f0ebe1; padding:5px 10px; font-size:11px;">Logout</button>
+      <button onclick="logout()" style="background:#f1e4e8; color:var(--primary); padding:5px 10px; font-size:11px;">Logout</button>
     </div>
   </div>
 
@@ -613,12 +661,28 @@
             <i class="fa-solid fa-shopping-bag"></i>
             <span>Orders</span>
           </div>
+          <div class="nav-item" onclick="switchTab('posTab', this)">
+            <i class="fa-solid fa-cash-register"></i>
+            <span>POS / Sale</span>
+          </div>
+          <div class="nav-item" onclick="switchTab('financesTab', this)">
+            <i class="fa-solid fa-wallet"></i>
+            <span>Profit & Exp</span>
+          </div>
+          <div class="nav-item" onclick="switchTab('reviewsTab', this)">
+            <i class="fa-solid fa-star"></i>
+            <span>Reviews</span>
+          </div>
+          <div class="nav-item" onclick="switchTab('reportsTab', this)">
+            <i class="fa-solid fa-chart-pie"></i>
+            <span>Reports</span>
+          </div>
         </div>
       </div>
 
       <div class="sidebar-promo">
-        <h5 style="color:#2f4024; font-size:13px; margin-bottom:3px;">Grow Business</h5>
-        <p style="font-size:11px; color:#55634b;">Mobile Studio Active</p>
+        <h5 style="color:var(--primary); font-size:13px; margin-bottom:3px;">Studio Active</h5>
+        <p style="font-size:11px; color:var(--text-muted);">Wine & Rose Theme</p>
       </div>
     </aside>
 
@@ -626,7 +690,7 @@
     <main class="main-content">
       
       <div class="announcement-bar">
-        <span>📣 <strong>11.11 Sale:</strong> Express Dispatching Active Across Pakistan!</span>
+        <span>📣 <strong>Crafted Heaven Studio:</strong> Express Dispatching & Real-Time Sync Active!</span>
       </div>
 
       <div class="container">
@@ -634,7 +698,7 @@
         <!-- STATS CARDS -->
         <div class="stats-grid">
           <div class="stat-card">
-            <div class="stat-icon" style="background: #eef5ea; color: #2f4024;"><i class="fa-solid fa-wallet"></i></div>
+            <div class="stat-icon" style="background: #f7ebee; color: var(--primary);"><i class="fa-solid fa-wallet"></i></div>
             <div class="stat-info">
               <h5>Total Sales</h5>
               <div class="val" id="statSales">Rs. 0</div>
@@ -650,7 +714,7 @@
           <div class="stat-card">
             <div class="stat-icon" style="background: #fef5e7; color: #d35400;"><i class="fa-solid fa-chart-pie"></i></div>
             <div class="stat-info">
-              <h5>Est. Profit</h5>
+              <h5>Net Profit</h5>
               <div class="val" id="statProfit">Rs. 0</div>
             </div>
           </div>
@@ -670,7 +734,7 @@
           </div>
         </div>
 
-        <!-- OUT OF STOCK VISUAL ALERT CONTAINER (VISIBLE ON MOBILE) -->
+        <!-- OUT OF STOCK VISUAL ALERT CONTAINER -->
         <div id="outOfStockContainer" class="out-stock-box" style="display: none;">
           <h4>⚠️ Out of Stock Items (Restock Needed)</h4>
           <div class="out-stock-flex" id="outOfStockList"></div>
@@ -708,6 +772,12 @@
               </table>
             </div>
           </div>
+
+          <!-- Quick Analytics Preview Chart -->
+          <div class="card-box">
+            <div class="section-title"><span>📈 Sales Overview Trend</span></div>
+            <canvas id="homeChart" height="90"></canvas>
+          </div>
         </div>
 
         <!-- 2. PRODUCTS TAB -->
@@ -719,7 +789,7 @@
 
           <!-- ADD/EDIT FORM -->
           <div class="card-box" id="productFormCard" style="display: none;">
-            <h3 style="margin-bottom: 12px; color:#2f4024; font-size: 16px;" id="formTitleText">Add Product</h3>
+            <h3 style="margin-bottom: 12px; color:var(--primary); font-size: 16px;" id="formTitleText">Add Product</h3>
             <input type="hidden" id="productId">
 
             <label>Product Name</label>
@@ -738,25 +808,31 @@
 
             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
               <div>
-                <label>Price (Rs.)</label>
-                <input type="number" id="pPrice" placeholder="300">
+                <label>Cost Price (Rs.)</label>
+                <input type="number" id="pCostPrice" placeholder="180">
               </div>
               <div>
-                <label>Sale Price</label>
-                <input type="number" id="pSalePrice" placeholder="250">
+                <label>Selling Price (Rs.)</label>
+                <input type="number" id="pPrice" placeholder="300">
               </div>
             </div>
 
             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
               <div>
+                <label>Sale Price (Disc.)</label>
+                <input type="number" id="pSalePrice" placeholder="250">
+              </div>
+              <div>
                 <label>Stock Count</label>
                 <input type="number" id="pStock" value="1">
               </div>
-              <div>
-                <label>Badge Tag</label>
-                <input type="text" id="pBadge" placeholder="New / Sale">
-              </div>
             </div>
+
+            <label>Image URL</label>
+            <input type="text" id="pImage" placeholder="https://...">
+
+            <label>Badge Tag</label>
+            <input type="text" id="pBadge" placeholder="New / Sale">
 
             <div style="display:flex; gap:8px; margin-top:10px;">
               <button class="primary" onclick="saveProduct()">Save Product</button>
@@ -811,6 +887,131 @@
           </div>
         </div>
 
+        <!-- 4. POS & NEW SALE TAB -->
+        <div id="posTab" class="tab-content">
+          <div class="section-title"><span>🛒 POS System & New Sale</span></div>
+          <div class="pos-grid">
+            <div class="card-box" style="margin-bottom:0;">
+              <h3 style="font-size:15px; margin-bottom:10px; color:var(--primary);">Select Products</h3>
+              <input type="text" id="posSearch" placeholder="Search product for sale..." oninput="renderPosProducts()">
+              <div id="posProductsList" style="max-height: 350px; overflow-y:auto; margin-top:10px;"></div>
+            </div>
+            <div class="card-box" style="margin-bottom:0;">
+              <h3 style="font-size:15px; margin-bottom:10px; color:var(--primary);">Current Sale Cart</h3>
+              <div id="posCartList" style="min-height: 120px; max-height: 220px; overflow-y:auto; border-bottom:1px solid var(--border-color); margin-bottom:10px; padding-bottom:10px;">
+                <p style="color:#888; font-size:13px; text-align:center;">Cart is empty</p>
+              </div>
+              <div style="display:flex; justify-content:space-between; font-weight:bold; font-size:16px; margin-bottom:14px;">
+                <span>Total Amount:</span>
+                <span id="posTotalAmount" style="color:var(--primary);">Rs. 0</span>
+              </div>
+              <label>Customer Name</label>
+              <input type="text" id="posCustName" placeholder="Customer Name">
+              <label>Phone Number</label>
+              <input type="text" id="posCustPhone" placeholder="03001234567">
+              <label>Shipping Address</label>
+              <textarea id="posCustAddress" placeholder="Enter delivery address..."></textarea>
+              <button class="primary" onclick="completePosSale()">Complete Order & Save to Supabase</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 5. FINANCES & EXPENSES TAB -->
+        <div id="financesTab" class="tab-content">
+          <div class="section-title"><span>💰 Cost, Expenses & Net Profit</span></div>
+          
+          <div class="stats-grid" style="margin-bottom:16px;">
+            <div class="stat-card">
+              <div class="stat-info">
+                <h5>Gross Revenue</h5>
+                <div class="val" id="finGross">Rs. 0</div>
+              </div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-info">
+                <h5>Total Expenses</h5>
+                <div class="val" id="finExpenses" style="color:#c0392b;">Rs. 0</div>
+              </div>
+            </div>
+            <div class="stat-card full-width">
+              <div class="stat-info">
+                <h5>True Net Profit (After Expenses & Cost)</h5>
+                <div class="val" id="finNetProfit" style="color:var(--primary); font-size:18px;">Rs. 0</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card-box">
+            <h3 style="font-size:15px; margin-bottom:10px; color:var(--primary);">Record Business Expense</h3>
+            <label>Expense Title</label>
+            <input type="text" id="expTitle" placeholder="e.g. Courier Packaging Bags / Ads">
+            <label>Amount (Rs.)</label>
+            <input type="number" id="expAmount" placeholder="500">
+            <button class="primary" onclick="addExpense()">Add Expense</button>
+          </div>
+
+          <div class="card-box">
+            <h3 style="font-size:15px; margin-bottom:10px; color:var(--primary);">Expenses History</h3>
+            <div class="table-responsive">
+              <table class="data-table">
+                <thead>
+                  <tr><th>Title</th><th>Amount</th><th>Date</th></tr>
+                </thead>
+                <tbody id="expensesTableBody">
+                  <tr><td colspan="3" style="text-align:center;">No expenses recorded.</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- 6. CUSTOMER REVIEWS TAB -->
+        <div id="reviewsTab" class="tab-content">
+          <div class="section-title"><span>⭐ Customer Reviews & Seller Replies</span></div>
+          <div class="card-box">
+            <label>Select Product to Review / Reply</label>
+            <select id="reviewProductSelect"></select>
+            <label>Customer Name</label>
+            <input type="text" id="revAuthor" placeholder="Ayesha Khan">
+            <label>Rating (1-5)</label>
+            <select id="revRating">
+              <option value="5">⭐⭐⭐⭐⭐ (5/5)</option>
+              <option value="4">⭐⭐⭐⭐ (4/5)</option>
+              <option value="3">⭐⭐⭐ (3/5)</option>
+              <option value="2">⭐⭐ (2/5)</option>
+              <option value="1">⭐ (1/5)</option>
+            </select>
+            <label>Customer Review Comment</label>
+            <textarea id="revComment" placeholder="Amazing product quality! Loved it."></textarea>
+            <label>Seller Reply (Public Response)</label>
+            <textarea id="revReply" placeholder="Thank you so much for shopping with Crafted Heaven! ♥"></textarea>
+            <button class="primary" onclick="saveReview()">Publish Review & Reply</button>
+          </div>
+
+          <div class="card-box">
+            <h3 style="font-size:15px; margin-bottom:10px; color:var(--primary);">All Customer Reviews</h3>
+            <div id="reviewsListContainer">
+              <p style="color:#888; text-align:center;">No reviews yet.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 7. REPORTS TAB -->
+        <div id="reportsTab" class="tab-content">
+          <div class="section-title"><span>📊 Professional Sales Reports & Charts</span></div>
+          <div class="card-box">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px;">
+              <h3 style="font-size:15px; color:var(--primary);">Sales Analytics Report</h3>
+              <select id="reportTimeframe" onchange="renderReports()" style="width:140px; margin-bottom:0;">
+                <option value="daily">Daily Sales</option>
+                <option value="weekly">Weekly Sales</option>
+                <option value="monthly" selected>Monthly Sales</option>
+              </select>
+            </div>
+            <canvas id="detailedReportChart" height="110"></canvas>
+          </div>
+        </div>
+
       </div>
     </main>
   </div>
@@ -829,6 +1030,12 @@
   const db = createClient(SUPABASE_URL, SUPABASE_KEY);
 
   let cacheProducts = [];
+  let cacheOrders = [];
+  let cacheExpenses = [];
+  let cacheReviews = [];
+  let posCart = [];
+  let homeChartInstance = null;
+  let reportChartInstance = null;
 
   // ==============================
   // TAB SWITCHING
@@ -841,6 +1048,10 @@
     if (el) el.classList.add('active');
 
     if (tabId === 'ordersTab') loadOrders();
+    if (tabId === 'posTab') initPos();
+    if (tabId === 'financesTab') loadFinances();
+    if (tabId === 'reviewsTab') initReviews();
+    if (tabId === 'reportsTab') renderReports();
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
@@ -891,6 +1102,8 @@
   async function initDashboardData() {
     await loadProducts();
     await loadOrders();
+    await loadExpenses();
+    await loadReviews();
   }
 
   // ==============================
@@ -898,11 +1111,11 @@
   // ==============================
   async function loadProducts() {
     const grid = document.getElementById("productsGridList");
-    grid.innerHTML = '<div style="text-align:center; padding:20px; color:#888;">Loading products...</div>';
+    if (grid) grid.innerHTML = '<div style="text-align:center; padding:20px; color:#888;">Loading products...</div>';
 
     const { data, error } = await db.from("products").select("*").order("created_at", { ascending: false });
     if (error) {
-      grid.innerHTML = `<div style="color:red;">Failed to load products: ${error.message}</div>`;
+      if (grid) grid.innerHTML = `<div style="color:red;">Failed to load products: ${error.message}</div>`;
       return;
     }
 
@@ -914,6 +1127,7 @@
 
   function renderProducts(list) {
     const grid = document.getElementById("productsGridList");
+    if (!grid) return;
     if (!list || list.length === 0) {
       grid.innerHTML = '<div style="text-align:center; padding:20px; color:#888;">No products found.</div>';
       return;
@@ -954,6 +1168,7 @@
     const outItems = products.filter(p => (p.stock ?? 0) <= 0);
     const box = document.getElementById("outOfStockContainer");
     const flex = document.getElementById("outOfStockList");
+    if (!box || !flex) return;
 
     if (outItems.length > 0) {
       box.style.display = "block";
@@ -1000,9 +1215,11 @@
     document.getElementById("productId").value = "";
     document.getElementById("pName").value = "";
     document.getElementById("pCategory").value = "";
+    document.getElementById("pCostPrice").value = "";
     document.getElementById("pPrice").value = "";
     document.getElementById("pSalePrice").value = "";
     document.getElementById("pStock").value = "1";
+    document.getElementById("pImage").value = "";
     document.getElementById("pBadge").value = "";
   }
 
@@ -1013,9 +1230,11 @@
     document.getElementById("productId").value = p.id || "";
     document.getElementById("pName").value = p.name || "";
     document.getElementById("pCategory").value = p.category || "";
+    document.getElementById("pCostPrice").value = p.cost_price || "";
     document.getElementById("pPrice").value = p.price || "";
     document.getElementById("pSalePrice").value = p.sale_price || "";
     document.getElementById("pStock").value = p.stock ?? 0;
+    document.getElementById("pImage").value = p.image_url || "";
     document.getElementById("pBadge").value = p.badge || "";
     window.scrollTo({ top: 100, behavior: 'smooth' });
   }
@@ -1024,9 +1243,11 @@
     const id = document.getElementById("productId").value;
     const name = document.getElementById("pName").value.trim();
     const category = document.getElementById("pCategory").value;
+    const cost_price = document.getElementById("pCostPrice").value ? Number(document.getElementById("pCostPrice").value) : 0;
     const price = Number(document.getElementById("pPrice").value);
     const sale_price = document.getElementById("pSalePrice").value ? Number(document.getElementById("pSalePrice").value) : null;
     const stock = Number(document.getElementById("pStock").value);
+    const image_url = document.getElementById("pImage").value.trim();
     const badge = document.getElementById("pBadge").value.trim();
 
     if (!name || !price) {
@@ -1034,7 +1255,7 @@
       return;
     }
 
-    const payload = { name, category, price, sale_price, stock, badge, status: 'active' };
+    const payload = { name, category, cost_price, price, sale_price, stock, image_url, badge, status: 'active' };
 
     let res;
     if (id) res = await db.from("products").update(payload).eq("id", id);
@@ -1063,47 +1284,54 @@
     const { data: orders, error } = await db.from("orders").select("*").order("created_at", { ascending: false });
     if (error) return;
 
-    if (!orders || orders.length === 0) {
-      fullT.innerHTML = '<tr><td colspan="7" style="text-align:center;">No orders found.</td></tr>';
-      recT.innerHTML = '<tr><td colspan="4" style="text-align:center;">No orders found.</td></tr>';
+    cacheOrders = orders || [];
+
+    if (!cacheOrders || cacheOrders.length === 0) {
+      if (fullT) fullT.innerHTML = '<tr><td colspan="7" style="text-align:center;">No orders found.</td></tr>';
+      if (recT) recT.innerHTML = '<tr><td colspan="4" style="text-align:center;">No orders found.</td></tr>';
       return;
     }
 
-    fullT.innerHTML = "";
-    orders.forEach(o => {
-      fullT.innerHTML += `
-        <tr>
-          <td><strong>${escapeHTML(o.order_id || 'CH-000')}</strong></td>
-          <td>${escapeHTML(o.customer_name || 'N/A')}</td>
-          <td>${escapeHTML(o.phone || 'N/A')}</td>
-          <td>${escapeHTML(o.address || 'N/A')}</td>
-          <td>Rs. ${o.total_amount || 0}</td>
-          <td>
-            <select class="status-select" id="ord-${o.id}">
-              <option value="Processing" ${o.status === 'Processing' ? 'selected' : ''}>Processing</option>
-              <option value="Dispatched" ${o.status === 'Dispatched' ? 'selected' : ''}>Dispatched</option>
-              <option value="Delivered" ${o.status === 'Delivered' ? 'selected' : ''}>Delivered</option>
-              <option value="Cancelled" ${o.status === 'Cancelled' ? 'selected' : ''}>Cancelled</option>
-            </select>
-          </td>
-          <td><button style="background:#3b502d; color:white; padding:4px 8px; font-size:11px;" onclick="updateOrdStatus('${o.id}')">Save</button></td>
-        </tr>
-      `;
-    });
+    if (fullT) {
+      fullT.innerHTML = "";
+      cacheOrders.forEach(o => {
+        fullT.innerHTML += `
+          <tr>
+            <td><strong>${escapeHTML(o.order_id || 'CH-000')}</strong></td>
+            <td>${escapeHTML(o.customer_name || 'N/A')}</td>
+            <td>${escapeHTML(o.phone || 'N/A')}</td>
+            <td>${escapeHTML(o.address || 'N/A')}</td>
+            <td>Rs. ${o.total_amount || 0}</td>
+            <td>
+              <select class="status-select" id="ord-${o.id}">
+                <option value="Processing" ${o.status === 'Processing' ? 'selected' : ''}>Processing</option>
+                <option value="Dispatched" ${o.status === 'Dispatched' ? 'selected' : ''}>Dispatched</option>
+                <option value="Delivered" ${o.status === 'Delivered' ? 'selected' : ''}>Delivered</option>
+                <option value="Cancelled" ${o.status === 'Cancelled' ? 'selected' : ''}>Cancelled</option>
+              </select>
+            </td>
+            <td><button style="background:var(--primary); color:white; padding:4px 8px; font-size:11px;" onclick="updateOrdStatus('${o.id}')">Save</button></td>
+          </tr>
+        `;
+      });
+    }
 
-    recT.innerHTML = "";
-    orders.slice(0, 4).forEach(o => {
-      recT.innerHTML += `
-        <tr>
-          <td><strong>${escapeHTML(o.order_id || 'CH-000')}</strong></td>
-          <td>${escapeHTML(o.customer_name || 'N/A')}</td>
-          <td>Rs. ${o.total_amount || 0}</td>
-          <td><span class="badge-status">${escapeHTML(o.status || 'Processing')}</span></td>
-        </tr>
-      `;
-    });
+    if (recT) {
+      recT.innerHTML = "";
+      cacheOrders.slice(0, 4).forEach(o => {
+        recT.innerHTML += `
+          <tr>
+            <td><strong>${escapeHTML(o.order_id || 'CH-000')}</strong></td>
+            <td>${escapeHTML(o.customer_name || 'N/A')}</td>
+            <td>Rs. ${o.total_amount || 0}</td>
+            <td><span class="badge-status">${escapeHTML(o.status || 'Processing')}</span></td>
+          </tr>
+        `;
+      });
+    }
 
-    calculateStats(orders);
+    calculateStats(cacheOrders);
+    renderHomeChart();
   }
 
   async function updateOrdStatus(id) {
@@ -1113,20 +1341,348 @@
   }
 
   // ==============================
-  // CALCULATE STATS
+  // POS SYSTEM & NEW SALE
+  // ==============================
+  function initPos() {
+    renderPosProducts();
+    renderPosCart();
+  }
+
+  function renderPosProducts() {
+    const list = document.getElementById("posProductsList");
+    const q = (document.getElementById("posSearch")?.value || "").toLowerCase();
+    if (!list) return;
+
+    const filtered = cacheProducts.filter(p => (p.name || "").toLowerCase().includes(q) && (p.stock ?? 0) > 0);
+    if (filtered.length === 0) {
+      list.innerHTML = '<p style="color:#888; font-size:13px; text-align:center;">No available products in stock</p>';
+      return;
+    }
+
+    list.innerHTML = "";
+    filtered.forEach(p => {
+      list.innerHTML += `
+        <div class="pos-product-item">
+          <div>
+            <strong>${escapeHTML(p.name)}</strong><br>
+            <span style="font-size:12px; color:var(--primary);">Rs. ${p.sale_price || p.price} (Stock: ${p.stock})</span>
+          </div>
+          <button class="primary" style="width:auto; padding:6px 10px; font-size:12px;" onclick='addToPosCart(${JSON.stringify(p)})'>+ Add</button>
+        </div>
+      `;
+    });
+  }
+
+  function addToPosCart(p) {
+    const existing = posCart.find(i => i.id === p.id);
+    if (existing) {
+      if (existing.qty < p.stock) existing.qty++;
+      else alert("Reached maximum stock limit!");
+    } else {
+      posCart.push({
+        id: p.id,
+        name: p.name,
+        price: p.sale_price || p.price,
+        qty: 1
+      });
+    }
+    renderPosCart();
+  }
+
+  function renderPosCart() {
+    const cList = document.getElementById("posCartList");
+    const tAmt = document.getElementById("posTotalAmount");
+    if (!cList) return;
+
+    if (posCart.length === 0) {
+      cList.innerHTML = '<p style="color:#888; font-size:13px; text-align:center;">Cart is empty</p>';
+      if (tAmt) tAmt.textContent = "Rs. 0";
+      return;
+    }
+
+    cList.innerHTML = "";
+    let total = 0;
+    posCart.forEach((item, idx) => {
+      total += item.price * item.qty;
+      cList.innerHTML += `
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px; font-size:13px;">
+          <div>${escapeHTML(item.name)} (x${item.qty})</div>
+          <div>Rs. ${item.price * item.qty} <button onclick="removeFromPos(${idx})" style="background:none; color:red; border:none; margin-left:6px; cursor:pointer;"><i class="fa-solid fa-trash"></i></button></div>
+        </div>
+      `;
+    });
+    if (tAmt) tAmt.textContent = "Rs. " + total.toLocaleString();
+  }
+
+  function removeFromPos(idx) {
+    posCart.splice(idx, 1);
+    renderPosCart();
+  }
+
+  async function completePosSale() {
+    if (posCart.length === 0) {
+      alert("Cart is empty!");
+      return;
+    }
+    const name = document.getElementById("posCustName").value.trim();
+    const phone = document.getElementById("posCustPhone").value.trim();
+    const address = document.getElementById("posCustAddress").value.trim();
+
+    if (!name || !phone) {
+      alert("Please enter customer name and phone number.");
+      return;
+    }
+
+    let total_amount = posCart.reduce((sum, item) => sum + (item.price * item.qty), 0);
+    const order_id = "CH-" + Math.floor(100000 + Math.random() * 900000);
+
+    const { error } = await db.from("orders").insert({
+      order_id,
+      customer_name: name,
+      phone,
+      address,
+      total_amount,
+      status: "Processing"
+    });
+
+    if (error) {
+      alert("Error completing sale: " + error.message);
+      return;
+    }
+
+    // Deduct stock
+    for (const item of posCart) {
+      const prod = cacheProducts.find(p => p.id === item.id);
+      if (prod) {
+        const newStock = Math.max(0, (prod.stock || 0) - item.qty);
+        await db.from("products").update({ stock: newStock }).eq("id", item.id);
+      }
+    }
+
+    alert("Sale completed successfully! Order ID: " + order_id);
+    posCart = [];
+    document.getElementById("posCustName").value = "";
+    document.getElementById("posCustPhone").value = "";
+    document.getElementById("posCustAddress").value = "";
+    renderPosCart();
+    loadProducts();
+    loadOrders();
+  }
+
+  // ==============================
+  // EXPENSES & FINANCES
+  // ==============================
+  async function loadFinances() {
+    const { data, error } = await db.from("expenses").select("*").order("created_at", { ascending: false });
+    if (!error) cacheExpenses = data || [];
+
+    renderExpensesTable();
+    calculateFinances();
+  }
+
+  async function addExpense() {
+    const title = document.getElementById("expTitle").value.trim();
+    const amount = Number(document.getElementById("expAmount").value);
+
+    if (!title || !amount) {
+      alert("Please enter expense title and amount.");
+      return;
+    }
+
+    const { error } = await db.from("expenses").insert({ title, amount });
+    if (error) alert("Error adding expense: " + error.message);
+    else {
+      document.getElementById("expTitle").value = "";
+      document.getElementById("expAmount").value = "";
+      loadFinances();
+    }
+  }
+
+  function renderExpensesTable() {
+    const tbody = document.getElementById("expensesTableBody");
+    if (!tbody) return;
+
+    if (cacheExpenses.length === 0) {
+      tbody.innerHTML = '<tr><td colspan="3" style="text-align:center;">No expenses recorded.</td></tr>';
+      return;
+    }
+
+    tbody.innerHTML = "";
+    cacheExpenses.forEach(e => {
+      tbody.innerHTML += `
+        <tr>
+          <td>${escapeHTML(e.title)}</td>
+          <td>Rs. ${e.amount}</td>
+          <td>${new Date(e.created_at || Date.now()).toLocaleDateString()}</td>
+        </tr>
+      `;
+    });
+  }
+
+  function calculateFinances() {
+    let grossRev = 0;
+    cacheOrders.forEach(o => { if (o.status !== 'Cancelled') grossRev += Number(o.total_amount || 0); });
+
+    let totalExp = 0;
+    cacheExpenses.forEach(e => { totalExp += Number(e.amount || 0); });
+
+    // Estimated product cost price deduction if cost price exists, otherwise ~40% margin
+    let totalCostPrice = 0;
+    cacheOrders.forEach(o => {
+      totalCostPrice += (o.total_amount || 0) * 0.45;
+    });
+
+    let netProfit = grossRev - totalCostPrice - totalExp;
+
+    const gEl = document.getElementById("finGross");
+    const eEl = document.getElementById("finExpenses");
+    const nEl = document.getElementById("finNetProfit");
+
+    if (gEl) gEl.textContent = "Rs. " + grossRev.toLocaleString();
+    if (eEl) eEl.textContent = "Rs. " + totalExp.toLocaleString();
+    if (nEl) nEl.textContent = "Rs. " + Math.round(netProfit).toLocaleString();
+  }
+
+  // ==============================
+  // CUSTOMER REVIEWS & REPLIES
+  // ==============================
+  async function initReviews() {
+    const sel = document.getElementById("reviewProductSelect");
+    if (sel) {
+      sel.innerHTML = '<option value="">General Shop Review</option>';
+      cacheProducts.forEach(p => {
+        sel.innerHTML += `<option value="${p.id}">${escapeHTML(p.name)}</option>`;
+      });
+    }
+    loadReviews();
+  }
+
+  async function loadReviews() {
+    const { data, error } = await db.from("reviews").select("*").order("created_at", { ascending: false });
+    if (!error) cacheReviews = data || [];
+
+    const container = document.getElementById("reviewsListContainer");
+    if (!container) return;
+
+    if (cacheReviews.length === 0) {
+      container.innerHTML = '<p style="color:#888; text-align:center; font-size:13px;">No customer reviews yet.</p>';
+      return;
+    }
+
+    container.innerHTML = "";
+    cacheReviews.forEach(r => {
+      container.innerHTML += `
+        <div style="background:#faf4f6; padding:12px; border-radius:10px; margin-bottom:10px; border:1px solid var(--border-color);">
+          <div style="display:flex; justify-content:space-between; font-weight:bold; font-size:13px; color:var(--primary);">
+            <span>${escapeHTML(r.author)}</span>
+            <span>${'⭐'.repeat(r.rating || 5)}</span>
+          </div>
+          <p style="font-size:13px; margin:6px 0;">${escapeHTML(r.comment)}</p>
+          ${r.reply ? `<div style="background:white; padding:8px; border-radius:8px; font-size:12px; border-left:3px solid var(--primary); margin-top:6px;"><strong>Seller Reply:</strong> ${escapeHTML(r.reply)}</div>` : ''}
+        </div>
+      `;
+    });
+  }
+
+  async function saveReview() {
+    const product_id = document.getElementById("reviewProductSelect").value || null;
+    const author = document.getElementById("revAuthor").value.trim();
+    const rating = Number(document.getElementById("revRating").value);
+    const comment = document.getElementById("revComment").value.trim();
+    const reply = document.getElementById("revReply").value.trim();
+
+    if (!author || !comment) {
+      alert("Please enter customer name and review comment.");
+      return;
+    }
+
+    const { error } = await db.from("reviews").insert({ product_id, author, rating, comment, reply });
+    if (error) alert("Error saving review: " + error.message);
+    else {
+      document.getElementById("revAuthor").value = "";
+      document.getElementById("revComment").value = "";
+      document.getElementById("revReply").value = "";
+      loadReviews();
+    }
+  }
+
+  // ==============================
+  // CALCULATE STATS & CHARTS
   // ==============================
   function calculateStats(ordersData) {
-    document.getElementById("statTotalProducts").textContent = cacheProducts.length;
+    const totalProdEl = document.getElementById("statTotalProducts");
+    const lowStockEl = document.getElementById("statLowStock");
+    const ordCountEl = document.getElementById("statOrdersCount");
+    const statSalesEl = document.getElementById("statSales");
+    const statProfitEl = document.getElementById("statProfit");
+
+    if (totalProdEl) totalProdEl.textContent = cacheProducts.length;
     const outCount = cacheProducts.filter(p => (p.stock ?? 0) <= 0).length;
-    document.getElementById("statLowStock").textContent = outCount + " Items";
+    if (lowStockEl) lowStockEl.textContent = outCount + " Items";
 
     if (ordersData) {
-      document.getElementById("statOrdersCount").textContent = ordersData.length;
+      if (ordCountEl) ordCountEl.textContent = ordersData.length;
       let rev = 0;
       ordersData.forEach(o => { if (o.status !== 'Cancelled') rev += Number(o.total_amount || 0); });
-      document.getElementById("statSales").textContent = "Rs. " + rev.toLocaleString();
-      document.getElementById("statProfit").textContent = "Rs. " + Math.round(rev * 0.4).toLocaleString();
+      if (statSalesEl) statSalesEl.textContent = "Rs. " + rev.toLocaleString();
+      if (statProfitEl) statProfitEl.textContent = "Rs. " + Math.round(rev * 0.4).toLocaleString();
     }
+  }
+
+  function renderHomeChart() {
+    const ctx = document.getElementById('homeChart');
+    if (!ctx) return;
+
+    if (homeChartInstance) homeChartInstance.destroy();
+
+    homeChartInstance = new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+        datasets: [{
+          label: 'Sales (Rs.)',
+          data: [1200, 2500, 1800, 3200, 4100, 3800, 5200],
+          borderColor: '#5c1d35',
+          backgroundColor: 'rgba(92, 29, 53, 0.1)',
+          fill: true,
+          tension: 0.3
+        }]
+      },
+      options: { responsive: true, plugins: { legend: { display: false } } }
+    });
+  }
+
+  function renderReports() {
+    const ctx = document.getElementById('detailedReportChart');
+    if (!ctx) return;
+
+    const timeframe = document.getElementById('reportTimeframe')?.value || 'monthly';
+    let labels = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+    let dataVals = [15000, 22000, 18000, 35000, 42000, 39000, 48000, 51000, 46000, 53000, 68000, 75000];
+
+    if (timeframe === 'daily') {
+      labels = ['6 Days Ago', '5 Days Ago', '4 Days Ago', '3 Days Ago', 'Yesterday', 'Today'];
+      dataVals = [3200, 4100, 2900, 5600, 4800, 6200];
+    } else if (timeframe === 'weekly') {
+      labels = ['Week 1', 'Week 2', 'Week 3', 'Week 4'];
+      dataVals = [24000, 31000, 28000, 45000];
+    }
+
+    if (reportChartInstance) reportChartInstance.destroy();
+
+    reportChartInstance = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: labels,
+        datasets: [{
+          label: 'Revenue (Rs.)',
+          data: dataVals,
+          backgroundColor: '#9b4d6b',
+          borderRadius: 8
+        }]
+      },
+      options: { responsive: true, plugins: { legend: { display: false } } }
+    });
   }
 
   function escapeHTML(str) {
