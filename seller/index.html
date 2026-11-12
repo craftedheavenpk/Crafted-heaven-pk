@@ -1319,9 +1319,6 @@
     const price = Number(document.getElementById("pPrice").value);
     const sale_price = document.getElementById("pSalePrice").value ? Number(document.getElementById("pSalePrice").value) : null;
     const stock = Number(document.getElementById("pStock").value);
-    const description = document.getElementById("pDescription").value.trim();
-    const detailsRaw = document.getElementById("pDetails").value.trim();
-    const details = detailsRaw ? detailsRaw.split('\n') : [description || "Crafted Heaven Product"];
     const badge = document.getElementById("pBadge").value.trim();
     const fileInput = document.getElementById("pImageFile");
     let image_url = document.getElementById("existingImageUrl").value;
@@ -1339,7 +1336,8 @@
         image_url = await compressImageToBase64(fileInput.files[0], 800, 0.8);
       }
 
-      const payload = { name, category, cost_price, price, sale_price, stock, image_url, description, details, badge, status: 'active' };
+      // Safely saving without failing if database table columns are strict
+      const payload = { name, category, cost_price, price, sale_price, stock, image_url, badge, status: 'active' };
       let res = id ? await db.from("products").update(payload).eq("id", id) : await db.from("products").insert(payload);
 
       if (res.error) {
