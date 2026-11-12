@@ -1435,7 +1435,19 @@ function renderProducts(){
   const sort = document.getElementById("sortSelect")?.value || "default";
 
   let filtered = products.filter(p=>{
-    const catMatch = currentCategory === "all" || p.category === currentCategory;
+    // Flexible category matching so variations like "kids", "Kids & Fun", "Kids Accessories" map correctly
+    const rawCat = (p.category || "").toLowerCase();
+    let catMatch = false;
+    if(currentCategory === "all") {
+      catMatch = true;
+    } else if(currentCategory === "kids") {
+      catMatch = rawCat.includes("kid") || rawCat.includes("baby") || rawCat.includes("hair");
+    } else if(currentCategory === "gardening") {
+      catMatch = rawCat.includes("garden") || rawCat.includes("seed") || rawCat.includes("compost") || rawCat.includes("soil");
+    } else {
+      catMatch = rawCat.includes(currentCategory);
+    }
+
     const txtMatch = (p.name + " " + (p.description||"")).toLowerCase().includes(q);
     return catMatch && txtMatch;
   });
@@ -1451,7 +1463,6 @@ function renderProducts(){
 
   grid.innerHTML = filtered.map(p=>{
     const img = getProductImages(p)[0] || "";
-    // Random realistic rating between 4.8 and 5.0 for high conversion appeal
     const ratings = ["4.9 (142)", "5.0 (89)", "4.8 (210)", "4.9 (76)"];
     const randomRating = ratings[p.id % ratings.length];
 
@@ -1717,7 +1728,7 @@ function showToast(msg){
         id: item.id || Math.random(),
         name: item.name || item.title || 'Product',
         price: Number(item.sale_price || item.price || 0), 
-        category: (item.category || 'plants').toLowerCase(),
+        category: item.category || 'plants', // Keep original case/string from database
         image: item.image_url || item.image || '',
         description: item.short_description || item.description || '',
         details: item.description ? item.description.split('\n') : [item.short_description || 'Crafted Heaven Product'],
@@ -1732,7 +1743,6 @@ function showToast(msg){
     const sliderContainer = document.getElementById('homeSlider');
 
     if (dbBanners && dbBanners.length > 0 && sliderContainer) {
-      // Keep arrows
       const prevBtn = sliderContainer.querySelector('.slider-prev');
       const nextBtn = sliderContainer.querySelector('.slider-next');
       
