@@ -444,14 +444,17 @@
       margin-top: 8px;
     }
 
-    .btn-edit, .btn-archive {
+    .btn-edit, .btn-delete {
       padding: 6px 10px;
       font-size: 11px;
       border-radius: 8px;
+      border: none;
+      cursor: pointer;
+      font-weight: 600;
     }
 
     .btn-edit { background: #eaf2ed; color: var(--primary); flex: 1; }
-    .btn-archive { background: #fdf5e8; color: #b86e28; flex: 1; }
+    .btn-delete { background: #fdeaea; color: #c0392b; flex: 1; }
 
     /* OUT OF STOCK ALERT BOX */
     .out-stock-box {
@@ -1192,12 +1195,22 @@
             <span class="badge-status ${statusClass}">${p.status || 'active'}</span>
             <div class="card-actions">
               <button class="btn-edit" onclick="editProductById('${p.id}')">✏️ Edit</button>
-              <button class="btn-archive" onclick="toggleArchive('${p.id}', '${p.status}')">${p.status === 'active' ? '📂 Archive' : 'Activate'}</button>
+              <button class="btn-delete" onclick="deleteProduct('${p.id}')">🗑️ Delete</button>
             </div>
           </div>
         </div>
       `;
     });
+  }
+
+  async function deleteProduct(id) {
+    if (!confirm("Are you sure you want to permanently delete this product?")) return;
+    const { error } = await db.from("products").delete().eq("id", id);
+    if (error) {
+      alert("Error deleting product: " + error.message);
+    } else {
+      loadProducts();
+    }
   }
 
   function updateOutStockAlerts(products) {
@@ -1326,11 +1339,6 @@
       btn.disabled = false;
       btn.textContent = "Save Product";
     }
-  }
-
-  async function toggleArchive(id, status) {
-    await db.from("products").update({ status: status === 'active' ? 'inactive' : 'active' }).eq("id", id);
-    loadProducts();
   }
 
   async function loadOrders() {
