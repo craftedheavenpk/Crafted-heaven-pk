@@ -777,11 +777,12 @@
             <label>Category</label>
             <select id="pCategory">
               <option value="">Select Category</option>
+              <option value="Keychains">Keychains</option>
+              <option value="Crafts">Crafts</option>
+              <option value="Crochet">Crochet</option>
+              <option value="Kids & Fun">Kids & Fun</option>
               <option value="Live Plants">Live Plants</option>
               <option value="Gardening">Gardening</option>
-              <option value="Handmade Crafts">Handmade Crafts</option>
-              <option value="Crochet">Crochet</option>
-              <option value="Keychains">Keychains</option>
               <option value="Other">Other</option>
             </select>
 
@@ -814,6 +815,12 @@
               <p style="font-size: 11px; color: #666;">Select a photo directly from your phone gallery</p>
             </div>
 
+            <label>Product Description</label>
+            <textarea id="pDescription" placeholder="Enter product description..."></textarea>
+
+            <label>Key Highlights / Details (Put each on a new line)</label>
+            <textarea id="pDetails" placeholder="High quality material&#10;Durable & Long-lasting&#10;Perfect for gift"></textarea>
+
             <label>Badge Tag</label>
             <input type="text" id="pBadge" placeholder="New / Sale">
 
@@ -827,11 +834,12 @@
             <input type="text" id="searchProduct" placeholder="🔍 Search product name..." oninput="filterProducts()">
             <select id="filterCategory" onchange="filterProducts()">
               <option value="">All Categories</option>
+              <option value="Keychains">Keychains</option>
+              <option value="Crafts">Crafts</option>
+              <option value="Crochet">Crochet</option>
+              <option value="Kids & Fun">Kids & Fun</option>
               <option value="Live Plants">Live Plants</option>
               <option value="Gardening">Gardening</option>
-              <option value="Handmade Crafts">Handmade Crafts</option>
-              <option value="Crochet">Crochet</option>
-              <option value="Keychains">Keychains</option>
               <option value="Other">Other</option>
             </select>
           </div>
@@ -1108,7 +1116,7 @@
     await loadReviews();
   }
 
-  // COMPRESS IMAGE HELPER (Ensures fast database saving & loading on mobile)
+  // COMPRESS IMAGE HELPER
   function compressImageToBase64(file, maxWidth = 800, quality = 0.8) {
     return new Promise((resolve, reject) => {
       const reader = new FileReader();
@@ -1183,7 +1191,7 @@
           <img src="${img}" alt="${escapeHTML(p.name)}">
           <div class="product-info">
             <h4>${escapeHTML(p.name)}</h4>
-            <div class="cat">${escapeHTML(p.category || 'Crafts')}</div>
+            <div class="cat">${escapeHTML(p.category || 'Other')}</div>
             <div class="price-row">
               <span class="price">Rs. ${p.sale_price || p.price}</span>
               ${p.sale_price ? `<span class="old-price">Rs. ${p.price}</span>` : ''}
@@ -1267,6 +1275,8 @@
     document.getElementById("pImageFile").value = "";
     document.getElementById("pImagePreview").src = "";
     document.getElementById("pImagePreview").style.display = "none";
+    document.getElementById("pDescription").value = "";
+    document.getElementById("pDetails").value = "";
     document.getElementById("pBadge").value = "";
   }
 
@@ -1285,6 +1295,8 @@
     document.getElementById("pSalePrice").value = p.sale_price || "";
     document.getElementById("pStock").value = p.stock ?? 0;
     document.getElementById("pImageFile").value = "";
+    document.getElementById("pDescription").value = p.description || "";
+    document.getElementById("pDetails").value = Array.isArray(p.details) ? p.details.join('\n') : (p.details || "");
     document.getElementById("pBadge").value = p.badge || "";
 
     const preview = document.getElementById("pImagePreview");
@@ -1302,11 +1314,14 @@
     const btn = document.getElementById("saveProductBtn");
     const id = document.getElementById("productId").value;
     const name = document.getElementById("pName").value.trim();
-    const category = document.getElementById("pCategory").value;
+    const category = document.getElementById("pCategory").value || "Other";
     const cost_price = document.getElementById("pCostPrice").value ? Number(document.getElementById("pCostPrice").value) : 0;
     const price = Number(document.getElementById("pPrice").value);
     const sale_price = document.getElementById("pSalePrice").value ? Number(document.getElementById("pSalePrice").value) : null;
     const stock = Number(document.getElementById("pStock").value);
+    const description = document.getElementById("pDescription").value.trim();
+    const detailsRaw = document.getElementById("pDetails").value.trim();
+    const details = detailsRaw ? detailsRaw.split('\n') : [description || "Crafted Heaven Product"];
     const badge = document.getElementById("pBadge").value.trim();
     const fileInput = document.getElementById("pImageFile");
     let image_url = document.getElementById("existingImageUrl").value;
@@ -1324,7 +1339,7 @@
         image_url = await compressImageToBase64(fileInput.files[0], 800, 0.8);
       }
 
-      const payload = { name, category, cost_price, price, sale_price, stock, image_url, badge, status: 'active' };
+      const payload = { name, category, cost_price, price, sale_price, stock, image_url, description, details, badge, status: 'active' };
       let res = id ? await db.from("products").update(payload).eq("id", id) : await db.from("products").insert(payload);
 
       if (res.error) {
