@@ -975,6 +975,7 @@ footer{
       <button class="sideItem" onclick="menuCategory('keychains')">🔑 Keychains & Accessories</button>
       <button class="sideItem" onclick="menuCategory('kids')">🎀 Hair Accessories</button>
       <button class="sideItem" onclick="menuCategory('kids')">🎨 Kids & Creative</button>
+      <button class="sideItem" onclick="menuCategory('others')">📦 Others</button>
     </div>
 
     <div class="menuSectionTitle">CUSTOMER</div>
@@ -1020,13 +1021,14 @@ footer{
     </div>
 
     <div class="categoryBar">
-      <button class="categoryBtn active" onclick="filterCategory('all',this)">All Types</button>
-      <button class="categoryBtn" onclick="filterCategory('plants',this)">🌿 Plants</button>
-      <button class="categoryBtn" onclick="filterCategory('gardening',this)">🌱 Gardening</button>
-      <button class="categoryBtn" onclick="filterCategory('keychains',this)">🔑 Keychains</button>
-      <button class="categoryBtn" onclick="filterCategory('crafts',this)">🎨 Crafts</button>
-      <button class="categoryBtn" onclick="filterCategory('crochet',this)">🧶 Crochet</button>
-      <button class="categoryBtn" onclick="filterCategory('kids',this)">🧸 Kids & Fun</button>
+      <button class="categoryBtn active" data-cat="all" onclick="filterCategory('all',this)">All Types</button>
+      <button class="categoryBtn" data-cat="plants" onclick="filterCategory('plants',this)">🌿 Plants</button>
+      <button class="categoryBtn" data-cat="gardening" onclick="filterCategory('gardening',this)">🌱 Gardening</button>
+      <button class="categoryBtn" data-cat="keychains" onclick="filterCategory('keychains',this)">🔑 Keychains</button>
+      <button class="categoryBtn" data-cat="crafts" onclick="filterCategory('crafts',this)">🎨 Crafts</button>
+      <button class="categoryBtn" data-cat="crochet" onclick="filterCategory('crochet',this)">🧶 Crochet</button>
+      <button class="categoryBtn" data-cat="kids" onclick="filterCategory('kids',this)">🧸 Kids & Fun</button>
+      <button class="categoryBtn" data-cat="others" onclick="filterCategory('others',this)">📦 Others</button>
     </div>
 
     <div class="controlsRow">
@@ -1104,7 +1106,7 @@ footer{
     <div class="footerGrid">
       <div class="footerColumn">
         <h3 style="font-size:18px;">Crafted Heaven PK</h3>
-        <p>Plants • Gardening • Seeds • Crafts • Crochet • Keychains • Kids Creative</p>
+        <p>Plants • Gardening • Seeds • Crafts • Crochet • Keychains • Kids Creative • Others</p>
       </div>
       <div class="footerColumn">
         <h3>Shop</h3>
@@ -1113,6 +1115,7 @@ footer{
           <li><button onclick="menuCategory('plants')">Plants</button></li>
           <li><button onclick="menuCategory('gardening')">Gardening & Seeds</button></li>
           <li><button onclick="menuCategory('crafts')">Crafts</button></li>
+          <li><button onclick="menuCategory('others')">Others</button></li>
         </ul>
       </div>
       <div class="footerColumn">
@@ -1390,7 +1393,7 @@ function changeSlide(dir) {
 
 function resetSlideTimer() {
   if(slideInterval) clearInterval(slideInterval);
-  slideInterval = setInterval(() => changeSlide(1), 2200); // Fast sliding speed
+  slideInterval = setInterval(() => changeSlide(1), 2200);
 }
 
 function enterWebsite(){ document.getElementById("welcomeScreen").classList.add("hide"); }
@@ -1412,10 +1415,17 @@ function menuGo(target){
   setTimeout(()=> document.querySelector(target)?.scrollIntoView({ behavior:"smooth" }), 200);
 }
 
+function syncCategoryButtons(cat){
+  document.querySelectorAll(".categoryBtn").forEach(b=>{
+    b.classList.toggle("active", b.dataset.cat === cat);
+  });
+}
+
 function showAllProducts(){
   closeMenu();
   showMainPage();
   currentCategory="all";
+  syncCategoryButtons("all");
   renderProducts();
   setTimeout(()=> document.getElementById("products")?.scrollIntoView({ behavior:"smooth" }), 200);
 }
@@ -1424,8 +1434,21 @@ function menuCategory(cat){
   closeMenu();
   showMainPage();
   currentCategory=cat;
+  syncCategoryButtons(cat);
   renderProducts();
   setTimeout(()=> document.getElementById("products")?.scrollIntoView({ behavior:"smooth" }), 200);
+}
+
+/* HELPER TO CHECK IF PRODUCT BELONGS TO STANDARD CATEGORIES */
+function isStandardCategory(rawCat){
+  return (
+    rawCat.includes("plant") ||
+    rawCat.includes("garden") || rawCat.includes("seed") || rawCat.includes("compost") || rawCat.includes("soil") ||
+    rawCat.includes("keychain") ||
+    rawCat.includes("craft") || rawCat.includes("bead") || rawCat.includes("bracelet") ||
+    rawCat.includes("crochet") ||
+    rawCat.includes("kid") || rawCat.includes("baby") || rawCat.includes("hair")
+  );
 }
 
 /* RENDER PRODUCTS WITH CATEGORY & DYNAMIC RATINGS */
@@ -1435,8 +1458,7 @@ function renderProducts(){
   const sort = document.getElementById("sortSelect")?.value || "default";
 
   let filtered = products.filter(p=>{
-    // Flexible category matching so variations like "kids", "Kids & Fun", "Kids Accessories" map correctly
-    const rawCat = (p.category || "").toLowerCase();
+    const rawCat = (p.category || "").toLowerCase().trim();
     let catMatch = false;
     if(currentCategory === "all") {
       catMatch = true;
@@ -1444,6 +1466,11 @@ function renderProducts(){
       catMatch = rawCat.includes("kid") || rawCat.includes("baby") || rawCat.includes("hair");
     } else if(currentCategory === "gardening") {
       catMatch = rawCat.includes("garden") || rawCat.includes("seed") || rawCat.includes("compost") || rawCat.includes("soil");
+    } else if(currentCategory === "crafts") {
+      catMatch = rawCat.includes("craft") || rawCat.includes("bead") || rawCat.includes("bracelet");
+    } else if(currentCategory === "others") {
+      // Matches explicit "others" category OR any uncategorized/general everyday items (like toothpicks, tissues, cotton buds)
+      catMatch = rawCat.includes("other") || !isStandardCategory(rawCat);
     } else {
       catMatch = rawCat.includes(currentCategory);
     }
@@ -1457,14 +1484,14 @@ function renderProducts(){
   if(sort==="nameAZ") filtered.sort((a,b)=> a.name.localeCompare(b.name));
 
   if(!filtered.length){
-    grid.innerHTML=`<div style="grid-column:1/-1; text-align:center; padding:40px; color:#888;">No products found.</div>`;
+    grid.innerHTML=`<div style="grid-column:1/-1; text-align:center; padding:40px; color:#888;">No products found in this category.</div>`;
     return;
   }
 
   grid.innerHTML = filtered.map(p=>{
     const img = getProductImages(p)[0] || "";
     const ratings = ["4.9 (142)", "5.0 (89)", "4.8 (210)", "4.9 (76)"];
-    const randomRating = ratings[p.id % ratings.length];
+    const randomRating = ratings[Math.floor(Number(p.id)) % ratings.length] || "4.9 (95)";
 
     return `
       <article class="productCard" onclick="openProductPage(${p.id})">
@@ -1546,7 +1573,7 @@ function renderYouMayAlsoLike(currentId){
   `).join("");
 }
 
-/* REVIEWS HANDLER */
+/* REVIEWS HANDLER WITH FORMATTED DATE */
 let userRatingChoice = 0;
 function setRating(r){
   userRatingChoice = r;
@@ -1555,19 +1582,25 @@ function setRating(r){
   });
 }
 
+function formatReviewDate(dateObj){
+  return dateObj.toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" });
+}
+
 function submitCustomerReview(e){
   e.preventDefault();
   if(!userRatingChoice){ alert("Please select a rating."); return; }
+  const todayFormatted = formatReviewDate(new Date());
   reviews.push({
     id: Date.now(),
     productId: currentSelectedProduct ? currentSelectedProduct.id : 0,
+    productName: currentSelectedProduct ? currentSelectedProduct.name : "",
     name: document.getElementById("review-name-input").value.trim(),
     rating: userRatingChoice,
     text: document.getElementById("review-text-input").value.trim(),
-    date: new Date().toLocaleDateString()
+    date: todayFormatted
   });
   localStorage.setItem("craftedHeavenReviews", JSON.stringify(reviews));
-  alert("Review submitted successfully!");
+  showToast("Review submitted successfully! ⭐");
   e.target.reset();
   setRating(0);
   renderReviews();
@@ -1690,19 +1723,29 @@ function openAccount(){ document.getElementById("accountOverlay").classList.add(
 function closeAccount(){ document.getElementById("accountOverlay").classList.remove("show"); }
 function saveAccount(e){ e.preventDefault(); closeAccount(); showToast("Details saved!"); }
 
+/* RENDER REVIEWS WITH DATE & STARS */
 function renderReviews(){
   const container = document.getElementById("reviewsGrid");
   if(!reviews.length){
     container.innerHTML = `<div style="background:#ffffff; padding:16px; border-radius:12px; border:1px solid var(--border-color); color:var(--text-muted);">No reviews yet. Be the first to review!</div>`;
     return;
   }
-  container.innerHTML = reviews.slice(-6).map(r => `
-    <div style="background:#ffffff; padding:16px; border-radius:12px; border:1px solid var(--border-color); box-shadow: 0 2px 8px rgba(0,0,0,0.02);">
-      <div style="color:#d4af37;">★★★★★</div>
-      <strong style="color:var(--primary);">${escapeHTML(r.name)}</strong>
-      <p style="font-size:13px; color:var(--text-muted); margin-top:6px;">${escapeHTML(r.text)}</p>
-    </div>
-  `).join("");
+  container.innerHTML = reviews.slice(-6).reverse().map(r => {
+    const starCount = Math.min(5, Math.max(1, Number(r.rating) || 5));
+    const starsHTML = "★".repeat(starCount) + "☆".repeat(5 - starCount);
+    const reviewDate = r.date ? escapeHTML(r.date) : "";
+
+    return `
+      <div style="background:#ffffff; padding:16px; border-radius:12px; border:1px solid var(--border-color); box-shadow: 0 2px 8px rgba(0,0,0,0.02);">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
+          <div style="color:#d4af37; font-size:15px;">${starsHTML}</div>
+          ${reviewDate ? `<span style="font-size:11.5px; color:#888888; background:#f4f1e8; padding:3px 9px; border-radius:12px;">📅 ${reviewDate}</span>` : ""}
+        </div>
+        <strong style="color:var(--primary); font-size:15px;">${escapeHTML(r.name)}</strong>
+        <p style="font-size:13px; color:var(--text-muted); margin-top:6px; line-height:1.5;">${escapeHTML(r.text)}</p>
+      </div>
+    `;
+  }).join("");
 }
 
 function showToast(msg){
@@ -1728,7 +1771,7 @@ function showToast(msg){
         id: item.id || Math.random(),
         name: item.name || item.title || 'Product',
         price: Number(item.sale_price || item.price || 0), 
-        category: item.category || 'plants', // Keep original case/string from database
+        category: item.category || 'others',
         image: item.image_url || item.image || '',
         description: item.short_description || item.description || '',
         details: item.description ? item.description.split('\n') : [item.short_description || 'Crafted Heaven Product'],
