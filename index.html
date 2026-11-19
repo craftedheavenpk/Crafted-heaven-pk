@@ -8,7 +8,7 @@
 <title>Crafted Heaven PK | Plants, Crafts, Gardening & More</title>
 
 <meta name="description" content="Crafted Heaven PK - Plants, gardening supplies, seeds, handmade crafts, crochet, keychains, kids products and more.">
-<meta name="keywords" content="Crafted Heaven PK, plants, gardening, seeds, cocopeat, organic compost, crochet, keychains, crafts, Lahore">
+<meta name="keywords" content="Crafted Heaven PK, plants, gardening, seeds, crochet, keychains, crafts, Pakistan">
 
 <!-- PWA Icons -->
 <link rel="icon" type="image/png" href="crafted_heaven_logo.png">
@@ -767,6 +767,58 @@ footer{
   border:1px solid #d0e2d6;
 }
 
+/* VARIATION SELECTOR STYLES */
+.variation-box{
+  background:#f9f8f3;
+  border:1px solid var(--border-color);
+  border-radius:14px;
+  padding:14px;
+  margin-bottom:18px;
+}
+
+.variation-label{
+  display:block;
+  font-size:13px;
+  font-weight:bold;
+  color:var(--primary);
+  margin-bottom:8px;
+}
+
+.variation-chips{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  margin-bottom:10px;
+}
+
+.var-chip{
+  border:1px solid var(--border-color);
+  background:#ffffff;
+  color:var(--primary);
+  padding:7px 13px;
+  border-radius:20px;
+  font-size:12.5px;
+  font-weight:bold;
+  cursor:pointer;
+}
+
+.var-chip.active{
+  background:var(--primary);
+  color:#f1d57a;
+  border-color:var(--primary);
+}
+
+.custom-var-input{
+  width:100%;
+  padding:9px 12px;
+  border:1px solid var(--border-color);
+  border-radius:9px;
+  font-size:13px;
+  background:#ffffff;
+  color:var(--text-main);
+  outline:none;
+}
+
 .product-details-section{
   margin-top:25px;
   background:#f9f8f3;
@@ -783,6 +835,49 @@ footer{
   border-radius:20px;
   border:1px solid var(--border-color);
   box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+}
+
+/* CART ITEM WITH IMAGE & +/- */
+.cart-item-row{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  background:#f9f8f3;
+  padding:10px;
+  border-radius:10px;
+  margin-bottom:10px;
+  border:1px solid var(--border-color);
+}
+
+.cart-item-thumb{
+  width:52px;
+  height:52px;
+  border-radius:8px;
+  object-fit:cover;
+  background:#f4f1e8;
+  border:1px solid var(--border-color);
+  flex-shrink:0;
+}
+
+.cart-qty-controls{
+  display:flex;
+  align-items:center;
+  gap:6px;
+  margin-top:6px;
+}
+
+.qty-btn{
+  width:26px;
+  height:26px;
+  border-radius:6px;
+  border:1px solid var(--border-color);
+  background:#ffffff;
+  color:var(--primary);
+  font-weight:bold;
+  cursor:pointer;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
 }
 
 /* =========================
@@ -921,7 +1016,7 @@ footer{
 
 <body>
 
-<!-- TOP SLIDING NOTIFICATION BAR -->
+<!-- TOP SLIDING NOTIFICATION BAR (UNTOUCHED) -->
 <div id="topAnnouncementBar">
   <div class="notif-slide-item active">🎉 <strong>Crafted Heaven Studio:</strong> 11.11 Mega Sale is Live Now!</div>
 </div>
@@ -1053,7 +1148,7 @@ footer{
       <p>Simple and convenient delivery from Crafted Heaven.</p>
     </div>
     <div class="darkCardBox">
-      <p style="font-size:18px; margin-bottom:12px;">🚚 <strong>Lahore Delivery Only</strong></p>
+      <p style="font-size:18px; margin-bottom:12px;">🚚 <strong>All Over Pakistan Delivery</strong></p>
       <p>Delivery time is normally <strong>2–3 working days</strong>.</p>
       <p style="margin-top:10px;">💳 Payment is accepted through <strong>JazzCash or EasyPaisa</strong>.</p>
       <p style="color:#c0392b; margin-top:10px; font-weight:bold;">❌ Cash on Delivery is not available.</p>
@@ -1071,7 +1166,7 @@ footer{
       <br>
       <p>We aim to offer lovely products at reasonable prices while making shopping simple and convenient.</p>
       <br>
-      <p style="color:var(--primary); font-weight:bold;">Delivery: Lahore only • 2–3 working days • Online payment required.</p>
+      <p style="color:var(--primary); font-weight:bold;">Delivery: All over Pakistan • 2–3 working days • Online payment required.</p>
     </div>
   </section>
 
@@ -1131,7 +1226,7 @@ footer{
         <h3>Gardening & Delivery</h3>
         <ul>
           <li><button onclick="openGuide()">A-Z Plant Guide</button></li>
-          <li>Lahore Delivery</li>
+          <li>All Over Pakistan Delivery</li>
           <li>2–3 Working Days</li>
           <li>Online Payment Only</li>
           <li>JazzCash / EasyPaisa</li>
@@ -1144,7 +1239,7 @@ footer{
       <a href="https://wa.me/923034812714" target="_blank" class="socialBtn whatsappBtn" style="padding:8px 16px; font-size:13px;">WhatsApp</a>
     </div>
 
-    <p style="text-align:center; margin-top:20px; font-size:13px; color:#c5cfc8;">🚚 Lahore Delivery • 2–3 working days • Online Payment Only</p>
+    <p style="text-align:center; margin-top:20px; font-size:13px; color:#c5cfc8;">🚚 All Over Pakistan Delivery • 2–3 working days • Online Payment Only</p>
     <div style="text-align:center; margin-top:15px; font-size:12px; color:#88a393; border-top:1px solid #1c4a34; padding-top:15px;">
       © 2026 Crafted Heaven PK. All Rights Reserved.
     </div>
@@ -1175,6 +1270,13 @@ footer{
       <span id="detail-category" class="productCategory" style="font-size:12px;">PLANTS</span>
       <h1 id="detail-title" style="margin:10px 0; font-size:24px; color:var(--primary);">Product Title</h1>
       <div id="detail-price-box" style="font-size:22px; font-weight:bold; color:var(--primary); margin-bottom:15px;">Rs. 0</div>
+
+      <!-- VARIATION SELECTOR -->
+      <div class="variation-box" id="variationBox">
+        <span class="variation-label" id="variationLabel">Select Option / Pack:</span>
+        <div class="variation-chips" id="variationChips"></div>
+        <input type="text" id="customVariationInput" class="custom-var-input" placeholder="Or write preference (color, character, pack)..." oninput="syncCustomVariation()">
+      </div>
 
       <div style="display:flex; gap:12px; margin-bottom:20px;">
         <button id="detail-add-cart-btn" style="flex:1; padding:13px; background:var(--primary); color:#f1d57a; border:0; border-radius:10px; font-weight:bold; cursor:pointer;">🛒 Add to Cart</button>
@@ -1280,7 +1382,7 @@ footer{
       </div>
       <div class="fieldFull">
         <label>Complete Delivery Address *</label>
-        <textarea id="deliveryAddress" required placeholder="House, Street, Area, Lahore..."></textarea>
+        <textarea id="deliveryAddress" required placeholder="House, Street, Area, City, Pakistan..."></textarea>
       </div>
 
       <div class="fieldFull" style="background:#eaf2ed; border:1px solid #c9e0d1; padding:15px; border-radius:12px; margin-top:5px;">
@@ -1374,13 +1476,14 @@ let cart = JSON.parse(localStorage.getItem("craftedHeavenCart") || "[]");
 let reviews = JSON.parse(localStorage.getItem("craftedHeavenReviews") || "[]");
 let currentCategory = "all";
 let currentSelectedProduct = null;
+let selectedVariationValue = "";
 let currentSlideIndex = 0;
 let slideInterval = null;
 let slideElements = [];
 
 function money(val){ return Number(val || 0).toLocaleString("en-PK"); }
 function escapeHTML(v){ return String(v || "").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;"); }
-function getProductById(id){ return products.find(p => Number(p.id) === Number(id)); }
+function getProductById(id){ return products.find(p => String(p.id) === String(id)); }
 function getProductImages(p){ return p?.images?.length ? p.images : (p?.image ? [p.image] : []); }
 
 /* FAST BANNER SLIDER */
@@ -1469,7 +1572,6 @@ function renderProducts(){
     } else if(currentCategory === "crafts") {
       catMatch = rawCat.includes("craft") || rawCat.includes("bead") || rawCat.includes("bracelet");
     } else if(currentCategory === "others") {
-      // Matches explicit "others" category OR any uncategorized/general everyday items (like toothpicks, tissues, cotton buds)
       catMatch = rawCat.includes("other") || !isStandardCategory(rawCat);
     } else {
       catMatch = rawCat.includes(currentCategory);
@@ -1488,13 +1590,15 @@ function renderProducts(){
     return;
   }
 
-  grid.innerHTML = filtered.map(p=>{
+  grid.innerHTML = filtered.map((p, idx)=>{
     const img = getProductImages(p)[0] || "";
     const ratings = ["4.9 (142)", "5.0 (89)", "4.8 (210)", "4.9 (76)"];
-    const randomRating = ratings[Math.floor(Number(p.id)) % ratings.length] || "4.9 (95)";
+    const numId = Number(p.id);
+    const ratingIndex = Number.isFinite(numId) ? Math.abs(Math.floor(numId)) % ratings.length : idx % ratings.length;
+    const randomRating = ratings[ratingIndex];
 
     return `
-      <article class="productCard" onclick="openProductPage(${p.id})">
+      <article class="productCard" onclick="openProductPage('${escapeHTML(p.id)}')">
         <div class="productImageWrap">
           <img src="${escapeHTML(img)}" alt="${escapeHTML(p.name)}" loading="lazy" />
         </div>
@@ -1506,7 +1610,7 @@ function renderProducts(){
             <div class="price">Rs. ${money(p.price)}</div>
             <div class="unit">${escapeHTML(p.unit || "1 pc")}</div>
           </div>
-          <button class="addBtn" onclick="event.stopPropagation(); addToCart(${p.id});">🛒 Add to Cart</button>
+          <button class="addBtn" onclick="event.stopPropagation(); addToCart('${escapeHTML(p.id)}');">🛒 Add to Cart</button>
         </div>
       </article>
     `;
@@ -1518,6 +1622,82 @@ function filterCategory(cat, btn){
   document.querySelectorAll(".categoryBtn").forEach(b=>b.classList.remove("active"));
   btn?.classList.add("active");
   renderProducts();
+}
+
+/* CLEAN VARIATIONS: ONLY DASHBOARD VARIATIONS OR REAL PACK/CHARACTER ITEMS */
+function getProductVariations(p){
+  // 1. First priority: any variations added directly from your dashboard
+  if (Array.isArray(p.variations) && p.variations.length) {
+    return p.variations.map(v => typeof v === "string" ? v.trim() : String(v.name || v.label || "")).filter(Boolean);
+  }
+  if (typeof p.variations === "string" && p.variations.trim()) {
+    return p.variations.split(",").map(s => s.trim()).filter(Boolean);
+  }
+
+  const text = ((p.name || "") + " " + (p.category || "")).toLowerCase();
+
+  // 2. Trading / collectible cards
+  if (text.includes("card") || text.includes("pokemon") || text.includes("dragon")) {
+    return ["Pokemon", "Dragon Ball", "Mix"];
+  }
+
+  // 3. Multi-piece packs, painting toys, crafts, bracelets, crochet, keychains
+  if (
+    text.includes("pack") || text.includes("pcs") || text.includes("toy") || text.includes("paint") ||
+    text.includes("crochet") || text.includes("bead") || text.includes("bracelet") || text.includes("keychain") || text.includes("hair")
+  ) {
+    return [p.unit || "1 pc", "2 pcs", "3 pcs"];
+  }
+
+  // 4. Plants, seeds & single items stay clean without fake sizes
+  return [];
+}
+
+function setupVariationUI(p){
+  const box = document.getElementById("variationBox");
+  const chipsWrap = document.getElementById("variationChips");
+  const customInput = document.getElementById("customVariationInput");
+  const options = getProductVariations(p);
+
+  if (customInput) customInput.value = "";
+
+  if (options.length > 0) {
+    box.style.display = "block";
+    selectedVariationValue = options[0];
+    chipsWrap.innerHTML = options.map((opt, idx) => `
+      <button type="button" class="var-chip ${idx === 0 ? "active" : ""}" onclick="selectVariationChip(this, '${escapeHTML(opt)}')">${escapeHTML(opt)}</button>
+    `).join("");
+  } else {
+    // Keep clean for plants/single items; allow optional note only if typed
+    box.style.display = "block";
+    selectedVariationValue = p.unit || "1 pc";
+    chipsWrap.innerHTML = "";
+  }
+}
+
+function selectVariationChip(btn, val){
+  document.querySelectorAll("#variationChips .var-chip").forEach(b => b.classList.remove("active"));
+  btn.classList.add("active");
+  selectedVariationValue = val;
+  const customInput = document.getElementById("customVariationInput");
+  if (customInput) customInput.value = "";
+}
+
+function syncCustomVariation(){
+  const customInput = document.getElementById("customVariationInput");
+  const typed = (customInput?.value || "").trim();
+  if (typed) {
+    document.querySelectorAll("#variationChips .var-chip").forEach(b => b.classList.remove("active"));
+    selectedVariationValue = typed;
+  } else {
+    const firstChip = document.querySelector("#variationChips .var-chip");
+    if (firstChip) {
+      firstChip.classList.add("active");
+      selectedVariationValue = firstChip.textContent.trim();
+    } else {
+      selectedVariationValue = currentSelectedProduct?.unit || "1 pc";
+    }
+  }
 }
 
 /* DEDICATED PRODUCT PAGE VIEW */
@@ -1532,19 +1712,33 @@ function openProductPage(id){
 
   const images = getProductImages(p);
   document.getElementById("detail-main-img").src = images[0] || "";
-  document.getElementById("detail-category").innerText = p.category.toUpperCase();
+  document.getElementById("detail-category").innerText = (p.category || "OTHERS").toUpperCase();
   document.getElementById("detail-title").innerText = (p.emoji ? p.emoji + " " : "") + p.name;
   document.getElementById("detail-price-box").innerText = `Rs. ${money(p.price)} (${p.unit || "1 pc"})`;
   document.getElementById("review-product-title").innerText = p.name;
 
-  const tags = p.tags || ["#craftedheaven", "#lahore", "#online"];
+  setupVariationUI(p);
+
+  const tags = p.tags || ["#craftedheaven", "#pakistan", "#online"];
   document.getElementById("detail-tags-list").innerHTML = tags.map(t=> `<span style="background:#eaf2ed; color:var(--primary); padding:4px 12px; border-radius:12px; font-size:12px;">${escapeHTML(t)}</span>`).join("");
 
-  const details = p.details || [p.description || "High quality product from Crafted Heaven PK."];
-  document.getElementById("detail-description-list").innerHTML = details.map(d=> `<li style="margin-bottom:6px;">${escapeHTML(d)}</li>`).join("");
+  const rawDesc = p.description || p.short_description || p.details_text || "";
+  let detailsList = [];
+  if (Array.isArray(p.details) && p.details.length) {
+    detailsList = p.details.map(d => String(d).trim()).filter(Boolean);
+  } else if (rawDesc) {
+    detailsList = String(rawDesc).split(/\r?\n/).map(line => line.trim()).filter(Boolean);
+  }
 
-  document.getElementById("detail-add-cart-btn").onclick = () => addToCart(p.id);
-  document.getElementById("detail-buy-now-btn").onclick = () => { addToCart(p.id); openCart(); };
+  const descUl = document.getElementById("detail-description-list");
+  if (detailsList.length) {
+    descUl.innerHTML = detailsList.map(d => `<li style="margin-bottom:6px;">${escapeHTML(d)}</li>`).join("");
+  } else {
+    descUl.innerHTML = `<li style="margin-bottom:6px;">No extra details added yet.</li>`;
+  }
+
+  document.getElementById("detail-add-cart-btn").onclick = () => addToCart(p.id, selectedVariationValue);
+  document.getElementById("detail-buy-now-btn").onclick = () => { addToCart(p.id, selectedVariationValue); openCart(); };
 
   renderYouMayAlsoLike(p.id);
 }
@@ -1558,16 +1752,16 @@ function showMainPage(){
 /* YOU MAY ALSO LIKE RENDERER */
 function renderYouMayAlsoLike(currentId){
   const grid = document.getElementById("you-may-also-like-grid");
-  const related = products.filter(p=> Number(p.id) !== Number(currentId)).slice(0,4);
+  const related = products.filter(p=> String(p.id) !== String(currentId)).slice(0,4);
   grid.innerHTML = related.map(p => `
-    <article class="productCard" onclick="openProductPage(${p.id})">
+    <article class="productCard" onclick="openProductPage('${escapeHTML(p.id)}')">
       <div class="productImageWrap"><img src="${escapeHTML(getProductImages(p)[0] || "")}" /></div>
       <div class="productInfo">
         <span class="productCategory">${escapeHTML(p.category)}</span>
         <h3 class="productName">${escapeHTML(p.name)}</h3>
         <div class="productRatingCard">★★★★★ 4.9 (50+)</div>
         <div class="priceRow"><div class="price">Rs. ${money(p.price)}</div></div>
-        <button class="addBtn" onclick="event.stopPropagation(); addToCart(${p.id});">🛒 Add to Cart</button>
+        <button class="addBtn" onclick="event.stopPropagation(); addToCart('${escapeHTML(p.id)}');">🛒 Add to Cart</button>
       </div>
     </article>
   `).join("");
@@ -1606,16 +1800,37 @@ function submitCustomerReview(e){
   renderReviews();
 }
 
-/* CART */
-function addToCart(id){
+/* CART WITH VARIATION, IMAGE & -1 / +1 */
+function addToCart(id, variation = ""){
   const p = getProductById(id);
   if(!p) return;
-  const item = cart.find(x=> Number(x.id) === Number(id));
-  if(item) item.quantity += 1;
-  else cart.push({ id: Number(id), quantity: 1 });
+  const chosenVar = variation || (currentSelectedProduct && String(currentSelectedProduct.id) === String(id) ? selectedVariationValue : "") || p.unit || "1 pc";
+  const cartKey = `${p.id}__${chosenVar}`;
+  const item = cart.find(x => (x.key || `${x.id}__${x.variation || ""}`) === cartKey);
+
+  if (item) {
+    item.quantity += 1;
+  } else {
+    cart.push({
+      key: cartKey,
+      id: p.id,
+      variation: chosenVar,
+      quantity: 1
+    });
+  }
   saveCart();
   renderCart();
-  showToast(`${p.name} added to cart 🛒`);
+  showToast(`${p.name} (${chosenVar}) added to cart 🛒`);
+}
+
+function changeCartQty(index, delta){
+  if (!cart[index]) return;
+  cart[index].quantity += delta;
+  if (cart[index].quantity <= 0) {
+    cart.splice(index, 1);
+  }
+  saveCart();
+  renderCart();
 }
 
 function saveCart(){ localStorage.setItem("craftedHeavenCart", JSON.stringify(cart)); }
@@ -1635,20 +1850,31 @@ function renderCart(){
     return;
   }
 
-  body.innerHTML = cart.map(item => {
+  body.innerHTML = cart.map((item, idx) => {
     const p = getProductById(item.id);
     if(!p) return "";
     const itemTotal = Number(p.price) * item.quantity;
     sum += itemTotal;
     itemCount += item.quantity;
+    const img = getProductImages(p)[0] || "crafted_heaven_logo.png";
+    const varLabel = item.variation ? ` • ${escapeHTML(item.variation)}` : "";
 
     return `
-      <div style="display:flex; justify-content:space-between; align-items:center; background:#f9f8f3; padding:10px; border-radius:8px; margin-bottom:8px; border:1px solid var(--border-color);">
-        <div>
-          <div style="font-weight:bold; color:var(--primary);">${escapeHTML(p.name)}</div>
-          <div style="font-size:12px; color:var(--text-muted);">Rs. ${money(p.price)} × ${item.quantity}</div>
+      <div class="cart-item-row">
+        <img src="${escapeHTML(img)}" alt="${escapeHTML(p.name)}" class="cart-item-thumb" onerror="this.src='crafted_heaven_logo.png'">
+        <div style="flex:1; min-width:0;">
+          <div style="font-weight:bold; color:var(--primary); font-size:14px;">${escapeHTML(p.name)}</div>
+          <div style="font-size:12px; color:var(--text-muted);">Rs. ${money(p.price)}${varLabel}</div>
+          <div class="cart-qty-controls">
+            <button type="button" class="qty-btn" onclick="changeCartQty(${idx}, -1)">-</button>
+            <span style="font-size:13px; font-weight:bold; padding:0 4px;">${item.quantity}</span>
+            <button type="button" class="qty-btn" onclick="changeCartQty(${idx}, 1)">+</button>
+          </div>
         </div>
-        <button onclick="removeFromCart(${p.id})" style="background:#ff4d4d; color:white; border:0; padding:6px 10px; border-radius:6px; cursor:pointer;">Remove</button>
+        <div style="text-align:right;">
+          <div style="font-weight:bold; font-size:13px; color:var(--primary); margin-bottom:6px;">Rs. ${money(itemTotal)}</div>
+          <button onclick="removeCartIndex(${idx})" style="background:#ff4d4d; color:white; border:0; padding:5px 9px; border-radius:6px; cursor:pointer; font-size:11.5px;">Remove</button>
+        </div>
       </div>
     `;
   }).join("");
@@ -1657,8 +1883,8 @@ function renderCart(){
   total.textContent = money(sum);
 }
 
-function removeFromCart(id){
-  cart = cart.filter(x => Number(x.id) !== Number(id));
+function removeCartIndex(index){
+  cart.splice(index, 1);
   saveCart();
   renderCart();
 }
@@ -1668,7 +1894,7 @@ function clearCart(){ cart = []; saveCart(); renderCart(); }
 function openCart(){ renderCart(); document.getElementById("cartOverlay").classList.add("show"); }
 function closeCart(){ document.getElementById("cartOverlay").classList.remove("show"); }
 
-/* CHECKOUT & PDF GENERATION */
+/* CHECKOUT & WHATSAPP ORDER */
 function openCheckout(){
   if(!cart.length){ alert("Cart is empty!"); return; }
   closeCart();
@@ -1692,7 +1918,8 @@ function processCheckoutOrder(e){
     if(p){
       const itemTot = p.price * item.quantity;
       total += itemTot;
-      itemsText += `${idx+1}. *${p.name}* x ${item.quantity} = Rs. ${itemTot}\n`;
+      const vText = item.variation ? ` [${item.variation}]` : "";
+      itemsText += `${idx+1}. *${p.name}*${vText} x ${item.quantity} = Rs. ${itemTot}\n`;
     }
   });
 
@@ -1767,18 +1994,27 @@ function showToast(msg){
     const { data: dbProducts } = await supabaseClient.from('products').select('*').order('created_at', { ascending: false });
 
     if (dbProducts && dbProducts.length > 0) {
-      products = dbProducts.map(item => ({
-        id: item.id || Math.random(),
-        name: item.name || item.title || 'Product',
-        price: Number(item.sale_price || item.price || 0), 
-        category: item.category || 'others',
-        image: item.image_url || item.image || '',
-        description: item.short_description || item.description || '',
-        details: item.description ? item.description.split('\n') : [item.short_description || 'Crafted Heaven Product'],
-        emoji: item.emoji || '🌿',
-        unit: item.unit || '1 pc'
-      }));
+      products = dbProducts.map((item, index) => {
+        const rawDesc = item.description ?? item.short_description ?? item.product_details ?? item.details ?? "";
+        const parsedDetails = Array.isArray(rawDesc)
+          ? rawDesc
+          : String(rawDesc).split(/\r?\n/).map(line => line.trim()).filter(Boolean);
+
+        return {
+          id: item.id ?? index + 1,
+          name: item.name || item.title || 'Product',
+          price: Number(item.sale_price || item.price || 0),
+          category: item.category || 'others',
+          image: item.image_url || item.image || '',
+          description: String(rawDesc),
+          details: parsedDetails,
+          variations: item.variations || item.variants || item.options || null,
+          emoji: item.emoji || '🌿',
+          unit: item.unit || '1 pc'
+        };
+      });
       renderProducts();
+      renderCart();
     }
 
     // 2. Load Banners dynamically from Dashboard table 'banners'
@@ -1816,6 +2052,7 @@ function showToast(msg){
     slideElements = document.querySelectorAll('.slide');
     resetSlideTimer();
     loadSupabaseData();
+    renderCart();
     renderReviews();
   });
 </script>
